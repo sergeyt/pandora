@@ -1,0 +1,24 @@
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+var server *http.Server
+
+func stopServer() {
+	fmt.Println("shutting down")
+	server.Shutdown(nil)
+}
+
+func startServer() {
+	fmt.Printf("listening %s\n", config.Addr)
+
+	server = &http.Server{
+		Addr:    config.Addr,
+		Handler: makeAPIHandler(),
+	}
+
+	server.ListenAndServe()
+}
