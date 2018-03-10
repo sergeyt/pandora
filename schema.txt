@@ -1,0 +1,3 @@
+name: string @index(term) .
+age: int @index(int) .
+friend: uid @count .

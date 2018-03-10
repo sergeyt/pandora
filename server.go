@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -13,6 +14,8 @@ func stopServer() {
 }
 
 func startServer() {
+	initSchema()
+
 	fmt.Printf("listening %s\n", config.Addr)
 
 	server = &http.Server{
@@ -20,5 +23,8 @@ func startServer() {
 		Handler: makeAPIHandler(),
 	}
 
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Fatal(err)
+	}
 }

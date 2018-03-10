@@ -1,2 +1,5 @@
 [http]
 addr=":8888"
+
+[dgraph]
+addr="localhost:9080"

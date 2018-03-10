@@ -2,14 +2,25 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/spf13/viper"
 )
 
-type Config struct {
+type DBConfig struct {
 	Addr string
 }
 
-var config Config = Config{}
+type Config struct {
+	Addr string
+	DB   DBConfig
+}
+
+var config Config = Config{
+	Addr: ":8888",
+	DB: DBConfig{
+		Addr: "localhost:9080",
+	},
+}
 
 func parseConfig() {
 	viper.SetConfigType("toml")
@@ -27,5 +38,8 @@ func parseConfig() {
 func initConfig() {
 	config = Config{
 		Addr: viper.GetString("http.addr"),
+		DB: DBConfig{
+			Addr: viper.GetString("dgraph.addr"),
+		},
 	}
 }
