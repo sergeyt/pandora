@@ -17,20 +17,26 @@ const (
 
 func makeAPIHandler() http.Handler {
 	mux := chi.NewRouter()
-	mux.Use(transactionMiddleware)
 
-	mux.Post("/api/query", queryHandler)
+	mux.Get("/api/event/stream", GetEventStream)
+	mux.Get("/api/event/stream/{channel}", GetEventStream)
 
-	// mutation api
-	mux.Get("/api/nodes/{type}/{id}", readHandler)
-	mux.Post("/api/nodes/{type}", mutateHandler)
-	mux.Put("/api/nodes/{type}/{id}", mutateHandler)
-	mux.Delete("/api/nodes/{type}/{id}", deleteHandler)
+	mux.Group(func(r chi.Router) {
+		r = r.With(transactionMiddleware)
 
-	// TODO allow to delete triples from graph
-	// TODO consider to expose raw api for admin users
+		r.Post("/api/query", queryHandler)
 
-	// edges api
+		// mutation api
+		r.Get("/api/nodes/{type}/{id}", readHandler)
+		r.Post("/api/nodes/{type}", mutateHandler)
+		r.Put("/api/nodes/{type}/{id}", mutateHandler)
+		r.Delete("/api/nodes/{type}/{id}", deleteHandler)
+
+		// TODO allow to delete triples from graph
+		// TODO consider to expose raw api for admin users
+
+		// edges api
+	})
 
 	return mux
 }
