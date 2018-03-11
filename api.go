@@ -9,6 +9,7 @@ import (
 	"github.com/dgraph-io/dgraph/client"
 	"github.com/dgraph-io/dgraph/protos/api"
 	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 )
 
 const (
@@ -17,6 +18,10 @@ const (
 
 func makeAPIHandler() http.Handler {
 	mux := chi.NewRouter()
+
+	mux.Use(middleware.RequestID)
+	mux.Use(middleware.Logger)
+	mux.Use(middleware.Recoverer)
 
 	mux.Get("/api/event/stream", GetEventStream)
 	mux.Get("/api/event/stream/{channel}", GetEventStream)
