@@ -19,7 +19,7 @@ func makeAPIHandler() http.Handler {
 	mux := chi.NewRouter()
 	mux.Use(transactionMiddleware)
 
-	mux.Get("/api/query", queryHandler)
+	mux.Post("/api/query", queryHandler)
 
 	// mutation api
 	mux.Get("/api/nodes/{type}/{id}", readHandler)
