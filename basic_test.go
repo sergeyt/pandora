@@ -48,18 +48,22 @@ func TestCRUD(t *testing.T) {
 		Name string `json:"name"`
 		Age  int    `json:"age"`
 	}{
-		UID:  "0x1",
 		Name: "Michael",
 		Age:  39,
 	}
 
+	fmt.Println("CREATE")
+
 	resp := c.expect.POST("/api/nodes/user").WithJSON(in).
 		Expect().
 		Status(http.StatusOK).
-		JSON().
-		Raw()
+		JSON()
 
-	printJSON(resp)
+	printJSON(resp.Raw())
+
+	uid := resp.Path("$.uids[\"blank-0\"]").String().Raw()
+
+	fmt.Println("QUERY")
 
 	query := `{
 		michael(func: eq(name@., "Michael")) {
@@ -71,17 +75,17 @@ func TestCRUD(t *testing.T) {
 	resp = c.expect.POST("/api/query").WithBytes([]byte(query)).
 		Expect().
 		Status(http.StatusOK).
-		JSON().
-		Raw()
+		JSON()
 
-	printJSON(resp)
+	printJSON(resp.Raw())
 
-	resp = c.expect.DELETE("/api/nodes/user/0x1").
+	fmt.Println("DELETE")
+
+	resp = c.expect.DELETE("/api/nodes/user/" + uid).
 		Expect().
 		Status(http.StatusOK).
-		JSON().
-		Raw()
-	printJSON(resp)
+		JSON()
+	printJSON(resp.Raw())
 }
 
 func printJSON(v interface{}) {
