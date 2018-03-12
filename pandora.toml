@@ -1,5 +1,5 @@
-[http]
-addr=":8888"
+[api]
+addr=":3000"
 
 [dgraph]
 addr="localhost:9080"
