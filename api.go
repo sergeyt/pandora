@@ -43,6 +43,8 @@ func makeAPIHandler() http.Handler {
 		// edges api
 	})
 
+	uploadAPI(mux)
+
 	return mux
 }
 
