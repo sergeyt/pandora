@@ -1,9 +1,12 @@
 name: string @index(term, hash, trigram) .
 email: string @index(term, hash) .
+avatar: string @index(term, hash) .
 description: string @index(fulltext) .
 age: int @index(int) .
+
 friend: uid @count .
 follow: uid @count .
+member_of: uid @count .
 
 type: string @index(term, hash, trigram) .
 content_type: string @index(term, hash, trigram) .
@@ -11,8 +14,12 @@ hash: string @index(term) .
 body: string @index(fulltext) .
 author: uid @count .
 channel: uid @count .
-created: dateTime .
-modified: dateTime .
+
+created_at: dateTime .
+modified_at: dateTime .
+created_by: uid .
+modified_by: uid .
+joined_at: dateTime .
 
 due: dateTime .
 estimate: int @index(int) .
