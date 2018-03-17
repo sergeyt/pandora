@@ -35,8 +35,17 @@ services:
         volume:
           nocopy: true
     ports:
+      - 8888:8888
+    command: dgraph-ratel --port=8888
+  caddy:
+    image: abiosoft/caddy
+    volumes:
+      - type: bind
+        source: ./Caddyfile
+        target: /etc/Caddyfile
+    ports:
       - 8000:8000
-    command: dgraph-ratel
+    command: caddy
 
 volumes:
   dgraph:

@@ -1,0 +1,7 @@
+localhost:8000
+
+gzip
+cors
+
+proxy /api localhost:3000
+proxy /ratel dgraph-ratel:8888
