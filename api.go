@@ -30,9 +30,9 @@ func makeAPIHandler() http.Handler {
 		r = r.With(transactionMiddleware)
 
 		r.Post("/api/query", queryHandler)
+		r.Get("/api/nodes/{type}/{id}", readHandler)
 
 		// mutation api
-		r.Get("/api/nodes/{type}/{id}", readHandler)
 		r.Post("/api/nodes/{type}", mutateHandler)
 		r.Put("/api/nodes/{type}/{id}", mutateHandler)
 		r.Delete("/api/nodes/{type}/{id}", deleteHandler)
