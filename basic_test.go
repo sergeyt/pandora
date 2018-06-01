@@ -54,7 +54,7 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("CREATE")
 
-	resp := c.expect.POST("/api/nodes/user").WithJSON(in).
+	resp := c.expect.POST("/api/data/user").WithJSON(in).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -72,7 +72,7 @@ func TestCRUD(t *testing.T) {
 			age
 		}
 	}`
-	resp = c.expect.POST("/api/query").WithBytes([]byte(query)).
+	resp = c.expect.POST("/api/data/query").WithBytes([]byte(query)).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -81,7 +81,7 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("DELETE")
 
-	resp = c.expect.DELETE("/api/nodes/user/" + uid).
+	resp = c.expect.DELETE("/api/data/user/" + uid).
 		Expect().
 		Status(http.StatusOK).
 		JSON()

@@ -13,13 +13,13 @@ import (
 func dataAPI(r chi.Router) {
 	r = r.With(transactionMiddleware)
 
-	r.Post("/api/query", queryHandler)
-	r.Get("/api/nodes/{type}/{id}", readHandler)
+	r.Post("/api/data/query", queryHandler)
+	r.Get("/api/data/{type}/{id}", readHandler)
 
 	// mutation api
-	r.Post("/api/nodes/{type}", mutateHandler)
-	r.Put("/api/nodes/{type}/{id}", mutateHandler)
-	r.Delete("/api/nodes/{type}/{id}", deleteHandler)
+	r.Post("/api/data/{type}", mutateHandler)
+	r.Put("/api/data/{type}/{id}", mutateHandler)
+	r.Delete("/api/data/{type}/{id}", deleteHandler)
 
 	// TODO allow to delete triples from graph
 	// TODO consider to expose raw api for admin users
