@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/dgraph-io/dgraph/client"
-	"github.com/dgraph-io/dgraph/protos/api"
+	"github.com/dgraph-io/dgo"
+	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )
@@ -66,8 +66,8 @@ func transactionMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func transaction(r *http.Request) *client.Txn {
-	return r.Context().Value("tx").(*client.Txn)
+func transaction(r *http.Request) *dgo.Txn {
+	return r.Context().Value("tx").(*dgo.Txn)
 }
 
 func queryHandler(w http.ResponseWriter, r *http.Request) {

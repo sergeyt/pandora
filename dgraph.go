@@ -5,18 +5,18 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/dgraph-io/dgraph/client"
-	"github.com/dgraph-io/dgraph/protos/api"
+	"github.com/dgraph-io/dgo"
+	"github.com/dgraph-io/dgo/protos/api"
 	"google.golang.org/grpc"
 )
 
-func newDgraphClient() (*client.Dgraph, error) {
+func newDgraphClient() (*dgo.Dgraph, error) {
 	d, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure())
 	if err != nil {
 		return nil, err
 	}
 
-	return client.NewDgraphClient(
+	return dgo.NewDgraphClient(
 		api.NewDgraphClient(d),
 	), nil
 }
