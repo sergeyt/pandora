@@ -8,11 +8,6 @@ import (
 
 var server *http.Server
 
-func stopServer() {
-	fmt.Println("shutting down")
-	server.Shutdown(nil)
-}
-
 func startServer() {
 	initSchema()
 
@@ -27,4 +22,9 @@ func startServer() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func stopServer() {
+	fmt.Println("shutting down")
+	server.Shutdown(nil)
 }
