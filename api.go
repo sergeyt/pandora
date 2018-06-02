@@ -14,6 +14,8 @@ func makeAPIHandler() http.Handler {
 	mux.Use(middleware.Logger)
 	mux.Use(middleware.Recoverer)
 
+	authAPI(mux)
+
 	mux.Get("/api/event/stream", GetEventStream)
 	mux.Get("/api/event/stream/{channel}", GetEventStream)
 
