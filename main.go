@@ -12,6 +12,7 @@ func main() {
 	parseConfig()
 
 	stop := func() {
+		stopPubsub()
 		stopServer()
 	}
 
