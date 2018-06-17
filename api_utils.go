@@ -9,7 +9,7 @@ const (
 	TypeJSON = "application/json"
 )
 
-func sendJSON(w http.ResponseWriter, result interface{}) {
+func sendJSON(w http.ResponseWriter, result interface{}) error {
 	w.Header().Set("Content-Type", TypeJSON)
 
 	marshaller, ok := result.(json.Marshaler)
@@ -18,16 +18,20 @@ func sendJSON(w http.ResponseWriter, result interface{}) {
 		if err != nil {
 			// TODO check whether it is possible to send error at this phase
 			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return err
 		}
 		w.Write(b)
-		return
+		return nil
 	}
 
 	err := json.NewEncoder(w).Encode(result)
 	if err != nil {
 		// TODO check whether it is possible to send error at this phase
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return err
 	}
+
+	return nil
 }
 
 func sendError(w http.ResponseWriter, err error) {

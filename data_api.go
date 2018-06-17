@@ -2,12 +2,15 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
+	"github.com/gocontrib/pubsub"
 )
 
 func dataAPI(r chi.Router) {
@@ -90,13 +93,27 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sendJSON(w, resp)
+	err = sendJSON(w, resp)
+	if err != nil {
+		return
+	}
 
-	// TODO notify about change
+	resourceType := chi.URLParam(r, "type")
+	id := chi.URLParam(r, "id")
+
+	// TODO set CreatedBy
+	sendEvent(&Event{
+		Action:       r.Method,
+		ResourceID:   id,
+		ResourceType: resourceType,
+		CreatedAt:    time.Now(),
+		DbResponse:   resp,
+	})
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	tx := transaction(r)
+	resourceType := chi.URLParam(r, "type")
 	id := chi.URLParam(r, "id")
 
 	resp, err := tx.Mutate(r.Context(), &api.Mutation{
@@ -108,7 +125,38 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sendJSON(w, resp)
+	err = sendJSON(w, resp)
+	if err != nil {
+		return
+	}
 
-	// TODO notify about change
+	// TODO set CreatedBy
+	sendEvent(&Event{
+		Action:       r.Method,
+		ResourceID:   id,
+		ResourceType: resourceType,
+		CreatedAt:    time.Now(),
+		DbResponse:   resp,
+	})
+}
+
+// TODO also implement persistence of events for some period of time
+func sendEvent(evt *Event) {
+	go func() {
+		chans := []string{
+			"global",
+			fmt.Sprintf("%s/%s", evt.ResourceType, evt.ResourceID),
+			// TODO push to user channel too
+		}
+		pubsub.Publish(chans, evt)
+	}()
+}
+
+type Event struct {
+	Action       string      `json:"action"`
+	ResourceID   string      `json:"resource_id"`   // resource id
+	ResourceType string      `json:"resource_type"` // resource type
+	CreatedBy    string      `json:"created_by"`
+	CreatedAt    time.Time   `json:"created_at"`
+	DbResponse   interface{} `json:"db_response"`
 }
