@@ -66,9 +66,9 @@ func TestCRUD(t *testing.T) {
 	fmt.Println("QUERY")
 
 	query := `{
-		michael(func: eq(name@., "Michael")) {
+		michael(func: eq(name, "Michael")) {
 			uid
-			name@.
+			name
 			age
 		}
 	}`
