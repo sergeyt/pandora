@@ -1,4 +1,6 @@
 name: string @index(term, hash, trigram) .
+login: string @index(term, hash) .
+password: password .
 email: string @index(term, hash) .
 avatar: string @index(term, hash) .
 description: string @index(fulltext) .
