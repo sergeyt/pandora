@@ -5,7 +5,7 @@ import (
 )
 
 func startPubsub() {
-	// TODO configure nats as main driver at production
+	// TODO configure nats as main driver in production env
 	pubsub.Init()
 }
 
