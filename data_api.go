@@ -2,9 +2,11 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/dgraph-io/dgo"
@@ -72,7 +74,39 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func readHandler(w http.ResponseWriter, r *http.Request) {
-	// TODO read all values of given node
+	tx := transaction(r)
+	id := chi.URLParam(r, "id")
+
+	keys, err := queryKeys(r.Context(), tx, id)
+	if err != nil {
+		sendError(w, err)
+		return
+	}
+
+	query := fmt.Sprintf(`{
+  q(func: uid(%s)) {
+    %s
+  }
+}`, id, strings.Join(keys, "\n    "))
+	resp, err := tx.Query(r.Context(), query)
+	if err != nil {
+		sendError(w, err)
+		return
+	}
+
+	var result struct {
+		Results []map[string]interface{} `json:"q"`
+	}
+	err = json.Unmarshal(resp.GetJson(), &result)
+	if err != nil {
+		sendError(w, err)
+		return
+	}
+	if len(result.Results) == 0 {
+		sendError(w, fmt.Errorf("not found"))
+		return
+	}
+	sendJSON(w, result.Results[0])
 }
 
 func mutateHandler(w http.ResponseWriter, r *http.Request) {
