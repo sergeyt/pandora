@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/dgraph-io/dgo"
@@ -77,17 +76,13 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 	tx := transaction(r)
 	id := chi.URLParam(r, "id")
 
-	keys, err := queryKeys(r.Context(), tx, id)
-	if err != nil {
-		sendError(w, err)
-		return
-	}
-
 	query := fmt.Sprintf(`{
   q(func: uid(%s)) {
-    %s
+    expand(_all_) {
+      expand(_all_)
+	}
   }
-}`, id, strings.Join(keys, "\n    "))
+}`, id)
 	resp, err := tx.Query(r.Context(), query)
 	if err != nil {
 		sendError(w, err)
