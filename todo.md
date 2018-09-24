@@ -12,14 +12,14 @@
 
 ## apps
 
-- small chat with terminal like web shell, e.g. with command to change current channel
-- built-in todo list channel
+* [ ] small chat with terminal like web shell, e.g. with command to change current channel
+* [ ] built-in todo list channel
 
 ## cleanups
 
-- (minor) consider moving SSE handler to github.com/gocontrib/pubsub
-- SSE as separate upstream process
-- tusd as separate upstream process to handle file uploads/downloads
+* [ ] (minor) consider moving SSE handler to github.com/gocontrib/pubsub
+* [ ] SSE as separate upstream process (psubd)
+* [ ] tusd as separate upstream process to handle file uploads/downloads
 
 ## easy todo
 
