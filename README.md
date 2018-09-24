@@ -4,7 +4,7 @@ Backend as a Service powered by golang technologies:
 
 * [Dgraph](https://dgraph.io/) as data store with GraphQL support, write operations using REST
 * [tusd](https://tus.io/) as file store with Amazon S3 compatible storage like [Minio](https://www.minio.io/)
-* [nats](https://nats.io/) as messaging system with streaming push notifications via SSE channel
+* [nats](https://nats.io/) as messaging system with streaming push notifications via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
 
 ## How to run tests
 
