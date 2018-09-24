@@ -45,7 +45,7 @@ func initSchema() {
 
 func queryKeys(ctx context.Context, tx *dgo.Txn, id string) ([]string, error) {
 	query := fmt.Sprintf(`{
-  q(func: uid(%s)) {
+  keys(func: uid(%s)) {
     _predicate_
   }
 }`, id)
@@ -58,7 +58,7 @@ func queryKeys(ctx context.Context, tx *dgo.Txn, id string) ([]string, error) {
 	var result struct {
 		Results []struct {
 			Keys []string `json:"_predicate_"`
-		} `json:"q"`
+		} `json:"keys"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
 	if err != nil {
