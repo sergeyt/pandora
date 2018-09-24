@@ -9,6 +9,8 @@
 * [ ] method to modify graph schema
 * [ ] select good logger
 * [ ] complete dockerization
+* [ ] declarative constraints (e.g. uniq)
+* [ ] [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control)
 
 ## apps
 
