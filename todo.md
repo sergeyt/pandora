@@ -1,11 +1,14 @@
 # todo
 
-- basic auth
-- events about data changes
-- trivial chat web app
-- terminal like web shell, e.g. command to change current channel
-- todo list
++ basic auth
++ server sent events (SSE) about data changes
+
+## apps
+
+- simple chat with terminal like web shell, e.g. with command to change current channel
+- built-in todo list channel
 
 ## cleanups
 
 - (minor) consider moving SSE handler to github.com/gocontrib/pubsub
+- SSE as separate process
