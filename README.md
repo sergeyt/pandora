@@ -6,6 +6,10 @@ Backend as a Service powered by golang technologies:
 * [tusd](https://tus.io/) as file store with Amazon S3 compatible storage like [Minio](https://www.minio.io/)
 * [nats](https://nats.io/) as messaging system with streaming push notifications via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
 
+## Basic Idea
+
+Simple, Flexible, Dynamic, Declarative, Reactive, Realtime Information System :)
+
 ## How to run tests
 
 Run below commands in project directory.
