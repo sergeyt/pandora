@@ -78,6 +78,7 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 
 	query := fmt.Sprintf(`{
   q(func: uid(%s)) {
+    uid
     expand(_all_) {
       expand(_all_)
 	}
