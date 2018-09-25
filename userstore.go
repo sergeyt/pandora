@@ -21,9 +21,8 @@ func (s *UserStore) ValidateCredentials(username, password string) (auth.User, e
 	// TODO pass context as parameter
 	ctx := context.Background()
 
-	// TODO match only user nodes
 	query := fmt.Sprintf(`{
-        users(func: has(email)) @filter(eq(email, %q) OR eq(login, %q)) {
+        users(func: has(_user)) @filter(eq(email, %q) OR eq(login, %q)) {
 			uid
 			name
 			email
@@ -38,9 +37,8 @@ func (s *UserStore) FindUserByID(userID string) (auth.User, error) {
 	// TODO pass context as parameter
 	ctx := context.Background()
 
-	// TODO match only user nodes
 	query := fmt.Sprintf(`{
-        users(func: uid(%s)) {
+        users(func: uid(%s)) @filter(has(_user)) {
 			uid
 			name
 			email
