@@ -13,7 +13,7 @@ services:
       - 6080:6080
     restart: on-failure
     command: dgraph zero --my=zero:5080
-  server:
+  dgraph:
     image: dgraph/dgraph:latest
     volumes:
       - type: volume
@@ -25,7 +25,7 @@ services:
       - 8080:8080
       - 9080:9080
     restart: on-failure
-    command: dgraph server --my=server:7080 --zero=zero:5080 --lru_mb=2048
+    command: dgraph server --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048
   ratel:
     image: dgraph/dgraph:latest
     volumes:
