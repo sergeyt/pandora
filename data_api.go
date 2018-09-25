@@ -135,15 +135,9 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	out := struct {
-		Data      interface{} `json:"data"`
-		DebugInfo interface{} `json:"debug_info"`
-	}{
-		Data:      results,
-		DebugInfo: resp,
-	}
+	var out interface{} = results
 	if len(results) == 1 {
-		out.Data = results[0]
+		out = results[0]
 	}
 
 	err = sendJSON(w, out)

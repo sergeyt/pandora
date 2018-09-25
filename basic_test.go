@@ -61,7 +61,7 @@ func TestCRUD(t *testing.T) {
 
 	printJSON(resp.Raw())
 
-	uid := resp.Path("$.data.uid").String().Raw()
+	uid := resp.Path("$.uid").String().Raw()
 
 	fmt.Println("GET BY ID")
 
