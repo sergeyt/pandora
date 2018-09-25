@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -90,16 +91,27 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	nodeLabel := "_" + resourceType
 
-	ctx := r.Context()
-	tx := transaction(r)
-
-	data, err := ioutil.ReadAll(r.Body)
+	var in OrderedJSON
+	err := json.NewDecoder(r.Body).Decode(&in)
 	if err != nil {
 		sendError(w, err)
 		return
 	}
 
-	// TODO for PUT method append "uid" as first key in data
+	ctx := r.Context()
+	tx := transaction(r)
+
+	if len(id) == 0 {
+		in[nodeLabel] = ""
+	} else {
+		in["uid"] = id
+	}
+
+	data, err := in.ToJSON("uid", nodeLabel)
+	if err != nil {
+		sendError(w, err)
+		return
+	}
 
 	resp, err := tx.Mutate(ctx, &api.Mutation{
 		SetJson: data,
@@ -109,24 +121,27 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	for _, v := range resp.Uids {
-		err = assignLabel(ctx, tx, v, nodeLabel)
-		if err != nil {
-			sendError(w, err)
-			return
+	var results []map[string]interface{}
+
+	if len(id) == 0 {
+		results = make([]map[string]interface{}, len(resp.Uids))
+		i := 0
+		for _, uid := range resp.Uids {
+			result, err := readNode(ctx, tx, uid)
+			if err != nil {
+				sendError(w, err)
+				return
+			}
+			results[i] = result
+			i = i + 1
 		}
-	}
-
-	results := make([]map[string]interface{}, len(resp.Uids))
-	i := 0
-
-	for _, id := range resp.Uids {
+	} else {
 		result, err := readNode(ctx, tx, id)
 		if err != nil {
 			sendError(w, err)
 			return
 		}
-		results[i] = result
+		results = []map[string]interface{}{result}
 	}
 
 	err = tx.Commit(ctx)

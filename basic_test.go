@@ -31,7 +31,7 @@ func setup(t *testing.T) *TC {
 		server: server,
 		expect: httpexpect.WithConfig(httpexpect.Config{
 			BaseURL:  server.URL,
-			Reporter: httpexpect.NewAssertReporter(t),
+			Reporter: httpexpect.NewRequireReporter(t),
 			Printers: []httpexpect.Printer{
 				httpexpect.NewDebugPrinter(t, true),
 			},
@@ -44,11 +44,11 @@ func TestCRUD(t *testing.T) {
 	defer c.Close()
 
 	in := &struct {
-		UID  string `json:"uid"`
+		UID  string `json:"uid,omitempty"`
 		Name string `json:"name"`
 		Age  int    `json:"age"`
 	}{
-		Name: "Michael",
+		Name: "bob",
 		Age:  39,
 	}
 
@@ -61,11 +61,11 @@ func TestCRUD(t *testing.T) {
 
 	printJSON(resp.Raw())
 
-	uid := resp.Path("$.uid").String().Raw()
+	id := resp.Path("$.uid").String().Raw()
 
 	fmt.Println("GET BY ID")
 
-	resp = c.expect.GET("/api/data/user/" + uid).
+	resp = c.expect.GET("/api/data/user/" + id).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -75,7 +75,7 @@ func TestCRUD(t *testing.T) {
 	fmt.Println("QUERY")
 
 	query := `{
-		michael(func: eq(name, "Michael")) @filter(has(_user)) {
+		data(func: eq(name, "bob")) @filter(has(_user)) {
 			uid
 			name
 			age
@@ -88,9 +88,36 @@ func TestCRUD(t *testing.T) {
 
 	printJSON(resp.Raw())
 
+	fmt.Println("UPDATE")
+
+	in = &struct {
+		UID  string `json:"uid,omitempty"`
+		Name string `json:"name"`
+		Age  int    `json:"age"`
+	}{
+		Name: "rob",
+		Age:  42,
+	}
+
+	resp = c.expect.PUT("/api/data/user/" + id).WithJSON(in).
+		Expect().
+		Status(http.StatusOK).
+		JSON()
+
+	printJSON(resp.Raw())
+
+	fmt.Println("GET BY ID")
+
+	resp = c.expect.GET("/api/data/user/" + id).
+		Expect().
+		Status(http.StatusOK).
+		JSON()
+
+	printJSON(resp.Raw())
+
 	fmt.Println("DELETE")
 
-	resp = c.expect.DELETE("/api/data/user/" + uid).
+	resp = c.expect.DELETE("/api/data/user/" + id).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
