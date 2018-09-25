@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/dgraph-io/dgo"
@@ -76,36 +76,21 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 	tx := transaction(r)
 	id := chi.URLParam(r, "id")
 
-	query := fmt.Sprintf(`{
-  q(func: uid(%s)) {
-    uid
-    expand(_all_) {
-      expand(_all_)
-	}
-  }
-}`, id)
-	resp, err := tx.Query(r.Context(), query)
+	data, err := readNode(r.Context(), tx, id)
 	if err != nil {
 		sendError(w, err)
 		return
 	}
 
-	var result struct {
-		Results []map[string]interface{} `json:"q"`
-	}
-	err = json.Unmarshal(resp.GetJson(), &result)
-	if err != nil {
-		sendError(w, err)
-		return
-	}
-	if len(result.Results) == 0 {
-		sendError(w, fmt.Errorf("not found"))
-		return
-	}
-	sendJSON(w, result.Results[0])
+	sendJSON(w, data)
 }
 
 func mutateHandler(w http.ResponseWriter, r *http.Request) {
+	resourceType := strings.ToLower(chi.URLParam(r, "type"))
+	id := chi.URLParam(r, "id")
+	nodeLabel := "_" + resourceType
+
+	ctx := r.Context()
 	tx := transaction(r)
 
 	data, err := ioutil.ReadAll(r.Body)
@@ -114,22 +99,57 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := tx.Mutate(r.Context(), &api.Mutation{
-		SetJson:   data,
-		CommitNow: true,
+	// TODO for PUT method append "uid" as first key in data
+
+	resp, err := tx.Mutate(ctx, &api.Mutation{
+		SetJson: data,
 	})
 	if err != nil {
 		sendError(w, err)
 		return
 	}
 
-	err = sendJSON(w, resp)
+	for _, v := range resp.Uids {
+		err = assignLabel(ctx, tx, v, nodeLabel)
+		if err != nil {
+			sendError(w, err)
+			return
+		}
+	}
+
+	results := make([]map[string]interface{}, len(resp.Uids))
+	i := 0
+
+	for _, id := range resp.Uids {
+		result, err := readNode(ctx, tx, id)
+		if err != nil {
+			sendError(w, err)
+			return
+		}
+		results[i] = result
+	}
+
+	err = tx.Commit(ctx)
 	if err != nil {
+		sendError(w, err)
 		return
 	}
 
-	resourceType := chi.URLParam(r, "type")
-	id := chi.URLParam(r, "id")
+	out := struct {
+		Data      interface{} `json:"data"`
+		DebugInfo interface{} `json:"debug_info"`
+	}{
+		Data:      results,
+		DebugInfo: resp,
+	}
+	if len(results) == 1 {
+		out.Data = results[0]
+	}
+
+	err = sendJSON(w, out)
+	if err != nil {
+		return
+	}
 
 	// TODO set CreatedBy
 	sendEvent(&Event{
@@ -142,9 +162,10 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
-	tx := transaction(r)
-	resourceType := chi.URLParam(r, "type")
+	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	id := chi.URLParam(r, "id")
+
+	tx := transaction(r)
 
 	resp, err := tx.Mutate(r.Context(), &api.Mutation{
 		DelNquads: []byte("<" + id + "> * * .\n"),
