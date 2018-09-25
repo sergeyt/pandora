@@ -1,6 +1,19 @@
 version: "3.2"
 services:
-  dgraph:
+  zero:
+    image: dgraph/dgraph:latest
+    volumes:
+      - type: volume
+        source: dgraph
+        target: /dgraph
+        volume:
+          nocopy: true
+    ports:
+      - 5080:5080
+      - 6080:6080
+    restart: on-failure
+    command: dgraph zero --my=zero:5080
+  server:
     image: dgraph/dgraph:latest
     volumes:
       - type: volume
@@ -12,19 +25,27 @@ services:
       - 8080:8080
       - 9080:9080
     restart: on-failure
-    command: >
-      bash -c "dgraph zero
-      && dgraph server --memory_mb=2048 --bindall
-      && dgraph-ratel --port=8888"
-  caddy:
-    image: abiosoft/caddy
+    command: dgraph server --my=server:7080 --zero=zero:5080 --lru_mb=2048
+  ratel:
+    image: dgraph/dgraph:latest
     volumes:
-      - type: bind
-        source: ./Caddyfile
-        target: /etc/Caddyfile
+      - type: volume
+        source: dgraph
+        target: /dgraph
+        volume:
+          nocopy: true
     ports:
       - 8000:8000
-    command: caddy
+    command: dgraph-ratel
+  # caddy:
+  #   image: abiosoft/caddy
+  #   volumes:
+  #     - type: bind
+  #       source: ./Caddyfile
+  #       target: /etc/Caddyfile
+  #   ports:
+  #     - 8000:8000
+  #   command: caddy
 
 volumes:
   dgraph:
