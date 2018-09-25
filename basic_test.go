@@ -61,12 +61,21 @@ func TestCRUD(t *testing.T) {
 
 	printJSON(resp.Raw())
 
-	uid := resp.Path("$.uids[\"blank-0\"]").String().Raw()
+	uid := resp.Path("$.data.uid").String().Raw()
+
+	fmt.Println("GET BY ID")
+
+	resp = c.expect.GET("/api/data/user/" + uid).
+		Expect().
+		Status(http.StatusOK).
+		JSON()
+
+	printJSON(resp.Raw())
 
 	fmt.Println("QUERY")
 
 	query := `{
-		michael(func: eq(name, "Michael")) {
+		michael(func: eq(name, "Michael")) @filter(has(_user)) {
 			uid
 			name
 			age
