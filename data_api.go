@@ -185,10 +185,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = sendJSON(w, resp)
-	if err != nil {
-		return
-	}
+	w.WriteHeader(http.StatusOK)
 
 	// TODO set CreatedBy
 	sendEvent(&Event{

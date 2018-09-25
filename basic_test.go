@@ -117,11 +117,9 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("DELETE")
 
-	resp = c.expect.DELETE("/api/data/user/" + id).
+	c.expect.DELETE("/api/data/user/" + id).
 		Expect().
-		Status(http.StatusOK).
-		JSON()
-	printJSON(resp.Raw())
+		Status(http.StatusOK)
 }
 
 func printJSON(v interface{}) {
