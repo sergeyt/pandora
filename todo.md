@@ -2,8 +2,8 @@
 
 * [x] basic auth
 * [x] server sent events (SSE) about data changes
-* [ ] label nodes
-* [ ] auth: match only user nodes
+* [x] label nodes
+* [x] auth: match only user nodes
 * [ ] automatically set created, modified predicates
 * [ ] allow using JSON schema to validate inputs in mutations
 * [ ] method to modify graph schema
