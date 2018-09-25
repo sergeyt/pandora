@@ -17,7 +17,7 @@ import (
 func dataAPI(r chi.Router) {
 	r = r.With(transactionMiddleware)
 
-	r.Post("/api/data/query", queryHandler)
+	r.Post("/api/query", queryHandler)
 	r.Get("/api/data/{type}/{id}", readHandler)
 
 	// mutation api

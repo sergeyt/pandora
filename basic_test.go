@@ -81,7 +81,7 @@ func TestCRUD(t *testing.T) {
 			age
 		}
 	}`
-	resp = c.expect.POST("/api/data/query").WithBytes([]byte(query)).
+	resp = c.expect.POST("/api/query").WithBytes([]byte(query)).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
