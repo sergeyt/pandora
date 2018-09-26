@@ -16,6 +16,7 @@ import (
 )
 
 func dataAPI(r chi.Router) {
+	r = r.With(authMiddleware)
 	r = r.With(transactionMiddleware)
 
 	r.Post("/api/query", queryHandler)

@@ -53,7 +53,11 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("CREATE")
 
-	resp := c.expect.POST("/api/data/user").WithJSON(in).
+	authorization := "local_admin"
+
+	resp := c.expect.POST("/api/data/user").
+		WithHeader("Authorization", authorization).
+		WithJSON(in).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -64,7 +68,8 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("GET BY ID")
 
-	resp = c.expect.GET("/api/data/user/" + id).
+	resp = c.expect.GET("/api/data/user/"+id).
+		WithHeader("Authorization", authorization).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -80,7 +85,9 @@ func TestCRUD(t *testing.T) {
 			age
 		}
 	}`
-	resp = c.expect.POST("/api/query").WithBytes([]byte(query)).
+	resp = c.expect.POST("/api/query").
+		WithHeader("Authorization", authorization).
+		WithBytes([]byte(query)).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -97,7 +104,9 @@ func TestCRUD(t *testing.T) {
 		Age:  42,
 	}
 
-	resp = c.expect.PUT("/api/data/user/" + id).WithJSON(in).
+	resp = c.expect.PUT("/api/data/user/"+id).
+		WithHeader("Authorization", authorization).
+		WithJSON(in).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -106,7 +115,8 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("GET BY ID")
 
-	resp = c.expect.GET("/api/data/user/" + id).
+	resp = c.expect.GET("/api/data/user/"+id).
+		WithHeader("Authorization", authorization).
 		Expect().
 		Status(http.StatusOK).
 		JSON()
@@ -115,7 +125,8 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("DELETE")
 
-	c.expect.DELETE("/api/data/user/" + id).
+	c.expect.DELETE("/api/data/user/"+id).
+		WithHeader("Authorization", authorization).
 		Expect().
 		Status(http.StatusOK)
 }

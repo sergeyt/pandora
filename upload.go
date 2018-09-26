@@ -38,6 +38,7 @@ func uploadAPI(mux chi.Router) {
 		panic(fmt.Sprintf("unable to create upload handler: %s", err))
 	}
 
+	mux = mux.With(authMiddleware)
 	mux.Post("/api/uploads", tusdHandler(h, h.PostFile))
 	mux.Head("/api/uploads/:id", tusdHandler(h, h.HeadFile))
 	mux.Get("/api/uploads/:id", tusdHandler(h, h.GetFile))
