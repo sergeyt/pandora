@@ -100,9 +100,13 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 
 	ctx := r.Context()
 	tx := transaction(r)
+	now := time.Now()
+
+	in["modified_at"] = now
 
 	if len(id) == 0 {
 		in[nodeLabel] = ""
+		in["created_at"] = now
 	} else {
 		in["uid"] = id
 	}

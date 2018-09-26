@@ -44,7 +44,6 @@ func TestCRUD(t *testing.T) {
 	defer c.Close()
 
 	in := &struct {
-		UID  string `json:"uid,omitempty"`
 		Name string `json:"name"`
 		Age  int    `json:"age"`
 	}{
@@ -91,7 +90,6 @@ func TestCRUD(t *testing.T) {
 	fmt.Println("UPDATE")
 
 	in = &struct {
-		UID  string `json:"uid,omitempty"`
 		Name string `json:"name"`
 		Age  int    `json:"age"`
 	}{
