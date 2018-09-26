@@ -17,10 +17,7 @@ type UserStore struct {
 
 // TODO support user roles
 
-func (s *UserStore) ValidateCredentials(username, password string) (auth.User, error) {
-	// TODO pass context as parameter
-	ctx := context.Background()
-
+func (s *UserStore) ValidateCredentials(ctx context.Context, username, password string) (auth.User, error) {
 	query := fmt.Sprintf(`{
         users(func: has(_user)) @filter(eq(email, %q) OR eq(login, %q)) {
 			uid
@@ -33,10 +30,7 @@ func (s *UserStore) ValidateCredentials(username, password string) (auth.User, e
 	return s.FindUser(ctx, query, username, true)
 }
 
-func (s *UserStore) FindUserByID(userID string) (auth.User, error) {
-	// TODO pass context as parameter
-	ctx := context.Background()
-
+func (s *UserStore) FindUserByID(ctx context.Context, userID string) (auth.User, error) {
 	query := fmt.Sprintf(`{
         users(func: uid(%s)) @filter(has(_user)) {
 			uid
