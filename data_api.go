@@ -12,6 +12,7 @@ import (
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
+	"github.com/gocontrib/auth"
 	"github.com/gocontrib/pubsub"
 )
 
@@ -88,9 +89,11 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func mutateHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	id := chi.URLParam(r, "id")
 	nodeLabel := "_" + resourceType
+	user := auth.GetContextUser(ctx)
 
 	var in OrderedJSON
 	err := json.NewDecoder(r.Body).Decode(&in)
@@ -99,15 +102,16 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ctx := r.Context()
 	tx := transaction(r)
 	now := time.Now()
 
 	in["modified_at"] = now
+	in["modified_by"] = user.GetID()
 
 	if len(id) == 0 {
 		in[nodeLabel] = ""
 		in["created_at"] = now
+		in["created_by"] = user.GetID()
 	} else {
 		in["uid"] = id
 	}
