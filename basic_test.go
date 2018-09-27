@@ -22,6 +22,11 @@ func (c *TC) Close() {
 
 func setup(t *testing.T) *TC {
 	parseConfig()
+
+	// TODO separate config for testing
+	// HACK to run test from host we have to use host dgraph address
+	config.DB.Addr = "localhost:9080"
+
 	initSchema()
 
 	server := httptest.NewServer(makeAPIHandler())

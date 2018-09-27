@@ -1,5 +1,5 @@
 [api]
-addr=":3000"
+addr=":4201"
 
 [dgraph]
-addr="localhost:9080"
+addr="dgraph:9080"

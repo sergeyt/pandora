@@ -3,11 +3,7 @@ services:
   zero:
     image: dgraph/dgraph:latest
     volumes:
-      - type: volume
-        source: dgraph
-        target: /dgraph
-        volume:
-          nocopy: true
+      - ./data/dgraph:/dgraph
     ports:
       - 5080:5080
       - 6080:6080
@@ -16,11 +12,7 @@ services:
   dgraph:
     image: dgraph/dgraph:latest
     volumes:
-      - type: volume
-        source: dgraph
-        target: /dgraph
-        volume:
-          nocopy: true
+      - ./data/dgraph:/dgraph
     ports:
       - 8080:8080
       - 9080:9080
@@ -28,24 +20,19 @@ services:
     command: dgraph server --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048
   ratel:
     image: dgraph/dgraph:latest
-    volumes:
-      - type: volume
-        source: dgraph
-        target: /dgraph
-        volume:
-          nocopy: true
     ports:
       - 8000:8000
     command: dgraph-ratel
-  # caddy:
-  #   image: abiosoft/caddy
-  #   volumes:
-  #     - type: bind
-  #       source: ./Caddyfile
-  #       target: /etc/Caddyfile
-  #   ports:
-  #     - 8000:8000
-  #   command: caddy
-
-volumes:
-  dgraph:
+  app:
+    build: .
+    volumes:
+      - .:/go/src/github.com/sergeyt/pandora
+    ports:
+      - 3000:3000
+  caddy:
+    image: abiosoft/caddy:latest
+    volumes:
+      - ./Caddyfile:/etc/Caddyfile
+      - ./data/caddycerts:/etc/caddycerts
+    ports:
+      - 4200:4200

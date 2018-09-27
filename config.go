@@ -12,12 +12,12 @@ type DBConfig struct {
 
 type Config struct {
 	Addr string
-	DB   DBConfig
+	DB   *DBConfig
 }
 
-var config Config = Config{
+var config = &Config{
 	Addr: ":3000",
-	DB: DBConfig{
+	DB: &DBConfig{
 		Addr: "localhost:9080",
 	},
 }
@@ -36,9 +36,9 @@ func parseConfig() {
 }
 
 func initConfig() {
-	config = Config{
+	config = &Config{
 		Addr: viper.GetString("api.addr"),
-		DB: DBConfig{
+		DB: &DBConfig{
 			Addr: viper.GetString("dgraph.addr"),
 		},
 	}
