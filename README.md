@@ -10,6 +10,10 @@ Backend as a Service powered by golang technologies:
 
 Simple, Flexible, Dynamic, Declarative, Reactive, Realtime Information System :)
 
+## How to run
+
+Just issue `docker-compose up` command in your shell to run all app services
+
 ## How to run tests
 
 Run below commands in project directory.
