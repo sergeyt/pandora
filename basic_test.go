@@ -44,14 +44,16 @@ func setup(t *testing.T) *TC {
 	}
 }
 
+type TestUser struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
+
 func TestCRUD(t *testing.T) {
 	c := setup(t)
 	defer c.Close()
 
-	in := &struct {
-		Name string `json:"name"`
-		Age  int    `json:"age"`
-	}{
+	in := &TestUser{
 		Name: "bob",
 		Age:  39,
 	}
@@ -72,9 +74,35 @@ func TestCRUD(t *testing.T) {
 		Status(http.StatusOK).
 		JSON()
 
+	id := resp.Path("$.uid").String().Raw()
+
 	printJSON(resp.Raw())
 
-	id := resp.Path("$.uid").String().Raw()
+	in = &TestUser{
+		Name: "joe",
+		Age:  40,
+	}
+
+	resp = c.expect.POST("/api/data/user").
+		WithHeader("Authorization", authorization).
+		WithJSON(in).
+		Expect().
+		Status(http.StatusOK).
+		JSON()
+
+	id2 := resp.Path("$.uid").String().Raw()
+
+	printJSON(resp.Raw())
+
+	fmt.Println("GET LIST")
+
+	resp = c.expect.GET("/api/data/user/list").
+		WithHeader("Authorization", authorization).
+		Expect().
+		Status(http.StatusOK).
+		JSON()
+
+	printJSON(resp.Raw())
 
 	fmt.Println("GET BY ID")
 
@@ -106,10 +134,7 @@ func TestCRUD(t *testing.T) {
 
 	fmt.Println("UPDATE")
 
-	in = &struct {
-		Name string `json:"name"`
-		Age  int    `json:"age"`
-	}{
+	in = &TestUser{
 		Name: "rob",
 		Age:  42,
 	}
@@ -136,6 +161,11 @@ func TestCRUD(t *testing.T) {
 	fmt.Println("DELETE")
 
 	c.expect.DELETE("/api/data/user/"+id).
+		WithHeader("Authorization", authorization).
+		Expect().
+		Status(http.StatusOK)
+
+	c.expect.DELETE("/api/data/user/"+id2).
 		WithHeader("Authorization", authorization).
 		Expect().
 		Status(http.StatusOK)

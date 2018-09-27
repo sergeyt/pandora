@@ -19,27 +19,31 @@ type UserStore struct {
 
 func (s *UserStore) ValidateCredentials(ctx context.Context, username, password string) (auth.User, error) {
 	query := fmt.Sprintf(`{
-        users(func: has(_user)) @filter(eq(email, %q) OR eq(login, %q)) {
+        users(func: has(%s)) @filter(eq(email, %q) OR eq(login, %q)) {
 			uid
 			name
 			email
             checkpwd(password, %q)
         }
-	}`, username, username, password)
+	}`, userLabel(), username, username, password)
 
 	return s.FindUser(ctx, query, username, true)
 }
 
 func (s *UserStore) FindUserByID(ctx context.Context, userID string) (auth.User, error) {
 	query := fmt.Sprintf(`{
-        users(func: uid(%s)) @filter(has(_user)) {
+        users(func: uid(%s)) @filter(has(%s)) {
 			uid
 			name
 			email
         }
-	}`, userID)
+	}`, userID, userLabel())
 
 	return s.FindUser(ctx, query, userID, false)
+}
+
+func userLabel() string {
+	return nodeLabel("user")
 }
 
 func (s *UserStore) Close() {

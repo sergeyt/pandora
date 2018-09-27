@@ -21,6 +21,7 @@ func dataAPI(r chi.Router) {
 	r = r.With(transactionMiddleware)
 
 	r.Post("/api/query", queryHandler)
+	r.Get("/api/data/{type}/list", listHandler)
 	r.Get("/api/data/{type}/{id}", readHandler)
 
 	// mutation api
@@ -75,9 +76,28 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(resp.GetJson())
 }
 
-func readHandler(w http.ResponseWriter, r *http.Request) {
+func listHandler(w http.ResponseWriter, r *http.Request) {
+	resourceType := strings.ToLower(chi.URLParam(r, "type"))
+	pg, err := parsePagination(r)
+	if err != nil {
+		sendError(w, err)
+		return
+	}
+
 	tx := transaction(r)
+
+	data, err := readList(r.Context(), tx, nodeLabel(resourceType), pg)
+	if err != nil {
+		sendError(w, err)
+		return
+	}
+
+	sendJSON(w, data)
+}
+
+func readHandler(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
+	tx := transaction(r)
 
 	data, err := readNode(r.Context(), tx, id)
 	if err != nil {
@@ -92,7 +112,7 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	id := chi.URLParam(r, "id")
-	nodeLabel := "_" + resourceType
+	nodeLabel := nodeLabel(resourceType)
 	user := auth.GetContextUser(ctx)
 
 	var in OrderedJSON
