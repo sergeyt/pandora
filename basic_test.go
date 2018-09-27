@@ -55,6 +55,11 @@ func TestCRUD(t *testing.T) {
 
 	authorization := "local_admin"
 
+	c.expect.POST("/api/data/user").
+		WithJSON(in).
+		Expect().
+		Status(http.StatusUnauthorized)
+
 	resp := c.expect.POST("/api/data/user").
 		WithHeader("Authorization", authorization).
 		WithJSON(in).

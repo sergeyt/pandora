@@ -19,8 +19,8 @@ channel: uid @count .
 
 created_at: dateTime .
 modified_at: dateTime .
-created_by: uid .
-modified_by: uid .
+created_by: string .
+modified_by: string .
 joined_at: dateTime .
 
 due: dateTime .

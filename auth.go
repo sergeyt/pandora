@@ -27,8 +27,8 @@ func authMiddleware(next http.Handler) http.Handler {
 		// support local_admin calls
 		if r.Header.Get("Authorization") == "local_admin" {
 			systemUser := &UserInfo{
-				ID:    "0x0",
-				Name:  "$system",
+				ID:    "system",
+				Name:  "system",
 				Email: "",
 				Admin: true,
 			}
