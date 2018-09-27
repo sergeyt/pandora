@@ -13,7 +13,8 @@ import (
 )
 
 func uploadAPI(mux chi.Router) {
-	dir := "./data/uploads"
+	// TODO configurable directory for file uploads
+	dir := "./data/files"
 	os.MkdirAll(dir, 0700)
 
 	// Create a new FileStore instance which is responsible for
@@ -28,7 +29,7 @@ func uploadAPI(mux chi.Router) {
 	logger := stdlog.New(os.Stdout, "[tusd] ", stdlog.LstdFlags)
 
 	config := tusd.Config{
-		BasePath:  "/api/uploads/",
+		BasePath:  "/api/files/",
 		DataStore: store,
 		Logger:    logger,
 	}
@@ -39,14 +40,14 @@ func uploadAPI(mux chi.Router) {
 	}
 
 	mux = mux.With(authMiddleware)
-	mux.Post("/api/uploads", tusdHandler(h, h.PostFile))
-	mux.Head("/api/uploads/:id", tusdHandler(h, h.HeadFile))
-	mux.Get("/api/uploads/:id", tusdHandler(h, h.GetFile))
-	mux.Patch("/api/uploads/:id", tusdHandler(h, h.PatchFile))
+	mux.Post("/api/file", tusdHandler(h, h.PostFile))
+	mux.Head("/api/file/:id", tusdHandler(h, h.HeadFile))
+	mux.Get("/api/file/:id", tusdHandler(h, h.GetFile))
+	mux.Patch("/api/file/:id", tusdHandler(h, h.PatchFile))
 
 	// Only attach the DELETE handler if the Terminate() method is provided
 	if _, ok := config.DataStore.(tusd.TerminaterDataStore); ok {
-		mux.Delete("/api/uploads/:id", tusdHandler(h, h.DelFile))
+		mux.Delete("/api/file/:id", tusdHandler(h, h.DelFile))
 	}
 }
 
