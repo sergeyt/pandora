@@ -43,7 +43,10 @@ func sendJSON(w http.ResponseWriter, data interface{}, status ...int) error {
 
 func sendError(w http.ResponseWriter, err error, status ...int) {
 	if len(status) == 0 {
-		if strings.Contains(err.Error(), "not found") {
+		errstr := err.Error()
+		if strings.Contains(errstr, "not valid") || strings.Contains(errstr, "invalid") {
+			status = []int{http.StatusBadRequest}
+		} else if strings.Contains(errstr, "not found") {
 			status = []int{http.StatusNotFound}
 		} else {
 			status = []int{http.StatusInternalServerError}
