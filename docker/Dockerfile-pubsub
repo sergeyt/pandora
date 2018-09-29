@@ -1,0 +1,7 @@
+FROM golang:latest
+
+ENV GOPATH /go
+RUN go get -u -v github.com/gocontrib/pubsub/cmd/pubsubd
+WORKDIR /go/src/github.com/gocontrib/pubsub/cmd/pubsubd
+
+ENTRYPOINT ["/go/bin/pubsubd"]

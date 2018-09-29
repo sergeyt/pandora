@@ -16,12 +16,6 @@ func makeAPIHandler() http.Handler {
 
 	mux.Group(authAPI)
 
-	mux.Group(func(r chi.Router) {
-		r = r.With(authMiddleware)
-		r.Get("/api/event/stream", GetEventStream)
-		r.Get("/api/event/stream/{channel}", GetEventStream)
-	})
-
 	mux.Group(uploadAPI)
 	mux.Group(dataAPI)
 

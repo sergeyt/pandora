@@ -11,14 +11,9 @@ import (
 func main() {
 	parseConfig()
 
-	stop := func() {
-		stopPubsub()
-		stopServer()
-	}
-
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		stop()
+		stopServer()
 		initConfig()
 		go startServer()
 	})
@@ -34,5 +29,5 @@ func main() {
 	go startServer()
 	<-die
 
-	stop()
+	stopServer()
 }
