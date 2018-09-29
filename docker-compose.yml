@@ -1,5 +1,11 @@
 version: "3.2"
 services:
+  nats:
+    image: nats:latest
+    container_name: nats
+    entrypoint: "/gnatsd -DV"
+    ports:
+      - 4222:4222
   minio:
     image: minio/minio:latest
     container_name: minio
