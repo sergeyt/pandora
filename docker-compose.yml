@@ -2,6 +2,7 @@ version: "3.2"
 services:
   zero:
     image: dgraph/dgraph:latest
+    container_name: zero
     volumes:
       - ./data/dgraph:/dgraph
     ports:
@@ -9,8 +10,11 @@ services:
       - 6080:6080
     restart: on-failure
     command: dgraph zero --my=zero:5080
+    networks:
+      - net
   dgraph:
     image: dgraph/dgraph:latest
+    container_name: dgraph
     volumes:
       - ./data/dgraph:/dgraph
     ports:
@@ -18,24 +22,94 @@ services:
       - 9080:9080
     restart: on-failure
     command: dgraph server --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048
+    networks:
+      - net
   ratel:
     image: dgraph/dgraph:latest
+    container_name: ratel
     ports:
       - 8000:8000
     restart: on-failure
     command: dgraph-ratel
+    networks:
+      - net
+  # see also https://github.com/deviantony/docker-elk
+  # todo elasticsearch production config
+  elasticsearch:
+    build:
+      context: ./
+      dockerfile: Dockerfile-elasticsearch
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - net
+  elasticsearch2:
+    build:
+      context: ./
+      dockerfile: Dockerfile-elasticsearch
+    container_name: elasticsearch2
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata2:/usr/share/elasticsearch/data
+    networks:
+      - net
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.4.1
+    container_name: kibana
+    environment:
+      XPACK_MONITORING_ENABLED: "false"
+    volumes:
+      - ./config/kibana/:/usr/share/kibana/config:ro
+    ports:
+      - 5601:5601
+    networks:
+      - net
   app:
     build: .
+    container_name: app
     volumes:
       - .:/go/src/github.com/sergeyt/pandora
     ports:
       - 3000:3000
     restart: on-failure
+    networks:
+      - net
   caddy:
     image: abiosoft/caddy:latest
+    container_name: caddy
     volumes:
       - ./Caddyfile:/etc/Caddyfile
       - ./data/caddycerts:/etc/caddycerts
     ports:
       - 4200:4200
     restart: on-failure
+    networks:
+      - net
+
+volumes:
+  esdata1:
+  esdata2:
+
+networks:
+  net:
