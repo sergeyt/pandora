@@ -26,7 +26,7 @@ func authMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// support local_admin calls
 		if r.Header.Get("Authorization") == "local_admin" {
-			systemUser := &UserInfo{
+			systemUser := &auth.UserInfo{
 				ID:    "system",
 				Name:  "system",
 				Email: "",

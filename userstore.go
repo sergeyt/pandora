@@ -15,14 +15,13 @@ func makeUserStore() auth.UserStore {
 type UserStore struct {
 }
 
-// TODO support user roles
-
 func (s *UserStore) ValidateCredentials(ctx context.Context, username, password string) (auth.User, error) {
 	query := fmt.Sprintf(`{
         users(func: has(%s)) @filter(eq(email, %q) OR eq(login, %q)) {
 			uid
 			name
 			email
+			role
             checkpwd(password, %q)
         }
 	}`, userLabel(), username, username, password)
@@ -36,6 +35,7 @@ func (s *UserStore) FindUserByID(ctx context.Context, userID string) (auth.User,
 			uid
 			name
 			email
+			role
         }
 	}`, userID, userLabel())
 
@@ -68,6 +68,7 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 			ID       string `json:"uid"`
 			Name     string `json:"name"`
 			Email    string `json:"email"`
+			Role     string `json:"role"`
 			Password []struct {
 				CheckPwd bool `json:"checkpwd"`
 			} `json:"password"`
@@ -87,21 +88,10 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 		return nil, fmt.Errorf("wrong password: %s", userID)
 	}
 
-	return &UserInfo{
+	return &auth.UserInfo{
 		ID:    user.ID,
 		Name:  user.Name,
 		Email: user.Email,
+		Admin: user.Role == "admin",
 	}, nil
 }
-
-type UserInfo struct {
-	ID    string
-	Name  string
-	Email string
-	Admin bool
-}
-
-func (u *UserInfo) GetID() string    { return u.ID }
-func (u *UserInfo) GetName() string  { return u.Name }
-func (u *UserInfo) GetEmail() string { return u.Email }
-func (u *UserInfo) IsAdmin() bool    { return u.Admin }
