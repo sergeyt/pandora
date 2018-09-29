@@ -1,10 +1,21 @@
 version: "3.2"
 services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    volumes:
+      - minio:/data
+    ports:
+      - "9000:9000"
+    environment:
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    command: server /data
   zero:
     image: dgraph/dgraph:latest
     container_name: zero
     volumes:
-      - ./data/dgraph:/dgraph
+      - dgraph:/dgraph
     ports:
       - 5080:5080
       - 6080:6080
@@ -16,7 +27,7 @@ services:
     image: dgraph/dgraph:latest
     container_name: dgraph
     volumes:
-      - ./data/dgraph:/dgraph
+      - dgraph:/dgraph
     ports:
       - 8080:8080
       - 9080:9080
@@ -108,6 +119,8 @@ services:
       - net
 
 volumes:
+  minio:
+  dgraph:
   esdata1:
   esdata2:
 
