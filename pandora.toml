@@ -1,4 +1,4 @@
-nats="nats://nats:42222"
+nats="nats://nats:4222"
 
 [api]
 addr=":4201"
