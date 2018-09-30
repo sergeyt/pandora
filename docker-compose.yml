@@ -1,5 +1,6 @@
 version: "3.2"
 services:
+  # message bus
   nats:
     image: nats:latest
     container_name: nats
@@ -7,6 +8,7 @@ services:
     ports:
       - 4222:4222
     restart: on-failure
+  # Amazon S3 compatible file store
   minio:
     image: minio/minio:latest
     container_name: minio
@@ -19,6 +21,7 @@ services:
       MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
     command: server /data
     restart: on-failure
+  # dgraph cluster manager
   zero:
     image: dgraph/dgraph:latest
     container_name: zero
@@ -31,6 +34,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # dgraph node
   dgraph:
     image: dgraph/dgraph:latest
     container_name: dgraph
@@ -43,6 +47,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # dgraph UI
   ratel:
     image: dgraph/dgraph:latest
     container_name: ratel
@@ -52,6 +57,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # elasticsearch node1
   # see also https://github.com/deviantony/docker-elk
   # todo elasticsearch production config
   elasticsearch:
@@ -75,6 +81,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # elasticsearch node2
   elasticsearch2:
     build:
       context: ./
@@ -95,6 +102,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # kibana - elasticsearch dashboard
   kibana:
     image: docker.elastic.co/kibana/kibana:6.4.1
     container_name: kibana
@@ -107,6 +115,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # app API service
   app:
     build:
       context: ./
@@ -119,6 +128,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # pubsub - event streaming service (aka push notifications)
   pubsub:
     build:
       context: ./
@@ -129,6 +139,7 @@ services:
     networks:
       - net
     restart: on-failure
+  # web server - service gateway
   caddy:
     image: abiosoft/caddy:latest
     container_name: caddy

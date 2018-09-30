@@ -14,7 +14,18 @@ Simple, Flexible, Dynamic, Declarative, Reactive, Realtime Information System :)
 
 ## How to run
 
-Just issue `docker-compose up` command in your shell to run all app services
+`docker-compose up` runs all app services:
+
+* `zero` - Dgraph cluster manager
+* `dgraph` - Dgraph data manager hosts predicates & indexes
+* `ratel` - serves the UI to run queries, mutations & altering schema
+* `nats` - message bug
+* `minio` - Amazon S3 compatible file store
+* `elasticsearch` - search and analitycs engine
+* `kibana` - Elasticsearch dashboard
+* `pubsub` - API to subscribe on Server Sent Events
+* `app` - Application API service
+* `caddy` - Web Server as service gateway
 
 ## How to run tests
 
