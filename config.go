@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 
 	"github.com/spf13/viper"
@@ -25,6 +26,8 @@ var config = &Config{
 }
 
 func parseConfig() {
+	gob.Register(&Event{})
+
 	viper.SetConfigType("toml")
 	viper.SetConfigName("pandora")
 	viper.AddConfigPath(".")
