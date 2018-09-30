@@ -23,7 +23,6 @@ Simple, Flexible, Dynamic, Declarative, Reactive, Realtime Information System :)
 * `minio` - Amazon S3 compatible file store
 * `elasticsearch` - search and analitycs engine
 * `kibana` - Elasticsearch dashboard
-* `pubsub` - API to subscribe on Server Sent Events
 * `app` - Application API service
 * `caddy` - Web Server as service gateway
 
