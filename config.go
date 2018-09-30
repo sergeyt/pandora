@@ -4,6 +4,7 @@ import (
 	"encoding/gob"
 	"fmt"
 
+	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/spf13/viper"
 )
 
@@ -27,6 +28,7 @@ var config = &Config{
 
 func parseConfig() {
 	gob.Register(&Event{})
+	gob.Register(&api.Assigned{})
 
 	viper.SetConfigType("toml")
 	viper.SetConfigName("pandora")
