@@ -125,11 +125,15 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:096bd351cab6d9629ad0ceb0682b38b154e00891a439a853ac179bd43fd0d4db"
+  digest = "1:5c413f6f08f363c4ebf2371252be4fe27796eb5f9c34b27de3f43fc9e9a1e04e"
   name = "github.com/gocontrib/pubsub"
-  packages = ["."]
+  packages = [
+    ".",
+    "nats",
+    "sse",
+  ]
   pruneopts = "UT"
-  revision = "ee1aeaf9dbdf1299ab93cf1ee4008059c314f4d7"
+  revision = "3db546eb16eaa193c36b509ca277d5ff36326ecc"
 
 [[projects]]
   branch = "master"
@@ -138,6 +142,14 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "69ba4658ef4dfe673f943d1ab5c04167b928c2c4"
+
+[[projects]]
+  branch = "master"
+  digest = "1:b7b9efe8a1be0890f25b1f8d1359500dcc598e6542eefcdc59c23cd502a650d5"
+  name = "github.com/gocontrib/rest"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "95c2878c11a55e0c43b98799eba03b2dd1eb9212"
 
 [[projects]]
   digest = "1:4c0989ca0bcd10799064318923b9bc2db6b4d6338dd75f3f2d86c3511aaaf5cf"
@@ -265,6 +277,33 @@
   revision = "9ac6cf4d929b2fa8fd2d2e6dec5bb0feb4f4911d"
 
 [[projects]]
+  digest = "1:95837473f879ea39a76b82c43c7badf93a4b27b2d5654182ec3d1728f8ebec30"
+  name = "github.com/nats-io/go-nats"
+  packages = [
+    "encoders/builtin",
+    "util",
+  ]
+  pruneopts = "UT"
+  revision = "fb0396ee0bdb8018b0fef30d6d1de798ce99cd05"
+  version = "v1.6.0"
+
+[[projects]]
+  digest = "1:8649f9335dd30a7ebe2df5169e8267d664056dfb849b3afb42c7b2860798d8b3"
+  name = "github.com/nats-io/nats"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "fb0396ee0bdb8018b0fef30d6d1de798ce99cd05"
+  version = "v1.6.0"
+
+[[projects]]
+  digest = "1:c3cd663f2f30b92536b9f290ac85c6310dae36a14cb8961553ae9ccf0d85ae41"
+  name = "github.com/nats-io/nuid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "289cccf02c178dc782430d534e3c1f5b72af807f"
+  version = "v1.0.0"
+
+[[projects]]
   digest = "1:95741de3af260a92cc5c7f3f3061e85273f5a81b5db20d4bd68da74bd521675e"
   name = "github.com/pelletier/go-toml"
   packages = ["."]
@@ -287,6 +326,14 @@
   pruneopts = "UT"
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
   version = "v1.0.0"
+
+[[projects]]
+  digest = "1:df32b4e837c5b3505dc5e2c6a181624d67f7397a66abb5b4546324e686fb8e94"
+  name = "github.com/r3labs/sse"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c8c9ee766d447647076a54f4e220074f4350402d"
+  version = "1.2.2"
 
 [[projects]]
   digest = "1:d917313f309bda80d27274d53985bc65651f81a5b66b820749ac7f8ef061fd04"
@@ -549,6 +596,14 @@
   version = "v1.2"
 
 [[projects]]
+  digest = "1:4ba637038f22c9065994c0cd734118fc75e0c744f855fd3edbd3b923d1f41d44"
+  name = "gopkg.in/cenkalti/backoff.v1"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "61153c768f31ee5f130071d08fc82b85208528de"
+  version = "v1.1.0"
+
+[[projects]]
   branch = "v1"
   digest = "1:99409b277e9cd3f00284f8898e43b517956514108d1b220efc60ef05c8a8fd58"
   name = "gopkg.in/gavv/httpexpect.v1"
@@ -582,10 +637,14 @@
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
     "github.com/gocontrib/auth",
-    "github.com/gocontrib/log",
     "github.com/gocontrib/pubsub",
+    "github.com/gocontrib/pubsub/nats",
+    "github.com/gocontrib/pubsub/sse",
     "github.com/gocontrib/request",
+    "github.com/gocontrib/rest",
+    "github.com/r3labs/sse",
     "github.com/spf13/viper",
+    "github.com/stretchr/testify/assert",
     "github.com/tus/tusd",
     "github.com/tus/tusd/filestore",
     "google.golang.org/grpc",

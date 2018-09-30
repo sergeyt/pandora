@@ -4,11 +4,9 @@ gzip
 cors
 
 proxy /api app:4201
-
 proxy /ratel ratel:8000 {
     without /ratel
 }
-
 proxy /kibana kibana:5601 {
     without /kibana
 }

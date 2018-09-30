@@ -1,3 +1,5 @@
+nats="nats://nats:42222"
+
 [api]
 addr=":4201"
 

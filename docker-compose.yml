@@ -4,9 +4,12 @@ services:
   nats:
     image: nats:latest
     container_name: nats
-    entrypoint: "/gnatsd -DV"
+    hostname: nats
+    command: -DV -c gnatsd.conf
     ports:
       - 4222:4222
+      - 6222:6222
+      - 8222:8222
     restart: on-failure
   # Amazon S3 compatible file store
   minio:
@@ -31,8 +34,6 @@ services:
       - 5080:5080
       - 6080:6080
     command: dgraph zero --my=zero:5080
-    networks:
-      - net
     restart: on-failure
   # dgraph node
   dgraph:
@@ -44,8 +45,6 @@ services:
       - 8080:8080
       - 9080:9080
     command: dgraph server --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048
-    networks:
-      - net
     restart: on-failure
   # dgraph UI
   ratel:
@@ -54,8 +53,6 @@ services:
     ports:
       - 8000:8000
     command: dgraph-ratel
-    networks:
-      - net
     restart: on-failure
   # elasticsearch node1
   # see also https://github.com/deviantony/docker-elk
@@ -78,8 +75,6 @@ services:
       - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-    networks:
-      - net
     restart: on-failure
   # elasticsearch node2
   elasticsearch2:
@@ -99,8 +94,6 @@ services:
         hard: -1
     volumes:
       - esdata2:/usr/share/elasticsearch/data
-    networks:
-      - net
     restart: on-failure
   # kibana - elasticsearch dashboard
   kibana:
@@ -112,10 +105,8 @@ services:
       - ./config/kibana/:/usr/share/kibana/config:ro
     ports:
       - 5601:5601
-    networks:
-      - net
     restart: on-failure
-  # app API service
+  # application API service
   app:
     build:
       context: ./
@@ -125,19 +116,6 @@ services:
       - .:/go/src/github.com/sergeyt/pandora
     ports:
       - 3000:3000
-    networks:
-      - net
-    restart: on-failure
-  # pubsub - event streaming service (aka push notifications)
-  pubsub:
-    build:
-      context: ./
-      dockerfile: ./docker/Dockerfile-pubsub
-    container_name: pubsub
-    ports:
-      - 4302:4302
-    networks:
-      - net
     restart: on-failure
   # web server - service gateway
   caddy:
@@ -148,8 +126,6 @@ services:
       - ./data/caddycerts:/etc/caddycerts
     ports:
       - 4200:4200
-    networks:
-      - net
     restart: on-failure
 
 volumes:
@@ -157,6 +133,3 @@ volumes:
   dgraph:
   esdata1:
   esdata2:
-
-networks:
-  net:
