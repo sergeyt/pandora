@@ -26,9 +26,12 @@ Simple, Flexible, Dynamic, Declarative, Reactive, Realtime Information System :)
 * `app` - Application API service
 * `caddy` - Web Server as service gateway
 
+## How to build
+
+* `dep ensure`
+* `go install`
+
 ## How to run tests
 
-Run below commands in project directory.
-
-* `go test -coverprofile cover.out` to run tests with coverage output
-* `go tool cover -html cover.out` to see HTML coverage report
+* `go test -coverprofile cover.out`
+* `go tool cover -html cover.out`
