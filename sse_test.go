@@ -1,11 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
 	"github.com/gocontrib/rest"
-	"github.com/r3labs/sse"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -17,16 +17,21 @@ func TestEventStream(t *testing.T) {
 		Verbose:       true,
 	})
 
-	stream := sse.NewClient(host + "/api/event/stream")
-	events := make(chan *sse.Event)
+	events := make(chan *rest.Event, 1)
+	die := make(chan bool)
+	timer := time.NewTimer(5 * time.Second)
 
 	go func() {
-		err := stream.SubscribeChan("", events)
+		fmt.Println("READING EVENT STREAM")
+		err := client.EventStream("/api/event/stream", events)
 		assert.Nil(t, err)
+		<-die
+		close(events)
 	}()
-	defer stream.Unsubscribe(events)
 
 	go func() {
+		time.Sleep(1 * time.Second)
+		fmt.Println("POST DATA")
 		var result map[string]interface{}
 		err := client.Post("/api/data/user", &TestUser{
 			Name: "bob",
@@ -35,13 +40,12 @@ func TestEventStream(t *testing.T) {
 		assert.Nil(t, err)
 	}()
 
-	for {
-		select {
-		case e := <-events:
-			assert.NotNil(t, e)
-			return
-		case <-time.After(1 * time.Second):
-			assert.Fail(t, "timeout")
-		}
+	select {
+	case e := <-events:
+		assert.NotNil(t, e)
+	case <-timer.C:
+		assert.Fail(t, "timeout")
 	}
+
+	die <- true
 }

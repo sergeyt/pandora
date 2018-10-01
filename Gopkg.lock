@@ -125,7 +125,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:5c413f6f08f363c4ebf2371252be4fe27796eb5f9c34b27de3f43fc9e9a1e04e"
+  digest = "1:4c3367337f97b121122f6e5a2b4400ee1c22c9be680463175b8ea2b89a9077ae"
   name = "github.com/gocontrib/pubsub"
   packages = [
     ".",
@@ -133,7 +133,7 @@
     "sse",
   ]
   pruneopts = "UT"
-  revision = "3db546eb16eaa193c36b509ca277d5ff36326ecc"
+  revision = "be2eff20d3430fe0371fdb39cdb132d7e64636dc"
 
 [[projects]]
   branch = "master"
@@ -145,11 +145,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b7b9efe8a1be0890f25b1f8d1359500dcc598e6542eefcdc59c23cd502a650d5"
+  digest = "1:0ae446be8311bae0e64fcc504191301c6ce36c9c65361ec99695630f453dcaef"
   name = "github.com/gocontrib/rest"
   packages = ["."]
   pruneopts = "UT"
-  revision = "95c2878c11a55e0c43b98799eba03b2dd1eb9212"
+  revision = "3078cdb4f1484dfb2a35e49182fc9cc714b04506"
 
 [[projects]]
   digest = "1:4c0989ca0bcd10799064318923b9bc2db6b4d6338dd75f3f2d86c3511aaaf5cf"
@@ -261,12 +261,12 @@
   version = "v0.0.4"
 
 [[projects]]
-  digest = "1:645110e089152bd0f4a011a2648fbb0e4df5977be73ca605781157ac297f50c4"
+  digest = "1:044bb363b17077710e79605aec51f6d41d43c84c4a7cb1399ec4d3b76c566771"
   name = "github.com/mitchellh/mapstructure"
   packages = ["."]
   pruneopts = "UT"
-  revision = "fa473d140ef3c6adf42d6b391fe76707f1f243c8"
-  version = "v1.0.0"
+  revision = "4632c4f49fb352596def0d4005bcbe7f38fe9008"
+  version = "v1.1.0"
 
 [[projects]]
   branch = "master"
@@ -326,14 +326,6 @@
   pruneopts = "UT"
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
   version = "v1.0.0"
-
-[[projects]]
-  digest = "1:df32b4e837c5b3505dc5e2c6a181624d67f7397a66abb5b4546324e686fb8e94"
-  name = "github.com/r3labs/sse"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "c8c9ee766d447647076a54f4e220074f4350402d"
-  version = "1.2.2"
 
 [[projects]]
   digest = "1:d917313f309bda80d27274d53985bc65651f81a5b66b820749ac7f8ef061fd04"
@@ -596,14 +588,6 @@
   version = "v1.2"
 
 [[projects]]
-  digest = "1:4ba637038f22c9065994c0cd734118fc75e0c744f855fd3edbd3b923d1f41d44"
-  name = "gopkg.in/cenkalti/backoff.v1"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "61153c768f31ee5f130071d08fc82b85208528de"
-  version = "v1.1.0"
-
-[[projects]]
   branch = "v1"
   digest = "1:99409b277e9cd3f00284f8898e43b517956514108d1b220efc60ef05c8a8fd58"
   name = "gopkg.in/gavv/httpexpect.v1"
@@ -642,7 +626,6 @@
     "github.com/gocontrib/pubsub/sse",
     "github.com/gocontrib/request",
     "github.com/gocontrib/rest",
-    "github.com/r3labs/sse",
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",
     "github.com/tus/tusd",
