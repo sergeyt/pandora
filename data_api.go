@@ -122,13 +122,14 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	isNew := len(id) == 0
 	tx := transaction(r)
 	now := time.Now()
 
 	in["modified_at"] = now
 	in["modified_by"] = user.GetID()
 
-	if len(id) == 0 {
+	if isNew {
 		in[nodeLabel] = ""
 		in["created_at"] = now
 		in["created_by"] = user.GetID()
@@ -152,7 +153,7 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 
 	var results []map[string]interface{}
 
-	if len(id) == 0 {
+	if isNew {
 		results = make([]map[string]interface{}, len(resp.Uids))
 		i := 0
 		for _, uid := range resp.Uids {
@@ -163,6 +164,9 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 			}
 			results[i] = result
 			i = i + 1
+			if len(results) == 1 {
+				id = uid
+			}
 		}
 	} else {
 		result, err := readNode(ctx, tx, id)
@@ -189,23 +193,28 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// TODO set CreatedBy
-	sendEvent(&Event{
+	sendEvent(user, &Event{
 		Action:       r.Method,
+		Method:       r.Method,
+		URL:          r.URL.String(),
 		ResourceID:   id,
 		ResourceType: resourceType,
+		Payload:      &in,
+		CreatedBy:    user.GetID(),
 		CreatedAt:    time.Now(),
-		DbResponse:   resp,
+		Result:       out,
 	})
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	id := chi.URLParam(r, "id")
+	ctx := r.Context()
+	user := auth.GetContextUser(ctx)
 
 	tx := transaction(r)
 
-	resp, err := tx.Mutate(r.Context(), &api.Mutation{
+	resp, err := tx.Mutate(ctx, &api.Mutation{
 		DelNquads: []byte("<" + id + "> * * .\n"),
 		CommitNow: true,
 	})
@@ -216,33 +225,38 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 
-	// TODO set CreatedBy
-	sendEvent(&Event{
+	sendEvent(user, &Event{
 		Action:       r.Method,
+		Method:       r.Method,
+		URL:          r.URL.String(),
 		ResourceID:   id,
 		ResourceType: resourceType,
+		CreatedBy:    user.GetID(),
 		CreatedAt:    time.Now(),
-		DbResponse:   resp,
+		Result:       resp,
 	})
 }
 
-// TODO also implement persistence of events for some period of time
-func sendEvent(evt *Event) {
+// TODO later implement persistence of events for some period of time
+func sendEvent(user auth.User, evt *Event) {
 	go func() {
 		chans := []string{
 			"global",
 			fmt.Sprintf("%s/%s", evt.ResourceType, evt.ResourceID),
-			// TODO push to user channel too
+			fmt.Sprintf("user/%s", user.GetID()),
 		}
 		pubsub.Publish(chans, evt)
 	}()
 }
 
 type Event struct {
-	Action       string      `json:"action"`
+	Action       string      `json:"action"` // http method or specific action
+	Method       string      `json:"method"` // http method
+	URL          string      `json:"url"`
 	ResourceID   string      `json:"resource_id"`   // resource id
 	ResourceType string      `json:"resource_type"` // resource type
+	Payload      interface{} `json:"payload"`       // input payload
 	CreatedBy    string      `json:"created_by"`
 	CreatedAt    time.Time   `json:"created_at"`
-	DbResponse   interface{} `json:"db_response"`
+	Result       interface{} `json:"result"` // any result of mutation
 }
