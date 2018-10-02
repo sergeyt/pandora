@@ -2,8 +2,10 @@ import requests
 import json
 import utils
 import api
+from faker import Faker
 
 utils.enable_logging()
+fake = Faker()
 
 def user_exists(user):
     try:
@@ -35,6 +37,18 @@ def init():
     for user in users:
         ensure_user(user)
 
+def generate():
+    for i in range(100):
+        name = fake.name()
+        user = {
+            'login': name,
+            'name': name,
+            'email': name + '123@gmail.com',
+            'password': name + '123',
+        }
+        ensure_user(user)
+
 # api.drop_all()
 # api.init_schema()
 init()
+generate()
