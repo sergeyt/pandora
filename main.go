@@ -9,36 +9,44 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/gocontrib/pubsub"
 	_ "github.com/gocontrib/pubsub/nats"
+	"github.com/sergeyt/pandora/modules/config"
+	"github.com/sergeyt/pandora/modules/elasticsearch"
 	"github.com/spf13/viper"
 )
 
 func main() {
-	parseConfig()
+	config.Parse()
+
+	restart := make(chan bool)
 
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
 		stop()
-		initConfig()
-		go start()
+		config.Init()
+		restart <- true
+		go start(restart)
 	})
 
 	die := make(chan bool)
 	sig := make(chan os.Signal)
+
 	signal.Notify(sig, os.Interrupt, os.Kill)
 	go func() {
 		<-sig
 		die <- true
 	}()
 
-	go start()
+	go start(restart)
 	<-die
 
 	stop()
 }
 
-func start() {
+func start(restart chan bool) {
 	startHub()
 	startServer()
+	elasticsearch.EnsureIndex()
+	go elasticsearch.MutationObserver(restart)
 }
 
 func stop() {

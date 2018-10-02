@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/sergeyt/pandora/modules/config"
 )
 
 var server *http.Server
@@ -11,10 +13,10 @@ var server *http.Server
 func startServer() {
 	initSchema()
 
-	fmt.Printf("listening %s\n", config.Addr)
+	fmt.Printf("listening %s\n", config.ServerAddr)
 
 	server = &http.Server{
-		Addr:    config.Addr,
+		Addr:    config.ServerAddr,
 		Handler: makeAPIHandler(),
 	}
 

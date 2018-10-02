@@ -101,6 +101,14 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:b34b097cb3fd666dbd15b0047e12713661dd2fca098dd9d599245b3aa43f3c2b"
+  name = "github.com/gocontrib/esclient"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "237d2de9a77f5cd90f278f09e42c6e8c06037f11"
+
+[[projects]]
+  branch = "master"
   digest = "1:6df35f72b5005f854694a6a92b0f8f78ec8601f85c884b8cb639292d8ea9ca39"
   name = "github.com/gocontrib/go-ldap-client"
   packages = ["."]
@@ -125,7 +133,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:4c3367337f97b121122f6e5a2b4400ee1c22c9be680463175b8ea2b89a9077ae"
+  digest = "1:ac9d570310f2db5150a9c93d539425ab5bacab95ff20a116efeadd9de911d636"
   name = "github.com/gocontrib/pubsub"
   packages = [
     ".",
@@ -133,7 +141,7 @@
     "sse",
   ]
   pruneopts = "UT"
-  revision = "be2eff20d3430fe0371fdb39cdb132d7e64636dc"
+  revision = "a3ba1ba2635e7612d320003abc8cd2164dc7c695"
 
 [[projects]]
   branch = "master"
@@ -261,12 +269,12 @@
   version = "v0.0.4"
 
 [[projects]]
-  digest = "1:044bb363b17077710e79605aec51f6d41d43c84c4a7cb1399ec4d3b76c566771"
+  digest = "1:e32dfc6abff6a3633ef4d9a1022fd707c8ef26f1e1e8f855dc58dc415ce7c8f3"
   name = "github.com/mitchellh/mapstructure"
   packages = ["."]
   pruneopts = "UT"
-  revision = "4632c4f49fb352596def0d4005bcbe7f38fe9008"
-  version = "v1.1.0"
+  revision = "fe40af7a9c397fa3ddba203c38a5042c5d0475ad"
+  version = "v1.1.1"
 
 [[projects]]
   branch = "master"
@@ -621,6 +629,7 @@
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
     "github.com/gocontrib/auth",
+    "github.com/gocontrib/esclient",
     "github.com/gocontrib/pubsub",
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/pubsub/sse",

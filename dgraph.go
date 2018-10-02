@@ -7,6 +7,7 @@ import (
 
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
+	"github.com/sergeyt/pandora/modules/config"
 	"google.golang.org/grpc"
 )
 

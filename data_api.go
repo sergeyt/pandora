@@ -193,7 +193,7 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	sendEvent(user, &Event{
+	sendEvent(user, &pubsub.Event{
 		Action:       r.Method,
 		Method:       r.Method,
 		URL:          r.URL.String(),
@@ -225,7 +225,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 
-	sendEvent(user, &Event{
+	sendEvent(user, &pubsub.Event{
 		Action:       r.Method,
 		Method:       r.Method,
 		URL:          r.URL.String(),
@@ -238,7 +238,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // TODO later implement persistence of events for some period of time
-func sendEvent(user auth.User, evt *Event) {
+func sendEvent(user auth.User, evt *pubsub.Event) {
 	go func() {
 		chans := []string{
 			"global",
@@ -247,16 +247,4 @@ func sendEvent(user auth.User, evt *Event) {
 		}
 		pubsub.Publish(chans, evt)
 	}()
-}
-
-type Event struct {
-	Action       string      `json:"action"` // http method or specific action
-	Method       string      `json:"method"` // http method
-	URL          string      `json:"url"`
-	ResourceID   string      `json:"resource_id"`   // resource id
-	ResourceType string      `json:"resource_type"` // resource type
-	Payload      interface{} `json:"payload"`       // input payload
-	CreatedBy    string      `json:"created_by"`
-	CreatedAt    time.Time   `json:"created_at"`
-	Result       interface{} `json:"result"` // any result of mutation
 }
