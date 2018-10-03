@@ -3,7 +3,7 @@
 Small app basis composed from the following technologies:
 
 * [Dgraph](https://dgraph.io/) as data store with GraphQL support, write operations using REST
-* [tusd](https://tus.io/) as file store baked by Amazon S3 compatible storage like [Minio](https://www.minio.io/)
+* [tusd](https://tus.io/) as file store service baked by Amazon S3 compatible storage like [Minio](https://www.minio.io/)
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data is automatically replicated in elasticseach index - not implemented yet :)
 * [Kibana](https://www.elastic.co/products/kibana) to visualize Elasticsearch data
 * [nats](https://nats.io/) as messaging system with streaming push notifications via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
@@ -19,7 +19,7 @@ Simple, Flexible, Dynamic, Declarative, Reactive, Realtime Information System :)
 * `zero` - Dgraph cluster manager
 * `dgraph` - Dgraph data manager hosts predicates & indexes
 * `ratel` - serves the UI to run queries, mutations & altering schema
-* `nats` - message bug
+* `nats` - message bus
 * `minio` - Amazon S3 compatible file store
 * `elasticsearch` - search and analitycs engine
 * `kibana` - Elasticsearch dashboard
