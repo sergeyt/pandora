@@ -1,2 +1,1 @@
-export default function* root() {
-}
+export default function* root() {}
