@@ -80,7 +80,8 @@ services:
   elasticsearch2:
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile-elasticsearch
+      # dockerfile: ./docker/Dockerfile-elasticsearch
+      dockerfile: ./docker/Dockerfile-empty
     container_name: elasticsearch2
     environment:
       - cluster.name=docker-cluster
