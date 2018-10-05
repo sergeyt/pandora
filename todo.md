@@ -4,7 +4,7 @@
 * [x] server sent events (SSE) about data changes
 * [x] label nodes
 * [x] auth: match only user nodes
-* [ ] automatically set created, modified predicates
+* [x] automatically set created, modified predicates
 * [ ] allow using JSON schema to validate inputs in mutations
 * [ ] method to modify graph schema
 * [ ] select good logger
@@ -19,9 +19,9 @@
 
 ## cleanups
 
-* [ ] (minor) consider moving SSE handler to github.com/gocontrib/pubsub
-* [ ] SSE as separate upstream process (psubd)
-* [ ] tusd as separate upstream process to handle file uploads/downloads
+* [x] (minor) consider moving SSE handler to github.com/gocontrib/pubsub
+* [x] SSE as separate upstream process (psubd)
+* [x] tusd as separate upstream process to handle file uploads/downloads
 
 ## easy todo
 
