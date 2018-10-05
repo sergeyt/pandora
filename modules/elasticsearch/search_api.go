@@ -7,12 +7,13 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/gocontrib/esclient"
 	"github.com/sergeyt/pandora/modules/apiutil"
-	"github.com/sergeyt/pandora/modules/config"
 )
 
 // TODO just use http.Proxy or proxy with caddy
 func SearchAPI(r chi.Router) {
-	r.Get("/api/search", func(w http.ResponseWriter, r *http.Request) {
+	r.Get("/api/search/:idx", func(w http.ResponseWriter, r *http.Request) {
+		idxName := chi.URLParam(r, "idx")
+
 		var sr esclient.SearchRequest
 		err := json.NewDecoder(r.Body).Decode(&sr)
 		if err != nil {
@@ -21,7 +22,7 @@ func SearchAPI(r chi.Router) {
 		}
 
 		c := makeClient()
-		result, err := c.Search(config.ElasticSearch.IndexName, &sr, nil)
+		result, err := c.Search(idxName, &sr, nil)
 		if err != nil {
 			apiutil.SendError(w, err)
 			return

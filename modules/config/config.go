@@ -11,8 +11,7 @@ type DBConfig struct {
 }
 
 type ElasticSearchConfig struct {
-	URL       string
-	IndexName string
+	URL string
 }
 
 var (
@@ -21,8 +20,7 @@ var (
 		Addr: "localhost:9080",
 	}
 	ElasticSearch = &ElasticSearchConfig{
-		URL:       "http://elasticsearch:9200",
-		IndexName: "pandora_data",
+		URL: "http://elasticsearch:9200",
 	}
 	Nats = "nats://nats:4222"
 )
@@ -46,8 +44,7 @@ func Init() {
 		Addr: viper.GetString("dgraph.addr"),
 	}
 	ElasticSearch = &ElasticSearchConfig{
-		URL:       viper.GetString("elasticsearch.url"),
-		IndexName: viper.GetString("elasticsearch.index"),
+		URL: viper.GetString("elasticsearch.url"),
 	}
 	Nats = viper.GetString("nats")
 }
