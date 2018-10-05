@@ -5,20 +5,33 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/cors"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/elasticsearch"
 )
 
 func makeAPIHandler() http.Handler {
-	mux := chi.NewRouter()
+	r := chi.NewRouter()
 
-	mux.Use(middleware.RequestID)
-	mux.Use(middleware.Logger)
-	mux.Use(middleware.Recoverer)
+	r.Use(middleware.RequestID)
+	r.Use(middleware.Logger)
+	r.Use(middleware.Recoverer)
 
-	mux.Group(auth.AuthAPI)
-	mux.Group(elasticsearch.SearchAPI)
-	mux.Group(dataAPI)
+	// Basic CORS
+	// for more ideas, see: https://developer.github.com/v3/#cross-origin-resource-sharing
+	cors := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: true,
+		MaxAge:           300, // Maximum value not ignored by any of major browsers
+	})
+	r.Use(cors.Handler)
 
-	return mux
+	r.Group(auth.AuthAPI)
+	r.Group(elasticsearch.SearchAPI)
+	r.Group(dataAPI)
+
+	return r
 }

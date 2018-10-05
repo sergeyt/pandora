@@ -81,6 +81,14 @@
   version = "v3.3.3"
 
 [[projects]]
+  digest = "1:dfa416a1bb8139f30832543340f972f65c0db9932034cb6a1b42c5ac615a3fb8"
+  name = "github.com/go-chi/cors"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "dba6525398619dead495962a916728e7ee2ca322"
+  version = "v1.0.0"
+
+[[projects]]
   branch = "master"
   digest = "1:a0b00dcca8f70b8bc8e106d8c468ad14a3cb00d3071e5068b892091074ad9f90"
   name = "github.com/gocontrib/auth"
@@ -132,7 +140,7 @@
     "nats",
   ]
   pruneopts = "UT"
-  revision = "95008944a634e70cd7f89778f3fd43bf72c7bb59"
+  revision = "33a982b07ab5c79ef92da8b61bd396c26f87e9c2"
 
 [[projects]]
   branch = "master"
@@ -478,11 +486,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e0727a1564c353c88556552c423d0ba29db8313eabd4d637af9de0dc55f7075c"
+  digest = "1:c2789211d4035eb0843b85958ecf7cb4a5ea91c2d4decee652c94ce898e433cb"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = "UT"
-  revision = "f81de40a842616c63e7d0b2dc3fc203cdd92de66"
+  revision = "4497e2df6f9e69048a54498c7affbbec3294ad47"
 
 [[projects]]
   digest = "1:a2ab62866c75542dd18d2b069fec854577a20211d7c0ea6ae746072a1dccdd18"
@@ -591,6 +599,7 @@
     "github.com/fsnotify/fsnotify",
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
+    "github.com/go-chi/cors",
     "github.com/gocontrib/auth",
     "github.com/gocontrib/esclient",
     "github.com/gocontrib/log",
