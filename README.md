@@ -4,7 +4,7 @@ This small box of pandora (IOW small app basis) composed from the following tech
 
 * [Dgraph](https://dgraph.io/) as data store with GraphQL support, write operations using REST
 * [tusd](https://tus.io/) as file store service baked by Amazon S3 compatible storage like [Minio](https://www.minio.io/)
-* [Elasticsearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data is automatically replicated in elasticseach index - not implemented yet :)
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data is automatically replicated in elasticseach index
 * [Kibana](https://www.elastic.co/products/kibana) to visualize Elasticsearch data
 * [nats](https://nats.io/) as messaging system with streaming of push notifications (events) via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
 
