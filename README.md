@@ -21,6 +21,7 @@ I'd like to have simple, flexible, dynamic, declarative, reactive, realtime info
 * `ratel` - serves the UI to run queries, mutations & altering schema
 * `nats` - plays as message bus
 * `minio` - Amazon S3 compatible file store
+* `tusd` - service with Open Protocol for Resumable File Uploads
 * `elasticsearch` - search and analitycs engine
 * `kibana` - Elasticsearch dashboard
 * `app` - application API service

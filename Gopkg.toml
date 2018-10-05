@@ -46,16 +46,8 @@
   name = "github.com/gocontrib/pubsub"
 
 [[constraint]]
-  branch = "master"
-  name = "github.com/gocontrib/request"
-
-[[constraint]]
   name = "github.com/spf13/viper"
   version = "1.2.0"
-
-[[constraint]]
-  name = "github.com/tus/tusd"
-  version = "0.10.0"
 
 [[constraint]]
   name = "google.golang.org/grpc"

@@ -3,6 +3,9 @@ localhost:4200
 gzip
 cors
 
+proxy /api/files tusd:1080
+proxy /api/metrics/tusd tusd:1080
+
 proxy /api app:4201
 proxy /ratel ratel:8000 {
     without /ratel
