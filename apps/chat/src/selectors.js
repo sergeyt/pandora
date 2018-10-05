@@ -11,3 +11,13 @@ export function composeSelector(query, makeResult = identity) {
     makeResult(Object.assign({}, ...results))
   )
 }
+
+export const currentUser = createSelector(
+  state => state.common.currentUser,
+  currentUser => ({ currentUser })
+)
+
+export const messages = createSelector(
+  state => state.chat.messages,
+  messages => ({ messages })
+)

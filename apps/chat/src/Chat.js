@@ -1,18 +1,22 @@
 import React from 'react'
-import { createSelector } from 'reselect'
 
 import './Chat.css'
 import { connect } from './connect'
 import Message from './Message'
 import ChatInput from './ChatInput'
-import { pushMessage } from './actions'
+import { currentUser, messages } from './selectors'
+import { send } from './saga'
 
 class Chat extends React.Component {
   processMessage = content => {
+    // TODO process commands
     const message = {
+      from: this.props.currentUser.uid,
+      // TODO specify channel id
+      to: 'general',
       content,
     }
-    this.props.pushMessage(message)
+    this.props.send(message)
   }
 
   render() {
@@ -32,12 +36,7 @@ class Chat extends React.Component {
   }
 }
 
-const messages = createSelector(
-  state => state.chat.messages,
-  messages => ({ messages })
-)
-
 export default connect(
-  { messages },
-  { pushMessage }
+  { currentUser, messages },
+  { send }
 )(Chat)

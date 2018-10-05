@@ -4,7 +4,7 @@ const stdHeaders = {
 }
 
 function getToken() {
-  return localStorage.getItem('acess_token')
+  return localStorage.getItem('access_token')
 }
 
 function setToken(value) {
@@ -15,30 +15,53 @@ function setToken(value) {
   }
 }
 
-function fetchJSON(url, payload, options = {}) {
+export function fetchJSON(url, payload, options = {}) {
   const token = getToken()
+
+  const headers = {
+    ...stdHeaders,
+    Authorization: token ? `Bearer ${token}` : undefined,
+    ...(options.headers || {}),
+  }
 
   return fetch(url, {
     method: options.method || (payload !== undefined ? 'POST' : 'GET'),
-    headers: {
-      ...stdHeaders,
-      Authorization: token ? `Bearer ${token}` : undefined,
-    },
+    headers,
     body: payload !== undefined ? JSON.stringify(payload) : undefined,
     ...options,
   }).then(resp => resp.json())
 }
 
-function post(url, payload, options = {}) {
+export function post(url, payload, options = {}) {
   return fetchJSON(url, payload, {
     ...options,
     method: 'POST',
   })
 }
 
-function login(username, password) {
-  return post('/api/login', { body: { username, password } }).then(resp => {
-    setToken(resp.access_token)
+export function get(url, options = {}) {
+  return fetchJSON(url, undefined, {
+    ...options,
+    method: 'GET',
+  })
+}
+
+export function login(username, password) {
+  const creds = btoa(`${username}:${password}`)
+  return post('/api/login', undefined, {
+    headers: {
+      Authorization: `Basic ${creds}`,
+    },
+  }).then(resp => {
+    setToken(resp.token)
     return resp
   })
+}
+
+export function me() {
+  return get('/api/me')
+}
+
+export function sendMessage(msg) {
+  return post('/api/data/message', msg)
 }

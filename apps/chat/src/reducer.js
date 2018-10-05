@@ -2,7 +2,20 @@ import Immutable from 'immutable'
 import { combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 
-import { loadMessages, pushMessage } from './actions'
+import { setCurrentUser, loadMessages, pushMessage } from './actions'
+
+const GlobalState = Immutable.Record({
+  currentUser: undefined,
+})
+
+const commonReducer = handleActions(
+  {
+    [setCurrentUser]: (state, action) => {
+      return state.set('currentUser', action.payload)
+    },
+  },
+  GlobalState()
+)
 
 const ChatState = Immutable.Record({
   messages: Immutable.List(),
@@ -23,5 +36,6 @@ const chatReducer = handleActions(
 )
 
 export default combineReducers({
+  common: commonReducer,
   chat: chatReducer,
 })
