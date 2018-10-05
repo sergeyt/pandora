@@ -2,9 +2,9 @@ package elasticsearch
 
 import (
 	"encoding/json"
-	"log"
 	"time"
 
+	"github.com/gocontrib/log"
 	"github.com/gocontrib/pubsub"
 	"github.com/sergeyt/pandora/modules/config"
 )
@@ -13,22 +13,26 @@ import (
 func MutationObserver(restart chan bool) {
 	ch, err := pubsub.Subscribe([]string{"global"})
 	if err != nil {
-		log.Printf("cannot subscribe on global channel: %v", err)
-		log.Println("retry after one second")
+		log.Info("elasticseach: cannot subscribe on global channel: %v\n", err)
+		log.Info("elasticseach: retry after one second")
 		time.Sleep(1 * time.Second)
+		go MutationObserver(restart)
 		return
 	}
+
+	log.Info("elasticseach: mutation observer started")
 
 	for {
 		select {
 		case msg := <-ch.Read():
 			go mutate(msg)
 		case <-restart:
+			go MutationObserver(restart)
 			return
 		case <-ch.CloseNotify():
 			time.Sleep(1 * time.Second)
-			log.Println("this subscription is closed")
-			log.Println("retry after one second")
+			log.Info("this subscription is closed")
+			log.Info("retry after one second")
 			go MutationObserver(restart)
 			return
 		}
@@ -36,15 +40,17 @@ func MutationObserver(restart chan bool) {
 }
 
 func mutate(msg interface{}) {
+	log.Info("elasticsearch: streaming new message")
+
 	b, err := json.Marshal(msg)
 	if err != nil {
-		log.Printf("elasticsearch process: json encoding error: %v", err)
+		log.Errorf("elasticsearch: json encoding error: %v\n", err)
 		return
 	}
 	var event pubsub.Event
 	err = json.Unmarshal(b, &event)
 	if err != nil {
-		log.Printf("elasticsearch process: json decoding error: %v", err)
+		log.Errorf("elasticsearch: json decoding error: %v\n", err)
 		return
 	}
 
