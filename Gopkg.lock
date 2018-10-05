@@ -93,11 +93,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b34b097cb3fd666dbd15b0047e12713661dd2fca098dd9d599245b3aa43f3c2b"
+  digest = "1:8c8c5f004d12d35265107ac6d3867fa936c6db154b4cd96f1ecebc43fd94883f"
   name = "github.com/gocontrib/esclient"
   packages = ["."]
   pruneopts = "UT"
-  revision = "237d2de9a77f5cd90f278f09e42c6e8c06037f11"
+  revision = "90f74e6802639b45e69415dacd9ed07f8acf5d0a"
 
 [[projects]]
   branch = "master"
@@ -478,11 +478,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:f7e5d74f094d44e931785fc1ebc887704953b6689c7d47fce9ff1a8647b83eb6"
+  digest = "1:e0727a1564c353c88556552c423d0ba29db8313eabd4d637af9de0dc55f7075c"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = "UT"
-  revision = "8469e314837c2e2471561de5c47bbf8bfd0d9099"
+  revision = "f81de40a842616c63e7d0b2dc3fc203cdd92de66"
 
 [[projects]]
   digest = "1:a2ab62866c75542dd18d2b069fec854577a20211d7c0ea6ae746072a1dccdd18"
@@ -593,6 +593,7 @@
     "github.com/go-chi/chi/middleware",
     "github.com/gocontrib/auth",
     "github.com/gocontrib/esclient",
+    "github.com/gocontrib/log",
     "github.com/gocontrib/pubsub",
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/rest",

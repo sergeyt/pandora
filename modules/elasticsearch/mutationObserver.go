@@ -40,8 +40,6 @@ func MutationObserver(restart chan bool) {
 }
 
 func mutate(msg interface{}) {
-	log.Info("elasticsearch: streaming new message")
-
 	b, err := json.Marshal(msg)
 	if err != nil {
 		log.Errorf("elasticsearch: json encoding error: %v\n", err)
@@ -56,6 +54,6 @@ func mutate(msg interface{}) {
 
 	if event.Result != nil {
 		c := makeClient()
-		c.Push(config.ElasticSearch.IndexName, event.Result)
+		c.Push(config.ElasticSearch.IndexName, event.Result, event.ResourceID)
 	}
 }
