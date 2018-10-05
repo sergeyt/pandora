@@ -6,7 +6,6 @@ import (
 
 	"github.com/gocontrib/log"
 	"github.com/gocontrib/pubsub"
-	"github.com/sergeyt/pandora/modules/config"
 )
 
 // MutationObserver runs monitor of all mutation events to replicate data
@@ -54,6 +53,7 @@ func mutate(msg interface{}) {
 
 	if event.Result != nil {
 		c := makeClient()
-		c.Push(config.ElasticSearch.IndexName, event.Result, event.ResourceID)
+		idx := "pandora_" + event.ResourceType
+		c.Push(idx, event.Result, event.ResourceID)
 	}
 }

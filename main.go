@@ -43,7 +43,6 @@ func main() {
 
 func start(restart chan bool) {
 	startHub()
-	elasticsearch.EnsureIndex()
 	go elasticsearch.MutationObserver(restart)
 	startServer()
 }
