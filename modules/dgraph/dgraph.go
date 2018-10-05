@@ -1,4 +1,4 @@
-package main
+package dgraph
 
 import (
 	"context"
@@ -8,11 +8,12 @@ import (
 
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
+	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/config"
 	"google.golang.org/grpc"
 )
 
-func newDgraphClient() (*dgo.Dgraph, error) {
+func NewClient() (*dgo.Dgraph, error) {
 	d, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure())
 	if err != nil {
 		return nil, err
@@ -24,8 +25,8 @@ func newDgraphClient() (*dgo.Dgraph, error) {
 }
 
 // TODO incremental update of schema
-func initSchema() {
-	c, err := newDgraphClient()
+func InitSchema() {
+	c, err := NewClient()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -44,11 +45,11 @@ func initSchema() {
 	}
 }
 
-func transactionMiddleware(next http.Handler) http.Handler {
+func TransactionMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		c, err := newDgraphClient()
+		c, err := NewClient()
 		if err != nil {
-			sendError(w, err)
+			apiutil.SendError(w, err)
 			return
 		}
 
@@ -62,6 +63,6 @@ func transactionMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-func transaction(r *http.Request) *dgo.Txn {
+func RequestTransaction(r *http.Request) *dgo.Txn {
 	return r.Context().Value("tx").(*dgo.Txn)
 }

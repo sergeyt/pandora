@@ -6,12 +6,13 @@ import (
 	"net/http"
 
 	"github.com/sergeyt/pandora/modules/config"
+	"github.com/sergeyt/pandora/modules/dgraph"
 )
 
 var server *http.Server
 
 func startServer() {
-	initSchema()
+	dgraph.InitSchema()
 
 	fmt.Printf("listening %s\n", config.ServerAddr)
 

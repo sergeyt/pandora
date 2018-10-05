@@ -5,6 +5,8 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/elasticsearch"
 )
 
 func makeAPIHandler() http.Handler {
@@ -14,7 +16,8 @@ func makeAPIHandler() http.Handler {
 	mux.Use(middleware.Logger)
 	mux.Use(middleware.Recoverer)
 
-	mux.Group(authAPI)
+	mux.Group(auth.AuthAPI)
+	mux.Group(elasticsearch.SearchAPI)
 	mux.Group(dataAPI)
 
 	return mux

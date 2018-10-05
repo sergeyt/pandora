@@ -1,4 +1,4 @@
-package main
+package auth
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/gocontrib/auth"
+	"github.com/sergeyt/pandora/modules/dgraph"
 )
 
 func makeUserStore() auth.UserStore {
@@ -43,14 +44,14 @@ func (s *UserStore) FindUserByID(ctx context.Context, userID string) (auth.User,
 }
 
 func userLabel() string {
-	return nodeLabel("user")
+	return dgraph.NodeLabel("user")
 }
 
 func (s *UserStore) Close() {
 }
 
 func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd bool) (auth.User, error) {
-	client, err := newDgraphClient()
+	client, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
 	}

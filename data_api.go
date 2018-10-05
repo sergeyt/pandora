@@ -2,21 +2,24 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"time"
 
+	"github.com/sergeyt/pandora/modules/apiutil"
+	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/dgraph"
+
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
-	"github.com/gocontrib/auth"
+	authbase "github.com/gocontrib/auth"
 	"github.com/gocontrib/pubsub"
 )
 
 func dataAPI(r chi.Router) {
-	r = r.With(authMiddleware)
-	r = r.With(transactionMiddleware)
+	r = r.With(auth.AuthMiddleware)
+	r = r.With(dgraph.TransactionMiddleware)
 
 	r.Post("/api/query", queryHandler)
 	r.Get("/api/me", meHandler)
@@ -37,43 +40,43 @@ func dataAPI(r chi.Router) {
 func queryHandler(w http.ResponseWriter, r *http.Request) {
 	query, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
-	tx := transaction(r)
+	tx := dgraph.RequestTransaction(r)
 
 	resp, err := tx.Query(r.Context(), string(query))
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
-	w.Header().Set("Content-Type", TypeJSON)
+	w.Header().Set("Content-Type", apiutil.TypeJSON)
 	w.Write(resp.GetJson())
 }
 
 func listHandler(w http.ResponseWriter, r *http.Request) {
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
-	pg, err := parsePagination(r)
+	pg, err := apiutil.ParsePagination(r)
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
-	tx := transaction(r)
+	tx := dgraph.RequestTransaction(r)
 
-	data, err := readList(r.Context(), tx, nodeLabel(resourceType), pg)
+	data, err := dgraph.ReadList(r.Context(), tx, dgraph.NodeLabel(resourceType), pg)
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
-	sendJSON(w, data)
+	apiutil.SendJSON(w, data)
 }
 
 func meHandler(w http.ResponseWriter, r *http.Request) {
-	user := auth.GetRequestUser(r)
+	user := authbase.GetRequestUser(r)
 	if user == nil {
 		http.Error(w, "unauthorized", http.StatusUnauthorized)
 		return
@@ -87,33 +90,33 @@ func readHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
-	tx := transaction(r)
+	tx := dgraph.RequestTransaction(r)
 
-	data, err := readNode(r.Context(), tx, id)
+	data, err := dgraph.ReadNode(r.Context(), tx, id)
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
-	sendJSON(w, data)
+	apiutil.SendJSON(w, data)
 }
 
 func mutateHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	id := chi.URLParam(r, "id")
-	nodeLabel := nodeLabel(resourceType)
-	user := auth.GetContextUser(ctx)
+	nodeLabel := dgraph.NodeLabel(resourceType)
+	user := authbase.GetContextUser(ctx)
 
 	var in OrderedJSON
 	err := json.NewDecoder(r.Body).Decode(&in)
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
 	isNew := len(id) == 0
-	tx := transaction(r)
+	tx := dgraph.RequestTransaction(r)
 	now := time.Now()
 
 	in["modified_at"] = now
@@ -129,7 +132,7 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 
 	data, err := in.ToJSON("uid", nodeLabel)
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
@@ -137,7 +140,7 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		SetJson: data,
 	})
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
@@ -147,9 +150,9 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		results = make([]map[string]interface{}, len(resp.Uids))
 		i := 0
 		for _, uid := range resp.Uids {
-			result, err := readNode(ctx, tx, uid)
+			result, err := dgraph.ReadNode(ctx, tx, uid)
 			if err != nil {
-				sendError(w, err)
+				apiutil.SendError(w, err)
 				return
 			}
 			results[i] = result
@@ -159,9 +162,9 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	} else {
-		result, err := readNode(ctx, tx, id)
+		result, err := dgraph.ReadNode(ctx, tx, id)
 		if err != nil {
-			sendError(w, err)
+			apiutil.SendError(w, err)
 			return
 		}
 		results = []map[string]interface{}{result}
@@ -169,7 +172,7 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 
 	err = tx.Commit(ctx)
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
@@ -178,12 +181,12 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 		out = results[0]
 	}
 
-	err = sendJSON(w, out)
+	err = apiutil.SendJSON(w, out)
 	if err != nil {
 		return
 	}
 
-	sendEvent(user, &pubsub.Event{
+	apiutil.SendEvent(user, &pubsub.Event{
 		Action:       r.Method,
 		Method:       r.Method,
 		URL:          r.URL.String(),
@@ -200,22 +203,22 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	id := chi.URLParam(r, "id")
 	ctx := r.Context()
-	user := auth.GetContextUser(ctx)
+	user := authbase.GetContextUser(ctx)
 
-	tx := transaction(r)
+	tx := dgraph.RequestTransaction(r)
 
 	resp, err := tx.Mutate(ctx, &api.Mutation{
 		DelNquads: []byte("<" + id + "> * * .\n"),
 		CommitNow: true,
 	})
 	if err != nil {
-		sendError(w, err)
+		apiutil.SendError(w, err)
 		return
 	}
 
 	w.WriteHeader(http.StatusOK)
 
-	sendEvent(user, &pubsub.Event{
+	apiutil.SendEvent(user, &pubsub.Event{
 		Action:       r.Method,
 		Method:       r.Method,
 		URL:          r.URL.String(),
@@ -225,16 +228,4 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 		CreatedAt:    time.Now(),
 		Result:       resp,
 	})
-}
-
-// TODO later implement persistence of events for some period of time
-func sendEvent(user auth.User, evt *pubsub.Event) {
-	go func() {
-		chans := []string{
-			"global",
-			fmt.Sprintf("%s/%s", evt.ResourceType, evt.ResourceID),
-			fmt.Sprintf("user/%s", user.GetID()),
-		}
-		pubsub.Publish(chans, evt)
-	}()
 }

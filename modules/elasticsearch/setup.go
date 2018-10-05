@@ -8,8 +8,7 @@ import (
 
 func makeClient() *esclient.Client {
 	return esclient.NewClient(esclient.Config{
-		URL:     config.ElasticSearch.URL,
-		Verbose: true,
+		URL: config.ElasticSearch.URL,
 	})
 }
 

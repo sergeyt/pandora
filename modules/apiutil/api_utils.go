@@ -1,4 +1,4 @@
-package main
+package apiutil
 
 import (
 	"encoding/json"
@@ -6,13 +6,28 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/gocontrib/auth"
+	"github.com/gocontrib/pubsub"
 )
 
 const (
 	TypeJSON = "application/json"
 )
 
-func sendJSON(w http.ResponseWriter, data interface{}, status ...int) error {
+// TODO later implement persistence of events for some period of time
+func SendEvent(user auth.User, evt *pubsub.Event) {
+	go func() {
+		chans := []string{
+			"global",
+			fmt.Sprintf("%s/%s", evt.ResourceType, evt.ResourceID),
+			fmt.Sprintf("user/%s", user.GetID()),
+		}
+		pubsub.Publish(chans, evt)
+	}()
+}
+
+func SendJSON(w http.ResponseWriter, data interface{}, status ...int) error {
 	w.Header().Set("Content-Type", TypeJSON)
 
 	if len(status) > 0 {
@@ -41,7 +56,7 @@ func sendJSON(w http.ResponseWriter, data interface{}, status ...int) error {
 	return nil
 }
 
-func sendError(w http.ResponseWriter, err error, status ...int) {
+func SendError(w http.ResponseWriter, err error, status ...int) {
 	if len(status) == 0 {
 		errstr := err.Error()
 		if strings.Contains(errstr, "not valid") || strings.Contains(errstr, "invalid") {
@@ -58,10 +73,15 @@ func sendError(w http.ResponseWriter, err error, status ...int) {
 	}{
 		Error: err.Error(),
 	}
-	sendJSON(w, data, status...)
+	SendJSON(w, data, status...)
 }
 
-func parsePagination(r *http.Request) (result pagination, err error) {
+type Pagination struct {
+	Offset int
+	Limit  int
+}
+
+func ParsePagination(r *http.Request) (result Pagination, err error) {
 	offset, err := parseIntParam(r, "offset", 0, true, false)
 	if err != nil {
 		return result, err
@@ -72,8 +92,8 @@ func parsePagination(r *http.Request) (result pagination, err error) {
 		return result, err
 	}
 
-	result.offset = int(offset)
-	result.limit = int(limit)
+	result.Offset = int(offset)
+	result.Limit = int(limit)
 
 	return result, nil
 }
