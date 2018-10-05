@@ -108,13 +108,6 @@ services:
     volumes:
       - esdata2:/usr/share/elasticsearch/data
     restart: on-failure
-  # elasticsearch-head plugin
-  eshead:
-    image: mobz/elasticsearch-head:5-alpine
-    container_name: eshead
-    ports:
-      - 9100:9100
-    restart: on-failure
   # kibana - elasticsearch dashboard
   kibana:
     image: docker.elastic.co/kibana/kibana:6.4.1

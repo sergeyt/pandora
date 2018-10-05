@@ -25,7 +25,6 @@ I'd like to have simple, flexible, dynamic, declarative, reactive, realtime info
 1. `tusd` - service with Open Protocol for Resumable File Uploads
 1. `elasticsearch` - search and analitycs engine
 1. `kibana` - Elasticsearch dashboard
-1. `eshead` - Elasticsearch head plugin
 1. `app` - application API service
 1. `caddy` - web server as service gateway
 
