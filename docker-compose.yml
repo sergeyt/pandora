@@ -130,6 +130,17 @@ services:
     ports:
       - 3000:3000
     restart: on-failure
+  # event streaming service
+  pubsub:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile-pubsub
+    container_name: pubsub
+    environment:
+      NATS_URI: "nats://nats:4222"
+    ports:
+      - 4302:4302
+    restart: on-failure
   # web server - service gateway
   caddy:
     image: abiosoft/caddy:latest

@@ -16,16 +16,17 @@ I'd like to have simple, flexible, dynamic, declarative, reactive, realtime info
 
 `docker-compose up` runs all app services:
 
-* `zero` - Dgraph cluster manager
-* `dgraph` - Dgraph data manager hosts predicates & indexes
-* `ratel` - serves the UI to run queries, mutations & altering schema
-* `nats` - plays as message bus
-* `minio` - Amazon S3 compatible file store
-* `tusd` - service with Open Protocol for Resumable File Uploads
-* `elasticsearch` - search and analitycs engine
-* `kibana` - Elasticsearch dashboard
-* `app` - application API service
-* `caddy` - web server as service gateway
+1. `zero` - Dgraph cluster manager
+1. `dgraph` - Dgraph data manager hosts predicates & indexes
+1. `ratel` - serves the UI to run queries, mutations & altering schema
+1. `nats` - plays as message bus
+1. `pubsub` - event streaming service based on [SSE](https://en.wikipedia.org/wiki/Server-sent_events) protocol
+1. `minio` - Amazon S3 compatible file store
+1. `tusd` - service with Open Protocol for Resumable File Uploads
+1. `elasticsearch` - search and analitycs engine
+1. `kibana` - Elasticsearch dashboard
+1. `app` - application API service
+1. `caddy` - web server as service gateway
 
 ## How to build
 

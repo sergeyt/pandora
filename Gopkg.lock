@@ -125,15 +125,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ac9d570310f2db5150a9c93d539425ab5bacab95ff20a116efeadd9de911d636"
+  digest = "1:a69304406065ad89ebe0c7e0c50b95ebffe3c440ced4975155c6a62c95570283"
   name = "github.com/gocontrib/pubsub"
   packages = [
     ".",
     "nats",
-    "sse",
   ]
   pruneopts = "UT"
-  revision = "a3ba1ba2635e7612d320003abc8cd2164dc7c695"
+  revision = "95008944a634e70cd7f89778f3fd43bf72c7bb59"
 
 [[projects]]
   branch = "master"
@@ -253,12 +252,12 @@
   version = "v0.0.4"
 
 [[projects]]
-  digest = "1:e32dfc6abff6a3633ef4d9a1022fd707c8ef26f1e1e8f855dc58dc415ce7c8f3"
+  digest = "1:53bc4cd4914cd7cd52139990d5170d6dc99067ae31c56530621b18b35fc30318"
   name = "github.com/mitchellh/mapstructure"
   packages = ["."]
   pruneopts = "UT"
-  revision = "fe40af7a9c397fa3ddba203c38a5042c5d0475ad"
-  version = "v1.1.1"
+  revision = "3536a929edddb9a5b34bd6861dc4a9647cb459fe"
+  version = "v1.1.2"
 
 [[projects]]
   branch = "master"
@@ -596,7 +595,6 @@
     "github.com/gocontrib/esclient",
     "github.com/gocontrib/pubsub",
     "github.com/gocontrib/pubsub/nats",
-    "github.com/gocontrib/pubsub/sse",
     "github.com/gocontrib/rest",
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",

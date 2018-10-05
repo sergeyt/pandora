@@ -5,7 +5,6 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
-	"github.com/gocontrib/pubsub/sse"
 )
 
 func makeAPIHandler() http.Handler {
@@ -16,13 +15,6 @@ func makeAPIHandler() http.Handler {
 	mux.Use(middleware.Recoverer)
 
 	mux.Group(authAPI)
-
-	mux.Group(func(r chi.Router) {
-		// TODO configurable api path
-		r.Get("/api/event/stream", sse.GetEventStream)
-		r.Get("/api/event/stream/{channel}", sse.GetEventStream)
-	})
-
 	mux.Group(dataAPI)
 
 	return mux
