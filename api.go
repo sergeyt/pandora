@@ -23,7 +23,6 @@ func makeAPIHandler() http.Handler {
 		r.Get("/api/event/stream/{channel}", sse.GetEventStream)
 	})
 
-	mux.Group(uploadAPI)
 	mux.Group(dataAPI)
 
 	return mux
