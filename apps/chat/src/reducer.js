@@ -11,11 +11,11 @@ const ChatState = Immutable.Record({
 const chatReducer = handleActions(
   {
     [loadMessages]: (state, action) => {
-      return state.set('messages', action.messages || Immutable.List())
+      return state.set('messages', action.payload || Immutable.List())
     },
 
     [pushMessage]: (state, action) => {
-      const messages = state.messages.push(action.message)
+      const messages = state.messages.push(action.payload)
       return state.set('messages', messages)
     },
   },
