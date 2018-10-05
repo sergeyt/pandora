@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -9,7 +8,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
 	"github.com/gocontrib/auth"
@@ -21,6 +19,7 @@ func dataAPI(r chi.Router) {
 	r = r.With(transactionMiddleware)
 
 	r.Post("/api/query", queryHandler)
+	r.Get("/api/me", meHandler)
 	r.Get("/api/data/{type}/list", listHandler)
 	r.Get("/api/data/{type}/{id}", readHandler)
 
@@ -33,28 +32,6 @@ func dataAPI(r chi.Router) {
 	// TODO consider to expose raw api for admin users
 
 	// edges api
-}
-
-func transactionMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		c, err := newDgraphClient()
-		if err != nil {
-			sendError(w, err)
-			return
-		}
-
-		tx := c.NewTxn()
-		defer tx.Discard(r.Context())
-
-		ctx := context.WithValue(r.Context(), "tx", tx)
-		r = r.WithContext(ctx)
-
-		next.ServeHTTP(w, r)
-	})
-}
-
-func transaction(r *http.Request) *dgo.Txn {
-	return r.Context().Value("tx").(*dgo.Txn)
 }
 
 func queryHandler(w http.ResponseWriter, r *http.Request) {
@@ -95,8 +72,21 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 	sendJSON(w, data)
 }
 
+func meHandler(w http.ResponseWriter, r *http.Request) {
+	user := auth.GetRequestUser(r)
+	if user == nil {
+		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	readHandlerByID(w, r, user.GetID())
+}
+
 func readHandler(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
+	readHandlerByID(w, r, id)
+}
+
+func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
 	tx := transaction(r)
 
 	data, err := readNode(r.Context(), tx, id)

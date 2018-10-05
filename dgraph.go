@@ -4,6 +4,7 @@ import (
 	"context"
 	"io/ioutil"
 	"log"
+	"net/http"
 
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
@@ -22,6 +23,7 @@ func newDgraphClient() (*dgo.Dgraph, error) {
 	), nil
 }
 
+// TODO incremental update of schema
 func initSchema() {
 	c, err := newDgraphClient()
 	if err != nil {
@@ -40,4 +42,26 @@ func initSchema() {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func transactionMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		c, err := newDgraphClient()
+		if err != nil {
+			sendError(w, err)
+			return
+		}
+
+		tx := c.NewTxn()
+		defer tx.Discard(r.Context())
+
+		ctx := context.WithValue(r.Context(), "tx", tx)
+		r = r.WithContext(ctx)
+
+		next.ServeHTTP(w, r)
+	})
+}
+
+func transaction(r *http.Request) *dgo.Txn {
+	return r.Context().Value("tx").(*dgo.Txn)
 }
