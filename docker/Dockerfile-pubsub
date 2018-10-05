@@ -1,7 +1,11 @@
-FROM golang:latest
+FROM golang:1.11-alpine3.8
 
 ENV GOPATH /go
-RUN go get -u -v github.com/gocontrib/pubsub/cmd/pubsubd
+
+RUN apk add --no-cache git \
+    && go get -u -v github.com/gocontrib/pubsub/cmd/pubsubd \
+    && apk del git
+
 WORKDIR /go/src/github.com/gocontrib/pubsub/cmd/pubsubd
 
 ENTRYPOINT ["/go/bin/pubsubd"]

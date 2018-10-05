@@ -1,7 +1,11 @@
-FROM golang:latest
+FROM golang:1.11-alpine3.8
 
 ENV GOPATH /go
-RUN go get -u -v github.com/cosmtrek/air
+
+RUN apk add --no-cache git \
+    && go get -u -v github.com/cosmtrek/air \
+    && apk del git
+
 WORKDIR /go/src/github.com/sergeyt/pandora
 
 ENTRYPOINT ["/go/bin/air"]
