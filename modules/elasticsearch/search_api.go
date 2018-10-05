@@ -7,10 +7,13 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/gocontrib/esclient"
 	"github.com/sergeyt/pandora/modules/apiutil"
+	"github.com/sergeyt/pandora/modules/auth"
 )
 
 // TODO just use http.Proxy or proxy with caddy
 func SearchAPI(r chi.Router) {
+	r = r.With(auth.AuthMiddleware)
+
 	r.Get("/api/search/:idx", func(w http.ResponseWriter, r *http.Request) {
 		idxName := chi.URLParam(r, "idx")
 
