@@ -38,7 +38,7 @@ RUN /usr/bin/caddy -plugins
 VOLUME ["/www"]
 WORKDIR /www
 
-COPY Caddyfile /etc/caddy/Caddyfile
+COPY config/caddy/Caddyfile /etc/caddy/Caddyfile
 COPY config/caddy/index.md /www/index.md
 
 ENTRYPOINT ["/sbin/tini", "--"]

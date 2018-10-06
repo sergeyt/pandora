@@ -148,7 +148,7 @@ services:
       dockerfile: ./docker/Dockerfile-caddy
     container_name: caddy
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddycerts:/etc/caddycerts
     ports:
       - 4200:4200
