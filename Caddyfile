@@ -1,7 +1,12 @@
-localhost:4200
+:4200
 
+log stdout
+errors stderr
 gzip
 cors
+
+jwt /api/files
+jwt /api/event/stream
 
 proxy /api/files tusd:1080
 proxy /api/metrics/tusd tusd:1080
@@ -13,3 +18,6 @@ proxy /ratel ratel:8000 {
 proxy /kibana kibana:5601 {
     without /kibana
 }
+
+ext .html .htm .md
+markdown

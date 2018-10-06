@@ -143,10 +143,12 @@ services:
     restart: on-failure
   # web server - service gateway
   caddy:
-    image: abiosoft/caddy:latest
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile-caddy
     container_name: caddy
     volumes:
-      - ./Caddyfile:/etc/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddycerts:/etc/caddycerts
     ports:
       - 4200:4200
