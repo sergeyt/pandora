@@ -94,5 +94,9 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 		Name:  user.Name,
 		Email: user.Email,
 		Admin: user.Role == "admin",
+		Claims: map[string]interface{}{
+			"email": user.Email,
+			"role":  user.Role,
+		},
 	}, nil
 }

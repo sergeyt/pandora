@@ -19,19 +19,14 @@ services:
       - minio:/data
     ports:
       - "9000:9000"
-    environment:
-      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
-      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+    env_file: .env
     command: server /data
     restart: on-failure
   # file upload service
   tusd:
     image: tusproject/tusd
     container_name: tusd
-    environment:
-      AWS_ACCESS_KEY_ID: ${MINIO_ACCESS_KEY}
-      AWS_SECRET_ACCESS_KEY: ${MINIO_SECRET_KEY}
-      AWS_REGION: "eu-west-1"
+    env_file: .env
     command: -base-path "/api/files" -metrics-path "/api/metrics/tusd" -behind-proxy -s3-bucket pandora_files -s3-endpoint http://minio:9000
     ports:
       - 1080:1080
@@ -74,11 +69,6 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-elasticsearch
     container_name: elasticsearch
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - xpack.monitoring.enabled=false
     ulimits:
       memlock:
         soft: -1
@@ -95,12 +85,6 @@ services:
       # dockerfile: ./docker/Dockerfile-elasticsearch
       dockerfile: ./docker/Dockerfile-empty
     container_name: elasticsearch2
-    environment:
-      - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
-      - "discovery.zen.ping.unicast.hosts=elasticsearch"
-      - xpack.security.enabled=false
-      - xpack.monitoring.enabled=false
     ulimits:
       memlock:
         soft: -1
@@ -125,6 +109,7 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-app
     container_name: app
+    env_file: .env
     volumes:
       - .:/go/src/github.com/sergeyt/pandora
     ports:
@@ -136,8 +121,7 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-pubsub
     container_name: pubsub
-    environment:
-      NATS_URI: "nats://nats:4222"
+    env_file: .env
     ports:
       - 4302:4302
     restart: on-failure
@@ -147,6 +131,7 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-caddy
     container_name: caddy
+    env_file: .env
     volumes:
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddycerts:/etc/caddycerts

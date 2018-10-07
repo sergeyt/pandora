@@ -5,8 +5,10 @@ errors stderr
 gzip
 cors
 
-jwt /api/files
-jwt /api/event/stream
+jwt {
+    path /api
+    except /api/login
+}
 
 proxy /api/files tusd:1080
 proxy /api/metrics/tusd tusd:1080
