@@ -1,6 +1,13 @@
 FROM golang:1.11-alpine3.8
 
 ENV GOPATH /go
+ENV DOCKERIZE_VERSION v0.6.1
+
+RUN apk add --no-cache openssl
+
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 RUN apk add --no-cache git \
     && go get -u -v github.com/cosmtrek/air \
@@ -8,4 +15,4 @@ RUN apk add --no-cache git \
 
 WORKDIR /go/src/github.com/sergeyt/pandora
 
-ENTRYPOINT ["/go/bin/air"]
+ENTRYPOINT ["dockerize", "--wait", "tcp://dgraph:9080", "--wait", "tcp://nats:4222", "/go/bin/air"]
