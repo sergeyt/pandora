@@ -1,7 +1,21 @@
+import os
 import requests
 import json
+import jwt
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path='.env')
 
 host = 'http://localhost:4200'
+
+jwt_secret = os.getenv('JWT_SECRET')
+system_token = jwt.encode({
+    'user_id': 'system',
+    'user_name': 'system',
+    'email': 'stodyshev@gmail.com',
+    'role': 'admin',
+}, jwt_secret)
+
 access_token = ''
 
 stdHeaders = {
@@ -16,8 +30,8 @@ def dump_json(resp):
 
 def headers():
     h = stdHeaders.copy()
-    if access_token:
-        h['Authorization'] = 'Bearer ' + access_token
+    t = access_token if access_token else system_token
+    h['Authorization'] = 'Bearer ' + t
     return h
 
 def get(path, data):
