@@ -25,6 +25,7 @@ func makeAuthConfig() *authbase.Config {
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		var err error
 		claims := extractClaims(r)
 		userID := get(claims, "user_id")
 		userName := get(claims, "user_name")
@@ -32,8 +33,7 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		role := get(claims, "role")
 
 		if len(userID) > 0 && len(userName) > 0 {
-			// TODO validate user id
-			user := &authbase.UserInfo{
+			var user authbase.User = &authbase.UserInfo{
 				ID:    userID,
 				Name:  userName,
 				Email: email,
@@ -43,26 +43,24 @@ func AuthMiddleware(next http.Handler) http.Handler {
 					"role":  role,
 				},
 			}
-			ctx := authbase.WithUser(r.Context(), user)
+
+			ctx := r.Context()
+
+			if userID != "system" {
+				user, err = authConfig.UserStore.FindUserByID(ctx, userID)
+				if err != nil {
+					authbase.SendError(w, authbase.ErrUserNotFound.WithCause(err))
+					return
+				}
+			}
+
+			ctx = authbase.WithUser(ctx, user)
 			r = r.WithContext(ctx)
 			next.ServeHTTP(w, r)
 			return
 		}
 
-		// support local_admin calls
-		if r.Header.Get("Authorization") == "local_admin" {
-			systemUser := &authbase.UserInfo{
-				ID:    "system",
-				Name:  "system",
-				Email: "",
-				Admin: true,
-			}
-			ctx := authbase.WithUser(r.Context(), systemUser)
-			r = r.WithContext(ctx)
-			next.ServeHTTP(w, r)
-		} else {
-			requireUser(next).ServeHTTP(w, r)
-		}
+		requireUser(next).ServeHTTP(w, r)
 	})
 }
 

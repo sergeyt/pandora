@@ -163,14 +163,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:36441186ad908a1d84eefbc807c67d98efeb6bbc57df2cf98aaecea0ef093c55"
+  digest = "1:3cbc9564f35a8fd56860c242ef24a51baa8507bed895fcf7036e09b5e7f3c98b"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
     "ldap",
   ]
   pruneopts = "UT"
-  revision = "1dc39ada7a434d9a0ab8d32610be3197a7ef41b6"
+  revision = "2a6607312d765112b3516450221a7137617e38bd"
 
 [[projects]]
   branch = "master"
