@@ -48,7 +48,5 @@ def generate():
         }
         ensure_user(user)
 
-# api.drop_all()
-# api.init_schema()
 init()
 generate()
