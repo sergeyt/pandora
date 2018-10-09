@@ -7,6 +7,7 @@ This small box of pandora (IOW small app basis) composed from the following tech
 * [Elasticsearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data is automatically replicated in elasticseach index
 * [Kibana](https://www.elastic.co/products/kibana) to visualize Elasticsearch data
 * [nats](https://nats.io/) as messaging system with streaming of push notifications (events) via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
+* try [fluentd](https://www.fluentd.org/) - for centralized logging, not implemented yet :)
 
 ## Basic Idea
 
