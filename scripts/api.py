@@ -9,6 +9,7 @@ load_dotenv(dotenv_path='.env')
 host = 'http://localhost:4200'
 
 jwt_secret = os.getenv('JWT_SECRET')
+dgraph_token = os.getenv('DGRAPH_TOKEN')
 system_token = jwt.encode({
     'user_id': 'system',
     'user_name': 'system',
@@ -55,13 +56,25 @@ def login(username, password):
     return access_token
 
 def drop_all():
-    resp = requests.post('http://localhost:8080/alter', data='{"drop_all": true}')
+    headers = {'X-Dgraph-AuthToken': dgraph_token}
+    resp = requests.post('http://localhost:8080/alter', headers=headers, data='{"drop_all": true}')
     dump_json(resp)
     resp.raise_for_status()
 
 def init_schema():
     with open('schema.txt', 'r') as f:
         schema = f.read()
-        resp = requests.post('http://localhost:8080/alter', data=schema)
+        headers = {'X-Dgraph-AuthToken': dgraph_token}
+        resp = requests.post('http://localhost:8080/alter', headers=headers, data=schema)
         dump_json(resp)
         resp.raise_for_status()
+
+def mutate(data):
+    resp = requests.post('http://localhost:8080/mutate', data=data)
+    dump_json(resp)
+    resp.raise_for_status()
+    return resp.json()
+
+def set_nquads(dataset):
+    data = "{\nset{\n" + dataset + "}}"
+    return mutate(data)

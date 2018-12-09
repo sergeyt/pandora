@@ -13,7 +13,9 @@ member_of: uid @count .
 type: string @index(term, hash, trigram) .
 content_type: string @index(term, hash, trigram) .
 hash: string @index(term) .
-body: string @index(fulltext) .
+body: string @lang @index(fulltext) .
+description: string @lang @index(fulltext) .
+transcription: string @lang @index(fulltext) .
 author: uid @count .
 channel: uid @count .
 
@@ -28,3 +30,8 @@ estimate: int @index(int) .
 remaining_estimate: int @index(int) .
 
 origin: uid @count .
+
+word: uid @count .
+image: uid @count .
+url: string .
+source: string @index(term, hash, trigram) .
