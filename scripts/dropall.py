@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import api
 
 api.drop_all()

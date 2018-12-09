@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from tusclient import client
 
 tc = client.TusClient('http://localhost:4200/api/files/')

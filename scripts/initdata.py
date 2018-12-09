@@ -1,5 +1,5 @@
-import requests
-import json
+#!/usr/bin/env python
+
 import utils
 import api
 from faker import Faker
