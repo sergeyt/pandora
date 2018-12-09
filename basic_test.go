@@ -7,6 +7,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/sergeyt/pandora/modules/dgraph"
+
+	"github.com/sergeyt/pandora/modules/config"
 	httpexpect "gopkg.in/gavv/httpexpect.v1"
 )
 
@@ -21,13 +24,13 @@ func (c *TC) Close() {
 }
 
 func setup(t *testing.T) *TC {
-	parseConfig()
+	config.Parse()
 
 	// TODO separate config for testing
 	// HACK to run test from host we have to use host dgraph address
 	config.DB.Addr = "localhost:9080"
 
-	initSchema()
+	dgraph.InitSchema()
 
 	server := httptest.NewServer(makeAPIHandler())
 
