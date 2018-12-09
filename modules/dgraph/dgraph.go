@@ -5,6 +5,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+
+	"google.golang.org/grpc/metadata"
 
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
@@ -37,7 +40,15 @@ func InitSchema() {
 		log.Fatal(err)
 	}
 
-	err = c.Alter(context.Background(), &api.Operation{
+	ctx := context.Background()
+	token := os.Getenv("DGRAPH_TOKEN")
+	if len(token) > 0 {
+		md := metadata.New(nil)
+		md.Append("auth-token", token)
+		ctx = metadata.NewOutgoingContext(ctx, md)
+	}
+
+	err = c.Alter(ctx, &api.Operation{
 		Schema: string(schema),
 	})
 	if err != nil {

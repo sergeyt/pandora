@@ -33,7 +33,7 @@ services:
     restart: on-failure
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:latest
+    image: dgraph/dgraph:v1.0.11-rc4
     container_name: zero
     volumes:
       - dgraph:/dgraph
@@ -44,18 +44,18 @@ services:
     restart: on-failure
   # dgraph node
   dgraph:
-    image: dgraph/dgraph:latest
+    image: dgraph/dgraph:v1.0.11-rc4
     container_name: dgraph
     volumes:
       - dgraph:/dgraph
     ports:
       - 8080:8080
       - 9080:9080
-    command: dgraph server --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048
+    command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --auth_token=${DGRAPH_TOKEN}
     restart: on-failure
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:latest
+    image: dgraph/dgraph:v1.0.11-rc4
     container_name: ratel
     ports:
       - 8000:8000
