@@ -867,6 +867,7 @@
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",
     "google.golang.org/grpc",
+    "google.golang.org/grpc/metadata",
     "gopkg.in/gavv/httpexpect.v1",
   ]
   solver-name = "gps-cdcl"
