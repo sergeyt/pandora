@@ -10,6 +10,7 @@ import (
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
+	"github.com/sergeyt/pandora/modules/utils"
 
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
@@ -108,69 +109,21 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 	nodeLabel := dgraph.NodeLabel(resourceType)
 	user := authbase.GetContextUser(ctx)
 
-	var in OrderedJSON
+	var in utils.OrderedJSON
 	err := json.NewDecoder(r.Body).Decode(&in)
 	if err != nil {
 		apiutil.SendError(w, err)
 		return
 	}
 
-	isNew := len(id) == 0
 	tx := dgraph.RequestTransaction(r)
-	now := time.Now()
 
-	in["modified_at"] = now
-	in["modified_by"] = user.GetID()
-
-	if isNew {
-		in[nodeLabel] = ""
-		in["created_at"] = now
-		in["created_by"] = user.GetID()
-	} else {
-		in["uid"] = id
-	}
-
-	data, err := in.ToJSON("uid", nodeLabel)
-	if err != nil {
-		apiutil.SendError(w, err)
-		return
-	}
-
-	resp, err := tx.Mutate(ctx, &api.Mutation{
-		SetJson: data,
+	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
+		Input:     in,
+		NodeLabel: nodeLabel,
+		ID:        id,
+		By:        user.GetID(),
 	})
-	if err != nil {
-		apiutil.SendError(w, err)
-		return
-	}
-
-	var results []map[string]interface{}
-
-	if isNew {
-		results = make([]map[string]interface{}, len(resp.Uids))
-		i := 0
-		for _, uid := range resp.Uids {
-			result, err := dgraph.ReadNode(ctx, tx, uid)
-			if err != nil {
-				apiutil.SendError(w, err)
-				return
-			}
-			results[i] = result
-			i = i + 1
-			if len(results) == 1 {
-				id = uid
-			}
-		}
-	} else {
-		result, err := dgraph.ReadNode(ctx, tx, id)
-		if err != nil {
-			apiutil.SendError(w, err)
-			return
-		}
-		results = []map[string]interface{}{result}
-	}
-
-	err = tx.Commit(ctx)
 	if err != nil {
 		apiutil.SendError(w, err)
 		return

@@ -110,6 +110,9 @@ services:
       dockerfile: ./docker/Dockerfile-app
     container_name: app
     env_file: .env
+    environment:
+      FACEBOOK_KEY: ${FACEBOOK_KEY}
+      FACEBOOK_SECRET: ${FACEBOOK_SECRET}
     volumes:
       - .:/go/src/github.com/sergeyt/pandora
     ports:

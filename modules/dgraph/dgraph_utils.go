@@ -4,9 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"github.com/dgraph-io/dgo"
+	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/sergeyt/pandora/modules/apiutil"
+	"github.com/sergeyt/pandora/modules/utils"
 )
 
 func NodeLabel(resourceType string) string {
@@ -68,4 +71,72 @@ func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface
 	d["uid"] = id
 
 	return d, nil
+}
+
+type Mutation struct {
+	Input     utils.OrderedJSON
+	NodeLabel string
+	ID        string
+	By        string
+}
+
+func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interface{}, error) {
+	id := m.ID
+	isNew := len(id) == 0
+	now := time.Now()
+
+	in := m.Input
+	in["modified_at"] = now
+	in["modified_by"] = m.By
+
+	if isNew {
+		in[m.NodeLabel] = ""
+		in["created_at"] = now
+		in["created_by"] = m.By
+	} else {
+		in["uid"] = id
+	}
+
+	data, err := in.ToJSON("uid", m.NodeLabel)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := tx.Mutate(ctx, &api.Mutation{
+		SetJson: data,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	var results []map[string]interface{}
+
+	if isNew {
+		results = make([]map[string]interface{}, len(resp.Uids))
+		i := 0
+		for _, uid := range resp.Uids {
+			result, err := ReadNode(ctx, tx, uid)
+			if err != nil {
+				return nil, err
+			}
+			results[i] = result
+			i = i + 1
+			if len(results) == 1 {
+				id = uid
+			}
+		}
+	} else {
+		result, err := ReadNode(ctx, tx, id)
+		if err != nil {
+			return nil, err
+		}
+		results = []map[string]interface{}{result}
+	}
+
+	err = tx.Commit(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return results, nil
 }

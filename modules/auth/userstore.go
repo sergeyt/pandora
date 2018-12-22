@@ -7,9 +7,10 @@ import (
 
 	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
+	"github.com/sergeyt/pandora/modules/utils"
 )
 
-func makeUserStore() auth.UserStore {
+func makeUserStore() *UserStore {
 	return &UserStore{}
 }
 
@@ -28,6 +29,19 @@ func (s *UserStore) ValidateCredentials(ctx context.Context, username, password 
 	}`, userLabel(), username, username, password)
 
 	return s.FindUser(ctx, query, username, true)
+}
+
+func (s *UserStore) FindUserByEmail(ctx context.Context, email string) (auth.User, error) {
+	query := fmt.Sprintf(`{
+        users(func: has(%s)) @filter(eq(email, %q)) {
+			uid
+			name
+			email
+			role
+        }
+	}`, userLabel(), email)
+
+	return s.FindUser(ctx, query, email, false)
 }
 
 func (s *UserStore) FindUserByID(ctx context.Context, userID string) (auth.User, error) {
@@ -99,4 +113,46 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 			"role":  user.Role,
 		},
 	}, nil
+}
+
+type CreateUserData struct {
+	Name      string `json:"name"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Email     string `json:"email"`
+	Avatar    string `json:"avatar"`
+	Location  string `json:"location"`
+}
+
+func (s *UserStore) CreateUser(ctx context.Context, data CreateUserData) (auth.User, error) {
+	client, err := dgraph.NewClient()
+	if err != nil {
+		return nil, err
+	}
+
+	tx := client.NewTxn()
+	defer tx.Discard(ctx)
+
+	// TODO fill JSON using reflection
+	in := make(utils.OrderedJSON)
+	in["name"] = data.Name
+	in["first_name"] = data.FirstName
+	in["last_name"] = data.LastName
+	in["email"] = data.Email
+	in["avatar"] = data.Avatar
+	in["location"] = data.Location
+
+	_, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
+		Input:     in,
+		NodeLabel: userLabel(),
+		By:        "system",
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// TODO optimize decode map to auth.UserInfo
+	// result := results[0]
+
+	return s.FindUserByEmail(ctx, data.Email)
 }

@@ -15,6 +15,8 @@ var (
 
 func AuthAPI(mux chi.Router) {
 	mux.Post("/api/login", authbase.LoginHandlerFunc(authConfig))
+
+	OAuthAPI(mux)
 }
 
 func makeAuthConfig() *authbase.Config {
