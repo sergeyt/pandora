@@ -6,8 +6,8 @@ import api
 
 words = [
     {
-        "body@en": "gum",
-        "body@ru": "жвачка",
+        "text@en": "gum",
+        "text@ru": "жвачка",
         "transcription@ru": "гам",
         "images": [
             "https://i.pinimg.com/originals/39/10/30/3910305670e1fb3f0584e998e30f1b71.jpg",
@@ -16,8 +16,8 @@ words = [
         ]
     },
     {
-        "body@en": "recreation",
-        "body@ru": "отдых",
+        "text@en": "recreation",
+        "text@ru": "отдых",
         "transcription@ru": "рикри`эйшен",
         "images": [
             "http://www.bridgewaternj.gov/wp-content/uploads/Images/recphoto.jpg",
@@ -26,24 +26,24 @@ words = [
         ]
     },
     {
-        "body@en": "apple",
-        "body@ru": "яблоко",
+        "text@en": "apple",
+        "text@ru": "яблоко",
         "transcription@ru": "эпл",
         "images": [
             "http://static1.squarespace.com/static/5849b12a2e69cf47aecece6b/584ebb9646c3c416aac4f2b5/5b830f4dcd8366d1f2d15de9/1535382024204/apple.jpg?format=1500w",
         ]
     },
     {
-        "body@en": "table",
-        "body@ru": "стол",
+        "text@en": "table",
+        "text@ru": "стол",
         "transcription@ru": "тэйбл",
         "images": [
             "https://cdn.shopify.com/s/files/1/2660/5106/products/wisz8mrpd67l6pss3crw_2b63262e-9b7a-4bbb-8f4f-d2da5d3cc57f_800x.jpg?v=1539039199",
         ]
     },
     {
-        "body@en": "spoon",
-        "body@ru": "ложка",
+        "text@en": "spoon",
+        "text@ru": "ложка",
         "transcription@ru": "спун",
         "images": [
             "https://coubsecure-s.akamaihd.net/get/b45/p/coub/simple/cw_timeline_pic/f357228b51f/972920dc0d51d3ed34e9d/big_1409081702_1382451563_att-migration20121219-1328-1jpmbyq.jpg",

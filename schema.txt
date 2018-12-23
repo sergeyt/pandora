@@ -14,6 +14,7 @@ type: string @index(term, hash, trigram) .
 content_type: string @index(term, hash, trigram) .
 hash: string @index(term) .
 body: string @lang @index(fulltext) .
+text: string @lang @index(fulltext) .
 description: string @lang @index(fulltext) .
 transcription: string @lang @index(fulltext) .
 author: uid @count .
