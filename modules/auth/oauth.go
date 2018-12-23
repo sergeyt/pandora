@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/go-chi/chi"
 	authbase "github.com/gocontrib/auth"
@@ -13,15 +14,24 @@ import (
 )
 
 func init() {
+	goth.UseProviders(
+		makeProvider("facebook"),
+	)
+}
+
+func makeProvider(provider string) goth.Provider {
 	// TODO get host from config
 	host := "http://localhost:4201"
-	goth.UseProviders(
-		facebook.New(
-			os.Getenv("FACEBOOK_KEY"),
-			os.Getenv("FACEBOOK_SECRET"),
-			host+"/api/oauth/callback/facebook",
-		),
-	)
+	callback := host + "/api/oauth/callback/" + provider
+	p := strings.ToUpper(provider)
+	key := os.Getenv(p + "_KEY")
+	secret := os.Getenv(p + "_SECRET")
+
+	switch provider {
+	case "facebook":
+		return facebook.New(key, secret, callback)
+	}
+	panic("invalid provider")
 }
 
 func OAuthAPI(mux chi.Router) {
