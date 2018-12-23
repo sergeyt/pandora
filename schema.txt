@@ -17,6 +17,7 @@ body: string @lang @index(fulltext) .
 text: string @lang @index(fulltext) .
 description: string @lang @index(fulltext) .
 transcription: string @lang @index(fulltext) .
+pronunciation: string @lang .
 author: uid @count .
 channel: uid @count .
 
