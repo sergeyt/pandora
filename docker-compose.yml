@@ -67,7 +67,8 @@ services:
   elasticsearch:
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile-elasticsearch
+      # dockerfile: ./docker/Dockerfile-elasticsearch
+      dockerfile: ./docker/Dockerfile-empty
     container_name: elasticsearch
     ulimits:
       memlock:
@@ -94,7 +95,10 @@ services:
     restart: on-failure
   # kibana - elasticsearch dashboard
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.4.1
+    # image: docker.elastic.co/kibana/kibana:6.4.1
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile-empty
     container_name: kibana
     environment:
       XPACK_MONITORING_ENABLED: "false"
