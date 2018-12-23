@@ -163,14 +163,15 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:08fb7c552ec120458bab8b98744aa790cebbf10e30a60dc948e7353d3df6af15"
+  digest = "1:c82d42d3e098d55b7a5d81f096dec61cd9062ecbc65df08eb4eb9c7b7f680a0d"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
     "ldap",
+    "oauth",
   ]
   pruneopts = "UT"
-  revision = "21b426a73b3feb0e4d61a1b94db8799b070a3c76"
+  revision = "b336b4157904779123dd562bd04944e30f964c29"
 
 [[projects]]
   branch = "master"
@@ -952,14 +953,13 @@
     "github.com/go-chi/chi/middleware",
     "github.com/go-chi/cors",
     "github.com/gocontrib/auth",
+    "github.com/gocontrib/auth/oauth",
     "github.com/gocontrib/esclient",
     "github.com/gocontrib/log",
     "github.com/gocontrib/pubsub",
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/rest",
     "github.com/markbates/goth",
-    "github.com/markbates/goth/gothic",
-    "github.com/markbates/goth/providers/facebook",
     "github.com/nicolasazrak/caddy-cache",
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",

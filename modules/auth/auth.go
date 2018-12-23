@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-chi/chi"
 	authbase "github.com/gocontrib/auth"
+	"github.com/gocontrib/auth/oauth"
 )
 
 var (
@@ -16,7 +17,7 @@ var (
 func AuthAPI(mux chi.Router) {
 	mux.Post("/api/login", authbase.LoginHandlerFunc(authConfig))
 
-	OAuthAPI(mux)
+	oauth.RegisterAPI(mux, authConfig)
 }
 
 func makeAuthConfig() *authbase.Config {
