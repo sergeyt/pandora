@@ -49,4 +49,4 @@ def generate():
         ensure_user(user)
 
 init()
-generate()
+# generate()
