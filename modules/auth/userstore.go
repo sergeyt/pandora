@@ -85,9 +85,7 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 			Name     string `json:"name"`
 			Email    string `json:"email"`
 			Role     string `json:"role"`
-			Password []struct {
-				CheckPwd bool `json:"checkpwd"`
-			} `json:"password"`
+			CheckPwd *bool  `json:"checkpwd(password)"`
 		} `json:"users"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
@@ -100,7 +98,7 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 	}
 
 	user := result.Users[0]
-	if checkPwd && !user.Password[0].CheckPwd {
+	if checkPwd && user.CheckPwd != nil && !*user.CheckPwd {
 		return nil, fmt.Errorf("wrong password: %s", userID)
 	}
 
