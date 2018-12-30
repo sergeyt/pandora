@@ -181,6 +181,7 @@ for word in words:
             text = word[key]
             lang = key[key.index('@')+1:]
             props = {
+                '_word': '',
                 'text': text,
                 'lang': lang,
             }
@@ -196,6 +197,8 @@ for word in words:
     # link words together with translated_as predicate
     proc = {}
     for (w1, w2) in pairs(word_ids):
+        if w1 == w2:
+            continue
         k1 = "{0}-{1}".format(w1, w2)
         k2 = "{0}-{1}".format(w2, w1)
         if k1 in proc:
@@ -210,6 +213,7 @@ for word in words:
     image_nodes = []
     for url in word['images']:
         data = nquads({
+            '_image': '',
             'url': url,
             'source': 'google',
         })
@@ -226,6 +230,7 @@ for word in words:
         if key.startswith('pronunciation@'):
             lang = key[key.index('@')+1:]
             data = nquads({
+                '_sound': '',
                 'url': word[key],
                 'source': 'https://howjsay.com',
             })
