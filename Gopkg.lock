@@ -84,7 +84,7 @@
     "y",
   ]
   pruneopts = "UT"
-  revision = "b1500f3dce4c9dd3db3f0dc8cd050b7afed6b807"
+  revision = "a20f509ade836304363aaa40ac712c1c2a0bfe50"
 
 [[projects]]
   digest = "1:76dc72490af7174349349838f2fe118996381b31ea83243812a97e5a0fd5ed55"
@@ -574,12 +574,12 @@
   version = "v1.0.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:def689e73e9252f6f7fe66834a76751a41b767e03daab299e607e7226c58a855"
+  digest = "1:9421f6e9e28ef86933e824b5caff441366f2b69bb281085b9dca40e1f27a1602"
   name = "github.com/shurcooL/sanitized_anchor_name"
   packages = ["."]
   pruneopts = "UT"
-  revision = "86672fcb3f950f35f2e675df2240550f2a50762f"
+  revision = "7bfe4c7ecddb3666a94b053b422cdd8f5aaa3615"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:d707dbc1330c0ed177d4642d6ae102d5e2c847ebd0eb84562d0dc4f024531cfc"
@@ -710,7 +710,7 @@
     "registration",
   ]
   pruneopts = "UT"
-  revision = "820c2b7531bc598385da095f8eaf67641e17eef9"
+  revision = "8d8ec2c92c06dae7f89ac9569dc0e7f940fe713c"
 
 [[projects]]
   branch = "master"
@@ -790,14 +790,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b9a5b255010eff293ac236a559771a8d6a7464cd341b9c3174bfe334a953d20f"
+  digest = "1:40efb75e7c2681e4fb5d886930a7074d0c2918334ea0e62a0fc8661245d9a7c8"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
     "unix",
   ]
   pruneopts = "UT"
-  revision = "b4a75ba826a64a70990f11a225237acd6ef35c9f"
+  revision = "9a3f9b0469bbc6b8802087ae5c0af9f61502de01"
 
 [[projects]]
   digest = "1:a2ab62866c75542dd18d2b069fec854577a20211d7c0ea6ae746072a1dccdd18"
