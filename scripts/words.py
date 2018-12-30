@@ -74,6 +74,66 @@ words = [
             "https://coubsecure-s.akamaihd.net/get/b45/p/coub/simple/cw_timeline_pic/f357228b51f/972920dc0d51d3ed34e9d/big_1409081702_1382451563_att-migration20121219-1328-1jpmbyq.jpg",
         ],
     },
+    {
+        'text@en': 'girl',
+        'text@ru': 'девушка',
+        'transcription@en': 'gerl',
+        'transcription@ru': "'гёл",
+        'pronunciation@en': 'https://howjsay.com/mp3/girl.mp3',
+        'images': [
+            'https://i.ytimg.com/vi/ktlQrO2Sifg/maxresdefault.jpg',
+        ],
+    },
+    {
+        'text@en': 'bed',
+        'text@ru': 'кровать',
+        'transcription@en': 'bed',
+        'transcription@ru': "'бэд",
+        'pronunciation@en': 'https://howjsay.com/mp3/bed.mp3',
+        'images': [
+            'https://hoff.ru//upload/iblock/9be/9be0921f96cf2f30b4e5136c4eccd7d8.jpg',
+        ],
+    },
+    {
+        'text@en': 'boy',
+        'text@ru': 'мальчик',
+        'transcription@en': 'bOI',
+        'transcription@ru': "'бой",
+        'pronunciation@en': 'https://howjsay.com/mp3/boy.mp3',
+        'images': [
+            'https://www.paparazzi.ru/upload/wysiwyg_files/img/1472483485.jpg',
+        ],
+    },
+    {
+        'text@en': 'body',
+        'text@ru': 'тело',
+        'transcription@en': 'bOdI',
+        'transcription@ru': "'боди",
+        'pronunciation@en': 'https://howjsay.com/mp3/body.mp3',
+        'images': [
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKLUYuJGon1owJX__Y7Ov3uzLVPwMzK7dXDS375I5DRRP3ISprGA',
+        ],
+    },
+    {
+        'text@en': 'car',
+        'text@ru': 'автомобиль',
+        'transcription@en': 'kɑːr',
+        'transcription@ru': "'кар",
+        'pronunciation@en': 'https://howjsay.com/mp3/car.mp3',
+        'images': [
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmIGgC7NLbTyrby1pTLhexemP0apw-H_zJ0at2BdJhPuHdhqiu',
+        ],
+    },
+    {
+        'text@en': 'door',
+        'text@ru': 'дверь',
+        'transcription@en': 'dɔːr',
+        'transcription@ru': "'дор",
+        'pronunciation@en': 'https://howjsay.com/mp3/door.mp3',
+        'images': [
+            'https://images.obi.ru/product/RU/800x600/400211_1.jpg',
+        ],
+    },
 ]
 
 
@@ -93,19 +153,22 @@ def nquad(id, k, v):
     return "_:{0} <{1}> {2} .\n".format(id, p, s)
 
 
-def nquads(d, id = 'x'):
+def nquads(d, id='x'):
     result = ''
     for k, v in d.iteritems():
         result += nquad(id, k, v)
     return result
 
-def get_id(resp, id = 'x'):
+
+def get_id(resp, id='x'):
     return resp['data']['uids'][id]
+
 
 def pairs(list):
     for x in list:
         for y in list:
             yield (x, y)
+
 
 # TODO find existing words and update their transcriptions, pronunciations, images
 # TODO port this script to golang and provide an API endpoint
