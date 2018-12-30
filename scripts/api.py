@@ -70,11 +70,16 @@ def init_schema():
         resp.raise_for_status()
 
 def mutate(data):
-    resp = requests.post('http://localhost:8080/mutate', data=data)
+    headers = {
+        'X-Dgraph-AuthToken': dgraph_token,
+        'X-Dgraph-CommitNow': 'true',
+    }
+    resp = requests.post('http://localhost:8080/mutate', headers=headers, data=data)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
 def set_nquads(dataset):
-    data = "{\nset{\n" + dataset + "}}"
+    data = "{\nset {\n" + dataset + "}}"
+    print(data)
     return mutate(data)
