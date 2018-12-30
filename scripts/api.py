@@ -74,6 +74,8 @@ def mutate(data):
         'X-Dgraph-AuthToken': dgraph_token,
         'X-Dgraph-CommitNow': 'true',
     }
+    if getattr(data, 'encode', None):
+        data = data.encode('utf-8')
     resp = requests.post('http://localhost:8080/mutate', headers=headers, data=data)
     dump_json(resp)
     resp.raise_for_status()
