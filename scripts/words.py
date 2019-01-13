@@ -1,19 +1,16 @@
 #!/usr/bin/env python
 
-import codecs
 import json
 import utils
 import api
 
-with codecs.open('scripts/words.json', encoding='utf-8') as f:
+with open('scripts/words.json', 'r', encoding='utf-8') as f:
     words = json.loads(f.read())
 
 
 def rdf_repr(v):
     if isinstance(v, str):
         return '"{0}"'.format(v)
-    if isinstance(v, unicode):
-        return unicode('"{0}"').format(v)
     return v
 
 
@@ -24,12 +21,12 @@ def nquad(id, k, v):
     s = rdf_repr(v)
     if len(lang) > 0:
         s += "@{0}".format(lang)
-    return unicode("_:{0} <{1}> {2} .\n").format(id, p, s)
+    return "_:{0} <{1}> {2} .\n".format(id, p, s)
 
 
 def nquads(d, id='x'):
-    result = unicode('')
-    for k, v in d.iteritems():
+    result = ''
+    for k, v in d.items():
         result += nquad(id, k, v)
     return result
 

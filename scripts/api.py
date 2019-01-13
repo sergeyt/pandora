@@ -15,7 +15,7 @@ system_token = jwt.encode({
     'user_name': 'system',
     'email': 'stodyshev@gmail.com',
     'role': 'admin',
-}, jwt_secret)
+}, jwt_secret).decode('utf-8')
 
 access_token = ''
 
