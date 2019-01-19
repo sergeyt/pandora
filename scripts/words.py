@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
+import os
 import json
 import utils
 import api
 
-with open('scripts/words.json', 'r', encoding='utf-8') as f:
+dir = os.path.dirname(os.path.realpath(__file__))
+
+with open(os.path.join(dir, 'words.json'), 'r', encoding='utf-8') as f:
     words = json.loads(f.read())
 
 

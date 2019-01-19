@@ -4,7 +4,8 @@ import json
 import jwt
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path='.env')
+dir = os.path.dirname(os.path.realpath(__file__))
+load_dotenv(dotenv_path=os.path.join('../.env'))
 
 host = 'http://localhost:4200'
 
@@ -62,7 +63,8 @@ def drop_all():
     resp.raise_for_status()
 
 def init_schema():
-    with open('schema.txt', 'r') as f:
+    p = os.path.join(dir, '../schema.txt')
+    with open(p, 'r') as f:
         schema = f.read()
         headers = {'X-Dgraph-AuthToken': dgraph_token}
         resp = requests.post('http://localhost:8080/alter', headers=headers, data=schema)
