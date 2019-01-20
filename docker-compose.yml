@@ -31,6 +31,15 @@ services:
     ports:
       - 1080:1080
     restart: on-failure
+  # image ops service (we need resizing at least)
+  imageproxy:
+    image: willnorris/imageproxy
+    container_name: imageproxy
+    env_file: .env
+    command: "-addr 0.0.0.0:1081"
+    ports:
+     - 1081:1081
+    restart: on-failure
   # dgraph cluster manager
   zero:
     image: dgraph/dgraph:v1.0.11-rc4
