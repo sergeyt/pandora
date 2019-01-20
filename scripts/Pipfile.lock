@@ -105,10 +105,10 @@
         },
         "tuspy": {
             "hashes": [
-                "sha256:c3780833bcb1e9c4efa22a432221cb9850a298235ab12338ecfe2ac9f04e734d"
+                "sha256:49b674003bbdb0e2ee3fc949490f85ca381929f712f17a7a56404ff6217e96e8"
             ],
             "index": "pypi",
-            "version": "==0.2.3"
+            "version": "==0.2.4"
         },
         "urllib3": {
             "hashes": [
