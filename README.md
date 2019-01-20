@@ -24,6 +24,7 @@ I'd like to have simple, flexible, dynamic, declarative, reactive, realtime info
 1. `pubsub` - event streaming service based on [SSE](https://en.wikipedia.org/wiki/Server-sent_events) protocol
 1. `minio` - Amazon S3 compatible file store
 1. `tusd` - service with Open Protocol for Resumable File Uploads
+1. `imageproxy` - [service](https://willnorris.com/go/imageproxy) with image manipulation ops like resizing
 1. `elasticsearch` - search and analitycs engine
 1. `kibana` - Elasticsearch dashboard
 1. `app` - application API service
