@@ -11,6 +11,7 @@ jwt {
 }
 
 proxy /api/files tusd:1080
+proxy /api/imageproxy imageproxy:1081
 proxy /api/metrics/tusd tusd:1080
 proxy /api/event/stream pubsub:4302
 proxy /api app:4201
