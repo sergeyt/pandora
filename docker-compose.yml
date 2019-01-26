@@ -17,9 +17,11 @@ services:
     container_name: minio
     volumes:
       - minio:/data
+      # - ./config/minio:/etc/minio
     ports:
       - "9000:9000"
     env_file: .env
+    # command: server --config-dir /etc/minio /data
     command: server /data
     restart: on-failure
   # file upload service
