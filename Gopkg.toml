@@ -60,7 +60,3 @@
 [[override]]
   branch = "master"
   name = "github.com/gocontrib/go-ldap-client"
-
-[prune]
-  go-tests = true
-  unused-packages = true
