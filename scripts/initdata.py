@@ -31,11 +31,52 @@ users = [
         'email': 'stodyshev@gmail.com',
         'password': 'sergeyt123',
     },
+    {
+        'login': 'andrey',
+        'name': 'andrey',
+        'email': 'andrey@gmail.com',
+        'password': 'andrey123',
+    },
+    {
+        'login': 'alex',
+        'name': 'alex',
+        'email': 'alex@gmail.com',
+        'password': 'alex123',
+    },
+    {
+        'login': 'mike',
+        'name': 'mike',
+        'email': 'mike@gmail.com',
+        'password': 'mike123',
+    },
+    {
+        'login': 'miks',
+        'name': 'miks',
+        'email': 'miks@gmail.com',
+        'password': 'miks123',
+    },
+]
+
+channels = [
+    {
+        'description': 'description IT news',
+        'name': 'IT news',
+    },
+    {
+        'description': 'description Comp@Tech',
+        'name': 'Comp@Tech',
+    },
+    {
+        'description': 'description Game news',
+        'name': 'Game news',
+    },
 ]
 
 def init():
     for user in users:
         ensure_user(user)
+    for channel in channels:
+        api.post('/api/data/channel', channel)
 
 def generate():
     for i in range(100):
