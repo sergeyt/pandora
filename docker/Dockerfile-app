@@ -10,7 +10,7 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 RUN apk add --no-cache git \
-    && go get -u -v github.com/cosmtrek/air \
+    && go get -u -v github.com/cosmtrek/air/cmd/air \
     && apk del git
 
 WORKDIR /go/src/github.com/sergeyt/pandora
