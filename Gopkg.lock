@@ -23,7 +23,7 @@
   branch = "master"
   name = "github.com/bifurcation/mint"
   packages = [".","syntax"]
-  revision = "a14404e9a861605b3bc889790cbc303435876d6b"
+  revision = "83ba9bc2ead9cdf8b0c8bd94e8a41243e5f6ed88"
 
 [[projects]]
   branch = "master"
@@ -53,7 +53,7 @@
   branch = "master"
   name = "github.com/dgraph-io/dgo"
   packages = [".","protos/api","y"]
-  revision = "c438f7dd6d92874bbae93eee5a243fdd896e5b16"
+  revision = "a97eb8186a3aad431ad42af9d8128945c7d69ceb"
 
 [[projects]]
   name = "github.com/dgrijalva/jwt-go"
@@ -113,7 +113,7 @@
   branch = "master"
   name = "github.com/gocontrib/auth"
   packages = [".","ldap","oauth"]
-  revision = "b336b4157904779123dd562bd04944e30f964c29"
+  revision = "83e4be37d519805ed2c7d1d3885f5702b95b675e"
 
 [[projects]]
   branch = "master"
@@ -144,6 +144,12 @@
   name = "github.com/gocontrib/pubsub"
   packages = [".","nats"]
   revision = "33a982b07ab5c79ef92da8b61bd396c26f87e9c2"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/gocontrib/request"
+  packages = ["."]
+  revision = "69ba4658ef4dfe673f943d1ab5c04167b928c2c4"
 
 [[projects]]
   branch = "master"
@@ -178,8 +184,8 @@
 [[projects]]
   name = "github.com/gorilla/mux"
   packages = ["."]
-  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
-  version = "v1.6.2"
+  revision = "a7962380ca08b5a188038c69871b8d3fbdf31e89"
+  version = "v1.7.0"
 
 [[projects]]
   name = "github.com/gorilla/schema"
@@ -261,7 +267,7 @@
 
 [[projects]]
   name = "github.com/markbates/goth"
-  packages = [".","gothic","providers/facebook"]
+  packages = [".","gothic"]
   revision = "157987f620ff2fc5e1f6a1427a3685219fbf6ff4"
   version = "v1.49.0"
 
@@ -287,13 +293,13 @@
   branch = "master"
   name = "github.com/mholt/certmagic"
   packages = ["."]
-  revision = "01ffe8b3c7d611483ef936e90845329709721127"
+  revision = "d9ab603e9bf32a6b10816502a3b4ed593bed6922"
 
 [[projects]]
   name = "github.com/miekg/dns"
   packages = ["."]
-  revision = "56be65265e34e731425e0269a301774938827c60"
-  version = "v1.1.3"
+  revision = "8fc2e5773bbd308ca2fcc962fd8d25c1bd0f6743"
+  version = "v1.1.4"
 
 [[projects]]
   name = "github.com/mitchellh/mapstructure"
@@ -382,8 +388,8 @@
 [[projects]]
   name = "github.com/spf13/afero"
   packages = [".","mem"]
-  revision = "a5d6946387efe7d64d09dcba68cdd523dc1273a3"
-  version = "v1.2.0"
+  revision = "f4711e4db9e9a1d3887343acb72b2bbfc2f686f5"
+  version = "v1.2.1"
 
 [[projects]]
   name = "github.com/spf13/cast"
@@ -454,8 +460,8 @@
 [[projects]]
   name = "github.com/xenolf/lego"
   packages = ["acme","acme/api","acme/api/internal/nonces","acme/api/internal/secure","acme/api/internal/sender","certcrypto","certificate","challenge","challenge/dns01","challenge/http01","challenge/resolver","challenge/tlsalpn01","lego","log","platform/wait","registration"]
-  revision = "86c9de3db61436d07de2471508067f18c16c1997"
-  version = "v2.0.1"
+  revision = "00ad82dec10ad0af1e037ee652ad1f1cc7015178"
+  version = "v2.1.0"
 
 [[projects]]
   branch = "master"
@@ -479,25 +485,25 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["curve25519","ed25519","ed25519/internal/edwards25519","hkdf","ocsp","pbkdf2"]
-  revision = "ff983b9c42bc9fbf91556e191cc8efb585c16908"
+  revision = "b01c7a72566457eb1420261cdafef86638fc3861"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = ["bpf","context","context/ctxhttp","http/httpguts","http2","http2/hpack","idna","internal/iana","internal/socket","internal/timeseries","ipv4","ipv6","publicsuffix","trace"]
-  revision = "915654e7eabcea33ae277abbecf52f0d8b7a9fdc"
+  revision = "d26f9f9a57f3fab6a695bec0d84433c2c50f8bbf"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/oauth2"
   packages = [".","internal"]
-  revision = "5dab4167f31cbd76b407f1486c86b40748bc5073"
+  revision = "99b60b757ec124ebb7d6b7e97f153b19c10ce163"
 
 [[projects]]
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["cpu","unix"]
-  revision = "11f53e03133963fb11ae0588e08b5e0b85be8be5"
+  revision = "aca44879d5644da7c5b8ec6a1115e9b6ea6c40d9"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -515,7 +521,7 @@
   branch = "master"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
-  revision = "db91494dd46c1fdcbbde05e5ff5eb56df8f7d79a"
+  revision = "8ac453e89fca495c0d17f98932642f392e2a11f3"
 
 [[projects]]
   name = "google.golang.org/grpc"
