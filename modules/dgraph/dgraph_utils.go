@@ -20,10 +20,10 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 	query := fmt.Sprintf(`{
   items(func: has(%s), offset: %d, first: %d) {
     uid
-	expand(_all_)
+    expand(_all_)
   }
   total(func: has(%s)) {
-  count: count(uid)
+    count: count(uid)
   }
 }`, label, pg.Offset, pg.Limit, label)
 
@@ -34,6 +34,9 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 
 	var result struct {
 		Results []map[string]interface{} `json:"items"`
+		Total   struct {
+			Count int64 `json:"count"`
+		} `json:"total"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
 
