@@ -21,6 +21,8 @@ text: string @lang @index(fulltext) .
 transcription: string @lang @index(fulltext) .
 author: uid @count .
 channel: uid @count .
+from: uid @count .
+to: uid @count .
 
 translated_as: uid @count @reverse .
 pronounced_as: uid @count .
@@ -41,9 +43,6 @@ url: string .
 source: string @index(term, hash, trigram) .
 geo: geo @index(geo) .
 
-role: int @index(int) .
-is_active: int @index(int) .
-interview_text: string @index(term, hash, trigram) .
-is_yes: int @index(int) .
-geo_location: int @index(int) .
-
+role: string @index(term, hash, trigram) .
+is_active: bool @count .
+status: string @index(term, hash, trigram) .
