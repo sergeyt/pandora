@@ -40,3 +40,10 @@ origin: uid @count .
 url: string .
 source: string @index(term, hash, trigram) .
 geo: geo @index(geo) .
+
+role: int @index(int) .
+is_active: int @index(int) .
+interview_text: string @index(term, hash, trigram) .
+is_yes: int @index(int) .
+geo_location: int @index(int) .
+
