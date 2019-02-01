@@ -11,7 +11,6 @@ def user_exists(user):
     try:
         api.login(user['login'], user['password'])
     except:
-        print 'false'
         return False
     return True
 
@@ -63,26 +62,26 @@ channels = [
         'description': 'description IT news',
         'name': 'IT news',
         'is_active': 1,
-        'geo_location': 11,
+        'geo_location': '0',
     },
     {
         'description': 'description Comp@Tech',
         'name': 'Comp@Tech',
         'is_active': 1,
-        'geo_location': 1,
+        'geo_location': '0',
     },
     {
         'description': 'description Game news',
         'name': 'Game news',
         'is_active': 0,
-        'geo_location': 1,
+        'geo_location': '0',
     },
 ]
 
-interviews = [
+questions = [
     {
-        'interview_text': ' Did you like the lecture?',
-        'is_yes': 1,
+        'text': 'Did you like the lecture?',
+        'status': 'yesno',
     },
 ]
 
@@ -91,8 +90,8 @@ def init():
         ensure_user(user)
     for channel in channels:
         api.post('/api/data/channel', channel)
-    for interview in interviews:
-        api.post('/api/data/interview', interview)
+    for question in questions:
+        api.post('/api/data/question', question)
 
 def generate():
     for i in range(100):
