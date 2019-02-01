@@ -11,7 +11,6 @@ def user_exists(user):
     try:
         api.login(user['login'], user['password'])
     except:
-        print 'false'
         return False
     return True
 
@@ -63,26 +62,26 @@ channels = [
         'description': 'description IT news',
         'name': 'IT news',
         'is_active': 1,
-        'geo_location': 11,
+        'geo_location': '0',
     },
     {
         'description': 'description Comp@Tech',
         'name': 'Comp@Tech',
         'is_active': 1,
-        'geo_location': 1,
+        'geo_location': '0',
     },
     {
         'description': 'description Game news',
         'name': 'Game news',
         'is_active': 0,
-        'geo_location': 1,
+        'geo_location': '0',
     },
 ]
 
 questions = [
     {
         'text': 'Did you like the lecture?',
-        'type': 'yesno',
+        'status': 'yesno',
     },
 ]
 

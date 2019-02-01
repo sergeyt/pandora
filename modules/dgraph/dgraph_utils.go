@@ -34,9 +34,6 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 
 	var result struct {
 		Results []map[string]interface{} `json:"items"`
-		Total   struct {
-			Count int64 `json:"count"`
-		} `json:"total"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
 

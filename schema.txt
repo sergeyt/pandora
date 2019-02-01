@@ -46,3 +46,4 @@ geo: geo @index(geo) .
 role: string @index(term, hash, trigram) .
 is_active: bool @count .
 status: string @index(term, hash, trigram) .
+geo_location: string @index(term, hash, trigram) .
