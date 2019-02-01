@@ -78,20 +78,11 @@ channels = [
     },
 ]
 
-questions = [
-    {
-        'text': 'Did you like the lecture?',
-        'status': 'yesno',
-    },
-]
-
 def init():
     for user in users:
         ensure_user(user)
     for channel in channels:
         api.post('/api/data/channel', channel)
-    for question in questions:
-        api.post('/api/data/question', question)
 
 def generate():
     for i in range(100):
