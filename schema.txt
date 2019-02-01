@@ -45,5 +45,5 @@ role: int @index(int) .
 is_active: int @index(int) .
 interview_text: string @index(term, hash, trigram) .
 is_yes: int @index(int) .
-geo_location: int @index(int) .
+geo_location: string @index(string) .
 
