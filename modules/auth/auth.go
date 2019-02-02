@@ -16,6 +16,7 @@ var (
 
 func AuthAPI(mux chi.Router) {
 	mux.Post("/api/login", authbase.LoginHandlerFunc(authConfig))
+	mux.Post("/api/register", authbase.RegisterHandlerFunc(authConfig))
 
 	oauth.RegisterAPI(mux, authConfig)
 }
