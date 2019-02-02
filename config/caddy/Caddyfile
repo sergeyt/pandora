@@ -8,6 +8,8 @@ cors
 jwt {
     path /api
     except /api/login
+    except /api/register
+    except /api/oauth
     except /api/files
 }
 
