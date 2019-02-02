@@ -6,7 +6,6 @@ import (
 	"fmt"
 
 	"github.com/gocontrib/auth"
-	"github.com/markbates/goth"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"
 )
@@ -123,7 +122,7 @@ type CreateUserData struct {
 	Location  string `json:"location"`
 }
 
-func (s *UserStore) CreateUser(ctx context.Context, account goth.User) (auth.User, error) {
+func (s *UserStore) CreateUser(ctx context.Context, account auth.UserData) (auth.User, error) {
 	data := CreateUserData{
 		Name:      account.Name,
 		FirstName: account.FirstName,

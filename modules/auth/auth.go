@@ -2,6 +2,7 @@ package auth
 
 import (
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/go-chi/chi"
@@ -24,8 +25,11 @@ func AuthAPI(mux chi.Router) {
 }
 
 func makeAuthConfig() *authbase.Config {
+	userStore := makeUserStore()
 	return &authbase.Config{
-		UserStore: makeUserStore(),
+		UserStore: userStore,
+		UserStoreEx: userStore,
+		ServerURL: os.Getenv("SERVER_URL"),
 	}
 }
 
