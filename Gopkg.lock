@@ -163,7 +163,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ca14bb5dc7ebc7bf244fad68c1b658e1b55cffdce41129c1f6da200b5c8c1564"
+  digest = "1:24e4bd9aee91d4910b61a87f9e7b86f6fb420774aac338000042677b3344f2f6"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
@@ -171,7 +171,7 @@
     "oauth",
   ]
   pruneopts = ""
-  revision = "cfe7b4f368bd2d959e930f6ef69972849a48f402"
+  revision = "dc5c95bd88a091b9dcea1228b64d2ea9a36ea4af"
 
 [[projects]]
   branch = "master"
@@ -967,7 +967,6 @@
     "github.com/gocontrib/pubsub",
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/rest",
-    "github.com/markbates/goth",
     "github.com/markbates/goth/providers/vk",
     "github.com/nicolasazrak/caddy-cache",
     "github.com/spf13/viper",
