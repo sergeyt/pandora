@@ -76,7 +76,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:107449475b54b8dfc9cdb7a7e6a90a99e9a3a9ebbdd6986f71820395669dff18"
+  digest = "1:0bed30c90bde36fcacceb5ea3fe0c6881648aaa4f0718702ef4386c1cfee0360"
   name = "github.com/dgraph-io/dgo"
   packages = [
     ".",
@@ -84,7 +84,7 @@
     "y",
   ]
   pruneopts = ""
-  revision = "a97eb8186a3aad431ad42af9d8128945c7d69ceb"
+  revision = "d5a1729ba70542920754c5fd2e9d5ad64fe886a5"
 
 [[projects]]
   digest = "1:6098222470fe0172157ce9bbef5d2200df4edde17ee649c5d6e48330e4afa4c6"
@@ -163,7 +163,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:9763ccb4278e4be5bd7380fd365ac8806faaa9c6904d163674fdcd7f845e18c5"
+  digest = "1:ca14bb5dc7ebc7bf244fad68c1b658e1b55cffdce41129c1f6da200b5c8c1564"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
@@ -171,7 +171,7 @@
     "oauth",
   ]
   pruneopts = ""
-  revision = "92df10cb5d85936ef974beef2290c77849e33eb1"
+  revision = "cfe7b4f368bd2d959e930f6ef69972849a48f402"
 
 [[projects]]
   branch = "master"
@@ -418,6 +418,7 @@
   packages = [
     ".",
     "gothic",
+    "providers/vk",
   ]
   pruneopts = ""
   revision = "157987f620ff2fc5e1f6a1427a3685219fbf6ff4"
@@ -456,11 +457,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:677337b66390d2b8899e5e443626b9c03110db45064222b212b0e01dde5083c7"
+  digest = "1:7b79509f5003280c8d0f6386a2d2a7be0cea627f4aa82f60f4476822d6082efc"
   name = "github.com/mholt/certmagic"
   packages = ["."]
   pruneopts = ""
-  revision = "d9ab603e9bf32a6b10816502a3b4ed593bed6922"
+  revision = "3775ef65a1c5ab145d3765930b895d97fe341c8b"
 
 [[projects]]
   digest = "1:103c1001b79009329824bc60f93f8f7150bf1ad31f18d29a476deb8a2de0f002"
@@ -847,11 +848,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:96ad251f71dd69e0f15071720f9970f599f075b28fa96ebd8a547dcd04435856"
+  digest = "1:91f75dc679abcf04b29b064a5b9c40a0b0561c86c322010fbf6fc08040cc48bc"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = ""
-  revision = "8ac453e89fca495c0d17f98932642f392e2a11f3"
+  revision = "4b09977fb92221987e99d190c8f88f2c92727a29"
 
 [[projects]]
   digest = "1:39d4d828b87d58d114fdc211f0638f32dcae84019fe17d6b48f9b697f4b60213"
@@ -967,6 +968,7 @@
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/rest",
     "github.com/markbates/goth",
+    "github.com/markbates/goth/providers/vk",
     "github.com/nicolasazrak/caddy-cache",
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",
