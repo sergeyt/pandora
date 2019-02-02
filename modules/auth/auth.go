@@ -7,6 +7,7 @@ import (
 	"github.com/go-chi/chi"
 	authbase "github.com/gocontrib/auth"
 	"github.com/gocontrib/auth/oauth"
+	"github.com/markbates/goth/providers/vk"
 )
 
 var (
@@ -18,6 +19,7 @@ func AuthAPI(mux chi.Router) {
 	mux.Post("/api/login", authbase.LoginHandlerFunc(authConfig))
 	mux.Post("/api/register", authbase.RegisterHandlerFunc(authConfig))
 
+	oauth.WithProviders(authConfig, "vk", vk.New)
 	oauth.RegisterAPI(mux, authConfig)
 }
 
