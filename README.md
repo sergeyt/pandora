@@ -32,8 +32,60 @@ I'd like to have simple, flexible, dynamic, declarative, reactive, realtime info
 
 ## How to build
 
-* `dep ensure`
-* `go install`
+To start developing a project, you need to
+install git:
+
+    $ sudo apt-get install git
+
+For the `add-apt-repository` to work install package:
+
+    $ sudo apt install software-properties-common
+
+software-properties-common - This software provides an abstraction of the used apt repositories. This allows you to easily manage your distribution and independent software vendors.
+
+Install Docker:
+
+    $ sudo apt update
+    $ sudo apt install docker.io docker-compose
+
+Add repository to install Go:
+
+    $ sudo add-apt-repository ppa:longsleep/golang-backports
+
+Install Go:
+
+    $ sudo apt-get update
+    $ sudo apt-get install golang-go
+
+Upload project files:
+
+    $ go get github.com/sergeyt/pandora 
+
+Get loads packages called import paths, along with their dependencies. It then installs named packages, such as “go install”.
+dep ensure - is the main command and is the only command that changes the state of the disk.
+
+Install dep:
+
+    $ curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+
+Set project dependencies:
+
+    $ dep ensure
+
+Run project build:
+
+    $ docker-compose up 
+
+Run the script initdata.py (fill the database) execute commands:
+
+    $ apt install python-pip
+    $ pip install PyJWT
+    $ pip install python-dotenv
+    $ pip install Faker
+
+Then execute the script itself:
+
+    $ python initdata.py
 
 ## How to run tests
 
