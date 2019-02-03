@@ -2,10 +2,12 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
+	"github.com/gorilla/handlers"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/elasticsearch"
 	"github.com/sergeyt/pandora/modules/geoip"
@@ -15,7 +17,7 @@ func makeAPIHandler() http.Handler {
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
-	r.Use(middleware.Logger)
+	r.Use(Logger)
 	r.Use(middleware.Recoverer)
 
 	// Basic CORS
@@ -36,4 +38,8 @@ func makeAPIHandler() http.Handler {
 	r.Group(geoip.RegisterAPI)
 
 	return r
+}
+
+func Logger(next http.Handler) http.Handler {
+	return handlers.LoggingHandler(os.Stdout, next)
 }

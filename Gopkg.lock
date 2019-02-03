@@ -271,6 +271,14 @@
   version = "v1.1.1"
 
 [[projects]]
+  digest = "1:66d63ec7b6035984dced87ad37066e5f4ad277c60234a9d9925537248e983200"
+  name = "github.com/gorilla/handlers"
+  packages = ["."]
+  pruneopts = ""
+  revision = "7e0847f9db758cdebd26c149d0ae9d5d0b9c98ce"
+  version = "v1.4.0"
+
+[[projects]]
   digest = "1:a3c01bbe8766cbce019cdb900aa51460a6f7bd4266a18d80722dc92297302bc3"
   name = "github.com/gorilla/mux"
   packages = ["."]
@@ -967,6 +975,7 @@
     "github.com/gocontrib/pubsub",
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/rest",
+    "github.com/gorilla/handlers",
     "github.com/markbates/goth/providers/vk",
     "github.com/nicolasazrak/caddy-cache",
     "github.com/spf13/viper",
