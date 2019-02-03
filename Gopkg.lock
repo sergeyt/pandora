@@ -207,14 +207,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b308b08ee840d3c010d411b8aa1f9668ce1915a468a6338545bb8015bd17db9a"
+  digest = "1:f28bc7d6a8c4e4aae8226a4c8e5162fc2455969b01e52348d6b1ea2c5d6d5719"
   name = "github.com/gocontrib/pubsub"
   packages = [
     ".",
     "nats",
   ]
   pruneopts = ""
-  revision = "33a982b07ab5c79ef92da8b61bd396c26f87e9c2"
+  revision = "2ae3cf8fe495486eb2d135866e24711c7768f66b"
 
 [[projects]]
   branch = "master"
@@ -457,11 +457,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7b79509f5003280c8d0f6386a2d2a7be0cea627f4aa82f60f4476822d6082efc"
+  digest = "1:e2e23fd46b6336446b87c1d9c336a4802246c4410a4e117ffddbd9beb764d0df"
   name = "github.com/mholt/certmagic"
   packages = ["."]
   pruneopts = ""
-  revision = "3775ef65a1c5ab145d3765930b895d97fe341c8b"
+  revision = "a7f18a937c080b88693cd4e14d48e42cc067b268"
 
 [[projects]]
   digest = "1:103c1001b79009329824bc60f93f8f7150bf1ad31f18d29a476deb8a2de0f002"
