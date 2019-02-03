@@ -9,7 +9,6 @@ import (
 	"github.com/gocontrib/pubsub"
 	_ "github.com/gocontrib/pubsub/nats"
 	"github.com/sergeyt/pandora/modules/config"
-	"github.com/sergeyt/pandora/modules/elasticsearch"
 	"github.com/spf13/viper"
 )
 
@@ -43,7 +42,7 @@ func main() {
 
 func start(restart chan bool) {
 	startHub()
-	go elasticsearch.MutationObserver(restart)
+	// go elasticsearch.MutationObserver(restart)
 	startServer()
 }
 
