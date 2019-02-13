@@ -1,11 +1,15 @@
 name: string @index(term, hash, trigram) .
+first_name: string @index(term, hash, trigram) .
+last_name: string @index(term, hash, trigram) .
 login: string @index(term, hash) .
 password: password .
 email: string @index(term, hash) .
+role: string @index(term, hash, trigram) .
 avatar: string @index(term, hash) .
 description: string @lang @index(fulltext) .
 age: int @index(int) .
 country: string @index(term, hash, trigram) .
+city: string @index(term, hash, trigram) .
 
 provider: string @index(term, hash, trigram) .
 account: uid @count .
@@ -43,7 +47,14 @@ url: string .
 source: string @index(term, hash, trigram) .
 geo: geo @index(geo) .
 
-role: string @index(term, hash, trigram) .
 choise: string @index(term, hash, trigram) .
 is_active: bool @count .
-geo_location: string @index(term, hash, trigram) .
+
+know: uid @count .
+forgot: uid @count .
+remembering: uid @count .
+interesting: uid @count .
+
+like: uid @count .
+dislike: uid @count .
+love: uid @count .
