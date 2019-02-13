@@ -59,6 +59,14 @@
   revision = "376d45073b49d69d8460c8c4237208bdbce12d29"
 
 [[projects]]
+  digest = "1:59df7ab87ddca233bb586ff32c6feba12bf787260f6694dc45ceecea9d3e1a7e"
+  name = "github.com/cenkalti/backoff"
+  packages = ["."]
+  pruneopts = ""
+  revision = "1e4cf3da559842a91afcb6ea6141451e6c30c618"
+  version = "v2.1.1"
+
+[[projects]]
   digest = "1:108a84d9d6addb51cf57029b0376b07544b9bab21f176d75f310188f6c474ffb"
   name = "github.com/cheekybits/genny"
   packages = ["generic"]
@@ -163,7 +171,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:24e4bd9aee91d4910b61a87f9e7b86f6fb420774aac338000042677b3344f2f6"
+  digest = "1:b6137d90919f0865065be3db276ce98577cfade7e655b3ef31a4827f82a60d9b"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
@@ -171,7 +179,7 @@
     "oauth",
   ]
   pruneopts = ""
-  revision = "dc5c95bd88a091b9dcea1228b64d2ea9a36ea4af"
+  revision = "bb881689e97f6756d8ee46a0fd67811c77984631"
 
 [[projects]]
   branch = "master"
@@ -449,7 +457,7 @@
   version = "v0.0.4"
 
 [[projects]]
-  digest = "1:78254d56697c5e90898aef8290c8a20540dd6abffd086b24958ef9e2027abd6a"
+  digest = "1:36ad3e0814ee16a9e1c231006fcf18b80c716ef964ea2f58df146c5a2baa1af9"
   name = "github.com/mholt/caddy"
   packages = [
     ".",
@@ -460,16 +468,16 @@
     "telemetry",
   ]
   pruneopts = ""
-  revision = "8ab447e6159ce2c47ccc853cf20ac2b5515c54e9"
-  version = "v0.11.2"
+  revision = "2ea544e9a03288118b4557d400dbc64031ae0198"
+  version = "v0.11.3"
 
 [[projects]]
   branch = "master"
-  digest = "1:e2e23fd46b6336446b87c1d9c336a4802246c4410a4e117ffddbd9beb764d0df"
+  digest = "1:9b08f17615a1301e39ccda9704ee9521f5596adfb73a84cccdb2515d41c46f05"
   name = "github.com/mholt/certmagic"
   packages = ["."]
   pruneopts = ""
-  revision = "a7f18a937c080b88693cd4e14d48e42cc067b268"
+  revision = "f92e85346d81334853749f5ce4434b48c4c2ed25"
 
 [[projects]]
   digest = "1:103c1001b79009329824bc60f93f8f7150bf1ad31f18d29a476deb8a2de0f002"
@@ -704,7 +712,7 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:7ca9261d3527d4f08cd42fde8c1f5bfb4735bc66bf69b3eda473ef579abfc755"
+  digest = "1:80c65aa3d7fb8f3dd7b5c37a786e21cb5562e5e1eb1c6b2ba403f69cfd268d18"
   name = "github.com/xenolf/lego"
   packages = [
     "acme",
@@ -725,8 +733,8 @@
     "registration",
   ]
   pruneopts = ""
-  revision = "00ad82dec10ad0af1e037ee652ad1f1cc7015178"
-  version = "v2.1.0"
+  revision = "52e43eb318b07ace590c2144804292c89aa74802"
+  version = "v2.2.0"
 
 [[projects]]
   branch = "master"
@@ -757,7 +765,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:cbc1ebc01ec2ceb2c3cc7b9e33357dbc3eff173335f02d9f01603f14102602a7"
+  digest = "1:5462386895a322b94a79a5de7314310edbd5f4d15f851ae032f146b2c951b3de"
   name = "golang.org/x/crypto"
   packages = [
     "curve25519",
@@ -768,11 +776,11 @@
     "pbkdf2",
   ]
   pruneopts = ""
-  revision = "b8fe1690c61389d7d2a8074a507d1d40c5d30448"
+  revision = "74369b46fc6756741c016591724fd1cb8e26845f"
 
 [[projects]]
   branch = "master"
-  digest = "1:1e9704e5379e68ac473c28aeb3f7e7cd4036ae8a246bf0285b5ebdbb8e0cfacf"
+  digest = "1:4f7cbb08d72e1163302e2d21415200a7bc281653f5f34eda8a15c0da11a337b0"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -791,29 +799,29 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "d26f9f9a57f3fab6a695bec0d84433c2c50f8bbf"
+  revision = "3a22650c66bd7f4fb6d1e8072ffd7b75c8a27898"
 
 [[projects]]
   branch = "master"
-  digest = "1:7c2c0fc8c2891e50d5a8b57482d2fee63ce723eae40c1a59bf9c6a82ff13b775"
+  digest = "1:ab59ae99282f00d97bc86eea793a0550d9753018f52fd469c1186b2fe843d6a4"
   name = "golang.org/x/oauth2"
   packages = [
     ".",
     "internal",
   ]
   pruneopts = ""
-  revision = "99b60b757ec124ebb7d6b7e97f153b19c10ce163"
+  revision = "3e8b2be1363542a95c52ea0796d4a40dacfb5b95"
 
 [[projects]]
   branch = "master"
-  digest = "1:4d6f20f5bc52af99569b1be5ea55d4e22646d5e022b92f2d3d75347628614734"
+  digest = "1:7b42c9a7f12584d8f351c3f3757f6a9f6894cd7ea987170fe472ce3a8f9bb6b8"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
     "unix",
   ]
   pruneopts = ""
-  revision = "afcc84fd7533758f95a6e93ae710aa945a0b7e73"
+  revision = "983097b1a8a340cd1cc7df17d735154d89e10b1a"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
