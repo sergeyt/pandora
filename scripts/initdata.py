@@ -24,6 +24,7 @@ users = [
         'name': 'admin',
         'email': 'stodyshev@gmail.com',
         'password': 'admin123',
+        'role': 'admin',
     },
     {
         'login': 'sergeyt',
@@ -31,51 +32,9 @@ users = [
         'email': 'stodyshev@gmail.com',
         'password': 'sergeyt123',
     },
-    {
-        'login': 'andrey',
-        'name': 'andrey',
-        'email': 'andrey@gmail.com',
-        'password': 'andrey123',
-    },
-    {
-        'login': 'alex',
-        'name': 'alex',
-        'email': 'alex@gmail.com',
-        'password': 'alex123',
-    },
-    {
-        'login': 'mike',
-        'name': 'mike',
-        'email': 'mike@gmail.com',
-        'password': 'mike123',
-    },
-    {
-        'login': 'miks',
-        'name': 'miks',
-        'email': 'miks@gmail.com',
-        'password': 'miks123',
-    },
 ]
 
 channels = [
-    {
-        'description': 'description IT news',
-        'name': 'IT news',
-        'is_active': 1,
-        'geo_location': '0',
-    },
-    {
-        'description': 'description Comp@Tech',
-        'name': 'Comp@Tech',
-        'is_active': 1,
-        'geo_location': '0',
-    },
-    {
-        'description': 'description Game news',
-        'name': 'Game news',
-        'is_active': 0,
-        'geo_location': '0',
-    },
 ]
 
 def init():
