@@ -385,6 +385,14 @@
   version = "v1.2.0"
 
 [[projects]]
+  digest = "1:6a874e3ddfb9db2b42bd8c85b6875407c702fa868eed20634ff489bc896ccfd3"
+  name = "github.com/konsorten/go-windows-terminal-sequences"
+  packages = ["."]
+  pruneopts = ""
+  revision = "5c8c8bd35d3832f5d134ae1e1e375b69a4d25242"
+  version = "v1.0.1"
+
+[[projects]]
   branch = "master"
   digest = "1:560e150c2fcf04a92c22029205edb57cd0282a545dd949165dae5cd65bce1204"
   name = "github.com/lucas-clemente/aes12"
@@ -606,6 +614,14 @@
   version = "v1.0.0"
 
 [[projects]]
+  digest = "1:9a3c631555e0351fdc4e696577bb63afd90c399d782a8462dba9d100d7021db3"
+  name = "github.com/sirupsen/logrus"
+  packages = ["."]
+  pruneopts = ""
+  revision = "e1e72e9de974bd926e5c56f83753fba2df402ce5"
+  version = "v1.3.0"
+
+[[projects]]
   digest = "1:d9f371ceb44045ca4405b65fed916e4b45396340b9e8674851c3d652f6351cde"
   name = "github.com/spf13/afero"
   packages = [
@@ -774,6 +790,7 @@
     "hkdf",
     "ocsp",
     "pbkdf2",
+    "ssh/terminal",
   ]
   pruneopts = ""
   revision = "74369b46fc6756741c016591724fd1cb8e26845f"
@@ -819,6 +836,7 @@
   packages = [
     "cpu",
     "unix",
+    "windows",
   ]
   pruneopts = ""
   revision = "983097b1a8a340cd1cc7df17d735154d89e10b1a"
@@ -986,6 +1004,7 @@
     "github.com/gorilla/handlers",
     "github.com/markbates/goth/providers/vk",
     "github.com/nicolasazrak/caddy-cache",
+    "github.com/sirupsen/logrus",
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",
     "google.golang.org/grpc",

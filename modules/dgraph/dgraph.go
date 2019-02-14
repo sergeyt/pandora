@@ -2,16 +2,17 @@ package dgraph
 
 import (
 	"context"
-	"google.golang.org/grpc/metadata"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
+
+	"google.golang.org/grpc/metadata"
 
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/config"
+	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 )
 

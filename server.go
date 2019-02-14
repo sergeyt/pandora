@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
+	log "github.com/sirupsen/logrus"
 )
 
 var server *http.Server
@@ -14,7 +13,7 @@ var server *http.Server
 func startServer() {
 	dgraph.InitSchema()
 
-	fmt.Printf("listening %s\n", config.ServerAddr)
+	log.Printf("listening %s\n", config.ServerAddr)
 
 	server = &http.Server{
 		Addr:    config.ServerAddr,
@@ -28,6 +27,6 @@ func startServer() {
 }
 
 func stopServer() {
-	fmt.Println("shutting down")
+	log.Println("shutting down")
 	server.Shutdown(nil)
 }

@@ -34,8 +34,8 @@ relevant: uid @count @reverse .
 
 created_at: dateTime .
 modified_at: dateTime .
-created_by: string @index(term, hash, trigram) .
-modified_by: string @index(term, hash, trigram) .
+created_by: uid @count .
+modified_by: uid @count .
 
 due: dateTime .
 estimate: int @index(int) .

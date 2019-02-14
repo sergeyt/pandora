@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 	"os/signal"
 
@@ -9,6 +8,7 @@ import (
 	"github.com/gocontrib/pubsub"
 	_ "github.com/gocontrib/pubsub/nats"
 	"github.com/sergeyt/pandora/modules/config"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 

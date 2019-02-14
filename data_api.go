@@ -11,6 +11,7 @@ import (
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"
+	log "github.com/sirupsen/logrus"
 
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
@@ -41,6 +42,7 @@ func dataAPI(r chi.Router) {
 func queryHandler(w http.ResponseWriter, r *http.Request) {
 	query, err := ioutil.ReadAll(r.Body)
 	if err != nil {
+		log.Errorf("ioutil.ReadAll fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}
@@ -49,6 +51,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 
 	resp, err := tx.Query(r.Context(), string(query))
 	if err != nil {
+		log.Errorf("dgraph.Txn.Query fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}
@@ -61,6 +64,7 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	pg, err := apiutil.ParsePagination(r)
 	if err != nil {
+		log.Errorf("apiutil.ParsePagination fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}
@@ -112,6 +116,7 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 	var in utils.OrderedJSON
 	err := json.NewDecoder(r.Body).Decode(&in)
 	if err != nil {
+		log.Errorf("bad JSON. json.Decoder.Decode fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}
@@ -165,6 +170,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 		CommitNow: true,
 	})
 	if err != nil {
+		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}

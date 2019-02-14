@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/gocontrib/log"
 	"github.com/gocontrib/pubsub"
+	log "github.com/sirupsen/logrus"
 )
 
 // MutationObserver runs monitor of all mutation events to replicate data

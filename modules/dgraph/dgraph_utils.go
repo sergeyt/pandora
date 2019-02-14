@@ -10,6 +10,7 @@ import (
 	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/utils"
+	log "github.com/sirupsen/logrus"
 )
 
 func NodeLabel(resourceType string) string {
@@ -29,6 +30,7 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 
 	resp, err := tx.Query(ctx, query)
 	if err != nil {
+		log.Errorf("dgrapg.Txn.Query fail: %v", err)
 		return nil, err
 	}
 
@@ -36,8 +38,8 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 		Results []map[string]interface{} `json:"items"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
-
 	if err != nil {
+		log.Errorf("json.Unmarshal fail: %v", err)
 		return nil, err
 	}
 
@@ -55,6 +57,7 @@ func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface
 
 	resp, err := tx.Query(ctx, query)
 	if err != nil {
+		log.Errorf("dgrapg.Txn.Query fail: %v", err)
 		return nil, err
 	}
 
@@ -62,8 +65,8 @@ func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface
 		Results []map[string]interface{} `json:"node"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
-
 	if err != nil {
+		log.Errorf("json.Unmarshal fail: %v", err)
 		return nil, err
 	}
 
@@ -91,18 +94,23 @@ func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interfac
 
 	in := m.Input
 	in["modified_at"] = now
-	in["modified_by"] = m.By
+	if len(m.By) > 0 && m.By != "system" {
+		in["modified_by"] = wrapUID(m.By)
+	}
 
 	if isNew {
 		in[m.NodeLabel] = ""
 		in["created_at"] = now
-		in["created_by"] = m.By
+		if len(m.By) > 0 && m.By != "system" {
+			in["created_by"] = wrapUID(m.By)
+		}
 	} else {
 		in["uid"] = id
 	}
 
 	data, err := in.ToJSON("uid", m.NodeLabel)
 	if err != nil {
+		log.Errorf("OrderedJSON.ToJSON fail: %v", err)
 		return nil, err
 	}
 
@@ -110,6 +118,7 @@ func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interfac
 		SetJson: data,
 	})
 	if err != nil {
+		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
 		return nil, err
 	}
 
@@ -139,8 +148,15 @@ func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interfac
 
 	err = tx.Commit(ctx)
 	if err != nil {
+		log.Errorf("dgraph.Txn.Commit fail: %v", err)
 		return nil, err
 	}
 
 	return results, nil
+}
+
+func wrapUID(uid string) map[string]string {
+	return map[string]string{
+		"uid": uid,
+	}
 }
