@@ -171,7 +171,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b6137d90919f0865065be3db276ce98577cfade7e655b3ef31a4827f82a60d9b"
+  digest = "1:0ff5b4c14bdb15cfac1bc069d80d109b997bec1ca2c46f69ea5f53a1a18dd81f"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
@@ -179,7 +179,7 @@
     "oauth",
   ]
   pruneopts = ""
-  revision = "bb881689e97f6756d8ee46a0fd67811c77984631"
+  revision = "8f4cdc3cdd5d632883744f24233484c014a21c1d"
 
 [[projects]]
   branch = "master"
@@ -215,14 +215,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:f28bc7d6a8c4e4aae8226a4c8e5162fc2455969b01e52348d6b1ea2c5d6d5719"
+  digest = "1:351b27a36873eae9bdd23a68b920902317fdd8bbbe509d160158a53f47efdd95"
   name = "github.com/gocontrib/pubsub"
   packages = [
     ".",
     "nats",
   ]
   pruneopts = ""
-  revision = "2ae3cf8fe495486eb2d135866e24711c7768f66b"
+  revision = "0fdd96f5751b52f4d407a41f85f53370b67c2690"
 
 [[projects]]
   branch = "master"
@@ -234,11 +234,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:0ae446be8311bae0e64fcc504191301c6ce36c9c65361ec99695630f453dcaef"
+  digest = "1:d0040b9595a7738ec6e31043f19b7126134688620c261d87a2dbafaa9eae60f5"
   name = "github.com/gocontrib/rest"
   packages = ["."]
   pruneopts = ""
-  revision = "3078cdb4f1484dfb2a35e49182fc9cc714b04506"
+  revision = "9e3068d4c0077b379b505db2aa91040977c0bb78"
 
 [[projects]]
   digest = "1:3dd078fda7500c341bc26cfbc6c6a34614f295a2457149fc1045cab767cbcf18"
@@ -997,7 +997,6 @@
     "github.com/gocontrib/auth",
     "github.com/gocontrib/auth/oauth",
     "github.com/gocontrib/esclient",
-    "github.com/gocontrib/log",
     "github.com/gocontrib/pubsub",
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/rest",
