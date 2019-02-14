@@ -34,14 +34,9 @@ users = [
     },
 ]
 
-channels = [
-]
-
 def init():
     for user in users:
         ensure_user(user)
-    for channel in channels:
-        api.post('/api/data/channel', channel)
 
 def generate():
     for i in range(100):
