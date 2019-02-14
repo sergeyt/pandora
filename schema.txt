@@ -10,12 +10,14 @@ description: string @lang @index(fulltext) .
 age: int @index(int) .
 country: string @index(term, hash, trigram) .
 city: string @index(term, hash, trigram) .
-
 provider: string @index(term, hash, trigram) .
+
 account: uid @count .
 friend: uid @count .
 follow: uid @count .
 member_of: uid @count .
+part_of: uid @count .
+in: uid @count .
 
 type: string @index(term, hash, trigram) .
 content_type: string @index(term, hash, trigram) .
@@ -23,6 +25,7 @@ lang: string @index(term, hash, trigram) .
 hash: string @index(term) .
 text: string @lang @index(fulltext) .
 transcription: string @lang @index(fulltext) .
+
 author: uid @count .
 channel: uid @count .
 from: uid @count .
