@@ -1,13 +1,15 @@
 import logging
 
 # https://stackoverflow.com/questions/16337511/log-all-requests-from-the-python-requests-module
-# https://stackoverflow.com/questions/10588644/how-can-i-see-the-entire-http-request-thats-being-sent-by-my-python-application        
+# https://stackoverflow.com/questions/10588644/how-can-i-see-the-entire-http-request-thats-being-sent-by-my-python-application
 
-def enable_logging(with_headers = False):
-    if with_headers:        
+
+def enable_logging(with_headers=False):
+    if with_headers:
         enable_logging_with_headers()
     else:
-        logging.basicConfig(level=logging.DEBUG)    
+        logging.basicConfig(level=logging.DEBUG)
+
 
 def enable_logging_with_headers():
     # These two lines enable debugging at httplib level (requests->urllib3->http.client)

@@ -7,6 +7,7 @@ from faker import Faker
 utils.enable_logging()
 fake = Faker()
 
+
 def user_exists(user):
     try:
         api.login(user['login'], user['password'])
@@ -14,9 +15,11 @@ def user_exists(user):
         return False
     return True
 
+
 def ensure_user(user):
     if not user_exists(user):
         api.post('/api/data/user', user)
+
 
 users = [
     {
@@ -34,9 +37,11 @@ users = [
     },
 ]
 
+
 def init():
     for user in users:
         ensure_user(user)
+
 
 def generate():
     for i in range(100):
@@ -48,6 +53,7 @@ def generate():
             'password': name + '123',
         }
         ensure_user(user)
+
 
 init()
 # generate()

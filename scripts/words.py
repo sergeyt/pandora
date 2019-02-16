@@ -53,7 +53,7 @@ for word in words:
     for key in word:
         if key.startswith('text@'):
             text = word[key]
-            lang = key[key.index('@')+1:]
+            lang = key[key.index('@') + 1:]
             props = {
                 '_word': '',
                 'text': text,
@@ -102,7 +102,7 @@ for word in words:
     # todo upload sounds to S3 store
     for key in word:
         if key.startswith('pronunciation@'):
-            lang = key[key.index('@')+1:]
+            lang = key[key.index('@') + 1:]
             data = nquads({
                 '_sound': '',
                 'url': word[key],

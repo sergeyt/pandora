@@ -10,7 +10,8 @@ dir = os.path.dirname(os.path.realpath(__file__))
 fname = os.path.realpath(os.path.join(dir, '../schema.txt'))
 
 my_client = client.TusClient('http://localhost:4200/api/files')
-my_client.set_headers({'Upload-Metadata': 'filename {0}'.format(os.path.basename(fname))})
+my_client.set_headers(
+    {'Upload-Metadata': 'filename {0}'.format(os.path.basename(fname))})
 
 uploader = my_client.uploader(fname, chunk_size=1024)
 uploader.upload()
