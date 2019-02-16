@@ -26,9 +26,11 @@ stdHeaders = {
     'Authorization': 'local_admin',
 }
 
+
 def dump_json(resp):
     if resp.ok:
         print(json.dumps(resp.json(), sort_keys=True, indent=2))
+
 
 def headers():
     h = stdHeaders.copy()
@@ -36,40 +38,66 @@ def headers():
     h['Authorization'] = 'Bearer ' + t
     return h
 
-def get(path, data):
+
+def get(path):
     url = host + path
     resp = requests.get(url, headers=headers())
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
-def post(path, payload, auth=None):
+
+def post(path, payload, auth=None, raw=False):
     url = host + path
-    data = json.dumps(payload, sort_keys=True, indent=2)
+    data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
     resp = requests.post(url, data=data, headers=headers(), auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
+
+
+def put(path, payload, auth=None, raw=False):
+    url = host + path
+    data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
+    resp = requests.put(url, data=data, headers=headers(), auth=auth)
+    dump_json(resp)
+    resp.raise_for_status()
+    return resp.json()
+
+
+def delete(path, auth=None):
+    url = host + path
+    resp = requests.delete(url, headers=headers(), auth=auth)
+    resp.raise_for_status()
+    return resp
+
 
 def login(username, password):
     resp = post('/api/login', None, auth=(username, password))
     access_token = resp['token']
     return access_token
 
+
 def drop_all():
     headers = {'X-Dgraph-AuthToken': dgraph_token}
-    resp = requests.post('http://localhost:8080/alter', headers=headers, data='{"drop_all": true}')
+    resp = requests.post(
+        'http://localhost:8080/alter',
+        headers=headers,
+        data='{"drop_all": true}')
     dump_json(resp)
     resp.raise_for_status()
+
 
 def init_schema():
     p = os.path.join(dir, '../schema.txt')
     with open(p, 'r') as f:
         schema = f.read()
         headers = {'X-Dgraph-AuthToken': dgraph_token}
-        resp = requests.post('http://localhost:8080/alter', headers=headers, data=schema)
+        resp = requests.post(
+            'http://localhost:8080/alter', headers=headers, data=schema)
         dump_json(resp)
         resp.raise_for_status()
+
 
 def mutate(data):
     headers = {
@@ -78,10 +106,12 @@ def mutate(data):
     }
     if getattr(data, 'encode', None):
         data = data.encode('utf-8')
-    resp = requests.post('http://localhost:8080/mutate', headers=headers, data=data)
+    resp = requests.post(
+        'http://localhost:8080/mutate', headers=headers, data=data)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
+
 
 def set_nquads(dataset):
     data = "{\nset {\n" + dataset + "}}"
