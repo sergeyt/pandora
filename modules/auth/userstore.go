@@ -8,6 +8,7 @@ import (
 	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"
+	log "github.com/sirupsen/logrus"
 )
 
 func makeUserStore() *UserStore {
@@ -18,43 +19,57 @@ type UserStore struct {
 }
 
 func (s *UserStore) ValidateCredentials(ctx context.Context, username, password string) (auth.User, error) {
-	query := fmt.Sprintf(`{
-        users(func: has(%s)) @filter(eq(email, %q) OR eq(login, %q)) {
+	// TODO detect phone and normalize it
+	query := fmt.Sprintf(`query users($username: string, $password: string) {
+        users(func: has(%s)) @filter(eq(email, $username) OR eq(login, $username) OR eq(phone, $username)) {
 			uid
 			name
 			email
 			role
-            checkpwd(password, %q)
+            checkpwd(password, $password)
         }
-	}`, userLabel(), username, username, password)
+	}`, userLabel())
 
-	return s.FindUser(ctx, query, username, true)
+	vars := map[string]string{
+		"$username": username,
+		"$password": password,
+	}
+
+	return s.FindUser(ctx, query, vars, username, true)
 }
 
 func (s *UserStore) FindUserByEmail(ctx context.Context, email string) (auth.User, error) {
-	query := fmt.Sprintf(`{
-        users(func: has(%s)) @filter(eq(email, %q)) {
+	query := fmt.Sprintf(`query users($id: string) {
+        users(func: has(%s)) @filter(eq(email, $id)) {
 			uid
 			name
 			email
 			role
         }
-	}`, userLabel(), email)
+	}`, userLabel())
 
-	return s.FindUser(ctx, query, email, false)
+	vars := map[string]string{
+		"$id": email,
+	}
+
+	return s.FindUser(ctx, query, vars, email, false)
 }
 
 func (s *UserStore) FindUserByID(ctx context.Context, userID string) (auth.User, error) {
-	query := fmt.Sprintf(`{
-        users(func: uid(%s)) @filter(has(%s)) {
+	query := fmt.Sprintf(`query users($id: string) {
+        users(func: uid($id)) @filter(has(%s)) {
 			uid
 			name
 			email
 			role
         }
-	}`, userID, userLabel())
+	}`, userLabel())
 
-	return s.FindUser(ctx, query, userID, false)
+	vars := map[string]string{
+		"$id": userID,
+	}
+
+	return s.FindUser(ctx, query, vars, userID, false)
 }
 
 func userLabel() string {
@@ -64,7 +79,7 @@ func userLabel() string {
 func (s *UserStore) Close() {
 }
 
-func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd bool) (auth.User, error) {
+func (s *UserStore) FindUser(ctx context.Context, query string, vars map[string]string, userID string, checkPwd bool) (auth.User, error) {
 	client, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
@@ -73,8 +88,9 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 	txn := client.NewTxn()
 	defer txn.Discard(ctx)
 
-	resp, err := txn.Query(ctx, query)
+	resp, err := txn.QueryWithVars(ctx, query, vars)
 	if err != nil {
+		log.Errorf("dgraph.Txn.QueryWithVars fail: %v", err)
 		return nil, err
 	}
 
@@ -89,11 +105,12 @@ func (s *UserStore) FindUser(ctx context.Context, query, userID string, checkPwd
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
 	if err != nil {
+		log.Errorf("json.Unmarshal fail: %v", err)
 		return nil, err
 	}
 
 	if len(result.Users) == 0 {
-		return nil, fmt.Errorf("user not found: %s", userID)
+		return nil, fmt.Errorf("user not found by %s", userID)
 	}
 
 	user := result.Users[0]
