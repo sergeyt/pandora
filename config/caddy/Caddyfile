@@ -46,10 +46,6 @@ proxy /api/event/stream pubsub:4302 {
 proxy /api app:4201 {
     transparent
 }
-proxy /ratel ratel:8000 {
-    transparent
-    without /ratel
-}
 proxy /kibana kibana:5601 {
     transparent
     without /kibana
