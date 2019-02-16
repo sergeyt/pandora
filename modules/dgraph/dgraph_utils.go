@@ -18,19 +18,21 @@ func NodeLabel(resourceType string) string {
 }
 
 func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Pagination) ([]map[string]interface{}, error) {
-	query := fmt.Sprintf(`{
-  items(func: has(%s), offset: %d, first: %d) {
+	query := fmt.Sprintf(`query items($offset: int, $limit: int) {
+  items(func: has(%s), offset: $offset, first: $limit) {
     uid
     expand(_all_)
   }
   total(func: has(%s)) {
     count: count(uid)
   }
-}`, label, pg.Offset, pg.Limit, label)
-
-	resp, err := tx.Query(ctx, query)
+}`, label, label)
+	resp, err := tx.QueryWithVars(ctx, query, map[string]string{
+		"$offset": fmt.Sprintf("%d", pg.Offset),
+		"$limit":  fmt.Sprintf("%d", pg.Limit),
+	})
 	if err != nil {
-		log.Errorf("dgrapg.Txn.Query fail: %v", err)
+		log.Errorf("dgrapg.Txn.QueryWithVars fail: %v", err)
 		return nil, err
 	}
 
@@ -47,17 +49,19 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 }
 
 func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface{}, error) {
-	query := fmt.Sprintf(`{
-  node(func: uid(%s)) {
+	query := `query node($id: string) {
+  node(func: uid($id)) {
     expand(_all_) {
       expand(_all_)
     }
   }
-}`, id)
+}`
 
-	resp, err := tx.Query(ctx, query)
+	resp, err := tx.QueryWithVars(ctx, query, map[string]string{
+		"$id": id,
+	})
 	if err != nil {
-		log.Errorf("dgrapg.Txn.Query fail: %v", err)
+		log.Errorf("dgrapg.Txn.QueryWithVars fail: %v", err)
 		return nil, err
 	}
 
