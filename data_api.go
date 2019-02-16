@@ -40,24 +40,47 @@ func dataAPI(r chi.Router) {
 }
 
 func queryHandler(w http.ResponseWriter, r *http.Request) {
-	query, err := ioutil.ReadAll(r.Body)
+	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		log.Errorf("ioutil.ReadAll fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}
 
+	query := string(body)
+	// TODO use regexp for better matching
+	hasVars := strings.Contains(query, "$")
+
 	tx := dgraph.RequestTransaction(r)
 
-	resp, err := tx.Query(r.Context(), string(query))
-	if err != nil {
-		log.Errorf("dgraph.Txn.Query fail: %v", err)
-		apiutil.SendError(w, err)
-		return
-	}
+	if hasVars {
+		vars := make(map[string]string)
+		for k, v := range r.URL.Query() {
+			if strings.HasPrefix(k, "$") {
+				vars[k] = v[0]
+			}
+		}
 
-	w.Header().Set("Content-Type", apiutil.TypeJSON)
-	w.Write(resp.GetJson())
+		resp, err := tx.QueryWithVars(r.Context(), query, vars)
+		if err != nil {
+			log.Errorf("dgraph.Txn.QueryWithVars fail: %v", err)
+			apiutil.SendError(w, err)
+			return
+		}
+
+		w.Header().Set("Content-Type", apiutil.TypeJSON)
+		w.Write(resp.GetJson())
+	} else {
+		resp, err := tx.Query(r.Context(), query)
+		if err != nil {
+			log.Errorf("dgraph.Txn.Query fail: %v", err)
+			apiutil.SendError(w, err)
+			return
+		}
+
+		w.Header().Set("Content-Type", apiutil.TypeJSON)
+		w.Write(resp.GetJson())
+	}
 }
 
 func listHandler(w http.ResponseWriter, r *http.Request) {
