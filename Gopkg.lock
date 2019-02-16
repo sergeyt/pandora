@@ -465,7 +465,7 @@
   version = "v0.0.4"
 
 [[projects]]
-  digest = "1:36ad3e0814ee16a9e1c231006fcf18b80c716ef964ea2f58df146c5a2baa1af9"
+  digest = "1:5106b53331ac101fa2b1ac3ff2ba390a91fce36abc8417d211e1ed6ee2a9d94f"
   name = "github.com/mholt/caddy"
   packages = [
     ".",
@@ -476,8 +476,8 @@
     "telemetry",
   ]
   pruneopts = ""
-  revision = "2ea544e9a03288118b4557d400dbc64031ae0198"
-  version = "v0.11.3"
+  revision = "c1d6c928e3a29e94013bda4d339d9e426500c8e7"
+  version = "v0.11.4"
 
 [[projects]]
   branch = "master"
@@ -831,7 +831,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7b42c9a7f12584d8f351c3f3757f6a9f6894cd7ea987170fe472ce3a8f9bb6b8"
+  digest = "1:991cf54090eb6e382daf2f243a0bcabdda4964a664e07feefbef2b7fb6bf2ae1"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -839,7 +839,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "983097b1a8a340cd1cc7df17d735154d89e10b1a"
+  revision = "d0b11bdaac8adb652bff00e49bcacf992835621a"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
@@ -882,11 +882,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:91f75dc679abcf04b29b064a5b9c40a0b0561c86c322010fbf6fc08040cc48bc"
+  digest = "1:60a223de357ab7164a5f8dd20cf0f5e17f76530ff40f33f7ecde0c09ec19c67a"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = ""
-  revision = "4b09977fb92221987e99d190c8f88f2c92727a29"
+  revision = "bd968387e4aa590b3c6e4ba38ecac1ed314d43ad"
 
 [[projects]]
   digest = "1:39d4d828b87d58d114fdc211f0638f32dcae84019fe17d6b48f9b697f4b60213"
