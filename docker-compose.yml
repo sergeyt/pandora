@@ -44,7 +44,7 @@ services:
     restart: on-failure
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:v1.0.11-rc4
+    image: dgraph/dgraph:v1.0.12-rc5
     container_name: zero
     volumes:
       - dgraph:/dgraph
@@ -55,7 +55,7 @@ services:
     restart: on-failure
   # dgraph node
   dgraph:
-    image: dgraph/dgraph:v1.0.11-rc4
+    image: dgraph/dgraph:v1.0.12-rc5
     container_name: dgraph
     volumes:
       - dgraph:/dgraph
@@ -66,7 +66,7 @@ services:
     restart: on-failure
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:v1.0.11-rc4
+    image: dgraph/dgraph:v1.0.12-rc5
     container_name: ratel
     ports:
       - 8000:8000
