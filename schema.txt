@@ -2,6 +2,7 @@ name: string @index(term, hash, trigram) .
 first_name: string @index(term, hash, trigram) .
 last_name: string @index(term, hash, trigram) .
 login: string @index(term, hash) .
+phone: string @index(term, hash) .
 password: password .
 email: string @index(term, hash) .
 role: string @index(term, hash, trigram) .
