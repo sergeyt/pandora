@@ -1,17 +1,17 @@
-name: string @index(term, hash, trigram) .
-first_name: string @index(term, hash, trigram) .
-last_name: string @index(term, hash, trigram) .
+name: string @index(term, hash) .
+first_name: string @index(term, hash) .
+last_name: string @index(term, hash) .
 login: string @index(term, hash) .
 phone: string @index(term, hash) .
 password: password .
 email: string @index(term, hash) .
-role: string @index(term, hash, trigram) .
+role: string @index(term, hash) .
 avatar: string @index(term, hash) .
 description: string @lang @index(fulltext) .
 age: int @index(int) .
-country: string @index(term, hash, trigram) .
-city: string @index(term, hash, trigram) .
-provider: string @index(term, hash, trigram) .
+country: string @index(term, hash) .
+city: string @index(term, hash) .
+provider: string @index(term, hash) .
 
 account: uid @count .
 friend: uid @count .
@@ -20,9 +20,9 @@ member_of: uid @count .
 part_of: uid @count .
 in: uid @count .
 
-type: string @index(term, hash, trigram) .
-content_type: string @index(term, hash, trigram) .
-lang: string @index(term, hash, trigram) .
+type: string @index(term, hash) .
+content_type: string @index(term, hash) .
+lang: string @index(term, hash) .
 hash: string @index(term) .
 text: string @lang @index(fulltext) .
 transcription: string @lang @index(fulltext) .
@@ -48,10 +48,10 @@ remaining_estimate: int @index(int) .
 origin: uid @count .
 
 url: string .
-source: string @index(term, hash, trigram) .
+source: string @index(term, hash) .
 geo: geo @index(geo) .
 
-choise: string @index(term, hash, trigram) .
+choise: string @index(term, hash) .
 is_active: bool @count .
 
 know: uid @count .
