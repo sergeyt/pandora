@@ -1,5 +1,0 @@
-python-dotenv
-requests
-faker
-tuspy
-pyjwt
