@@ -27,11 +27,8 @@ services:
   tusd:
     image: tusproject/tusd
     container_name: tusd
-    # volumes:
-    #   - uploads:/data
     env_file: .env
     command: -base-path "/api/files" -metrics-path "/api/metrics/tusd" -behind-proxy -s3-bucket ${MINIO_BUCKET} -s3-endpoint http://minio:9000
-    # command: -base-path "/api/files" -metrics-path "/api/metrics/tusd" -behind-proxy -dir /data
     ports:
       - 1080:1080
     restart: on-failure
@@ -166,4 +163,3 @@ volumes:
   dgraph:
   esdata1:
   esdata2:
-  # uploads:
