@@ -8,6 +8,7 @@ pylint = "<2.0.0"
 pytest = "*"
 autopep8 = "*"
 yapf = "*"
+rope = "*"
 
 [packages]
 python-dotenv = "*"
@@ -16,6 +17,8 @@ tuspy = "*"
 Faker = "*"
 PyJWT = "*"
 s3cmd = "*"
+boto3 = "*"
+minio = "*"
 
 [requires]
 python_version = "3.6"

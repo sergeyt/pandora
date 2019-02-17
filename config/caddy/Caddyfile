@@ -11,8 +11,13 @@ jwt {
     except /api/register
     except /api/oauth
     except /api/files
+    except /api/s3
 }
 
+proxy /api/s3 minio:9000 {
+    transparent
+    without /api/s3
+}
 proxy /api/imageproxy imageproxy:1081 {
     transparent
 }
