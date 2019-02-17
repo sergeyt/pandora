@@ -25,7 +25,10 @@ services:
     restart: on-failure
   # file upload service
   tusd:
-    image: tusproject/tusd
+    # image: tusproject/tusd
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile-empty
     container_name: tusd
     env_file: .env
     command: -base-path "/api/files" -metrics-path "/api/metrics/tusd" -behind-proxy -s3-bucket ${MINIO_BUCKET} -s3-endpoint http://minio:9000
