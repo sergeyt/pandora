@@ -13,12 +13,6 @@ jwt {
     except /api/files
 }
 
-proxy /api/files tusd:1080 {
-    transparent
-}
-proxy /api/metrics/tusd tusd:1080 {
-    transparent
-}
 proxy /api/imageproxy imageproxy:1081 {
     transparent
 }
