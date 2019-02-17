@@ -15,24 +15,6 @@ jwt {
 
 proxy /api/files tusd:1080 {
     transparent
-
-    header_upstream Tus-Version {>Tus-Version}
-    header_upstream Tus-Resumable {>Tus-Resumable}
-    header_upstream Tus-Extension {>Tus-Resumable}
-    header_upstream Location {>Location}
-    header_upstream Upload-Offset {>Upload-Offset}
-    header_upstream Upload-Length {>Upload-Length}
-    header_upstream X-HTTP-Method-Override {>X-HTTP-Method-Override}
-
-    header_downstream Tus-Version {>Tus-Version}
-    header_downstream Tus-Resumable {>Tus-Resumable}
-    header_downstream Tus-Extension {>Tus-Resumable}
-    header_downstream Location {>Location}
-    header_downstream Upload-Offset {>Upload-Offset}
-    header_downstream Upload-Length {>Upload-Length}
-    header_downstream Upload-Metadata {>Upload-Metadata}
-    header_downstream Upload-Defer-Length {>Upload-Defer-Length}
-    header_downstream X-HTTP-Method-Override {>X-HTTP-Method-Override}
 }
 proxy /api/metrics/tusd tusd:1080 {
     transparent
