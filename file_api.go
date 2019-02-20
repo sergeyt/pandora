@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"mime"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -41,7 +43,7 @@ func asHTTPHandler(h fileHandler) http.HandlerFunc {
 }
 
 type fsopContext struct {
-	store FileStore
+	store ObjectStore
 	path  string
 }
 
@@ -66,8 +68,57 @@ func downloadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 }
 
 func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
-	// TODO generate filename if path is not defined
 	// TODO mime type filter
+
+	ct := r.Header.Get("Content-Type")
+	mt, _, err := mime.ParseMediaType(ct)
+	if err != nil {
+		log.Errorf("mime.ParseMediaType fail: %v", err)
+		apiutil.SendError(w, err)
+		return
+	}
+	if mt == "multipart/form-data" || mt == "multipart/mixed" {
+		mr, err := r.MultipartReader()
+		if err != nil {
+			log.Errorf("http.Request.MultipartReader fail: %v", err)
+			apiutil.SendError(w, err)
+			return
+		}
+		results := make(map[string]interface{})
+		for {
+			p, err := mr.NextPart()
+			if err == io.EOF {
+				break
+			}
+			if err != nil {
+				log.Errorf("multipart.Reader.NextPart fail: %v", err)
+				apiutil.SendError(w, err)
+				return
+			}
+
+			path := c.path
+			if len(path) > 0 {
+				path = path + "/" + p.FileName()
+			}
+
+			result, err := c.store.Upload(r.Context(), path, p)
+			if err != nil {
+				log.Errorf("FileStore.Upload fail: %v", err)
+				apiutil.SendError(w, err)
+				return
+			}
+
+			results[path] = result
+		}
+
+		if len(results) > 0 {
+			apiutil.SendJSON(w, results)
+		}
+
+		return
+	}
+
+	// TODO generate filename if path is not defined
 
 	result, err := c.store.Upload(r.Context(), c.path, r.Body)
 	if err != nil {
@@ -82,10 +133,14 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
-	err := c.store.Delete(r.Context(), c.path)
+	result, err := c.store.Delete(r.Context(), c.path)
 	if err != nil {
 		log.Errorf("FileStore.Delete fail: %v", err)
 		apiutil.SendError(w, err)
 		return
+	}
+
+	if result != nil {
+		apiutil.SendJSON(w, result)
 	}
 }

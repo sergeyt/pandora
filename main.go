@@ -13,6 +13,8 @@ import (
 )
 
 func main() {
+	log.SetOutput(os.Stdout)
+
 	config.Parse()
 
 	restart := make(chan bool)
@@ -41,6 +43,12 @@ func main() {
 }
 
 func start(restart chan bool) {
+	fs := makeS3Store()
+	err := fs.EnsureBucket()
+	if err != nil {
+		log.Errorf("s3.EnsureBucket fail: %v", err)
+	}
+
 	startHub()
 	// go elasticsearch.MutationObserver(restart)
 	startServer()

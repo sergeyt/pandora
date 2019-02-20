@@ -12,35 +12,59 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	log "github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
 )
 
-func makeFileStore() (FileStore, error) {
+func makeFileStore() (ObjectStore, error) {
+	return makeS3Store(), nil
+}
+
+func makeS3Store() *S3Store {
 	return &S3Store{
-		config: &aws.Config{
-			Endpoint:    aws.String(viper.GetString("s3.endpoint")),
-			Region:      aws.String(viper.GetString("s3.region")),
-			Credentials: credentials.NewEnvCredentials(),
-		},
+		config: awsConfig(),
 		bucket: getBucket(),
-	}, nil
+	}
+}
+
+func awsConfig() *aws.Config {
+	logLevel := aws.LogDebug
+	return &aws.Config{
+		Credentials:      credentials.NewEnvCredentials(),
+		Endpoint:         aws.String(os.Getenv("S3_ENDPOINT")),
+		Region:           aws.String(os.Getenv("AWS_REGION")),
+		DisableSSL:       aws.Bool(true),
+		S3ForcePathStyle: aws.Bool(true),
+		LogLevel:         &logLevel,
+	}
 }
 
 func getBucket() string {
 	return os.Getenv("S3_BUCKET")
 }
 
-type FileStore interface {
+// ObjectStore is store of any BLOB objects
+type ObjectStore interface {
 	Download(c context.Context, path string, w io.Writer) error
 	Upload(c context.Context, path string, r io.ReadCloser) (interface{}, error)
-	Delete(c context.Context, path string) error
+	Delete(c context.Context, path string) (interface{}, error)
 }
 
+// S3Store is Amazon S3 ObjectStore
 type S3Store struct {
 	config *aws.Config
 	bucket string
 }
 
+// EnsureBucket creates S3_BUCKET
+func (fs *S3Store) EnsureBucket() error {
+	sess := session.New(fs.config)
+	svc := s3.New(sess)
+	_, err := svc.CreateBucket(&s3.CreateBucketInput{
+		Bucket: aws.String(fs.bucket),
+	})
+	return err
+}
+
+// Download object at given path
 func (fs *S3Store) Download(c context.Context, path string, w io.Writer) error {
 	s := session.New(fs.config)
 	d := s3manager.NewDownloader(s)
@@ -64,6 +88,7 @@ func (w *s3Writer) WriteAt(p []byte, off int64) (n int, err error) {
 	return 0, fmt.Errorf("not supported")
 }
 
+// Upload object at given path
 func (fs *S3Store) Upload(c context.Context, path string, r io.ReadCloser) (interface{}, error) {
 	sess := session.New(fs.config)
 	up := s3manager.NewUploader(sess, func(u *s3manager.Uploader) {
@@ -84,17 +109,17 @@ func (fs *S3Store) Upload(c context.Context, path string, r io.ReadCloser) (inte
 	return out, nil
 }
 
-func (fs *S3Store) Delete(c context.Context, path string) error {
+// Delete object at given path
+func (fs *S3Store) Delete(c context.Context, path string) (interface{}, error) {
 	sess := session.New(fs.config)
 	svc := s3.New(sess)
-	// TODO how to delete by key?
-	iter := s3manager.NewDeleteListIterator(svc, &s3.ListObjectsInput{
+	out, err := svc.DeleteObject(&s3.DeleteObjectInput{
 		Bucket: aws.String(fs.bucket),
-		// Key:    path,
+		Key:    aws.String(path),
 	})
-	err := s3manager.NewBatchDeleteWithClient(svc).Delete(c, iter)
 	if err != nil {
 		log.Errorf("s3.Delete fail: %v", err)
+		return nil, err
 	}
-	return err
+	return out, nil
 }
