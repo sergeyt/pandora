@@ -16,7 +16,7 @@ func makeAPIHandler() http.Handler {
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
-	r.Use(Logger)
+	r.Use(logMidleware)
 	r.Use(middleware.Recoverer)
 
 	// Basic CORS
@@ -40,6 +40,6 @@ func makeAPIHandler() http.Handler {
 	return r
 }
 
-func Logger(next http.Handler) http.Handler {
+func logMidleware(next http.Handler) http.Handler {
 	return handlers.LoggingHandler(os.Stdout, next)
 }

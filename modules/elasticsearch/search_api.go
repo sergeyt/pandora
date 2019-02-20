@@ -10,6 +10,7 @@ import (
 	"github.com/sergeyt/pandora/modules/auth"
 )
 
+// SearchAPI is proxy os ElasticSearch query
 // TODO just use http.Proxy or proxy with caddy
 func SearchAPI(r chi.Router) {
 	r = r.With(auth.AuthMiddleware)

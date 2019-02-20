@@ -12,14 +12,14 @@ import (
 func MutationObserver(restart chan bool) {
 	ch, err := pubsub.Subscribe([]string{"global"})
 	if err != nil {
-		log.Info("elasticseach: cannot subscribe on global channel: %v\n", err)
-		log.Info("elasticseach: retry after one second")
+		log.Errorf("elasticseach: cannot subscribe on global channel: %v", err)
+		log.Debug("elasticseach: retry after one second")
 		time.Sleep(1 * time.Second)
 		go MutationObserver(restart)
 		return
 	}
 
-	log.Info("elasticseach: mutation observer started")
+	log.Debug("elasticseach: mutation observer started")
 
 	for {
 		select {
