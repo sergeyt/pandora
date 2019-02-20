@@ -29,7 +29,7 @@
   version = "v1.5"
 
 [[projects]]
-  digest = "1:0324f20e3ae756a75887ed652b3453dfd3e53392f2cc385801147139cb8cbabb"
+  digest = "1:a99aa75181273792c666a08836657933cbb9d8ba78ef856de043fc46fc2fa179"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -70,8 +70,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "de216d45a3df361a2f571b8eb88db86f2b50d82f"
-  version = "v1.17.1"
+  revision = "e71d307a067ee20dbda259de3fd73a86161c339c"
+  version = "v1.17.2"
 
 [[projects]]
   branch = "master"
@@ -216,7 +216,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:0ff5b4c14bdb15cfac1bc069d80d109b997bec1ca2c46f69ea5f53a1a18dd81f"
+  digest = "1:2c357a6f8d661ae6a36426eac0a52ac2b64b7bc2e57d1a024515f1473ad1a5c3"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
@@ -224,7 +224,7 @@
     "oauth",
   ]
   pruneopts = ""
-  revision = "8f4cdc3cdd5d632883744f24233484c014a21c1d"
+  revision = "b0c88adc0f9ea603274db1ac63a0935b8f212266"
 
 [[projects]]
   branch = "master"
@@ -872,18 +872,18 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e5f1c72d15b70001cfea6ad61aee0fe01e1bded16cd84b20583bca8f6aee9467"
+  digest = "1:c356ecb4bbf83ff7741c6b5d66b6da81e97767a8ebb8ba5cf5276610efe73a20"
   name = "golang.org/x/oauth2"
   packages = [
     ".",
     "internal",
   ]
   pruneopts = ""
-  revision = "4b83411ed2b36bd4e3302e9b1d3c973fb1ba24db"
+  revision = "9b3c75971fc92dd27c6436a37c05c831498658f1"
 
 [[projects]]
   branch = "master"
-  digest = "1:d2cf3bdc65300d9c02d1f79ca05a2254f26c3617a29935ab340cac9ce0940dd0"
+  digest = "1:a3d2772fd3543fe2478af2b6b18c05c95904bc906d0ee3f46fee1701e03cfed3"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -891,7 +891,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "90b0e4468f9980bf79a2290394adaf7f045c5d24"
+  revision = "629670e5acc5b3e069375d323404911dc8fe1d19"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
