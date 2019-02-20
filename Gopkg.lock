@@ -29,6 +29,51 @@
   version = "v1.5"
 
 [[projects]]
+  digest = "1:0324f20e3ae756a75887ed652b3453dfd3e53392f2cc385801147139cb8cbabb"
+  name = "github.com/aws/aws-sdk-go"
+  packages = [
+    "aws",
+    "aws/awserr",
+    "aws/awsutil",
+    "aws/client",
+    "aws/client/metadata",
+    "aws/corehandlers",
+    "aws/credentials",
+    "aws/credentials/ec2rolecreds",
+    "aws/credentials/endpointcreds",
+    "aws/credentials/processcreds",
+    "aws/credentials/stscreds",
+    "aws/csm",
+    "aws/defaults",
+    "aws/ec2metadata",
+    "aws/endpoints",
+    "aws/request",
+    "aws/session",
+    "aws/signer/v4",
+    "internal/ini",
+    "internal/s3err",
+    "internal/sdkio",
+    "internal/sdkrand",
+    "internal/sdkuri",
+    "internal/shareddefaults",
+    "private/protocol",
+    "private/protocol/eventstream",
+    "private/protocol/eventstream/eventstreamapi",
+    "private/protocol/query",
+    "private/protocol/query/queryutil",
+    "private/protocol/rest",
+    "private/protocol/restxml",
+    "private/protocol/xml/xmlutil",
+    "service/s3",
+    "service/s3/s3iface",
+    "service/s3/s3manager",
+    "service/sts",
+  ]
+  pruneopts = ""
+  revision = "de216d45a3df361a2f571b8eb88db86f2b50d82f"
+  version = "v1.17.1"
+
+[[projects]]
   branch = "master"
   digest = "1:a7e1a0f2cace484a43830742e41b0d6ccd8554c127fbbeef7309290d48bf3903"
   name = "github.com/bifurcation/mint"
@@ -363,6 +408,13 @@
   pruneopts = ""
   revision = "5accad8134979a6ac504d456a6c7f1c53da237ca"
   version = "v1.1.0"
+
+[[projects]]
+  digest = "1:13fe471d0ed891e8544eddfeeb0471fd3c9f2015609a1c000aefdedf52a19d40"
+  name = "github.com/jmespath/go-jmespath"
+  packages = ["."]
+  pruneopts = ""
+  revision = "c2b33e84"
 
 [[projects]]
   digest = "1:064eb4d2277fb6a23944380644268b99acc0ae0576c72d0b6d7288d3c2fe4a1e"
@@ -985,6 +1037,11 @@
   analyzer-version = 1
   input-imports = [
     "github.com/BTBurke/caddy-jwt",
+    "github.com/aws/aws-sdk-go/aws",
+    "github.com/aws/aws-sdk-go/aws/credentials",
+    "github.com/aws/aws-sdk-go/aws/session",
+    "github.com/aws/aws-sdk-go/service/s3",
+    "github.com/aws/aws-sdk-go/service/s3/s3manager",
     "github.com/captncraig/caddy-realip",
     "github.com/captncraig/cors/caddy",
     "github.com/dgraph-io/dgo",

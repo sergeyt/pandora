@@ -34,6 +34,7 @@ func makeAPIHandler() http.Handler {
 	r.Group(auth.AuthAPI)
 	//r.Group(elasticsearch.SearchAPI)
 	r.Group(dataAPI)
+	r.Group(fileAPI)
 	r.Group(geoip.RegisterAPI)
 
 	return r
