@@ -9,12 +9,11 @@ from botocore.client import Config
 
 utils.enable_logging_with_headers()
 
-dir = os.path.dirname(os.path.realpath(__file__))
-filename = os.path.realpath(os.path.join(dir, '../schema.txt'))
+filename = api.schema_path()
 
 access_key = os.getenv('MINIO_ACCESS_KEY')
 secret_key = os.getenv('MINIO_SECRET_KEY')
-bucket_name = os.getenv('MINIO_BUCKET')
+bucket_name = os.getenv('S3_BUCKET')
 
 # mc = Minio(
 #   # 'localhost:4200/api/s3',
@@ -27,11 +26,11 @@ bucket_name = os.getenv('MINIO_BUCKET')
 # mc.fput_object(bucket_name, 'schema.txt', filename)
 
 s3 = boto3.resource(
-  's3',
-  endpoint_url='http://localhost:9000',
-  aws_access_key_id=access_key,
-  aws_secret_access_key=secret_key,
-  region_name='us-east-1',
-  config=Config(signature_version='s3v4'),
+    's3',
+    endpoint_url='http://localhost:9000',
+    aws_access_key_id=access_key,
+    aws_secret_access_key=secret_key,
+    region_name='us-east-1',
+    config=Config(signature_version='s3v4'),
 )
 s3.Bucket(bucket_name).upload_file(filename, 'schema.txt')

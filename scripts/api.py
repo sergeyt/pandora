@@ -39,35 +39,35 @@ def headers():
     return h
 
 
+def url(path):
+    return host + path
+
+
 def get(path):
-    url = host + path
-    resp = requests.get(url, headers=headers())
+    resp = requests.get(url(path), headers=headers())
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
 
 def post(path, payload, auth=None, raw=False):
-    url = host + path
     data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
-    resp = requests.post(url, data=data, headers=headers(), auth=auth)
+    resp = requests.post(url(path), data=data, headers=headers(), auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
 
 def put(path, payload, auth=None, raw=False):
-    url = host + path
     data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
-    resp = requests.put(url, data=data, headers=headers(), auth=auth)
+    resp = requests.put(url(path), data=data, headers=headers(), auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
 
 def delete(path, auth=None):
-    url = host + path
-    resp = requests.delete(url, headers=headers(), auth=auth)
+    resp = requests.delete(url(path), headers=headers(), auth=auth)
     resp.raise_for_status()
     return resp
 
@@ -88,8 +88,14 @@ def drop_all():
     resp.raise_for_status()
 
 
+def schema_path():
+    dir = os.path.dirname(os.path.realpath(__file__))
+    filename = os.path.realpath(os.path.join(dir, '../schema.txt'))
+    return filename
+
+
 def init_schema():
-    p = os.path.join(dir, '../schema.txt')
+    p = schema_path()
     with open(p, 'r') as f:
         schema = f.read()
         headers = {'X-Dgraph-AuthToken': dgraph_token}
