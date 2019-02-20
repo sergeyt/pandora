@@ -13,7 +13,7 @@ import (
 )
 
 func fileAPI(r chi.Router) {
-	r = r.With(auth.AuthMiddleware)
+	r = r.With(auth.Middleware)
 
 	r.Get("/api/file/*", asHTTPHandler(downloadFile))
 	r.Post("/api/file/*", asHTTPHandler(uploadFile))

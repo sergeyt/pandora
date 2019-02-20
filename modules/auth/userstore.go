@@ -11,14 +11,14 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func makeUserStore() *UserStore {
-	return &UserStore{}
+func makeUserStore() *userStore {
+	return &userStore{}
 }
 
-type UserStore struct {
+type userStore struct {
 }
 
-func (s *UserStore) ValidateCredentials(ctx context.Context, username, password string) (auth.User, error) {
+func (s *userStore) ValidateCredentials(ctx context.Context, username, password string) (auth.User, error) {
 	// TODO detect phone and normalize it
 	query := fmt.Sprintf(`query users($username: string, $password: string) {
         users(func: has(%s)) @filter(eq(email, $username) OR eq(login, $username) OR eq(phone, $username)) {
@@ -38,7 +38,7 @@ func (s *UserStore) ValidateCredentials(ctx context.Context, username, password 
 	return s.FindUser(ctx, query, vars, username, true)
 }
 
-func (s *UserStore) FindUserByEmail(ctx context.Context, email string) (auth.User, error) {
+func (s *userStore) FindUserByEmail(ctx context.Context, email string) (auth.User, error) {
 	query := fmt.Sprintf(`query users($id: string) {
         users(func: has(%s)) @filter(eq(email, $id)) {
 			uid
@@ -55,7 +55,7 @@ func (s *UserStore) FindUserByEmail(ctx context.Context, email string) (auth.Use
 	return s.FindUser(ctx, query, vars, email, false)
 }
 
-func (s *UserStore) FindUserByID(ctx context.Context, userID string) (auth.User, error) {
+func (s *userStore) FindUserByID(ctx context.Context, userID string) (auth.User, error) {
 	query := fmt.Sprintf(`query users($id: string) {
         users(func: uid($id)) @filter(has(%s)) {
 			uid
@@ -76,10 +76,10 @@ func userLabel() string {
 	return dgraph.NodeLabel("user")
 }
 
-func (s *UserStore) Close() {
+func (s *userStore) Close() {
 }
 
-func (s *UserStore) FindUser(ctx context.Context, query string, vars map[string]string, userID string, checkPwd bool) (auth.User, error) {
+func (s *userStore) FindUser(ctx context.Context, query string, vars map[string]string, userID string, checkPwd bool) (auth.User, error) {
 	client, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
@@ -130,25 +130,7 @@ func (s *UserStore) FindUser(ctx context.Context, query string, vars map[string]
 	}, nil
 }
 
-type CreateUserData struct {
-	Name      string `json:"name"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Email     string `json:"email"`
-	Avatar    string `json:"avatar"`
-	Location  string `json:"location"`
-}
-
-func (s *UserStore) CreateUser(ctx context.Context, account auth.UserData) (auth.User, error) {
-	data := CreateUserData{
-		Name:      account.Name,
-		FirstName: account.FirstName,
-		LastName:  account.LastName,
-		Email:     account.Email,
-		// TODO login should be unique
-		// Login: account.NickName,
-	}
-
+func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth.User, error) {
 	client, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
@@ -159,12 +141,12 @@ func (s *UserStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 
 	// TODO fill JSON using reflection
 	in := make(utils.OrderedJSON)
-	in["name"] = data.Name
-	in["first_name"] = data.FirstName
-	in["last_name"] = data.LastName
-	in["email"] = data.Email
-	in["avatar"] = data.Avatar
-	in["location"] = data.Location
+	in["name"] = account.Name
+	in["first_name"] = account.FirstName
+	in["last_name"] = account.LastName
+	in["email"] = account.Email
+	in["avatar"] = account.AvatarURL
+	in["location"] = account.Location
 
 	_, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
@@ -178,5 +160,5 @@ func (s *UserStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	// TODO optimize decode map to auth.UserInfo
 	// result := results[0]
 
-	return s.FindUserByEmail(ctx, data.Email)
+	return s.FindUserByEmail(ctx, account.Email)
 }

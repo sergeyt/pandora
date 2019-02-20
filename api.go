@@ -31,7 +31,7 @@ func makeAPIHandler() http.Handler {
 	})
 	r.Use(cors.Handler)
 
-	r.Group(auth.AuthAPI)
+	r.Group(auth.RegisterAPI)
 	//r.Group(elasticsearch.SearchAPI)
 	r.Group(dataAPI)
 	r.Group(fileAPI)

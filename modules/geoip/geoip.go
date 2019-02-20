@@ -13,7 +13,7 @@ import (
 
 // RegisterAPI add a GET route to request GeoIP
 func RegisterAPI(r chi.Router) {
-	r = r.With(auth.AuthMiddleware)
+	r = r.With(auth.Middleware)
 
 	r.Get("/api/geoip", func(w http.ResponseWriter, r *http.Request) {
 		t, err := LookupIP(r.RemoteAddr)

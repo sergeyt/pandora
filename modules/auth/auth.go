@@ -16,7 +16,8 @@ var (
 	requireUser = authbase.RequireUser(authConfig)
 )
 
-func AuthAPI(mux chi.Router) {
+// RegisterAPI registers authentication HTTP API
+func RegisterAPI(mux chi.Router) {
 	mux.Post("/api/login", authbase.LoginHandlerFunc(authConfig))
 	mux.Post("/api/register", authbase.RegisterHandlerFunc(authConfig))
 
@@ -27,13 +28,14 @@ func AuthAPI(mux chi.Router) {
 func makeAuthConfig() *authbase.Config {
 	userStore := makeUserStore()
 	return &authbase.Config{
-		UserStore: userStore,
+		UserStore:   userStore,
 		UserStoreEx: userStore,
-		ServerURL: os.Getenv("SERVER_URL"),
+		ServerURL:   os.Getenv("SERVER_URL"),
 	}
 }
 
-func AuthMiddleware(next http.Handler) http.Handler {
+// Middleware is authentication HTTP middleware
+func Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		var err error
 		claims := extractClaims(r)
