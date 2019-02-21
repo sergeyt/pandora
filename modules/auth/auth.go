@@ -8,6 +8,8 @@ import (
 	"github.com/go-chi/chi"
 	authbase "github.com/gocontrib/auth"
 	"github.com/gocontrib/auth/oauth"
+	"github.com/markbates/goth/providers/facebook"
+	"github.com/markbates/goth/providers/google"
 	"github.com/markbates/goth/providers/vk"
 )
 
@@ -21,7 +23,7 @@ func RegisterAPI(mux chi.Router) {
 	mux.Post("/api/login", authbase.LoginHandlerFunc(authConfig))
 	mux.Post("/api/register", authbase.RegisterHandlerFunc(authConfig))
 
-	oauth.WithProviders(authConfig, "vk", vk.New)
+	oauth.WithProviders(authConfig, "vk", vk.New, "google", google.New, "facebook", facebook.New)
 	oauth.RegisterAPI(mux, authConfig)
 }
 

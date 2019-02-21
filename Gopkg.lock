@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:25e90949d88e66bcbb646626a293c77a97237b37a8f854c1e8ae817b74b5c2cf"
+  name = "cloud.google.com/go"
+  packages = ["compute/metadata"]
+  pruneopts = ""
+  revision = "c9474f2f8deb81759839474b6bd1726bbfe1c1c4"
+  version = "v0.36.0"
+
+[[projects]]
   digest = "1:c39642fccd7092e7fbc39e4f3eb62b4bcdf0765a6648d0ea4c90cd1ed1a9c70a"
   name = "github.com/BTBurke/caddy-jwt"
   packages = ["."]
@@ -494,6 +502,8 @@
   packages = [
     ".",
     "gothic",
+    "providers/facebook",
+    "providers/google",
     "providers/vk",
   ]
   pruneopts = ""
@@ -876,7 +886,10 @@
   name = "golang.org/x/oauth2"
   packages = [
     ".",
+    "google",
     "internal",
+    "jws",
+    "jwt",
   ]
   pruneopts = ""
   revision = "9b3c75971fc92dd27c6436a37c05c831498658f1"
@@ -920,10 +933,13 @@
   digest = "1:bc09e719c4e2a15d17163f5272d9a3131c45d77542b7fdc53ff518815bc19ab3"
   name = "google.golang.org/appengine"
   packages = [
+    ".",
     "internal",
+    "internal/app_identity",
     "internal/base",
     "internal/datastore",
     "internal/log",
+    "internal/modules",
     "internal/remote_api",
     "internal/urlfetch",
     "urlfetch",
@@ -1058,6 +1074,8 @@
     "github.com/gocontrib/pubsub/nats",
     "github.com/gocontrib/rest",
     "github.com/gorilla/handlers",
+    "github.com/markbates/goth/providers/facebook",
+    "github.com/markbates/goth/providers/google",
     "github.com/markbates/goth/providers/vk",
     "github.com/nicolasazrak/caddy-cache",
     "github.com/sirupsen/logrus",
