@@ -23,10 +23,15 @@ RUN cd /go/src/github.com/mholt/caddy/caddy \
     && mv caddy /go/bin
 
 # Dist image
-FROM alpine:3.8
+FROM python:3.6-alpine
 
 # install deps
-RUN apk add --no-cache --no-progress curl tini ca-certificates
+RUN apk update \
+        && apk add --no-cache git openssh-client \
+        && pip3 install pipenv \
+        && pip3 install gunicorn \
+        && addgroup -S -g 1001 app \
+        && adduser -S -D -h /app -u 1001 -G app app
 
 # copy caddy binary
 COPY --from=builder /go/bin/caddy /usr/bin/caddy
@@ -34,12 +39,21 @@ COPY --from=builder /go/bin/caddy /usr/bin/caddy
 # list plugins
 RUN /usr/bin/caddy -plugins
 
+# copy python admin server
+COPY scripts /pyadmin
+
+WORKDIR /pyadmin
+
+# install flask and other python deps
+RUN pipenv install --deploy --system
+
 # static files volume
 VOLUME ["/www"]
 WORKDIR /www
 
 COPY config/caddy/Caddyfile /etc/caddy/Caddyfile
 COPY config/caddy/index.md /www/index.md
+COPY schema.txt schema.txt
+COPY docker/caddy_entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["caddy", "-agree", "--conf", "/etc/caddy/Caddyfile"]
+ENTRYPOINT ["/entrypoint.sh"]

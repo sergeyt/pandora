@@ -19,6 +19,8 @@ PyJWT = "*"
 s3cmd = "*"
 boto3 = "*"
 minio = "*"
+flask = "*"
+flup-py3 = "*"
 
 [requires]
 python_version = "3.6"

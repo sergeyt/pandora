@@ -55,5 +55,6 @@ def generate():
         ensure_user(user)
 
 
-init()
-# generate()
+if __name__ == '__main__':
+    init()
+    # generate()

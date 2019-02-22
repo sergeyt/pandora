@@ -5,11 +5,19 @@ errors stderr
 gzip
 cors
 
+# fastcgi /api/pyadmin/ unix:/pandora-pyadmin.sock
+
+proxy /api/pyadmin/ localhost:8000 {
+    transparent
+}
+
 jwt {
     path /api
     except /api/login
     except /api/register
     except /api/oauth
+    except /api/pyadmin
+    except /api/admin
 }
 
 proxy /api/imageproxy imageproxy:1081 {

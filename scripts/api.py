@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 dir = os.path.dirname(os.path.realpath(__file__))
 load_dotenv(dotenv_path=os.path.join('../.env'))
 
-host = 'http://localhost:4200'
+DGRAPH_URL = 'http://dgraph:8080'
+API_GATEWAY_URL = 'http://localhost:4200'
 
 jwt_secret = os.getenv('JWT_SECRET')
 dgraph_token = os.getenv('DGRAPH_TOKEN')
@@ -40,7 +41,7 @@ def headers():
 
 
 def url(path):
-    return host + path
+    return API_GATEWAY_URL + path
 
 
 def get(path):
@@ -81,9 +82,7 @@ def login(username, password):
 def drop_all():
     headers = {'X-Dgraph-AuthToken': dgraph_token}
     resp = requests.post(
-        'http://localhost:8080/alter',
-        headers=headers,
-        data='{"drop_all": true}')
+        DGRAPH_URL + '/alter', headers=headers, data='{"drop_all": true}')
     dump_json(resp)
     resp.raise_for_status()
 
@@ -100,7 +99,7 @@ def init_schema():
         schema = f.read()
         headers = {'X-Dgraph-AuthToken': dgraph_token}
         resp = requests.post(
-            'http://localhost:8080/alter', headers=headers, data=schema)
+            DGRAPH_URL + '/alter', headers=headers, data=schema)
         dump_json(resp)
         resp.raise_for_status()
 
@@ -112,8 +111,7 @@ def mutate(data):
     }
     if getattr(data, 'encode', None):
         data = data.encode('utf-8')
-    resp = requests.post(
-        'http://localhost:8080/mutate', headers=headers, data=data)
+    resp = requests.post(DGRAPH_URL + '/mutate', headers=headers, data=data)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()

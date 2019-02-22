@@ -157,6 +157,9 @@ services:
     volumes:
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddycerts:/etc/caddycerts
+      - ./schema.txt:/schema.txt
+      - ./scripts:/pyadmin
+      - ./docker/caddy_entrypoint.sh:/entrypoint.sh
     ports:
       - 4200:4200
     restart: on-failure
