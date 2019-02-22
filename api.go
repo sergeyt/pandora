@@ -36,6 +36,7 @@ func makeAPIHandler() http.Handler {
 	r.Group(dataAPI)
 	r.Group(fileAPI)
 	r.Group(geoip.RegisterAPI)
+	r.Group(adminAPI)
 
 	return r
 }
