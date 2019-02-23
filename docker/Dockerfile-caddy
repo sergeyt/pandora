@@ -54,6 +54,7 @@ WORKDIR /www
 COPY config/caddy/Caddyfile /etc/caddy/Caddyfile
 COPY config/caddy/index.md /www/index.md
 COPY schema.txt schema.txt
+COPY .env .env
 COPY docker/caddy_entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
