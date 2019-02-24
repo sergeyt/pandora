@@ -1,0 +1,114 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Pandora API
+  license:
+    name: MIT
+host: tsvbits.com
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+  - application/graphql
+produces:
+  - application/json
+paths:
+  # authentication
+  /api/login:
+    post:
+      summary: Create JWT token to access pandora resources
+      operationId: login
+      responses:
+        "200":
+          description: JSON object with JWT token
+        default:
+          description: unexpected error
+          schema:
+            $ref: "#/definitions/Error"
+
+  # current user info
+  /api/me:
+    get:
+      summary: get information about currently authenticated user based on JWT token provided in Authorization header
+      operationId: me
+      responses:
+        "200":
+          description: JSON object with user info
+
+  # GraphQL+- request
+  /api/query:
+    post:
+      summary: GraphQL+- (dgraph query language) to request any information from dgraph database
+      operationId: query
+      responses:
+        "200":
+          description: usually array of JSON objects with requested information
+
+  # user resource
+  /api/user/list:
+    get:
+      summary: get paged array of users
+      operationId: listUsers
+      parameters:
+        - name: offset
+          in: query
+          description: index of first item
+          required: false
+          type: integer
+          format: int32
+        - name: limit
+          in: query
+          description: how many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: JSON object with paged array of users
+
+  /api/user/{userId}:
+    get:
+      summary: get user info by given user id
+      operationId: getUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: the id of the user to retrieve
+          type: string
+      responses:
+        "200":
+          description: JSON object with user info
+    put:
+      summary: partial update user info by given user id
+      operationId: updateUserById
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: the id of the user to update
+          type: string
+      responses:
+        "200":
+          description: JSON object with user info
+
+  /api/user:
+    post:
+      summary: create new user entity
+      operationId: createUser
+      responses:
+        "200":
+          description: JSON object with new user info
+
+definitions:
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
