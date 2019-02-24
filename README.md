@@ -79,9 +79,9 @@ Run project build:
 Run the script initdata.py (fill the database) execute commands:
 
     $ apt install python-pip
-    $ pip install PyJWT
-    $ pip install python-dotenv
-    $ pip install Faker
+    $ pip install pipenv
+    $ pipenv install
+    $ pipenv shell
 
 Then execute the script itself:
 
