@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	log "github.com/sirupsen/logrus"
@@ -17,7 +18,7 @@ func startServer() {
 
 	server = &http.Server{
 		Addr:    config.ServerAddr,
-		Handler: makeAPIHandler(),
+		Handler: api.NewHandler(),
 	}
 
 	err := server.ListenAndServe()

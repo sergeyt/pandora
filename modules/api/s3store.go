@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"context"
@@ -14,11 +14,11 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func makeFileStore() (ObjectStore, error) {
-	return makeS3Store(), nil
+func NewFileStore() ObjectStore {
+	return NewS3Store()
 }
 
-func makeS3Store() *S3Store {
+func NewS3Store() *S3Store {
 	return &S3Store{
 		config: awsConfig(),
 		bucket: getBucket(),

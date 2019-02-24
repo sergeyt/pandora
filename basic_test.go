@@ -7,9 +7,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/sergeyt/pandora/modules/dgraph"
-
+	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/config"
+	"github.com/sergeyt/pandora/modules/dgraph"
 	httpexpect "gopkg.in/gavv/httpexpect.v1"
 )
 
@@ -32,7 +32,7 @@ func setup(t *testing.T) *TC {
 
 	dgraph.InitSchema()
 
-	server := httptest.NewServer(makeAPIHandler())
+	server := httptest.NewServer(api.NewHandler())
 
 	return &TC{
 		t:      t,

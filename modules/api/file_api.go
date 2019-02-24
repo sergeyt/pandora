@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"fmt"
@@ -31,13 +31,7 @@ func asHTTPHandler(h fileHandler) http.HandlerFunc {
 			return
 		}
 
-		store, err := makeFileStore()
-		if err != nil {
-			log.Errorf("makeFileStore fail: %v", err)
-			apiutil.SendError(w, err)
-			return
-		}
-
+		store := NewFileStore()
 		h(fsopContext{store, path}, w, r)
 	}
 }

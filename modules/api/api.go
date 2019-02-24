@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"net/http"
@@ -12,7 +12,8 @@ import (
 	"github.com/sergeyt/pandora/modules/geoip"
 )
 
-func makeAPIHandler() http.Handler {
+// NewHandler makes http.Handler to serve HTTP API
+func NewHandler() http.Handler {
 	r := chi.NewRouter()
 
 	r.Use(middleware.RequestID)
