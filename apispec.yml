@@ -37,7 +37,7 @@ paths:
           description: JSON object with user info
 
   # GraphQL+- request
-  /api/query:
+  /api/data/query:
     post:
       summary: GraphQL+- (dgraph query language) to request any information from dgraph database
       operationId: query
@@ -46,7 +46,7 @@ paths:
           description: usually array of JSON objects with requested information
 
   # user resource
-  /api/user/list:
+  /api/data/user/list:
     get:
       summary: get paged array of users
       operationId: listUsers
@@ -67,7 +67,7 @@ paths:
         "200":
           description: JSON object with paged array of users
 
-  /api/user/{userId}:
+  /api/data/user/{userId}:
     get:
       summary: get user info by given user id
       operationId: getUserById
@@ -93,7 +93,7 @@ paths:
         "200":
           description: JSON object with user info
 
-  /api/user:
+  /api/data/user:
     post:
       summary: create new user entity
       operationId: createUser
