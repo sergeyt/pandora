@@ -13,7 +13,6 @@ import (
 	"github.com/sergeyt/pandora/modules/utils"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/go-chi/chi"
 	authbase "github.com/gocontrib/auth"
 	"github.com/gocontrib/pubsub"
@@ -188,12 +187,8 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 	tx := dgraph.RequestTransaction(r)
 
-	resp, err := tx.Mutate(ctx, &api.Mutation{
-		DelNquads: []byte("<" + id + "> * * .\n"),
-		CommitNow: true,
-	})
+	resp, err := dgraph.DeleteNode(ctx, tx, id)
 	if err != nil {
-		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}

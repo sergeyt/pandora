@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 dir = os.path.dirname(os.path.realpath(__file__))
 load_dotenv(dotenv_path=os.path.join('../.env'))
 
-DGRAPH_URL = 'http://dgraph:8080'
-API_GATEWAY_URL = 'http://localhost:4200'
+DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
+API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', 'http://localhost:4200')
 
 jwt_secret = os.getenv('JWT_SECRET')
 dgraph_token = os.getenv('DGRAPH_TOKEN')

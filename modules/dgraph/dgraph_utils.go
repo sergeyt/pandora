@@ -164,3 +164,15 @@ func wrapUID(uid string) map[string]string {
 		"uid": uid,
 	}
 }
+
+func DeleteNode(ctx context.Context, tx *dgo.Txn, id string) (*api.Assigned, error) {
+	resp, err := tx.Mutate(ctx, &api.Mutation{
+		DelNquads: []byte("<" + id + "> * * .\n"),
+		CommitNow: true,
+	})
+	if err != nil {
+		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
+		return nil, err
+	}
+	return resp, err
+}

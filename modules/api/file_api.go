@@ -5,8 +5,11 @@ import (
 	"io"
 	"mime"
 	"net/http"
+	"time"
 
 	"github.com/go-chi/chi"
+	Auth "github.com/gocontrib/auth"
+	"github.com/gocontrib/pubsub"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	log "github.com/sirupsen/logrus"
@@ -64,6 +67,11 @@ func downloadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	// TODO mime type filter
 
+	ctx := r.Context()
+	user := Auth.GetContextUser(ctx)
+	// FIXME determine by content type
+	resourceType := "file"
+
 	ct := r.Header.Get("Content-Type")
 	mt, _, err := mime.ParseMediaType(ct)
 	if err != nil {
@@ -78,7 +86,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			apiutil.SendError(w, err)
 			return
 		}
-		results := make(map[string]interface{})
+		results := make(map[string]map[string]interface{})
 		for {
 			p, err := mr.NextPart()
 			if err == io.EOF {
@@ -95,7 +103,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 				path = path + "/" + p.FileName()
 			}
 
-			result, err := c.store.Upload(r.Context(), path, p)
+			result, err := c.store.Upload(ctx, path, mt, p)
 			if err != nil {
 				log.Errorf("FileStore.Upload fail: %v", err)
 				apiutil.SendError(w, err)
@@ -106,7 +114,30 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 		}
 
 		if len(results) > 0 {
-			apiutil.SendJSON(w, results)
+			err = apiutil.SendJSON(w, results)
+			if err != nil {
+				return
+			}
+
+			id := ""
+			if len(results) == 1 {
+				for _, v := range results {
+					id = getUID(v)
+					break
+				}
+			}
+
+			// FIXME send multiple events
+			apiutil.SendEvent(user, &pubsub.Event{
+				Action:       r.Method,
+				Method:       r.Method,
+				URL:          r.URL.String(),
+				ResourceID:   id,
+				ResourceType: resourceType,
+				CreatedBy:    user.GetID(),
+				CreatedAt:    time.Now(),
+				Result:       results,
+			})
 		}
 
 		return
@@ -114,7 +145,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 
 	// TODO generate filename if path is not defined
 
-	result, err := c.store.Upload(r.Context(), c.path, r.Body)
+	result, err := c.store.Upload(r.Context(), c.path, mt, r.Body)
 	if err != nil {
 		log.Errorf("FileStore.Upload fail: %v", err)
 		apiutil.SendError(w, err)
@@ -122,19 +153,60 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	}
 
 	if result != nil {
-		apiutil.SendJSON(w, result)
+		err = apiutil.SendJSON(w, result)
+		if err != nil {
+			return
+		}
+
+		id := getUID(result)
+
+		apiutil.SendEvent(user, &pubsub.Event{
+			Action:       r.Method,
+			Method:       r.Method,
+			URL:          r.URL.String(),
+			ResourceID:   id,
+			ResourceType: resourceType,
+			CreatedBy:    user.GetID(),
+			CreatedAt:    time.Now(),
+			Result:       result,
+		})
 	}
 }
 
 func deleteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
-	result, err := c.store.Delete(r.Context(), c.path)
+	ctx := r.Context()
+	user := Auth.GetContextUser(ctx)
+	// FIXME determine by content type
+	resourceType := "file"
+
+	id, result, err := c.store.Delete(r.Context(), c.path)
 	if err != nil {
 		log.Errorf("FileStore.Delete fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}
 
-	if result != nil {
-		apiutil.SendJSON(w, result)
+	w.WriteHeader(http.StatusOK)
+
+	apiutil.SendEvent(user, &pubsub.Event{
+		Action:       r.Method,
+		Method:       r.Method,
+		URL:          r.URL.String(),
+		ResourceID:   id,
+		ResourceType: resourceType,
+		CreatedBy:    user.GetID(),
+		CreatedAt:    time.Now(),
+		Result:       result,
+	})
+}
+
+func getUID(result map[string]interface{}) string {
+	v, ok := result["uid"]
+	if ok {
+		s, ok := v.(string)
+		if ok {
+			return s
+		}
 	}
+	return ""
 }
