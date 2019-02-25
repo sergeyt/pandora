@@ -2,7 +2,9 @@ package api
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"mime"
 	"net/http"
 	"strings"
 	"time"
@@ -129,54 +131,67 @@ func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
 }
 
 func mutateHandler(w http.ResponseWriter, r *http.Request) {
+	contentType := r.Header.Get("Content-Type")
+	mediaType, _, err := mime.ParseMediaType(contentType)
+	if err != nil {
+		log.Errorf("mime.ParseMediaType fail: %v", err)
+		apiutil.SendError(w, err)
+		return
+	}
+
 	ctx := r.Context()
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
 	id := chi.URLParam(r, "id")
 	nodeLabel := dgraph.NodeLabel(resourceType)
 	user := authbase.GetContextUser(ctx)
 
-	var in utils.OrderedJSON
-	err := json.NewDecoder(r.Body).Decode(&in)
-	if err != nil {
-		log.Errorf("bad JSON. json.Decoder.Decode fail: %v", err)
-		apiutil.SendError(w, err)
-		return
+	if mediaType == "application/json" {
+
+		var in utils.OrderedJSON
+		err = json.NewDecoder(r.Body).Decode(&in)
+		if err != nil {
+			log.Errorf("bad JSON. json.Decoder.Decode fail: %v", err)
+			apiutil.SendError(w, err)
+			return
+		}
+
+		tx := dgraph.RequestTransaction(r)
+
+		results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
+			Input:     in,
+			NodeLabel: nodeLabel,
+			ID:        id,
+			By:        user.GetID(),
+		})
+		if err != nil {
+			apiutil.SendError(w, err)
+			return
+		}
+
+		var out interface{} = results
+		if len(results) == 1 {
+			out = results[0]
+		}
+
+		err = apiutil.SendJSON(w, out)
+		if err != nil {
+			return
+		}
+
+		apiutil.SendEvent(user, &pubsub.Event{
+			Action:       r.Method,
+			Method:       r.Method,
+			URL:          r.URL.String(),
+			ResourceID:   id,
+			ResourceType: resourceType,
+			Payload:      &in,
+			CreatedBy:    user.GetID(),
+			CreatedAt:    time.Now(),
+			Result:       out,
+		})
+	} else {
+		apiutil.SendError(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
 	}
-
-	tx := dgraph.RequestTransaction(r)
-
-	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
-		Input:     in,
-		NodeLabel: nodeLabel,
-		ID:        id,
-		By:        user.GetID(),
-	})
-	if err != nil {
-		apiutil.SendError(w, err)
-		return
-	}
-
-	var out interface{} = results
-	if len(results) == 1 {
-		out = results[0]
-	}
-
-	err = apiutil.SendJSON(w, out)
-	if err != nil {
-		return
-	}
-
-	apiutil.SendEvent(user, &pubsub.Event{
-		Action:       r.Method,
-		Method:       r.Method,
-		URL:          r.URL.String(),
-		ResourceID:   id,
-		ResourceType: resourceType,
-		Payload:      &in,
-		CreatedBy:    user.GetID(),
-		CreatedAt:    time.Now(),
-		Result:       out,
-	})
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
