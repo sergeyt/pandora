@@ -72,14 +72,14 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	// FIXME determine by content type
 	resourceType := "file"
 
-	ct := r.Header.Get("Content-Type")
-	mt, _, err := mime.ParseMediaType(ct)
+	contentType := r.Header.Get("Content-Type")
+	mediaType, _, err := mime.ParseMediaType(contentType)
 	if err != nil {
 		log.Errorf("mime.ParseMediaType fail: %v", err)
 		apiutil.SendError(w, err)
 		return
 	}
-	if mt == "multipart/form-data" || mt == "multipart/mixed" {
+	if mediaType == "multipart/form-data" || mediaType == "multipart/mixed" {
 		mr, err := r.MultipartReader()
 		if err != nil {
 			log.Errorf("http.Request.MultipartReader fail: %v", err)
@@ -103,7 +103,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 				path = path + "/" + p.FileName()
 			}
 
-			result, err := c.store.Upload(ctx, path, mt, p)
+			result, err := c.store.Upload(ctx, path, mediaType, p)
 			if err != nil {
 				log.Errorf("FileStore.Upload fail: %v", err)
 				apiutil.SendError(w, err)
@@ -145,7 +145,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 
 	// TODO generate filename if path is not defined
 
-	result, err := c.store.Upload(r.Context(), c.path, mt, r.Body)
+	result, err := c.store.Upload(r.Context(), c.path, mediaType, r.Body)
 	if err != nil {
 		log.Errorf("FileStore.Upload fail: %v", err)
 		apiutil.SendError(w, err)
