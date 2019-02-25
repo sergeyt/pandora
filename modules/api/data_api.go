@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/dgraph-io/dgo/protos/api"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
@@ -26,6 +27,7 @@ func dataAPI(r chi.Router) {
 
 	r.Post("/api/query", queryHandler)
 	r.Get("/api/me", meHandler)
+	r.Post("/api/nquads", setNquads)
 	r.Get("/api/data/{type}/list", listHandler)
 	r.Get("/api/data/{type}/{id}", readHandler)
 
@@ -192,6 +194,44 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		apiutil.SendError(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
 	}
+}
+
+func setNquads(w http.ResponseWriter, r *http.Request) {
+	contentType := r.Header.Get("Content-Type")
+	mediaType, _, err := mime.ParseMediaType(contentType)
+	if err != nil {
+		log.Errorf("mime.ParseMediaType fail: %v", err)
+		apiutil.SendError(w, err)
+		return
+	}
+
+	if mediaType != "application/n-quads" {
+		apiutil.SendError(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
+		return
+	}
+
+	nquads, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		apiutil.SendError(w, err, http.StatusInternalServerError)
+		return
+	}
+
+	ctx := r.Context()
+	// TODO add metadata props created_by, modified_by
+	tx := dgraph.RequestTransaction(r)
+
+	resp, err := tx.Mutate(ctx, &api.Mutation{
+		SetNquads: nquads,
+		CommitNow: true,
+	})
+	if err != nil {
+		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
+		apiutil.SendError(w, err, http.StatusInternalServerError)
+		return
+	}
+
+	// TODO raise pubsub event
+	apiutil.SendJSON(w, resp)
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
