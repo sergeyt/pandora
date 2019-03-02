@@ -1,5 +1,5 @@
 # Build image
-FROM golang:1.11-alpine as builder
+FROM golang:1.12-alpine as builder
 
 ARG CADDY_VERSION="0.11.4"
 
