@@ -117,6 +117,29 @@ def mutate(data):
     return resp.json()
 
 
+def rdf_repr(v):
+    if isinstance(v, str):
+        return '"{0}"'.format(v)
+    return v
+
+
+def nquad(id, k, v):
+    a = k.split('@')
+    p = a[0]
+    lang = a[1] if len(a) == 2 else ''
+    s = rdf_repr(v)
+    if len(lang) > 0:
+        s += "@{0}".format(lang)
+    return "_:{0} <{1}> {2} .\n".format(id, p, s)
+
+
+def nquads(d, id='x'):
+    result = ''
+    for k, v in d.items():
+        result += nquad(id, k, v)
+    return result
+
+
 def set_nquads(dataset):
     data = "{\nset {\n" + dataset + "}}"
     print(data)

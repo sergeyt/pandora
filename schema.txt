@@ -25,7 +25,15 @@ content_type: string @index(term, hash) .
 lang: string @index(term, hash) .
 hash: string @index(term) .
 text: string @lang @index(fulltext) .
-transcription: string @lang @index(fulltext) .
+transcript: string @lang @index(fulltext) .
+
+word: string @count .
+phrase: string @count .
+idiom: string @count .
+noun: string @count .
+adjective: string @count .
+verb: string @count .
+adverb: string @count .
 
 author: uid @count .
 channel: uid @count .
@@ -33,7 +41,9 @@ from: uid @count .
 to: uid @count .
 
 translated_as: uid @count @reverse .
-pronounced_as: uid @count .
+visual: uid @count .
+audio: uid @count .
+related: uid @count @reverse .
 relevant: uid @count @reverse .
 
 created_at: dateTime .

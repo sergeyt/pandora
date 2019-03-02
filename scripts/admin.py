@@ -6,7 +6,7 @@ import logging
 import traceback
 import api
 import initdata
-import words
+import lingvo
 
 from functools import wraps
 from flask import Flask, request
@@ -51,7 +51,7 @@ def resetdb():
     api.drop_all()
     api.init_schema()
     initdata.init()
-    words.init()
+    lingvo.init()
     return done
 
 

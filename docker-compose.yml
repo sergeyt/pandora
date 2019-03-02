@@ -154,6 +154,8 @@ services:
       dockerfile: ./docker/Dockerfile-caddy
     container_name: caddy
     env_file: .env
+    environment:
+      DGRAPH_URL: http://dgraph:8080
     volumes:
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddycerts:/etc/caddycerts
