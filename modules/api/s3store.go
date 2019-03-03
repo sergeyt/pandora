@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 
 	"github.com/dgraph-io/dgo"
 
@@ -140,15 +139,9 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 	in["version_id"] = out.VersionID
 	in["content_type"] = mediaType
 
-	label := dgraph.NodeLabel("file")
-	i := strings.Index(mediaType, "/")
-	if i >= 0 {
-		label = dgraph.NodeLabel(mediaType[0:i])
-	}
-
 	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
-		NodeLabel: label,
+		NodeLabel: dgraph.NodeLabel("file"),
 		ID:        id,
 		By:        user.GetID(),
 	})
