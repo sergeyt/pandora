@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-docker-compose down
-
 git checkout Gopkg.lock
+git stash
 git pull
-dep ensure
+git stash apply
 go install
+dep ensure
+
+docker-compose down
 
 if [ $REBUILD = "yes" ]; then
     docker-compose build --no-cache
