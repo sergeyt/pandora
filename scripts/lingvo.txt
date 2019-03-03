@@ -7,15 +7,15 @@ _:apple_en <word> "" .
 _:apple_en <noun> "" .
 _:apple_en <visual> _:img_apple1 .
 _:apple_en <audio> _:aud_apple1 .
-_:apple_en <transcript@en> "ˈæp(ə)l" .
-_:apple_en <transcript@ru> "эпл" .
+_:apple_en <transcript> "ˈæp(ə)l"@en .
+_:apple_en <transcript> "эпл"@ru .
 
 _:apple_ru <text> "яблоко" .
 _:apple_ru <lang> "ru" .
 _:apple_ru <word> "" .
 _:apple_ru <noun> "" .
 _:apple_ru <visual> _:img_apple1 .
-_:apple_ru <transcript@ru> "яблако" .
+_:apple_ru <transcript> "яблако"@ru .
 
 _:apple_en <translated_as> _:apple_ru .
 
@@ -28,15 +28,15 @@ _:bed_en <word> "" .
 _:bed_en <noun> "" .
 _:bed_en <visual> _:img_bed1 .
 _:bed_en <audio> _:aud_bed1 .
-_:bed_en <transcript@en> "bed" .
-_:bed_en <transcript@ru> "бэд" .
+_:bed_en <transcript> "bed"@en .
+_:bed_en <transcript> "бэд"@ru .
 
 _:bed_ru <text> "кровать" .
 _:bed_ru <lang> "ru" .
 _:bed_ru <word> "" .
 _:bed_ru <noun> "" .
 _:bed_ru <visual> _:img_bed1 .
-_:bed_ru <transcript@ru> "кравать" .
+_:bed_ru <transcript> "кравать"@ru .
 
 _:bed_en <translated_as> _:bed_ru .
 
@@ -49,15 +49,15 @@ _:body_en <word> "" .
 _:body_en <noun> "" .
 _:body_en <visual> _:img_body1 .
 _:body_en <audio> _:aud_body1 .
-_:body_en <transcript@en> "ˈbɒdi" .
-_:body_en <transcript@ru> "бади" .
+_:body_en <transcript> "ˈbɒdi"@en .
+_:body_en <transcript> "бади"@ru .
 
 _:body_ru <text> "тело" .
 _:body_ru <lang> "ru" .
 _:body_ru <word> "" .
 _:body_ru <noun> "" .
 _:body_ru <visual> _:img_body1 .
-_:body_ru <transcript@ru> "тело" .
+_:body_ru <transcript> "тело"@ru .
 
 _:body_en <translated_as> _:body_ru .
 
@@ -70,15 +70,15 @@ _:boy_en <word> "" .
 _:boy_en <noun> "" .
 _:boy_en <visual> _:img_boy1 .
 _:boy_en <audio> _:aud_boy1 .
-_:boy_en <transcript@en> "bɔɪ" .
-_:boy_en <transcript@ru> "бой" .
+_:boy_en <transcript> "bɔɪ"@en .
+_:boy_en <transcript> "бой"@ru .
 
 _:boy_ru <text> "мальчик" .
 _:boy_ru <lang> "ru" .
 _:boy_ru <word> "" .
 _:boy_ru <noun> "" .
 _:boy_ru <visual> _:img_boy1 .
-_:boy_ru <transcript@ru> "мальчик" .
+_:boy_ru <transcript> "мальчик"@ru .
 
 _:bed_en <translated_as> _:bed_ru .
 
@@ -91,15 +91,15 @@ _:car_en <word> "" .
 _:car_en <noun> "" .
 _:car_en <visual> _:img_car1 .
 _:car_en <audio> _:aud_car1 .
-_:car_en <transcript@en> "kɑː(r)" .
-_:car_en <transcript@ru> "кар" .
+_:car_en <transcript> "kɑː(r)"@en .
+_:car_en <transcript> "кар"@ru .
 
 _:car_ru <text> "автомобиль" .
 _:car_ru <lang> "ru" .
 _:car_ru <word> "" .
 _:car_ru <noun> "" .
 _:car_ru <visual> _:img_car1 .
-_:car_ru <transcript@ru> "автамабиль" .
+_:car_ru <transcript> "автамабиль"@ru .
 
 _:car_en <translated_as> _:car_ru .
 
@@ -112,15 +112,15 @@ _:door_en <word> "" .
 _:door_en <noun> "" .
 _:door_en <visual> _:img_door1 .
 _:door_en <audio> _:aud_door1 .
-_:door_en <transcript@en> "dɔː(r)" .
-_:door_en <transcript@ru> "дор" .
+_:door_en <transcript> "dɔː(r)"@en .
+_:door_en <transcript> "дор"@ru .
 
 _:door_ru <text> "дверь" .
 _:door_ru <lang> "ru" .
 _:door_ru <word> "" .
 _:door_ru <noun> "" .
 _:door_ru <visual> _:img_door1 .
-_:door_ru <transcript@ru> "дверь" .
+_:door_ru <transcript> "дверь"@ru .
 
 _:door_en <translated_as> _:door_ru .
 
@@ -133,15 +133,15 @@ _:house_en <word> "" .
 _:house_en <noun> "" .
 _:house_en <visual> _:img_house1 .
 _:house_en <audio> _:aud_house1 .
-_:house_en <transcript@en> "haʊs" .
-_:house_en <transcript@ru> "хаус" .
+_:house_en <transcript> "haʊs"@en .
+_:house_en <transcript> "хаус"@ru .
 
 _:house_ru <text> "дом" .
 _:house_ru <lang> "ru" .
 _:house_ru <word> "" .
 _:house_ru <noun> "" .
 _:house_ru <visual> _:img_house1 .
-_:house_ru <transcript@ru> "дом" .
+_:house_ru <transcript> "дом"@ru .
 
 _:house_en <translated_as> _:house_ru .
 
@@ -154,15 +154,15 @@ _:girl_en <word> "" .
 _:girl_en <noun> "" .
 _:girl_en <visual> _:img_girl1 .
 _:girl_en <audio> _:aud_girl1 .
-_:girl_en <transcript@en> "ɡɜː(r)l" .
-_:girl_en <transcript@ru> "гёл" .
+_:girl_en <transcript> "ɡɜː(r)l"@en .
+_:girl_en <transcript> "гёл"@ru .
 
 _:girl_ru <text> "девушка" .
 _:girl_ru <lang> "ru" .
 _:girl_ru <word> "" .
 _:girl_ru <noun> "" .
 _:girl_ru <visual> _:img_girl1 .
-_:girl_ru <transcript@ru> "девушка" .
+_:girl_ru <transcript> "девушка"@ru .
 
 _:girl_en <translated_as> _:girl_ru .
 
@@ -179,8 +179,8 @@ _:gum_en <visual> _:img_gum1 .
 _:gum_en <visual> _:img_gum2 .
 _:gum_en <visual> _:img_gum3 .
 _:gum_en <audio> _:aud_gum1 .
-_:gum_en <transcript@en> "ɡʌm" .
-_:gum_en <transcript@ru> "гам" .
+_:gum_en <transcript> "ɡʌm"@en .
+_:gum_en <transcript> "гам"@ru .
 
 _:gum_ru <text> "жевачка" .
 _:gum_ru <lang> "ru" .
@@ -189,7 +189,7 @@ _:gum_ru <noun> "" .
 _:gum_ru <visual> _:img_gum1 .
 _:gum_ru <visual> _:img_gum2 .
 _:gum_ru <visual> _:img_gum3 .
-_:gum_ru <transcript@ru> "живачка" .
+_:gum_ru <transcript> "живачка"@ru .
 
 _:gum_en <translated_as> _:gum_ru .
 
@@ -202,15 +202,15 @@ _:lake_en <word> "" .
 _:lake_en <noun> "" .
 _:lake_en <visual> _:img_lake1 .
 _:lake_en <audio> _:aud_lake1 .
-_:lake_en <transcript@en> "leɪk" .
-_:lake_en <transcript@ru> "лэйк" .
+_:lake_en <transcript> "leɪk"@en .
+_:lake_en <transcript> "лэйк"@ru .
 
 _:lake_ru <text> "озеро" .
 _:lake_ru <lang> "ru" .
 _:lake_ru <word> "" .
 _:lake_ru <noun> "" .
 _:lake_ru <visual> _:img_lake1 .
-_:lake_en <transcript@ru> "озеро" .
+_:lake_en <transcript> "озеро"@ru .
 
 _:lake_en <translated_as> _:lake_ru .
 
@@ -230,8 +230,8 @@ _:recreation_en <visual> _:img_recreation1 .
 _:recreation_en <visual> _:img_recreation2 .
 _:recreation_en <visual> _:img_recreation3 .
 _:recreation_en <audio> _:aud_recreation1 .
-_:recreation_en <transcript@en> "ˌrekriˈeɪʃ(ə)n" .
-_:recreation_en <transcript@ru> "рикри`эйшен" .
+_:recreation_en <transcript> "ˌrekriˈeɪʃ(ə)n"@en .
+_:recreation_en <transcript> "рикри`эйшен"@ru .
 
 _:recreation_ru <text> "отдых" .
 _:recreation_ru <lang> "ru" .
@@ -240,7 +240,7 @@ _:recreation_ru <noun> "" .
 _:recreation_ru <visual> _:img_recreation1 .
 _:recreation_ru <visual> _:img_recreation2 .
 _:recreation_ru <visual> _:img_recreation3 .
-_:recreation_ru <transcript@ru> "отдых" .
+_:recreation_ru <transcript> "отдых"@ru .
 
 _:recreation_en <translated_as> _:recreation_ru .
 
@@ -250,15 +250,15 @@ _:spoon_en <word> "" .
 _:spoon_en <noun> "" .
 _:spoon_en <visual> _:img_spoon1 .
 _:spoon_en <audio> _:aud_spoon1 .
-_:spoon_en <transcript@en> "spuːn" .
-_:spoon_en <transcript@ru> "спун" .
+_:spoon_en <transcript> "spuːn"@en .
+_:spoon_en <transcript> "спун"@ru .
 
 _:spoon_ru <text> "ложка" .
 _:spoon_ru <lang> "ru" .
 _:spoon_ru <word> "" .
 _:spoon_ru <noun> "" .
 _:spoon_ru <visual> _:img_spoon1 .
-_:spoon_ru <transcript@ru> "лошка" .
+_:spoon_ru <transcript> "лошка"@ru .
 
 _:spoon_en <translated_as> _:spoon_ru .
 
@@ -271,14 +271,14 @@ _:table_en <word> "" .
 _:table_en <noun> "" .
 _:table_en <visual> _:img_table1 .
 _:table_en <audio> _:aud_table1 .
-_:table_en <transcript@en> "ˈteɪb(ə)l" .
-_:table_en <transcript@ru> "тэйбл" .
+_:table_en <transcript> "ˈteɪb(ə)l"@en .
+_:table_en <transcript> "тэйбл"@ru .
 
 _:table_ru <text> "стол" .
 _:table_ru <lang> "ru" .
 _:table_ru <word> "" .
 _:table_ru <noun> "" .
 _:table_ru <visual> _:img_table1 .
-_:table_ru <transcript@ru> "стол" .
+_:table_ru <transcript> "стол"@ru .
 
 _:table_en <translated_as> _:table_ru .
