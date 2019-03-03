@@ -1,3 +1,10 @@
+_user: string @count .
+_term: string @count .
+_file: string @count .
+_category: string @count .
+_message: string @count .
+_channel: string @count .
+
 name: string @index(term, hash) .
 first_name: string @index(term, hash) .
 last_name: string @index(term, hash) .
@@ -34,6 +41,7 @@ noun: string @count .
 adjective: string @count .
 verb: string @count .
 adverb: string @count .
+slang: string @count .
 
 author: uid @count .
 channel: uid @count .
