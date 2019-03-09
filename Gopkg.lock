@@ -37,7 +37,7 @@
   version = "v1.5"
 
 [[projects]]
-  digest = "1:96fd8b51c1e88e5ecc517e4bc226661b52561475b22ae10a7c82b4e8d95bc078"
+  digest = "1:718dd81b0dcfc49323360bcc7b4f940c9d5f27106d17eddb25a714e9b2563d24"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -78,8 +78,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "f2bb620afb315242706942e6ca4c7d26ee5ed627"
-  version = "v1.17.9"
+  revision = "8b705a6dec722bcda3a9309c0924d4eca24f7c72"
+  version = "v1.17.14"
 
 [[projects]]
   branch = "master"
@@ -137,7 +137,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:6ff9a8da4e3723fa31cd7b1f1366e8e6141c453007606b8a86ffefd7b676786a"
+  digest = "1:362ca778151fb7b778774dd8a4778fc8ce3ffa085662552f600fa88ac4ddcfdf"
   name = "github.com/dgraph-io/dgo"
   packages = [
     ".",
@@ -145,7 +145,7 @@
     "y",
   ]
   pruneopts = ""
-  revision = "015408399101177ddb1e52ebc04edb5282d5dd11"
+  revision = "95299da439fdb3190e94dda8e27276fde80435d6"
 
 [[projects]]
   digest = "1:6098222470fe0172157ce9bbef5d2200df4edde17ee649c5d6e48330e4afa4c6"
@@ -527,7 +527,7 @@
   version = "v0.0.6"
 
 [[projects]]
-  digest = "1:5106b53331ac101fa2b1ac3ff2ba390a91fce36abc8417d211e1ed6ee2a9d94f"
+  digest = "1:a20bef41961c1f1f46aabe02960a5e14a69552d4d7dfde8366380734ba0332cf"
   name = "github.com/mholt/caddy"
   packages = [
     ".",
@@ -538,8 +538,8 @@
     "telemetry",
   ]
   pruneopts = ""
-  revision = "c1d6c928e3a29e94013bda4d339d9e426500c8e7"
-  version = "v0.11.4"
+  revision = "80dfb8b2a7f89b120a627bc4d866a1dc5ed3d92f"
+  version = "v0.11.5"
 
 [[projects]]
   branch = "master"
@@ -843,7 +843,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7a77b79efe106f3304dcf50dc86836151758f246169b527722552a5eb2ae14fc"
+  digest = "1:f1282b7b8f47533e585be65217b076a5fa31c8b78aa2a3bd353e2bf5dcd8ce2e"
   name = "golang.org/x/crypto"
   packages = [
     "curve25519",
@@ -855,7 +855,7 @@
     "ssh/terminal",
   ]
   pruneopts = ""
-  revision = "8dd112bcdc25174059e45e07517d9fc663123347"
+  revision = "c2843e01d9a2bc60bb26ad24e09734fdc2d9ec58"
 
 [[projects]]
   branch = "master"
@@ -896,7 +896,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e9f4395061c4001e3a32b7ab02cb4fa62b50bafaa3245e3f84cc80f637df61a6"
+  digest = "1:7157453cf1945d64e643e85cd4912e8fb50dd437deaf0511de5de7722abddacb"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -904,7 +904,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "b6889370fb1098ed892bd3400d189bb6a3355813"
+  revision = "980fc434d28e11f0a5c1ae102a263b8c56641011"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
@@ -950,11 +950,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:bedc60c52eb064eca6d7ce3321602522c5f50b6635aa7bc93c5624f1e65f9eda"
+  digest = "1:6a8803e2481c92e20f9fc654b8ddfbd5a2a802c0454d0bc5b7a018b218282205"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = ""
-  revision = "4f5b463f9597cbe0dd13a6a2cd4f85e788d27508"
+  revision = "5fe7a883aa19554f42890211544aa549836af7b7"
 
 [[projects]]
   digest = "1:b6c17b0c657f047118ae59b358950b28515914512cf3de02388cc42e33a92520"
