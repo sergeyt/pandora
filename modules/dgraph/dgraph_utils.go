@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/dgraph-io/dgo"
@@ -175,4 +177,14 @@ func DeleteNode(ctx context.Context, tx *dgo.Txn, id string) (*api.Assigned, err
 		return nil, err
 	}
 	return resp, err
+}
+
+func IsUID(s string) bool {
+	if strings.HasPrefix(s, "0x") {
+		_, err := strconv.ParseInt(s[2:], 16, 64)
+		if err == nil {
+			return true
+		}
+	}
+	return false
 }

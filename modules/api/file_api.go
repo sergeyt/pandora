@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"mime"
@@ -198,6 +199,13 @@ func deleteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 		CreatedAt:    time.Now(),
 		Result:       result,
 	})
+}
+
+func deleteFileObject(fileNode map[string]interface{}) {
+	ctx := context.Background()
+	path := fileNode["path"].(string)
+	store := NewFileStore()
+	store.DeleteObject(ctx, path)
 }
 
 func getUID(result map[string]interface{}) string {

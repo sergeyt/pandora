@@ -242,10 +242,25 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 	tx := dgraph.RequestTransaction(r)
 
+	var fileNode map[string]interface{}
+
+	if resourceType == "file" {
+		node, err := dgraph.ReadNode(ctx, tx, id)
+		if err != nil {
+			apiutil.SendError(w, err)
+			return
+		}
+		fileNode = node
+	}
+
 	resp, err := dgraph.DeleteNode(ctx, tx, id)
 	if err != nil {
 		apiutil.SendError(w, err)
 		return
+	}
+
+	if fileNode != nil {
+		go deleteFileObject(fileNode)
 	}
 
 	w.WriteHeader(http.StatusOK)

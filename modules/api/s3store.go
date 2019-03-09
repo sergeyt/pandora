@@ -51,9 +51,10 @@ func getBucket() string {
 
 // ObjectStore is store of any BLOB objects
 type ObjectStore interface {
-	Download(ctx context.Context, path string, w io.Writer) error
+	Download(ctx context.Context, id string, w io.Writer) error
 	Upload(ctx context.Context, path, mediaType string, r io.ReadCloser) (map[string]interface{}, error)
-	Delete(ctx context.Context, path string) (string, interface{}, error)
+	Delete(ctx context.Context, id string) (string, interface{}, error)
+	DeleteObject(ctx context.Context, path string) error
 }
 
 // S3Store is Amazon S3 ObjectStore
@@ -73,10 +74,28 @@ func (fs *S3Store) EnsureBucket() error {
 }
 
 // Download object at given path
-func (fs *S3Store) Download(ctx context.Context, path string, w io.Writer) error {
+func (fs *S3Store) Download(ctx context.Context, id string, w io.Writer) error {
+	client, err := dgraph.NewClient()
+	if err != nil {
+		return err
+	}
+
+	tx := client.NewTxn()
+	defer tx.Discard(ctx)
+
+	file, err := findFile(ctx, tx, id)
+	if err != nil {
+		return err
+	}
+
+	if file == nil {
+		return fmt.Errorf("file not found: %s", id)
+	}
+
+	path := file.Path
 	s := session.New(fs.config)
 	d := s3manager.NewDownloader(s)
-	_, err := d.DownloadWithContext(ctx, &s3Writer{w}, &s3.GetObjectInput{
+	_, err = d.DownloadWithContext(ctx, &s3Writer{w, 0}, &s3.GetObjectInput{
 		Bucket: aws.String(fs.bucket),
 		Key:    aws.String(path),
 	})
@@ -90,10 +109,19 @@ func (fs *S3Store) Download(ctx context.Context, path string, w io.Writer) error
 
 type s3Writer struct {
 	io.Writer
+	offset int64
 }
 
 func (w *s3Writer) WriteAt(p []byte, off int64) (n int, err error) {
-	return 0, fmt.Errorf("not supported")
+	if w.offset == off {
+		n, err := w.Write(p)
+		if err != nil {
+			return n, err
+		}
+		w.offset += int64(n)
+		return n, err
+	}
+	return 0, fmt.Errorf("write at any offset is not supported")
 }
 
 // Upload object at given path
@@ -122,7 +150,7 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 	tx := client.NewTxn()
 	defer tx.Discard(ctx)
 
-	id, err := findFile(ctx, tx, path)
+	file, err := findFile(ctx, tx, path)
 	if err != nil {
 		return nil, err
 	}
@@ -130,7 +158,9 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 	user := auth.GetContextUser(ctx)
 
 	in := make(utils.OrderedJSON)
-	if len(id) > 0 {
+	id := ""
+	if file != nil {
+		id = file.ID
 		in["uid"] = id
 	}
 	in["path"] = path
@@ -155,12 +185,30 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 	return results[0], nil
 }
 
-// Delete object at given path
-func (fs *S3Store) Delete(ctx context.Context, path string) (string, interface{}, error) {
-	id := ""
+// Delete object by given path or file id
+func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, error) {
+	client, err := dgraph.NewClient()
+	if err != nil {
+		return "", nil, err
+	}
+
+	tx := client.NewTxn()
+	defer tx.Discard(ctx)
+
+	file, err := findFile(ctx, tx, id)
+	if err != nil {
+		return "", nil, err
+	}
+
+	if file == nil {
+		return "", nil, fmt.Errorf("file not found: %s", id)
+	}
+
+	path := file.Path
+	id = file.ID
 	sess := session.New(fs.config)
 	svc := s3.New(sess)
-	_, err := svc.DeleteObject(&s3.DeleteObjectInput{
+	_, err = svc.DeleteObject(&s3.DeleteObjectInput{
 		Bucket: aws.String(fs.bucket),
 		Key:    aws.String(path),
 	})
@@ -169,60 +217,71 @@ func (fs *S3Store) Delete(ctx context.Context, path string) (string, interface{}
 		return id, nil, err
 	}
 
-	client, err := dgraph.NewClient()
-	if err != nil {
-		return id, nil, err
-	}
-
-	tx := client.NewTxn()
-	defer tx.Discard(ctx)
-
-	id, err = findFile(ctx, tx, path)
-	if err != nil {
-		return id, nil, err
-	}
-
 	resp2, err := dgraph.DeleteNode(ctx, tx, id)
 	if err != nil {
-		return id, nil, err
+		return file.ID, nil, err
 	}
 
-	return id, resp2, nil
+	return file.ID, resp2, nil
 }
 
-func findFile(ctx context.Context, tx *dgo.Txn, path string) (string, error) {
-	query := `query file($path: string) {
-		files(func: eq(path, $path)) {
+// DeleteObject by given path
+func (fs *S3Store) DeleteObject(ctx context.Context, path string) error {
+	sess := session.New(fs.config)
+	svc := s3.New(sess)
+	_, err := svc.DeleteObject(&s3.DeleteObjectInput{
+		Bucket: aws.String(fs.bucket),
+		Key:    aws.String(path),
+	})
+	if err != nil {
+		log.Errorf("s3.Delete fail: %v", err)
+		return err
+	}
+	return nil
+}
+
+type FileInfo struct {
+	ID   string `json:"uid"`
+	Path string `json:"path"`
+}
+
+func findFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
+	filter := "eq(path, $id)"
+	if dgraph.IsUID(id) {
+		filter = "uid($id)"
+	}
+
+	query := fmt.Sprintf(`query file($id: string) {
+		files(func: %s) {
 			uid
+			path
 		}
-	  }`
+	  }`, filter)
 	resp, err := tx.QueryWithVars(ctx, query, map[string]string{
-		"$path": path,
+		"$id": id,
 	})
 	if err != nil {
 		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
-		return "", err
+		return nil, err
 	}
 
 	var result struct {
-		Files []struct {
-			ID string `json:"uid"`
-		} `json:"files"`
+		Files []FileInfo `json:"files"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
 	if err != nil {
 		log.Errorf("json.Unmarshal fail: %v", err)
-		return "", err
+		return nil, err
 	}
 
 	if len(result.Files) == 0 {
-		return "", nil
+		return nil, nil
 	}
 
 	if len(result.Files) > 1 {
-		return "", fmt.Errorf("inconsistent db state: found multiple file nodes")
+		return nil, fmt.Errorf("inconsistent db state: found multiple file nodes")
 	}
 
-	id := result.Files[0].ID
-	return id, nil
+	file := result.Files[0]
+	return &file, nil
 }
