@@ -550,12 +550,12 @@
   revision = "e3e89d1096d76d61680f8eeb8f67649baa6c54b8"
 
 [[projects]]
-  digest = "1:103c1001b79009329824bc60f93f8f7150bf1ad31f18d29a476deb8a2de0f002"
+  digest = "1:7edeb6392089011fbc6f4c9e7b675030aa3c899b7c19f6c078f4152408372961"
   name = "github.com/miekg/dns"
   packages = ["."]
   pruneopts = ""
-  revision = "8fc2e5773bbd308ca2fcc962fd8d25c1bd0f6743"
-  version = "v1.1.4"
+  revision = "035891ab61920141b83acf299dfb1bd6e58343f3"
+  version = "v1.1.5"
 
 [[projects]]
   digest = "1:bcc46a0fbd9e933087bef394871256b5c60269575bb661935874729c65bbbf60"
@@ -859,7 +859,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7489cf41e267d966cbc16d9b98622e7124818af9339d5466aaec4fc736c404c0"
+  digest = "1:ff12087fa9768d4010861a55de911cac8ef5a60af9c8e9d276da6936f8da47a1"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -878,7 +878,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "16b79f2e4e95ea23b2bf9903c9809ff7b013ce85"
+  revision = "c10a0554eabf8a6a7a6cc3097c9d9f43dcee0a43"
 
 [[projects]]
   branch = "master"
@@ -896,7 +896,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7157453cf1945d64e643e85cd4912e8fb50dd437deaf0511de5de7722abddacb"
+  digest = "1:dd444162b5f02f1fee86207d1c963790e7a5f8d857c1f2665a75332cb1a511f0"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -904,7 +904,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "980fc434d28e11f0a5c1ae102a263b8c56641011"
+  revision = "10058d7d4faa7dd5ef860cbd31af00903076e7b8"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
