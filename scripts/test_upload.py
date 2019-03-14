@@ -27,12 +27,14 @@ def test_upload():
     print(resp.text)
 
     # download by id
-    resp = requests.get(api.url('/api/file/{0}'.format(file_id)), headers=headers)
+    url1 = api.url('/api/file/{0}'.format(file_id))
+    resp = requests.get(url1, headers=headers)
     resp.raise_for_status()
     print(resp.text)
 
     resp = requests.delete(file_url, headers=headers)
     resp.raise_for_status()
+
 
 def test_delete_file_node():
     api.login("admin", "admin123")
@@ -53,9 +55,11 @@ def test_delete_file_node():
     print(resp.text)
 
     # download by id
-    resp = requests.get(api.url('/api/file/{0}'.format(file_id)), headers=headers)
+    url1 = api.url('/api/file/{0}'.format(file_id))
+    resp = requests.get(url1, headers=headers)
     resp.raise_for_status()
     print(resp.text)
 
-    resp = requests.delete(api.url('/api/data/file/{0}'.format(file_id)), headers=headers)
+    url2 = api.url('/api/data/file/{0}'.format(file_id))
+    resp = requests.delete(url2, headers=headers)
     resp.raise_for_status()
