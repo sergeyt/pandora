@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:25e90949d88e66bcbb646626a293c77a97237b37a8f854c1e8ae817b74b5c2cf"
+  digest = "1:3de22f0e7208f2e7fb8662fcab0aee360e3cae85d5f3649f3bf0b247f575d183"
   name = "cloud.google.com/go"
   packages = ["compute/metadata"]
   pruneopts = ""
-  revision = "c9474f2f8deb81759839474b6bd1726bbfe1c1c4"
-  version = "v0.36.0"
+  revision = "f52f9bc132541d2aa914f42100c36d10b1ef7e0c"
+  version = "v0.37.0"
 
 [[projects]]
   digest = "1:c39642fccd7092e7fbc39e4f3eb62b4bcdf0765a6648d0ea4c90cd1ed1a9c70a"
@@ -37,7 +37,7 @@
   version = "v1.5"
 
 [[projects]]
-  digest = "1:718dd81b0dcfc49323360bcc7b4f940c9d5f27106d17eddb25a714e9b2563d24"
+  digest = "1:2b993c6656f5d565326e92b3c18980265ef038cf1116ce37f23335402f87d4fc"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -78,8 +78,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "8b705a6dec722bcda3a9309c0924d4eca24f7c72"
-  version = "v1.17.14"
+  revision = "b0b23985ea7533af9f94731b2c1030a1e46e6500"
+  version = "v1.18.2"
 
 [[projects]]
   branch = "master"
@@ -519,12 +519,12 @@
   version = "v0.0.9"
 
 [[projects]]
-  digest = "1:5be0052cfccc784a7aa8b3c4ea46e4f2fe1e51fc9d79cc8e1feea638231aea76"
+  digest = "1:d0600e4cf07697303f37130791b2ce4577367931416bea8ec4f601bde3f7c5bf"
   name = "github.com/mattn/go-isatty"
   packages = ["."]
   pruneopts = ""
-  revision = "369ecd8cea9851e459abb67eb171853e3986591e"
-  version = "v0.0.6"
+  revision = "c2a7a6ca930a4cd0bc33a3f298eb71960732a3a7"
+  version = "v0.0.7"
 
 [[projects]]
   digest = "1:a20bef41961c1f1f46aabe02960a5e14a69552d4d7dfde8366380734ba0332cf"
@@ -550,12 +550,12 @@
   revision = "e3e89d1096d76d61680f8eeb8f67649baa6c54b8"
 
 [[projects]]
-  digest = "1:7edeb6392089011fbc6f4c9e7b675030aa3c899b7c19f6c078f4152408372961"
+  digest = "1:7924543c4d02b7f67efe013cd836bd438b0ecc275acbae9b88f5c8a2bf9373e4"
   name = "github.com/miekg/dns"
   packages = ["."]
   pruneopts = ""
-  revision = "035891ab61920141b83acf299dfb1bd6e58343f3"
-  version = "v1.1.5"
+  revision = "cc8cd02140663157ce797c6650488d6c8563f31f"
+  version = "v1.1.6"
 
 [[projects]]
   digest = "1:bcc46a0fbd9e933087bef394871256b5c60269575bb661935874729c65bbbf60"
@@ -676,12 +676,12 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:9a3c631555e0351fdc4e696577bb63afd90c399d782a8462dba9d100d7021db3"
+  digest = "1:b73fe282e350b3ef2c71d8ff08e929e0b9670b1bb5b7fde1d3c1b4cd6e6dc8b1"
   name = "github.com/sirupsen/logrus"
   packages = ["."]
   pruneopts = ""
-  revision = "e1e72e9de974bd926e5c56f83753fba2df402ce5"
-  version = "v1.3.0"
+  revision = "dae0fa8d5b0c810a8ab733fbd5510c7cae84eca4"
+  version = "v1.4.0"
 
 [[projects]]
   digest = "1:d9f371ceb44045ca4405b65fed916e4b45396340b9e8674851c3d652f6351cde"
@@ -719,12 +719,12 @@
   version = "v1.0.3"
 
 [[projects]]
-  digest = "1:b98ee2c3f1469ab3b494859d3a9c9e595ec2c63660dea130a5154cfcd427b608"
+  digest = "1:90fe60ab6f827e308b0c8cc1e11dce8ff1e96a927c8b171271a3cb04dd517606"
   name = "github.com/spf13/viper"
   packages = ["."]
   pruneopts = ""
-  revision = "6d33b5a963d922d182c91e8a1c88d81fd150cfd4"
-  version = "v1.3.1"
+  revision = "9e56dacc08fbbf8c9ee2dbc717553c758ce42bc9"
+  version = "v1.3.2"
 
 [[projects]]
   digest = "1:381bcbeb112a51493d9d998bbba207a529c73dbb49b3fd789e48c63fac1f192c"
@@ -790,7 +790,7 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:80c65aa3d7fb8f3dd7b5c37a786e21cb5562e5e1eb1c6b2ba403f69cfd268d18"
+  digest = "1:1a4d48ede01bad9ef78166f8cbd1238698d934c1ce3f04bb9f25133b749e3b42"
   name = "github.com/xenolf/lego"
   packages = [
     "acme",
@@ -811,8 +811,8 @@
     "registration",
   ]
   pruneopts = ""
-  revision = "52e43eb318b07ace590c2144804292c89aa74802"
-  version = "v2.2.0"
+  revision = "2952cdaebd4da7cd560e195343bdd3cb78a67643"
+  version = "v2.3.0"
 
 [[projects]]
   branch = "master"
@@ -843,7 +843,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:f1282b7b8f47533e585be65217b076a5fa31c8b78aa2a3bd353e2bf5dcd8ce2e"
+  digest = "1:ab3e9a81a5ec54c5d1ed41d0d6898ba88c6799fa401b784b06bdee8e432d872b"
   name = "golang.org/x/crypto"
   packages = [
     "curve25519",
@@ -855,11 +855,11 @@
     "ssh/terminal",
   ]
   pruneopts = ""
-  revision = "c2843e01d9a2bc60bb26ad24e09734fdc2d9ec58"
+  revision = "a1f597ede03a7bef967a422b5b3a5bd08805a01e"
 
 [[projects]]
   branch = "master"
-  digest = "1:ff12087fa9768d4010861a55de911cac8ef5a60af9c8e9d276da6936f8da47a1"
+  digest = "1:73e6624a8569db94b0d8f9b34052f73ef9598c380edbce36d89dbbc00941e976"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -878,7 +878,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "c10a0554eabf8a6a7a6cc3097c9d9f43dcee0a43"
+  revision = "9f648a60d9775ef5c977e7669d1673a7a67bef33"
 
 [[projects]]
   branch = "master"
@@ -896,7 +896,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:dd444162b5f02f1fee86207d1c963790e7a5f8d857c1f2665a75332cb1a511f0"
+  digest = "1:9c1e747af61ab955fba74a79e87d5843a5d1d504e3ef86480f76e6a4e3a49136"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -904,7 +904,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "10058d7d4faa7dd5ef860cbd31af00903076e7b8"
+  revision = "fead79001313d15903fb4605b4a1b781532cd93e"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
