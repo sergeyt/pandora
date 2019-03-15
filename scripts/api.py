@@ -5,7 +5,8 @@ import jwt
 from dotenv import load_dotenv
 
 dir = os.path.dirname(os.path.realpath(__file__))
-load_dotenv(dotenv_path=os.path.join('../.env'))
+dotenv_path = os.path.realpath(os.path.join(dir, '../.env'))
+load_dotenv(dotenv_path=dotenv_path)
 
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
 API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', 'http://localhost:4200')
@@ -88,7 +89,6 @@ def drop_all():
 
 
 def schema_path():
-    dir = os.path.dirname(os.path.realpath(__file__))
     filename = os.path.realpath(os.path.join(dir, '../schema.txt'))
     return filename
 
