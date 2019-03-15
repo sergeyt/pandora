@@ -1,0 +1,54 @@
+{
+  "apple": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/a/app/apple/apple_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/a/app/apple/apple_British_English_pronunciation.ogg"
+  },
+  "bed": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/b/bed/bed_B/bed_British_English_pronunciation_72655.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/b/bed/bed_B/bed_British_English_pronunciation_72655.ogg"
+  },
+  "body": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/b/bod/body_/body_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/b/bod/body_/body_British_English_pronunciation.ogg"
+  },
+  "boy": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/b/boy/boy_B/boy_British_English_pronunciation_71840.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/b/boy/boy_B/boy_British_English_pronunciation_71840.ogg"
+  },
+  "car": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/c/car/car_B/car_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/c/car/car_B/car_British_English_pronunciation.ogg"
+  },
+  "door": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/d/doo/door_/door_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/d/doo/door_/door_British_English_pronunciation.ogg"
+  },
+  "girl": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/g/gir/girl_/girl_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/g/gir/girl_/girl_British_English_pronunciation.ogg"
+  },
+  "gum": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/g/gum/gum_B/gum_British_English_pronunciation_80163.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/g/gum/gum_B/gum_British_English_pronunciation_80163.ogg"
+  },
+  "house": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/h/hou/house/house_British_English_pronunciation_81907.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/h/hou/house/house_British_English_pronunciation_81907.ogg"
+  },
+  "lake": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/l/lak/lake_/lake_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/l/lak/lake_/lake_British_English_pronunciation.ogg"
+  },
+  "recreation": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/r/rec/recre/recreation_British_English_pronunciation_94313.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/r/rec/recre/recreation_British_English_pronunciation_94313.ogg"
+  },
+  "spoon": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/s/spo/spoon/spoon_British_English_pronunciation_99429.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/s/spo/spoon/spoon_British_English_pronunciation_99429.ogg"
+  },
+  "table": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/t/tab/table/table_British_English_pronunciation_101239.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/t/tab/table/table_British_English_pronunciation_101239.ogg"
+  }
+}
