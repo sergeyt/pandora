@@ -26,7 +26,7 @@ def add_audio(line, id, buf, audio):
         return
 
     word = m.group(1)
-    
+
     m = macmillan.find_audio(word)
     src2 = 'https://www.macmillandictionary.com'
     lines = [
