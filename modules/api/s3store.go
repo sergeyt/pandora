@@ -52,6 +52,7 @@ func getBucket() string {
 // ObjectStore is store of any BLOB objects
 type ObjectStore interface {
 	Download(ctx context.Context, id string, w io.Writer) error
+	DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) error
 	Upload(ctx context.Context, path, mediaType string, r io.ReadCloser) (map[string]interface{}, error)
 	Delete(ctx context.Context, id string) (string, interface{}, error)
 	DeleteObject(ctx context.Context, path string) error
@@ -75,15 +76,7 @@ func (fs *S3Store) EnsureBucket() error {
 
 // Download object at given path
 func (fs *S3Store) Download(ctx context.Context, id string, w io.Writer) error {
-	client, err := dgraph.NewClient()
-	if err != nil {
-		return err
-	}
-
-	tx := client.NewTxn()
-	defer tx.Discard(ctx)
-
-	file, err := findFile(ctx, tx, id)
+	file, err := findFileTx(ctx, id)
 	if err != nil {
 		return err
 	}
@@ -92,10 +85,18 @@ func (fs *S3Store) Download(ctx context.Context, id string, w io.Writer) error {
 		return fmt.Errorf("file not found: %s", id)
 	}
 
+	return fs.DownloadFile(ctx, file, w)
+}
+
+func (fs *S3Store) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) error {
+	if file == nil {
+		return fmt.Errorf("file not found")
+	}
+
 	path := file.Path
 	s := session.New(fs.config)
 	d := s3manager.NewDownloader(s)
-	_, err = d.DownloadWithContext(ctx, &s3Writer{w, 0}, &s3.GetObjectInput{
+	_, err := d.DownloadWithContext(ctx, &s3Writer{w, 0}, &s3.GetObjectInput{
 		Bucket: aws.String(fs.bucket),
 		Key:    aws.String(path),
 	})
@@ -142,12 +143,12 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 		return nil, err
 	}
 
-	client, err := dgraph.NewClient()
+	dc, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
 	}
 
-	tx := client.NewTxn()
+	tx := dc.NewTxn()
 	defer tx.Discard(ctx)
 
 	file, err := findFile(ctx, tx, path)
@@ -187,12 +188,12 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 
 // Delete object by given path or file id
 func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, error) {
-	client, err := dgraph.NewClient()
+	dc, err := dgraph.NewClient()
 	if err != nil {
 		return "", nil, err
 	}
 
-	tx := client.NewTxn()
+	tx := dc.NewTxn()
 	defer tx.Discard(ctx)
 
 	file, err := findFile(ctx, tx, id)
@@ -284,4 +285,16 @@ func findFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
 
 	file := result.Files[0]
 	return &file, nil
+}
+
+func findFileTx(ctx context.Context, id string) (*FileInfo, error) {
+	dc, err := dgraph.NewClient()
+	if err != nil {
+		return nil, err
+	}
+
+	tx := dc.NewTxn()
+	defer tx.Discard(ctx)
+
+	return findFile(ctx, tx, id)
 }

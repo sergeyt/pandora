@@ -6,11 +6,13 @@ import (
 	"io"
 	"mime"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/go-chi/chi"
 	Auth "github.com/gocontrib/auth"
 	"github.com/gocontrib/pubsub"
+	"github.com/gocontrib/rest"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	log "github.com/sirupsen/logrus"
@@ -23,6 +25,7 @@ func fileAPI(r chi.Router) {
 	r.Post("/api/file/*", asHTTPHandler(uploadFile))
 	r.Put("/api/file/*", asHTTPHandler(uploadFile))
 	r.Delete("/api/file/*", asHTTPHandler(deleteFile))
+	r.Get("/api/fileproxy/*", asHTTPHandler(remoteFile))
 }
 
 func asHTTPHandler(h fileHandler) http.HandlerFunc {
@@ -66,11 +69,8 @@ func downloadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 }
 
 func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
-	// TODO mime type filter
-
 	ctx := r.Context()
 	user := Auth.GetContextUser(ctx)
-	// FIXME determine by content type
 	resourceType := "file"
 
 	contentType := r.Header.Get("Content-Type")
@@ -80,6 +80,9 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 		apiutil.SendError(w, err)
 		return
 	}
+
+	// TODO mime type filter
+
 	if mediaType == "multipart/form-data" || mediaType == "multipart/mixed" {
 		mr, err := r.MultipartReader()
 		if err != nil {
@@ -199,6 +202,88 @@ func deleteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 		CreatedAt:    time.Now(),
 		Result:       result,
 	})
+}
+
+func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
+	u, err := url.Parse(c.path)
+	if err != nil {
+		log.Errorf("remote URL is not valid: %v", err)
+		apiutil.SendError(w, err)
+		return
+	}
+
+	if !(u.Scheme == "http" || u.Scheme == "https") {
+		log.Errorf("scheme is not supported: %s", u.Scheme)
+		apiutil.SendError(w, fmt.Errorf("scheme is not valid: %s", u.Scheme))
+		return
+	}
+
+	localPath := c.path[len(u.Scheme)+3:]
+	ctx := r.Context()
+	user := Auth.GetContextUser(ctx)
+
+	file, err := findFileTx(ctx, localPath)
+	if err != nil {
+		apiutil.SendError(w, err)
+		return
+	}
+
+	if file != nil {
+		err := c.store.DownloadFile(ctx, file, w)
+		if err != nil {
+			log.Errorf("FileStore.Download fail: %v", err)
+			apiutil.SendError(w, err)
+		}
+		return
+	}
+
+	http := rest.NewHTTPClient(&rest.Config{
+		Timeout: 60,
+	})
+
+	resp, err := http.Get(c.path)
+	if err != nil {
+		log.Errorf("http.Client.Get fail: %v", err)
+		apiutil.SendError(w, err)
+		return
+	}
+
+	contentType := resp.Header.Get("Content-Type")
+	mediaType, _, err := mime.ParseMediaType(contentType)
+	if err != nil {
+		log.Errorf("mime.ParseMediaType fail: %v", err)
+		apiutil.SendError(w, err)
+		return
+	}
+
+	// TODO mime type filter
+
+	result, err := c.store.Upload(ctx, localPath, mediaType, resp.Body)
+	if err != nil {
+		log.Errorf("FileStore.Upload fail: %v", err)
+		apiutil.SendError(w, err)
+		return
+	}
+
+	if result != nil {
+		err = apiutil.SendJSON(w, result)
+		if err != nil {
+			return
+		}
+
+		id := getUID(result)
+
+		apiutil.SendEvent(user, &pubsub.Event{
+			Action:       "POST",
+			Method:       "POST",
+			URL:          fmt.Sprintf("/api/file/%s", localPath),
+			ResourceID:   id,
+			ResourceType: "file",
+			CreatedBy:    user.GetID(),
+			CreatedAt:    time.Now(),
+			Result:       result,
+		})
+	}
 }
 
 func deleteFileObject(fileNode map[string]interface{}) {

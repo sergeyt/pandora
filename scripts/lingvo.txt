@@ -153,7 +153,7 @@ _:girl_en <translated_as> _:girl_ru .
 
 _:img_gum1 <url> "https://i.pinimg.com/originals/39/10/30/3910305670e1fb3f0584e998e30f1b71.jpg" .
 _:img_gum2 <url> "https://images-na.ssl-images-amazon.com/images/I/81F-d7PAZQL._SL1500_.jpg" .
-_:img_gum3 <url> "https://cdn.shopify.com/s/files/1/0004/8132/9204/products/double-mint-gum_1024x1024.jpg?v=1522355731" .
+_:img_gum3 <url> "https://cdn.shopify.com/s/files/1/0004/8132/9204/products/double-mint-gum_1024x1024.jpg" .
 
 _:gum_en <text> "gum" .
 _:gum_en <lang> "en" .
