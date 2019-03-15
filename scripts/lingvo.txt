@@ -1,12 +1,10 @@
-_:img_apple1 <url> "http://static1.squarespace.com/static/5849b12a2e69cf47aecece6b/584ebb9646c3c416aac4f2b5/5b830f4dcd8366d1f2d15de9/1535382024204/apple.jpg?format=1500w" .
-_:aud_apple1 <url> "https://howjsay.com/mp3/apple.mp3" .
+_:img_apple1 <url> "http://static1.squarespace.com/static/5849b12a2e69cf47aecece6b/584ebb9646c3c416aac4f2b5/5b830f4dcd8366d1f2d15de9/1535382024204/apple.jpg" .
 
 _:apple_en <text> "apple" .
 _:apple_en <lang> "en" .
 _:apple_en <word> "" .
 _:apple_en <noun> "" .
 _:apple_en <visual> _:img_apple1 .
-_:apple_en <audio> _:aud_apple1 .
 _:apple_en <transcript> "ˈæp(ə)l"@en .
 _:apple_en <transcript> "эпл"@ru .
 
@@ -20,14 +18,12 @@ _:apple_ru <transcript> "яблако"@ru .
 _:apple_en <translated_as> _:apple_ru .
 
 _:img_bed1 <url> "https://hoff.ru//upload/iblock/9be/9be0921f96cf2f30b4e5136c4eccd7d8.jpg" .
-_:aud_bed1 <url> "https://howjsay.com/mp3/bed.mp3" .
 
 _:bed_en <text> "bed" .
 _:bed_en <lang> "en" .
 _:bed_en <word> "" .
 _:bed_en <noun> "" .
 _:bed_en <visual> _:img_bed1 .
-_:bed_en <audio> _:aud_bed1 .
 _:bed_en <transcript> "bed"@en .
 _:bed_en <transcript> "бэд"@ru .
 
@@ -41,14 +37,12 @@ _:bed_ru <transcript> "кравать"@ru .
 _:bed_en <translated_as> _:bed_ru .
 
 _:img_body1 <url> "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKLUYuJGon1owJX__Y7Ov3uzLVPwMzK7dXDS375I5DRRP3ISprGA" .
-_:aud_body1 <url> "https://howjsay.com/mp3/body.mp3" .
 
 _:body_en <text> "body" .
 _:body_en <lang> "en" .
 _:body_en <word> "" .
 _:body_en <noun> "" .
 _:body_en <visual> _:img_body1 .
-_:body_en <audio> _:aud_body1 .
 _:body_en <transcript> "ˈbɒdi"@en .
 _:body_en <transcript> "бади"@ru .
 
@@ -62,14 +56,12 @@ _:body_ru <transcript> "тело"@ru .
 _:body_en <translated_as> _:body_ru .
 
 _:img_boy1 <url> "https://www.paparazzi.ru/upload/wysiwyg_files/img/1472483485.jpg" .
-_:aud_boy1 <url> "https://howjsay.com/mp3/boy.mp3" .
 
 _:boy_en <text> "boy" .
 _:boy_en <lang> "en" .
 _:boy_en <word> "" .
 _:boy_en <noun> "" .
 _:boy_en <visual> _:img_boy1 .
-_:boy_en <audio> _:aud_boy1 .
 _:boy_en <transcript> "bɔɪ"@en .
 _:boy_en <transcript> "бой"@ru .
 
@@ -83,14 +75,12 @@ _:boy_ru <transcript> "мальчик"@ru .
 _:bed_en <translated_as> _:bed_ru .
 
 _:img_car1 <url> "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmIGgC7NLbTyrby1pTLhexemP0apw-H_zJ0at2BdJhPuHdhqiu" .
-_:aud_car1 <url> "https://howjsay.com/mp3/car.mp3" .
 
 _:car_en <text> "car" .
 _:car_en <lang> "en" .
 _:car_en <word> "" .
 _:car_en <noun> "" .
 _:car_en <visual> _:img_car1 .
-_:car_en <audio> _:aud_car1 .
 _:car_en <transcript> "kɑː(r)"@en .
 _:car_en <transcript> "кар"@ru .
 
@@ -104,14 +94,12 @@ _:car_ru <transcript> "автамабиль"@ru .
 _:car_en <translated_as> _:car_ru .
 
 _:img_door1 <url> "https://images.obi.ru/product/RU/800x600/400211_1.jpg" .
-_:aud_door1 <url> "https://howjsay.com/mp3/door.mp3" .
 
 _:door_en <text> "door" .
 _:door_en <lang> "en" .
 _:door_en <word> "" .
 _:door_en <noun> "" .
 _:door_en <visual> _:img_door1 .
-_:door_en <audio> _:aud_door1 .
 _:door_en <transcript> "dɔː(r)"@en .
 _:door_en <transcript> "дор"@ru .
 
@@ -125,14 +113,12 @@ _:door_ru <transcript> "дверь"@ru .
 _:door_en <translated_as> _:door_ru .
 
 _:img_house1 <url> "http://epicpix.com/wp-content/uploads/2016/04/ff_3280.jpg" .
-_:aud_house1 <url> "https://howjsay.com/mp3/house.mp3" .
 
 _:house_en <text> "house" .
 _:house_en <lang> "en" .
 _:house_en <word> "" .
 _:house_en <noun> "" .
 _:house_en <visual> _:img_house1 .
-_:house_en <audio> _:aud_house1 .
 _:house_en <transcript> "haʊs"@en .
 _:house_en <transcript> "хаус"@ru .
 
@@ -153,7 +139,6 @@ _:girl_en <lang> "en" .
 _:girl_en <word> "" .
 _:girl_en <noun> "" .
 _:girl_en <visual> _:img_girl1 .
-_:girl_en <audio> _:aud_girl1 .
 _:girl_en <transcript> "ɡɜː(r)l"@en .
 _:girl_en <transcript> "гёл"@ru .
 
@@ -169,7 +154,6 @@ _:girl_en <translated_as> _:girl_ru .
 _:img_gum1 <url> "https://i.pinimg.com/originals/39/10/30/3910305670e1fb3f0584e998e30f1b71.jpg" .
 _:img_gum2 <url> "https://images-na.ssl-images-amazon.com/images/I/81F-d7PAZQL._SL1500_.jpg" .
 _:img_gum3 <url> "https://cdn.shopify.com/s/files/1/0004/8132/9204/products/double-mint-gum_1024x1024.jpg?v=1522355731" .
-_:aud_gum1 <url> "https://howjsay.com/mp3/gum.mp3" .
 
 _:gum_en <text> "gum" .
 _:gum_en <lang> "en" .
@@ -178,7 +162,6 @@ _:gum_en <noun> "" .
 _:gum_en <visual> _:img_gum1 .
 _:gum_en <visual> _:img_gum2 .
 _:gum_en <visual> _:img_gum3 .
-_:gum_en <audio> _:aud_gum1 .
 _:gum_en <transcript> "ɡʌm"@en .
 _:gum_en <transcript> "гам"@ru .
 
@@ -194,14 +177,12 @@ _:gum_ru <transcript> "живачка"@ru .
 _:gum_en <translated_as> _:gum_ru .
 
 _:img_lake1 <url> "https://github.com/flutter/website/blob/master/src/_includes/code/layout/lakes/images/lake.jpg?raw=true" .
-_:aud_lake1 <url> "https://howjsay.com/mp3/lake.mp3" .
 
 _:lake_en <text> "lake" .
 _:lake_en <lang> "en" .
 _:lake_en <word> "" .
 _:lake_en <noun> "" .
 _:lake_en <visual> _:img_lake1 .
-_:lake_en <audio> _:aud_lake1 .
 _:lake_en <transcript> "leɪk"@en .
 _:lake_en <transcript> "лэйк"@ru .
 
@@ -214,13 +195,9 @@ _:lake_en <transcript> "озеро"@ru .
 
 _:lake_en <translated_as> _:lake_ru .
 
-_:img_spoon1 <url> "https://coubsecure-s.akamaihd.net/get/b45/p/coub/simple/cw_timeline_pic/f357228b51f/972920dc0d51d3ed34e9d/big_1409081702_1382451563_att-migration20121219-1328-1jpmbyq.jpg" .
-_:aud_spoon1 <url> "https://howjsay.com/mp3/spoon.mp3" .
-
 _:img_recreation1 <url> "http://www.bridgewaternj.gov/wp-content/uploads/Images/recphoto.jpg" .
 _:img_recreation2 <url> "https://vmcdn.ca/f/files/halifaxtoday/images/sports/071818-sports-equipment-recreation-gym-fitness-adobestock_190038155.jpeg;w=630" .
 _:img_recreation3 <url> "http://www.worldwar-collectibles.com/wp-content/uploads/2017/03/recreation.jpg" .
-_:aud_recreation <url> "https://howjsay.com/mp3/recreation.mp3" .
 
 _:recreation_en <text> "recreation" .
 _:recreation_en <lang> "en" .
@@ -229,7 +206,6 @@ _:recreation_en <noun> "" .
 _:recreation_en <visual> _:img_recreation1 .
 _:recreation_en <visual> _:img_recreation2 .
 _:recreation_en <visual> _:img_recreation3 .
-_:recreation_en <audio> _:aud_recreation1 .
 _:recreation_en <transcript> "ˌrekriˈeɪʃ(ə)n"@en .
 _:recreation_en <transcript> "рикри`эйшен"@ru .
 
@@ -244,12 +220,13 @@ _:recreation_ru <transcript> "отдых"@ru .
 
 _:recreation_en <translated_as> _:recreation_ru .
 
+_:img_spoon1 <url> "https://coubsecure-s.akamaihd.net/get/b45/p/coub/simple/cw_timeline_pic/f357228b51f/972920dc0d51d3ed34e9d/big_1409081702_1382451563_att-migration20121219-1328-1jpmbyq.jpg" .
+
 _:spoon_en <text> "spoon" .
 _:spoon_en <lang> "en" .
 _:spoon_en <word> "" .
 _:spoon_en <noun> "" .
 _:spoon_en <visual> _:img_spoon1 .
-_:spoon_en <audio> _:aud_spoon1 .
 _:spoon_en <transcript> "spuːn"@en .
 _:spoon_en <transcript> "спун"@ru .
 
@@ -262,15 +239,13 @@ _:spoon_ru <transcript> "лошка"@ru .
 
 _:spoon_en <translated_as> _:spoon_ru .
 
-_:img_table1 <url> "https://cdn.shopify.com/s/files/1/2660/5106/products/wisz8mrpd67l6pss3crw_2b63262e-9b7a-4bbb-8f4f-d2da5d3cc57f_800x.jpg?v=1539039199" .
-_:aud_table1 <url> "https://howjsay.com/mp3/table.mp3" .
+_:img_table1 <url> "https://cdn.shopify.com/s/files/1/2660/5106/products/wisz8mrpd67l6pss3crw_2b63262e-9b7a-4bbb-8f4f-d2da5d3cc57f_800x.jpg" .
 
 _:table_en <text> "table" .
 _:table_en <lang> "en" .
 _:table_en <word> "" .
 _:table_en <noun> "" .
 _:table_en <visual> _:img_table1 .
-_:table_en <audio> _:aud_table1 .
 _:table_en <transcript> "ˈteɪb(ə)l"@en .
 _:table_en <transcript> "тэйбл"@ru .
 
