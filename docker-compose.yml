@@ -132,6 +132,8 @@ services:
       FACEBOOK_SECRET: ${FACEBOOK_SECRET}
       VK_KEY: ${VK_KEY}
       VK_SECRET: ${VK_SECRET}
+      GOOGLE_KEY: ${GOOGLE_KEY}
+      GOOGLE_SECRET: ${GOOGLE_SECRET}
     volumes:
       - .:/go/src/github.com/sergeyt/pandora
     ports:
@@ -156,6 +158,7 @@ services:
     env_file: .env
     environment:
       DGRAPH_URL: http://dgraph:8080
+      ADMIN_SECRET: ${ADMIN_SECRET}
     volumes:
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
       - ./data/caddycerts:/etc/caddycerts
