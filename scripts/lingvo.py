@@ -4,8 +4,48 @@ import os
 import re
 import api
 import macmillan
+import requests
+import utils
 
 dir = os.path.dirname(os.path.realpath(__file__))
+
+# utils.enable_logging_with_headers()
+
+
+def init():
+    # TODO get admin creds from env
+    api.login("admin", "admin123")
+
+    with open(os.path.join(dir, 'lingvo.txt'), 'r', encoding='utf-8') as f:
+        src = f.read().split('\n')
+        buf = []
+        typed = {}
+        audio = {}
+        for line in src:
+            kind = map_type(line)
+            id = idof(line)
+
+            if kind == 'file':
+                line = change_url(line)
+
+            if kind and id not in typed:
+                add_audio(line, id, buf, audio)
+                buf.append('{0} <_{1}> "" .'.format(id, kind))
+                typed[id] = True
+
+            if "<visual>" in line and id in audio:
+                for t in audio[id]:
+                    buf.append(t)
+
+            buf.append(line)
+
+            if "<visual>" in line:
+                buf.append(line.replace("<visual>", "<relevant>"))
+                buf.append(line.replace("<visual>", "<related>"))
+
+    data = '\n'.join(buf)
+    print(data)
+    api.set_nquads(data)
 
 
 def map_type(line):
@@ -28,11 +68,14 @@ def add_audio(line, id, buf, audio):
     word = m.group(1)
 
     m = macmillan.find_audio(word)
+    url1 = api.fileproxy('https://howjsay.com/mp3/{0}.mp3'.format(word))
+    url2 = api.fileproxy(m['mp3'])
     src2 = 'https://www.macmillandictionary.com'
+
     lines = [
-        '_:aud_{0}1 <url> "https://howjsay.com/mp3/{0}.mp3" .'.format(word),
+        '_:aud_{0}1 <url> "{1}" .'.format(word, url1),
         '_:aud_{0}1 <source> "https://howjsay.com" .'.format(word),
-        '_:aud_{0}2 <url> "{1}" .'.format(word, m['mp3']),
+        '_:aud_{0}2 <url> "{1}" .'.format(word, url2),
         '_:aud_{0}2 <source> "{1}" .'.format(word, src2),
     ]
     for t in lines:
@@ -44,33 +87,14 @@ def add_audio(line, id, buf, audio):
         audio[id].append('{0} <audio> _:aud_{1}{2} .'.format(id, word, i))
 
 
-def init():
-    with open(os.path.join(dir, 'lingvo.txt'), 'r', encoding='utf-8') as f:
-        src = f.read().split('\n')
-        buf = []
-        typed = {}
-        audio = {}
-        for line in src:
-            kind = map_type(line)
-            id = idof(line)
-            if kind and id not in typed:
-                add_audio(line, id, buf, audio)
-                buf.append('{0} <_{1}> "" .'.format(id, kind))
-                typed[id] = True
-
-            if "<visual>" in line and id in audio:
-                for t in audio[id]:
-                    buf.append(t)
-
-            buf.append(line)
-
-            if "<visual>" in line:
-                buf.append(line.replace("<visual>", "<relevant>"))
-                buf.append(line.replace("<visual>", "<related>"))
-
-    data = '\n'.join(buf)
-    print(data)
-    api.set_nquads(data)
+def change_url(line):
+    m = re.match(r'_:([\w_]+) <url> "([^"]*)"', line)
+    if m is None:
+        return line
+    id = m.group(1)
+    image_url = m.group(2)
+    image_url = api.fileproxy(image_url)
+    return '_:{0} <url> "{1}" .'.format(id, image_url)
 
 
 if __name__ == '__main__':

@@ -2,6 +2,7 @@ import os
 import requests
 import json
 import jwt
+import re
 from dotenv import load_dotenv
 
 dir = os.path.dirname(os.path.realpath(__file__))
@@ -29,8 +30,13 @@ stdHeaders = {
 }
 
 
+def is_json(resp):
+    t = resp.headers.get('Content-Type')
+    return t.startswith('application/json')
+
+
 def dump_json(resp):
-    if resp.ok:
+    if resp.ok and is_json(resp):
         print(json.dumps(resp.json(), sort_keys=True, indent=2))
 
 
@@ -49,7 +55,7 @@ def get(path):
     resp = requests.get(url(path), headers=headers())
     dump_json(resp)
     resp.raise_for_status()
-    return resp.json()
+    return resp.json() if is_json(resp) else resp
 
 
 def post(path, payload, auth=None, raw=False):
@@ -75,9 +81,21 @@ def delete(path, auth=None):
 
 
 def login(username, password):
+    global access_token
     resp = post('/api/login', None, auth=(username, password))
     access_token = resp['token']
     return access_token
+
+
+def fileproxy(url):
+    def path_from_url():
+        return re.sub(r'https?://', '', url)
+
+    resp = get('/api/fileproxy/{0}'.format(url))
+    host = os.getenv('SERVER_URL', 'http://lingvograph.com:4200')
+    path = resp['path'] if 'path' in resp else path_from_url()
+    result = '{0}/api/file/{1}'.format(host, path)
+    return result
 
 
 def drop_all():

@@ -36,7 +36,7 @@ _:bed_ru <transcript> "кравать"@ru .
 
 _:bed_en <translated_as> _:bed_ru .
 
-_:img_body1 <url> "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKLUYuJGon1owJX__Y7Ov3uzLVPwMzK7dXDS375I5DRRP3ISprGA" .
+_:img_body1 <url> "https://cdn.britannica.com/96/177096-049-64B1A5A5.jpg" .
 
 _:body_en <text> "body" .
 _:body_en <lang> "en" .
@@ -74,7 +74,7 @@ _:boy_ru <transcript> "мальчик"@ru .
 
 _:bed_en <translated_as> _:bed_ru .
 
-_:img_car1 <url> "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmIGgC7NLbTyrby1pTLhexemP0apw-H_zJ0at2BdJhPuHdhqiu" .
+_:img_car1 <url> "https://media.wired.com/photos/59bafdf204afdc5248726f5c/master/w_2400,c_limit/BMW-TA.jpg" .
 
 _:car_en <text> "car" .
 _:car_en <lang> "en" .
@@ -176,7 +176,7 @@ _:gum_ru <transcript> "живачка"@ru .
 
 _:gum_en <translated_as> _:gum_ru .
 
-_:img_lake1 <url> "https://github.com/flutter/website/blob/master/src/_includes/code/layout/lakes/images/lake.jpg?raw=true" .
+_:img_lake1 <url> "https://odis.homeaway.com/odis/destination/2d62f656-a052-4d93-b06c-156034b02304.hw1.jpg" .
 
 _:lake_en <text> "lake" .
 _:lake_en <lang> "en" .
