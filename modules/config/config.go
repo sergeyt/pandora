@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/spf13/viper"
 )
@@ -47,4 +48,16 @@ func Init() {
 		URL: viper.GetString("elasticsearch.url"),
 	}
 	Nats = viper.GetString("nats")
+}
+
+func ServerURL() string {
+	s := os.Getenv("SERVER_URL")
+	if len(s) > 0 {
+		return s
+	}
+	hostname, err := os.Hostname()
+	if err == nil {
+		return fmt.Sprintf("http://%s", hostname)
+	}
+	return "http://localhost:4200"
 }

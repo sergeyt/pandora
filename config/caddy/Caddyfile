@@ -18,6 +18,7 @@ jwt {
     except /api/oauth
     except /api/pyadmin
     except /api/admin
+    except /api/file
 }
 
 proxy /api/imageproxy imageproxy:1081 {

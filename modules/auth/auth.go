@@ -2,7 +2,6 @@ package auth
 
 import (
 	"net/http"
-	"os"
 	"strings"
 
 	"github.com/go-chi/chi"
@@ -11,6 +10,7 @@ import (
 	"github.com/markbates/goth/providers/facebook"
 	"github.com/markbates/goth/providers/google"
 	"github.com/markbates/goth/providers/vk"
+	"github.com/sergeyt/pandora/modules/config"
 )
 
 var (
@@ -32,7 +32,7 @@ func makeAuthConfig() *authbase.Config {
 	return &authbase.Config{
 		UserStore:   userStore,
 		UserStoreEx: userStore,
-		ServerURL:   os.Getenv("SERVER_URL"),
+		ServerURL:   config.ServerURL(),
 	}
 }
 

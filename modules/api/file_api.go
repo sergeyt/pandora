@@ -19,13 +19,15 @@ import (
 )
 
 func fileAPI(r chi.Router) {
-	r = r.With(auth.Middleware)
-
 	r.Get("/api/file/*", asHTTPHandler(downloadFile))
-	r.Post("/api/file/*", asHTTPHandler(uploadFile))
-	r.Put("/api/file/*", asHTTPHandler(uploadFile))
-	r.Delete("/api/file/*", asHTTPHandler(deleteFile))
-	r.Get("/api/fileproxy/*", asHTTPHandler(remoteFile))
+
+	r.Group(func(r chi.Router) {
+		r = r.With(auth.Middleware)
+		r.Post("/api/file/*", asHTTPHandler(uploadFile))
+		r.Put("/api/file/*", asHTTPHandler(uploadFile))
+		r.Delete("/api/file/*", asHTTPHandler(deleteFile))
+		r.Get("/api/fileproxy/*", asHTTPHandler(remoteFile))
+	})
 }
 
 func asHTTPHandler(h fileHandler) http.HandlerFunc {

@@ -15,6 +15,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"github.com/gocontrib/auth"
+	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"
 	log "github.com/sirupsen/logrus"
@@ -88,6 +89,7 @@ func (fs *S3Store) Download(ctx context.Context, id string, w io.Writer) error {
 	return fs.DownloadFile(ctx, file, w)
 }
 
+// DownloadFile downloads given file
 func (fs *S3Store) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) error {
 	if file == nil {
 		return fmt.Errorf("file not found")
@@ -132,7 +134,7 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 		u.PartSize = 5 * 1024 * 1024
 		u.LeavePartsOnError = true
 	})
-	out, err := up.UploadWithContext(ctx, &s3manager.UploadInput{
+	_, err := up.UploadWithContext(ctx, &s3manager.UploadInput{
 		Bucket: aws.String(fs.bucket),
 		Key:    aws.String(path),
 		Body:   r,
@@ -157,6 +159,7 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 	}
 
 	user := auth.GetContextUser(ctx)
+	baseURL := config.ServerURL()
 
 	in := make(utils.OrderedJSON)
 	id := ""
@@ -165,9 +168,7 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 		in["uid"] = id
 	}
 	in["path"] = path
-	in["url"] = out.Location
-	in["upload_id"] = out.UploadID
-	in["version_id"] = out.VersionID
+	in["url"] = fmt.Sprintf("%s/api/file/%s", baseURL, path)
 	in["content_type"] = mediaType
 
 	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
