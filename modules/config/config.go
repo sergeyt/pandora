@@ -67,11 +67,19 @@ func Hostname() string {
 // ServerURL returns base URL including hostname and port
 func ServerURL() string {
 	hostname := Hostname()
-	if port, err := strconv.ParseInt(os.Getenv("HTTP_PORT"), 10, 64); err == nil {
-		if port == 80 {
-			return fmt.Sprintf("http://%s", hostname)
-		}
-		return fmt.Sprintf("http://%s:%d", hostname, port)
+	// TODO detect https is enabled
+	secure := true
+	scheme := "http"
+	portVar := "HTTP_PORT"
+	if secure {
+		scheme = "https"
+		portVar = "HTTPS_PORT"
 	}
-	return fmt.Sprintf("http://%s", hostname)
+	if port, err := strconv.ParseInt(portVar, 10, 64); err == nil {
+		if port == 80 {
+			return fmt.Sprintf("%s://%s", scheme, hostname)
+		}
+		return fmt.Sprintf("%s://%s:%d", scheme, hostname, port)
+	}
+	return fmt.Sprintf("%s://%s", scheme, hostname)
 }

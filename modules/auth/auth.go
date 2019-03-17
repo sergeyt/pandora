@@ -10,7 +10,6 @@ import (
 	"github.com/markbates/goth/providers/facebook"
 	"github.com/markbates/goth/providers/google"
 	"github.com/markbates/goth/providers/vk"
-	"github.com/sergeyt/pandora/modules/config"
 )
 
 var (
@@ -32,7 +31,6 @@ func makeAuthConfig() *authbase.Config {
 	return &authbase.Config{
 		UserStore:   userStore,
 		UserStoreEx: userStore,
-		ServerURL:   config.ServerURL(),
 	}
 }
 
