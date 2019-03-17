@@ -44,7 +44,6 @@ RUN /usr/bin/caddy -plugins
 COPY config/caddy/Caddyfile /etc/caddy/Caddyfile
 COPY scripts /pyadmin
 COPY schema.txt /schema.txt
-COPY .env /.env
 COPY docker/caddy_entrypoint.sh /entrypoint.sh
 
 WORKDIR /pyadmin

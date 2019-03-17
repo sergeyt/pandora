@@ -23,6 +23,8 @@ func fileAPI(r chi.Router) {
 
 	r.Group(func(r chi.Router) {
 		r = r.With(auth.Middleware)
+		r = r.With(auth.RequireAPIKey)
+
 		r.Post("/api/file/*", asHTTPHandler(uploadFile))
 		r.Put("/api/file/*", asHTTPHandler(uploadFile))
 		r.Delete("/api/file/*", asHTTPHandler(deleteFile))

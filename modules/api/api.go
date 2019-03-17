@@ -9,7 +9,6 @@ import (
 	"github.com/go-chi/cors"
 	"github.com/gorilla/handlers"
 	"github.com/sergeyt/pandora/modules/auth"
-	"github.com/sergeyt/pandora/modules/geoip"
 )
 
 // NewHandler makes http.Handler to serve HTTP API
@@ -36,7 +35,7 @@ func NewHandler() http.Handler {
 	//r.Group(elasticsearch.SearchAPI)
 	r.Group(dataAPI)
 	r.Group(fileAPI)
-	r.Group(geoip.RegisterAPI)
+	//r.Group(geoip.RegisterAPI)
 	r.Group(adminAPI)
 
 	return r

@@ -3,15 +3,16 @@ import requests
 import json
 import jwt
 import re
-from dotenv import load_dotenv
+import string
+import random
 
 dir = os.path.dirname(os.path.realpath(__file__))
-dotenv_path = os.path.realpath(os.path.join(dir, '../.env'))
-load_dotenv(dotenv_path=dotenv_path)
 
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
 HTTP_PORT = os.getenv('HTTP_PORT', 80)
-API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', 'http://localhost:{0}'.format(HTTP_PORT))
+DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
+API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', DEFAULT_SERVER_URL)
+API_KEY = os.getenv('API_KEY')
 
 jwt_secret = os.getenv('JWT_SECRET')
 dgraph_token = os.getenv('DGRAPH_TOKEN')
@@ -53,30 +54,37 @@ def url(path):
 
 
 def get(path):
-    resp = requests.get(url(path), headers=headers())
+    params = {'key': API_KEY}
+    resp = requests.get(url(path), params=params, headers=headers())
     dump_json(resp)
     resp.raise_for_status()
     return resp.json() if is_json(resp) else resp
 
 
 def post(path, payload, auth=None, raw=False):
+    params = {'key': API_KEY}
     data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
-    resp = requests.post(url(path), data=data, headers=headers(), auth=auth)
+    resp = requests.post(
+        url(path), data=data, params=params, headers=headers(), auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
 
 def put(path, payload, auth=None, raw=False):
+    params = {'key': API_KEY}
     data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
-    resp = requests.put(url(path), data=data, headers=headers(), auth=auth)
+    resp = requests.put(
+        url(path), data=data, params=params, headers=headers(), auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
 
 def delete(path, auth=None):
-    resp = requests.delete(url(path), headers=headers(), auth=auth)
+    params = {'key': API_KEY}
+    resp = requests.delete(
+        url(path), params=params, headers=headers(), auth=auth)
     resp.raise_for_status()
     return resp
 
@@ -101,8 +109,9 @@ def fileproxy(url):
 
 def drop_all():
     headers = {'X-Dgraph-AuthToken': dgraph_token}
-    resp = requests.post(
-        DGRAPH_URL + '/alter', headers=headers, data='{"drop_all": true}')
+    data = '{"drop_all": true}'
+    url = DGRAPH_URL + '/alter'
+    resp = requests.post(url, headers=headers, data=data)
     dump_json(resp)
     resp.raise_for_status()
 
@@ -117,8 +126,8 @@ def init_schema():
     with open(p, 'r') as f:
         schema = f.read()
         headers = {'X-Dgraph-AuthToken': dgraph_token}
-        resp = requests.post(
-            DGRAPH_URL + '/alter', headers=headers, data=schema)
+        url = DGRAPH_URL + '/alter'
+        resp = requests.post(url, headers=headers, data=schema)
         dump_json(resp)
         resp.raise_for_status()
 
@@ -130,12 +139,14 @@ def mutate(data):
     }
     if getattr(data, 'encode', None):
         data = data.encode('utf-8')
-    resp = requests.post(DGRAPH_URL + '/mutate', headers=headers, data=data)
+    url = DGRAPH_URL + '/mutate'
+    resp = requests.post(url, headers=headers, data=data)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
 
 
+# utils
 def rdf_repr(v):
     if isinstance(v, str):
         return '"{0}"'.format(v)
@@ -163,3 +174,23 @@ def set_nquads(dataset):
     data = "{\nset {\n" + dataset + "}}"
     print(data)
     return mutate(data)
+
+
+def generate_string(n):
+    return ''.join(
+        random.SystemRandom().choice(string.ascii_uppercase + string.digits)
+        for _ in range(n))
+
+
+def generate_api_key(app_id='', app_secret=''):
+    if len(app_id) == 0:
+        app_id = generate_string(8)
+    if len(app_secret) == 0:
+        app_secret = generate_string(16)
+    key = os.getenv('API_KEY_SECRET')
+    headers = {'app_secret': app_secret}
+    payload = {'app_id': app_id}
+    api_key = jwt.encode(
+        payload, key + app_secret, headers=headers).decode('utf-8')
+    result = {'app_id': app_id, 'app_secret': app_secret, 'api_key': api_key}
+    return result
