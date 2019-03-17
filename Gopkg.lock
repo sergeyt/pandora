@@ -235,7 +235,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:52f9c5077b8ffc9b33cd0fbc22d28dad42c5588938670ab4523cc063f217ea6a"
+  digest = "1:2a257e87f8bc774db0febc9067b238ea486d9f0c565f964df374a3534ec7f2ab"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
@@ -243,7 +243,7 @@
     "oauth",
   ]
   pruneopts = ""
-  revision = "e9b604f60abd157b4036aa0c362d1b1a1d111f0e"
+  revision = "85a9ac939f117a196487f1b614535ad3ac7f7a64"
 
 [[projects]]
   branch = "master"
