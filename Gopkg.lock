@@ -19,6 +19,17 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:a27663807e017a8e560c1e69dea602d00fcad71cd4043873d3c0ae9a07a4a870"
+  name = "github.com/abiosoft/caddy-git"
+  packages = [
+    ".",
+    "gitos",
+  ]
+  pruneopts = ""
+  revision = "c2dcbb48de985127ac44b94f507230de5daf7520"
+
+[[projects]]
+  branch = "master"
   digest = "1:3fed66b0260f3a1699bac9defbf55764a2f1cf887b0aae5bdc9ea55bf14649bf"
   name = "github.com/aead/chacha20"
   packages = [
@@ -224,7 +235,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:951f000037dd0055a9ea75374dbf0ad81746b9cb51d8e1cccb1db4866e97f474"
+  digest = "1:52f9c5077b8ffc9b33cd0fbc22d28dad42c5588938670ab4523cc063f217ea6a"
   name = "github.com/gocontrib/auth"
   packages = [
     ".",
@@ -232,7 +243,7 @@
     "oauth",
   ]
   pruneopts = ""
-  revision = "ed4e8bc92befd44f2b4406044f35a42ef8c0c31c"
+  revision = "e9b604f60abd157b4036aa0c362d1b1a1d111f0e"
 
 [[projects]]
   branch = "master"
@@ -1053,6 +1064,7 @@
   analyzer-version = 1
   input-imports = [
     "github.com/BTBurke/caddy-jwt",
+    "github.com/abiosoft/caddy-git",
     "github.com/aws/aws-sdk-go/aws",
     "github.com/aws/aws-sdk-go/aws/credentials",
     "github.com/aws/aws-sdk-go/aws/session",

@@ -51,21 +51,27 @@ func Init() {
 	Nats = viper.GetString("nats")
 }
 
-func ServerURL() string {
-	s := os.Getenv("SERVER_URL")
-	if len(s) > 0 {
-		return s
-	}
-	s = os.Getenv("HTTP_PORT")
-	if port, err := strconv.ParseInt(s, 10, 64); err == nil {
-		if port == 80 {
-			return "http://localhost"
-		}
-		return fmt.Sprintf("http://localhost:%d", port)
+// Hostname reads HOSTNAME env var or os.Hostname used for your app
+func Hostname() string {
+	hostname := os.Getenv("HOSTNAME")
+	if len(hostname) > 0 {
+		return hostname
 	}
 	hostname, err := os.Hostname()
 	if err == nil {
-		return fmt.Sprintf("http://%s", hostname)
+		return hostname
 	}
-	return "http://localhost"
+	return "localhost"
+}
+
+// ServerURL returns base URL including hostname and port
+func ServerURL() string {
+	hostname := Hostname()
+	if port, err := strconv.ParseInt(os.Getenv("HTTP_PORT"), 10, 64); err == nil {
+		if port == 80 {
+			return fmt.Sprintf("http://%s", hostname)
+		}
+		return fmt.Sprintf("http://%s:%d", hostname, port)
+	}
+	return fmt.Sprintf("http://%s", hostname)
 }
