@@ -25,6 +25,8 @@ RUN cd /go/src/github.com/mholt/caddy/caddy \
 # Dist image
 FROM python:3.6-alpine
 
+ENV HTTP_PORT 4200
+
 # install deps
 RUN apk update \
         && apk add --no-cache git openssh-client \
@@ -39,8 +41,11 @@ COPY --from=builder /go/bin/caddy /usr/bin/caddy
 # list plugins
 RUN /usr/bin/caddy -plugins
 
-# copy python admin server
+COPY config/caddy/Caddyfile /etc/caddy/Caddyfile
 COPY scripts /pyadmin
+COPY schema.txt /schema.txt
+COPY .env /.env
+COPY docker/caddy_entrypoint.sh /entrypoint.sh
 
 WORKDIR /pyadmin
 
@@ -50,11 +55,5 @@ RUN pipenv install --deploy --system
 # static files volume
 VOLUME ["/www"]
 WORKDIR /www
-
-COPY config/caddy/Caddyfile /etc/caddy/Caddyfile
-COPY config/caddy/index.md /www/index.md
-COPY schema.txt schema.txt
-COPY .env .env
-COPY docker/caddy_entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]

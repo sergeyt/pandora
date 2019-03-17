@@ -20,7 +20,9 @@ services:
       - ./config/minio:/etc/minio
     ports:
       - "9000:9000"
-    env_file: .env
+    environment:
+      MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID}
+      MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
     command: server --config-dir /etc/minio /data
     restart: on-failure
   # file upload service
@@ -30,8 +32,7 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-empty
     container_name: tusd
-    env_file: .env
-    command: -base-path "/api/files" -metrics-path "/api/metrics/tusd" -behind-proxy -s3-bucket ${S3_BUCKET} -s3-endpoint http://minio:9000
+    command: -base-path "/api/files" -metrics-path "/api/metrics/tusd" -behind-proxy -s3-bucket ${AWS_S3_BUCKET} -s3-endpoint http://minio:9000
     ports:
       - 1080:1080
     restart: on-failure
@@ -39,7 +40,6 @@ services:
   imageproxy:
     image: willnorris/imageproxy
     container_name: imageproxy
-    env_file: .env
     command: "-addr 0.0.0.0:1081"
     ports:
      - 1081:1081
@@ -126,8 +126,19 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-app
     container_name: app
-    env_file: .env
     environment:
+      HOSTNAME: ${HOSTNAME}
+      HTTP_PORT: ${HTTP_PORT}
+      HTTPS_PORT: ${HTTPS_PORT}
+      DGRAPH_TOKEN: ${DGRAPH_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      # aws services
+      AWS_S3_ENDPOINT: ${AWS_S3_ENDPOINT}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      # oauth config
       FACEBOOK_KEY: ${FACEBOOK_KEY}
       FACEBOOK_SECRET: ${FACEBOOK_SECRET}
       VK_KEY: ${VK_KEY}
@@ -145,7 +156,8 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-pubsub
     container_name: pubsub
-    env_file: .env
+    environment:
+      NATS_URI: ${NATS_URI}
     ports:
       - 4302:4302
     restart: on-failure
@@ -155,22 +167,30 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile-caddy
     container_name: caddy
-    env_file: .env
     environment:
+      HOSTNAME: ${HOSTNAME}
+      HTTP_PORT: ${HTTP_PORT}
+      HTTPS_PORT: ${HTTPS_PORT}
       DGRAPH_URL: http://dgraph:8080
+      JWT_SECRET: ${JWT_SECRET}
+      DGRAPH_TOKEN: ${DGRAPH_TOKEN}
       ADMIN_SECRET: ${ADMIN_SECRET}
+      CADDYPATH: /data/caddy
     volumes:
+      - caddy:/data/caddy
       - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - ./data/caddycerts:/etc/caddycerts
       - ./schema.txt:/schema.txt
       - ./scripts:/pyadmin
       - ./docker/caddy_entrypoint.sh:/entrypoint.sh
     ports:
       - 4200:4200
+      - 80:80
+      - 443:443
     restart: on-failure
 
 volumes:
   minio:
   dgraph:
+  caddy:
   esdata1:
   esdata2:

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"testing"
 	"time"
 
@@ -10,7 +11,8 @@ import (
 )
 
 func TestEventStream(t *testing.T) {
-	host := "http://localhost:4200"
+	port := os.Getenv("HTTP_PORT")
+	host := fmt.Sprintf("http://localhost:%s", port)
 	client := rest.NewClient(rest.Config{
 		BaseURL:       host,
 		Authorization: "local_admin",

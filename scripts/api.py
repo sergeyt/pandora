@@ -10,7 +10,8 @@ dotenv_path = os.path.realpath(os.path.join(dir, '../.env'))
 load_dotenv(dotenv_path=dotenv_path)
 
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
-API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', 'http://localhost:4200')
+HTTP_PORT = os.getenv('HTTP_PORT', 80)
+API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', 'http://localhost:{0}'.format(HTTP_PORT))
 
 jwt_secret = os.getenv('JWT_SECRET')
 dgraph_token = os.getenv('DGRAPH_TOKEN')
@@ -92,7 +93,7 @@ def fileproxy(url):
         return re.sub(r'https?://', '', url)
 
     resp = get('/api/fileproxy/{0}'.format(url))
-    host = os.getenv('SERVER_URL', 'http://lingvograph.com:4200')
+    host = os.getenv('SERVER_URL', 'http://lingvograph.com')
     path = resp['path'] if 'path' in resp else path_from_url()
     result = '{0}/api/file/{1}'.format(host, path)
     return result

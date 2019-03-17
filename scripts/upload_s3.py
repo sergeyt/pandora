@@ -11,9 +11,9 @@ utils.enable_logging_with_headers()
 
 filename = api.schema_path()
 
-access_key = os.getenv('MINIO_ACCESS_KEY')
-secret_key = os.getenv('MINIO_SECRET_KEY')
-bucket_name = os.getenv('S3_BUCKET')
+access_key = os.getenv('AWS_ACCESS_KEY_ID')
+secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+bucket_name = os.getenv('AWS_S3_BUCKET')
 
 # mc = Minio(
 #   # 'localhost:4200/api/s3',

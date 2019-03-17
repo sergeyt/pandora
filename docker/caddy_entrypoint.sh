@@ -2,4 +2,4 @@
 
 cd /pyadmin && gunicorn admin:app &
 
-caddy -agree --conf /etc/caddy/Caddyfile
+caddy -email stodyshev@gmail.com -agree --conf /etc/caddy/Caddyfile

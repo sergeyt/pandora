@@ -38,7 +38,7 @@ func awsConfig() *aws.Config {
 	logLevel := aws.LogDebug
 	return &aws.Config{
 		Credentials:      credentials.NewEnvCredentials(),
-		Endpoint:         aws.String(os.Getenv("S3_ENDPOINT")),
+		Endpoint:         aws.String(os.Getenv("AWS_S3_ENDPOINT")),
 		Region:           aws.String(os.Getenv("AWS_REGION")),
 		DisableSSL:       aws.Bool(true),
 		S3ForcePathStyle: aws.Bool(true),
@@ -47,7 +47,7 @@ func awsConfig() *aws.Config {
 }
 
 func getBucket() string {
-	return os.Getenv("S3_BUCKET")
+	return os.Getenv("AWS_S3_BUCKET")
 }
 
 // ObjectStore is store of any BLOB objects
@@ -65,7 +65,7 @@ type S3Store struct {
 	bucket string
 }
 
-// EnsureBucket creates S3_BUCKET
+// EnsureBucket creates AWS_S3_BUCKET
 func (fs *S3Store) EnsureBucket() error {
 	sess := session.New(fs.config)
 	svc := s3.New(sess)

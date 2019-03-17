@@ -15,4 +15,4 @@ RUN apk add --no-cache git \
 
 WORKDIR /go/src/github.com/sergeyt/pandora
 
-ENTRYPOINT ["dockerize", "--wait", "tcp://dgraph:9080", "--wait", "tcp://nats:4222", "/go/bin/air"]
+ENTRYPOINT ["dockerize", "--wait", "tcp://dgraph:9080", "--wait", "tcp://minio:9000", "--wait", "tcp://nats:4222", "/go/bin/air"]

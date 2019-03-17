@@ -1,7 +1,7 @@
 GOOS=linux GOARCH=amd64 go get github.com/abiosoft/caddyplug/caddyplug
 alias caddyplug='GOOS=linux GOARCH=amd64 caddyplug'
 
-PLUGINS=cors,realip,expires,cache,jwt
+PLUGINS=cors,realip,expires,cache,jwt,git
 
 cp /dev/null plugins.go
 

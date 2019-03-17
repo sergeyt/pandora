@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/spf13/viper"
 )
@@ -55,9 +56,16 @@ func ServerURL() string {
 	if len(s) > 0 {
 		return s
 	}
+	s = os.Getenv("HTTP_PORT")
+	if port, err := strconv.ParseInt(s, 10, 64); err == nil {
+		if port == 80 {
+			return "http://localhost"
+		}
+		return fmt.Sprintf("http://localhost:%d", port)
+	}
 	hostname, err := os.Hostname()
 	if err == nil {
 		return fmt.Sprintf("http://%s", hostname)
 	}
-	return "http://localhost:4200"
+	return "http://localhost"
 }

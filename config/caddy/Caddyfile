@@ -1,39 +1,42 @@
-:4200
+http://localhost:4200, http://lingvograph.com {
+    log stdout
+    errors stderr
+    gzip
+    cors
 
-log stdout
-errors stderr
-gzip
-cors
+    proxy /api/pyadmin/ localhost:8000 {
+        transparent
+    }
 
-# fastcgi /api/pyadmin/ unix:/pandora-pyadmin.sock
+    jwt {
+        path /api
+        except /api/login
+        except /api/register
+        except /api/oauth
+        except /api/pyadmin
+        except /api/admin
+        except /api/file
+    }
 
-proxy /api/pyadmin/ localhost:8000 {
-    transparent
-}
+    proxy /api/imageproxy imageproxy:1081 {
+        transparent
+    }
+    proxy /api/event/stream pubsub:4302 {
+        transparent
+    }
+    proxy /api app:4201 {
+        transparent
+    }
+    proxy /kibana kibana:5601 {
+        transparent
+        without /kibana
+    }
 
-jwt {
-    path /api
-    except /api/login
-    except /api/register
-    except /api/oauth
-    except /api/pyadmin
-    except /api/admin
-    except /api/file
-}
+    ext .html .htm .md
+    markdown
 
-proxy /api/imageproxy imageproxy:1081 {
-    transparent
+    git {
+        repo github.com/lingvograph/site
+        interval 60
+    }
 }
-proxy /api/event/stream pubsub:4302 {
-    transparent
-}
-proxy /api app:4201 {
-    transparent
-}
-proxy /kibana kibana:5601 {
-    transparent
-    without /kibana
-}
-
-ext .html .htm .md
-markdown
