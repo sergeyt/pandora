@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:3de22f0e7208f2e7fb8662fcab0aee360e3cae85d5f3649f3bf0b247f575d183"
+  digest = "1:7c0db328d23a0765c032489393c24106b3cf2b3feb716ce3fc57e859ab5151b2"
   name = "cloud.google.com/go"
   packages = ["compute/metadata"]
   pruneopts = ""
-  revision = "f52f9bc132541d2aa914f42100c36d10b1ef7e0c"
-  version = "v0.37.0"
+  revision = "2fa99f4c25c422525316dcb1fd3d5b94e1944cfd"
+  version = "v0.37.1"
 
 [[projects]]
   digest = "1:c39642fccd7092e7fbc39e4f3eb62b4bcdf0765a6648d0ea4c90cd1ed1a9c70a"
@@ -40,15 +40,15 @@
   revision = "8b13a72661dae6e9e5dea04f344f0dc95ea29547"
 
 [[projects]]
-  digest = "1:9ceecb4271682fd824475d451b6abf02b99ad04e72f8de3408a9d8b7fd15b933"
+  digest = "1:e8f914c174ebc670d1713986d5e4f47a21f349209ac929d00558a496f59c7384"
   name = "github.com/ajg/form"
   packages = ["."]
   pruneopts = ""
-  revision = "cc2954064ec9ea8d93917f0f87456e11d7b881ad"
-  version = "v1.5"
+  revision = "5c4e22684113ffc2a77577c178189940925f9aef"
+  version = "v1.5.1"
 
 [[projects]]
-  digest = "1:a697c50c05d102ba1cc7c468e224a45265cf02e51a40616364041ebe459b5031"
+  digest = "1:ebb59d601e14b40b1ad9fc67f8732df91734335a4e5c4d231f7b7134070b1433"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -89,8 +89,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "2410a5b1bbbb4e64c57dd1030f204c8fbfb1c58a"
-  version = "v1.18.3"
+  revision = "f9b35e02297c8fcca7a55dd30ed8d4e9dc64f5a3"
+  version = "v1.18.5"
 
 [[projects]]
   branch = "master"
@@ -167,12 +167,12 @@
   version = "v3.2.0"
 
 [[projects]]
-  digest = "1:52a9a76e22b6d7995e657a6e732551e04b42e6c144562a364ebd6ba4622df048"
+  digest = "1:52e3f726e562ee4524e82563b218418f1a52e7ea3e65e3bce599763526b089a9"
   name = "github.com/epicagency/caddy-expires"
   packages = ["."]
   pruneopts = ""
-  revision = "cb2ed464e061263893acfe4cdbcab6f54e244afc"
-  version = "v1.0.0"
+  revision = "507b5b80cfd1feb3f849007bbe92daed436c5977"
+  version = "v1.1.0"
 
 [[projects]]
   digest = "1:e988ed0ca0d81f4d28772760c02ee95084961311291bdfefc1b04617c178b722"
@@ -213,6 +213,23 @@
   packages = ["."]
   pruneopts = ""
   revision = "6f8212e8d10df7383609d3c377ca08884d8f3ec0"
+
+[[projects]]
+  digest = "1:80c65aa3d7fb8f3dd7b5c37a786e21cb5562e5e1eb1c6b2ba403f69cfd268d18"
+  name = "github.com/go-acme/lego"
+  packages = [
+    "acme",
+    "certcrypto",
+    "certificate",
+    "challenge",
+    "challenge/http01",
+    "challenge/tlsalpn01",
+    "lego",
+    "registration",
+  ]
+  pruneopts = ""
+  revision = "52e43eb318b07ace590c2144804292c89aa74802"
+  version = "v2.2.0"
 
 [[projects]]
   digest = "1:26d175e5ae3907016981aae86d2ef8acbbb94391a2b6a01b96a5f7fb682dc04c"
@@ -554,11 +571,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:517642371fd6ff13283f71037315c3c06ed6a06637236007df0fa80a6b4ad58f"
+  digest = "1:dfbf33e6ac838123677361ce43b73ede86cbfa6d0cd487a627f79fb6e0ac12a8"
   name = "github.com/mholt/certmagic"
   packages = ["."]
   pruneopts = ""
-  revision = "e3e89d1096d76d61680f8eeb8f67649baa6c54b8"
+  revision = "ee1543e2f234dc5e8eb3c7e76cbafb89398dd455"
 
 [[projects]]
   digest = "1:7924543c4d02b7f67efe013cd836bd438b0ecc275acbae9b88f5c8a2bf9373e4"
@@ -816,7 +833,6 @@
     "challenge/http01",
     "challenge/resolver",
     "challenge/tlsalpn01",
-    "lego",
     "log",
     "platform/wait",
     "registration",
@@ -870,7 +886,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:73e6624a8569db94b0d8f9b34052f73ef9598c380edbce36d89dbbc00941e976"
+  digest = "1:ced597cd18c9d5a5b0b2ec62e8bc74194965d703694d7a5bc2277c0f2b2f4d73"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -889,11 +905,11 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "9f648a60d9775ef5c977e7669d1673a7a67bef33"
+  revision = "1272bf9dcd53ea65c09668fb4c76e65deb740072"
 
 [[projects]]
   branch = "master"
-  digest = "1:ffae4a89b63a2c845533a393b3340f8696898b11b71da1b187f82f08135c23a0"
+  digest = "1:1b92aed6ef88203e39b9d95be415a26bb249ba2afb24ec766127cd74b61287d0"
   name = "golang.org/x/oauth2"
   packages = [
     ".",
@@ -903,11 +919,11 @@
     "jwt",
   ]
   pruneopts = ""
-  revision = "e64efc72b421e893cbf63f17ba2221e7d6d0b0f3"
+  revision = "c85d3e98c914e3a33234ad863dcbff5dbc425bb8"
 
 [[projects]]
   branch = "master"
-  digest = "1:9f5e388a2e01d646e82dc420469e21a6e0e7a526954ef1638009bc87eacf578e"
+  digest = "1:ff0bd364800b7ec504f142151d0c2fbe68841cd1dc1a506fae10eeddcae42e60"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -915,7 +931,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "a2f829d7f35f2ed1c3520c553a6226495455cae0"
+  revision = "6c81ef8f67ca3f42fc9cd71dfbd5f35b0c4b5771"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
@@ -1074,6 +1090,7 @@
     "github.com/captncraig/cors/caddy",
     "github.com/dgraph-io/dgo",
     "github.com/dgraph-io/dgo/protos/api",
+    "github.com/dgrijalva/jwt-go",
     "github.com/epicagency/caddy-expires",
     "github.com/fsnotify/fsnotify",
     "github.com/go-chi/chi",
