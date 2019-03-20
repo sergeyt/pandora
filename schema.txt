@@ -53,7 +53,6 @@ translated_as: uid @count @reverse .
 visual: uid @count .
 audio: uid @count .
 related: uid @count @reverse .
-relevant: uid @count @reverse .
 
 created_at: dateTime .
 modified_at: dateTime .

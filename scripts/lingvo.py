@@ -39,10 +39,6 @@ def init():
 
             buf.append(line)
 
-            if "<visual>" in line:
-                buf.append(line.replace("<visual>", "<relevant>"))
-                buf.append(line.replace("<visual>", "<related>"))
-
     data = '\n'.join(buf)
     print(data)
     api.set_nquads(data)
