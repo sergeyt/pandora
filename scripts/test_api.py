@@ -63,3 +63,28 @@ def test_crud():
 
     api.delete('/api/data/user/' + id)
     api.delete('/api/data/user/' + id2)
+
+
+def test_graph_update():
+    api.login("admin", "admin123")
+
+    data = {
+        'name': "bob",
+        'age': 39,
+    }
+
+    print('CREATE')
+
+    resp = api.post('/api/data/user', data)
+
+    id = resp['uid']
+
+    nquads = '\n'.join(['<{0}> <first_lang> "ru" .'.format(id)])
+
+    api.post('/api/nquads', nquads, content_type='application/n-quads')
+
+    resp = api.get('/api/data/user/list')
+
+    print('DELETE')
+
+    api.delete('/api/data/user/' + id)

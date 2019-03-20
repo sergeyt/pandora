@@ -25,16 +25,18 @@ system_token = jwt.encode({
 
 access_token = ''
 
+MIME_JSON = 'application/json'
+
 stdHeaders = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    'Accept': MIME_JSON,
+    'Content-Type': MIME_JSON,
     'Authorization': 'local_admin',
 }
 
 
 def is_json(resp):
     t = resp.headers.get('Content-Type')
-    return t.startswith('application/json')
+    return t.startswith(MIME_JSON)
 
 
 def dump_json(resp):
@@ -42,10 +44,11 @@ def dump_json(resp):
         print(json.dumps(resp.json(), sort_keys=True, indent=2))
 
 
-def headers():
+def headers(content_type=MIME_JSON):
     h = stdHeaders.copy()
     t = access_token if access_token else system_token
     h['Authorization'] = 'Bearer ' + t
+    h['Content-Type'] = content_type
     return h
 
 
@@ -61,11 +64,16 @@ def get(path):
     return resp.json() if is_json(resp) else resp
 
 
-def post(path, payload, auth=None, raw=False):
+def jsonstr(data):
+    return json.dumps(data, sort_keys=True, indent=2)
+
+
+def post(path, payload, auth=None, raw=False, content_type=MIME_JSON):
     params = {'key': API_KEY}
-    data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
+    h = headers(content_type)
+    data = payload if raw or content_type != MIME_JSON else jsonstr(payload)
     resp = requests.post(
-        url(path), data=data, params=params, headers=headers(), auth=auth)
+        url(path), data=data, params=params, headers=h, auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
