@@ -54,6 +54,7 @@ visual: uid @count .
 audio: uid @count .
 related: uid @count @reverse .
 
+registered_at: dateTime .
 created_at: dateTime .
 modified_at: dateTime .
 created_by: uid @count .

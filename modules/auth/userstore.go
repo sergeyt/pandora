@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"time"
 
 	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
@@ -147,6 +148,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	in["email"] = account.Email
 	in["avatar"] = account.AvatarURL
 	in["location"] = account.Location
+	in["registered_at"] = time.Now()
 
 	_, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
