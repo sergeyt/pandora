@@ -20,6 +20,7 @@ first_lang: string @index(term, hash) .
 country: string @index(term, hash) .
 city: string @index(term, hash) .
 provider: string @index(term, hash) .
+status: string @index(term, hash) .
 
 account: uid @count .
 friend: uid @count .
