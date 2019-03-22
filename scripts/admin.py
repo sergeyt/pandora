@@ -4,6 +4,8 @@ import sys
 import os
 import logging
 import traceback
+import subprocess
+
 import api
 import initdata
 import lingvo
@@ -52,6 +54,20 @@ def resetdb():
     api.init_schema()
     initdata.init()
     lingvo.init()
+    return done
+
+
+@app.route('/api/pyadmin/upgrade')
+@secret_required
+def upgrade():
+    subprocess.call(['./upgrade.sh'])
+    return done
+
+
+@app.route('/api/pyadmin/rebuild')
+@secret_required
+def upgrade():
+    subprocess.call(['./rebuild.sh'])
     return done
 
 
