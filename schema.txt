@@ -19,6 +19,7 @@ description: string @lang @index(fulltext) .
 age: int @index(int) .
 first_lang: string @index(term, hash) .
 country: string @index(term, hash) .
+state: string @index(term, hash) .
 city: string @index(term, hash) .
 provider: string @index(term, hash) .
 status: string @index(term, hash) .
@@ -37,16 +38,6 @@ hash: string @index(term) .
 text: string @lang @index(fulltext) .
 transcript: string @lang @index(fulltext) .
 
-word: string @count .
-phrase: string @count .
-idiom: string @count .
-noun: string @count .
-adjective: string @count .
-verb: string @count .
-adverb: string @count .
-slang: string @count .
-
-author: uid @count .
 channel: uid @count .
 from: uid @count .
 to: uid @count .
@@ -72,11 +63,6 @@ url: string @index(term, hash) .
 source: string @index(term, hash) .
 geo: geo @index(geo) .
 path: string @index(term, hash) .
-upload_id: string .
-version_id: string .
-
-choise: string @index(term, hash) .
-is_active: bool @count .
 
 know: uid @count .
 forgot: uid @count .
@@ -85,4 +71,3 @@ interesting: uid @count .
 
 like: uid @count .
 dislike: uid @count .
-love: uid @count .
