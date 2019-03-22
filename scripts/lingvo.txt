@@ -1,4 +1,4 @@
-_:img_afternoon1 <url " .
+_:img_afternoon1 <url> "" .
 
 _:afternoon_en <text> "afternoon" .
 _:afternoon_en <lang> "en" .
@@ -325,21 +325,21 @@ _:i_ru <transcript> "йа"@ru .
 
 _:i_en <translated_as> _:i_ru .
 
-_:img_go 1 <url> "http://womenshik.ru/uploads/posts/1305876049_1.jpg" .
+_:img_go1 <url> "http://womenshik.ru/uploads/posts/1305876049_1.jpg" .
 
-_:go _en <text> "go " .
-_:go _en <lang> "en" .
-_:go _en <visual> _:img_go 1 .
-_:go _en <transcript> "ɡəʊ"@en .
-_:go _en <transcript> "гоу"@ru .
+_:go_en <text> "go " .
+_:go_en <lang> "en" .
+_:go_en <visual> _:img_go1 .
+_:go_en <transcript> "ɡəʊ"@en .
+_:go_en <transcript> "гоу"@ru .
 
-_:go _ru <text> "идти" .
-_:go _ru <lang> "ru" .
-_:go _ru <visual> _:img_go1 .
-_:go _ru <transcript> "идти"@ru .
-_:go _ru <transcript> "idti'"@en .
+_:go_ru <text> "идти" .
+_:go_ru <lang> "ru" .
+_:go_ru <visual> _:img_go1 .
+_:go_ru <transcript> "идти"@ru .
+_:go_ru <transcript> "idti'"@en .
 
-_:go _en <translated_as> _:go _ru .
+_:go_en <translated_as> _:go_ru .
 
 _:img_girl1 <url> "https://i.ytimg.com/vi/ktlQrO2Sifg/maxresdefault.jpg" .
 _:aud_girl1 <url> "https://howjsay.com/mp3/girl.mp3" .
@@ -436,7 +436,7 @@ _:live_ru <transcript> " zhit'"@en .
 
 _:live_en <translated_as> _:live_ru .
 
-:img_man1 <url> "http://www.sncmedia.ru/upload/iblock/b14/b14180996e0f649f5243e47a87566c62_w877_h500_crp.jpg" .
+_:img_man1 <url> "http://www.sncmedia.ru/upload/iblock/b14/b14180996e0f649f5243e47a87566c62_w877_h500_crp.jpg" .
 
 _:man_en <text> "man" .
 _:man_en <lang> "en" .
@@ -541,7 +541,7 @@ _:recreation_ru <transcript> "отдых"@ru .
 
 _:recreation_en <translated_as> _:recreation_ru .
 
-:img_sister1 <url> "https://steptohealth.ru/wp-content/uploads/2016/06/sestra-e1541886487320.jpg" .
+_:img_sister1 <url> "https://steptohealth.ru/wp-content/uploads/2016/06/sestra-e1541886487320.jpg" .
 
 _:sister_en <text> "sister" .
 _:sister_en <lang> "en" .
@@ -592,7 +592,7 @@ _:spoon_ru <transcript> "лошка"@ru .
 
 _:spoon_en <translated_as> _:spoon_ru .
 
-:img_spring1 <url> "https://sr.gallerix.ru/1075871509/_EX/982971191.jpg" .
+_:img_spring1 <url> "https://sr.gallerix.ru/1075871509/_EX/982971191.jpg" .
 
 _:spring_en <text> "spring" .
 _:spring_en <lang> "en" .
@@ -608,7 +608,7 @@ _:spring_ru <transcript> "vesna"@en .
 
 _:spring_en <translated_as> _:spring_ru .
 
-:img_summer1 <url> "http://u74.ru/files/images/news/2018/04/30/24488_b22066546.jpg" .
+_:img_summer1 <url> "http://u74.ru/files/images/news/2018/04/30/24488_b22066546.jpg" .
 
 _:summer_en <text> "summer" .
 _:summer_en <lang> "en" .
@@ -624,7 +624,7 @@ _:summer_ru <transcript> "leto"@en .
 
 _:summer_en <translated_as> _:summer_ru .
 
-:img_sun1 <url> "https://i.pinimg.com/originals/47/d7/a6/47d7a6f83632c86e1bec78fbce9ac2a3.png" .
+_:img_sun1 <url> "https://i.pinimg.com/originals/47/d7/a6/47d7a6f83632c86e1bec78fbce9ac2a3.png" .
 
 _:sun_en <text> "sun" .
 _:sun_en <lang> "en" .
@@ -659,21 +659,21 @@ _:table_ru <transcript> "стол"@ru .
 
 _:table_en <translated_as> _:table_ru .
 
-_:img_understand 1 <url> "https://englex.ru/wp-content/uploads/320489023803.jpg" .
+_:img_understand1 <url> "https://englex.ru/wp-content/uploads/320489023803.jpg" .
 
-_:understand _en <text> "understand " .
-_:understand _en <lang> "en" .
-_:understand _en <visual> _:img_understand 1 .
-_:understand _en <transcript> "ˌʌndə(r)ˈstænd"@en .
-_:understand _en <transcript> "андэ(р)стэнд"@ru .
+_:understand_en <text> "understand " .
+_:understand_en <lang> "en" .
+_:understand_en <visual> _:img_understand1 .
+_:understand_en <transcript> "ˌʌndə(r)ˈstænd"@en .
+_:understand_en <transcript> "андэ(р)стэнд"@ru .
 
-_:understand _ru <text> "понимать" .
-_:understand _ru <lang> "ru" .
-_:understand _ru <visual> _:img_understand1 .
-_:understand _ru <transcript> "понимать"@ru .
-_:understand _ru <transcript> "ponimat'"@en .
+_:understand_ru <text> "понимать" .
+_:understand_ru <lang> "ru" .
+_:understand_ru <visual> _:img_understand1 .
+_:understand_ru <transcript> "понимать"@ru .
+_:understand_ru <transcript> "ponimat'"@en .
 
-_:understand _en <translated_as> _:understand _ru .
+_:understand_en <translated_as> _:understand_ru .
 
 _:img_winter1 <url> "https://www.ampravda.ru/files/contests/12/29907ce7b829a6d61b1440a3c6b98dfc_medium.JPG" .
 
@@ -691,7 +691,7 @@ _:winter_ru <transcript> "zima"@en .
 
 _:winter_en <translated_as> _:winter_ru .
 
-img_woman1 <url> "https://whymagic.ru/images/a1/mudraia-jenschina.jpg" .
+_:img_woman1 <url> "https://whymagic.ru/images/a1/mudraia-jenschina.jpg" .
 
 _:woman_en <text> "woman" .
 _:woman_en <lang> "en" .

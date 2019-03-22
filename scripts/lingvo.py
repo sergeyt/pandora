@@ -89,6 +89,8 @@ def change_url(line):
         return line
     id = m.group(1)
     image_url = m.group(2)
+    if image_url == '':
+        image_url = 'https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image'
     image_url = api.fileproxy(image_url)
     return '_:{0} <url> "{1}" .'.format(id, image_url)
 
