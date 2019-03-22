@@ -17,4 +17,5 @@ while read -r SERVICE; do
 done <<< "$SERVICES"
 
 docker-compose up -d
+docker-compose restart caddy
 docker-compose ps
