@@ -120,7 +120,7 @@ func TestCRUD(t *testing.T) {
 	fmt.Println("QUERY")
 
 	query := `{
-		data(func: eq(name, "bob")) @filter(has(_user)) {
+		data(func: eq(name, "bob")) @filter(has(User)) {
 			uid
 			name
 			age

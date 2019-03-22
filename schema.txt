@@ -1,9 +1,10 @@
-_user: string @count .
-_term: string @count .
-_file: string @count .
-_category: string @count .
-_message: string @count .
-_channel: string @count .
+User: string @count .
+Term: string @count .
+Tag: string @count .
+File: string @count .
+Category: string @count .
+Message: string @count .
+Channel: string @count .
 
 name: string @index(term, hash) .
 first_name: string @index(term, hash) .

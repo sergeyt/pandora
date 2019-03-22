@@ -30,7 +30,7 @@ def init():
 
             if kind and id not in typed:
                 add_audio(line, id, buf, audio)
-                buf.append('{0} <_{1}> "" .'.format(id, kind))
+                buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
                 typed[id] = True
 
             if "<visual>" in line and id in audio:

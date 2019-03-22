@@ -16,7 +16,7 @@ import (
 )
 
 func NodeLabel(resourceType string) string {
-	return "_" + resourceType
+	return strings.Title(strings.ToLower(resourceType))
 }
 
 func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Pagination) ([]map[string]interface{}, error) {
