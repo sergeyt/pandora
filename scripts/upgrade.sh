@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+set -e
+
 git checkout Gopkg.lock
 git pull
 dep ensure
 go install
 
-SERVICES = `docker-compose ps --services`
+SERVICES=`docker-compose ps --services`
 while read -r SERVICE; do
     if [ "$SERVICE" -ne "caddy" ]
     then
