@@ -9,7 +9,7 @@ go install
 
 SERVICES=`docker-compose ps --services`
 while read -r SERVICE; do
-    if [ "$SERVICE" -ne "caddy" ]
+    if [ $SERVICE -ne "caddy" ]
     then
         docker-compose stop $SERVICE
     fi
