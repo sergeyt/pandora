@@ -66,7 +66,7 @@ def upgrade():
 
 @app.route('/api/pyadmin/rebuild')
 @secret_required
-def upgrade():
+def rebuild():
     subprocess.call(['./rebuild.sh'])
     return done
 
