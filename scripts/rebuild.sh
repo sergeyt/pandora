@@ -9,6 +9,6 @@ go install
 
 docker-compose down
 docker-compose build --no-cache
-docker-compse up -d
+docker-compose up -d
 # TODO wait while all services is up
 docker-compose ps
