@@ -176,7 +176,7 @@ _:child_en <translated_as> _:child_ru .
 _:img_different1 <url> "" .
 
 _:different_en <text> "different" .
-_:different	_en <lang> "en" .
+_:different_en <lang> "en" .
 _:different_en <word> "" .
 _:different_en <noun> "" .
 _:different_en <visual> _:img_different1 .

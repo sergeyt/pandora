@@ -43,6 +43,14 @@
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/c/chi/child/child_British_English_pronunciation_67411.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/c/chi/child/child_British_English_pronunciation_67411.ogg"
   },
+  "different": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/d/dif/diffe/different_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/d/dif/diffe/different_British_English_pronunciation.ogg"
+  },
+  "difficult": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/d/dif/diffi/difficult_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/d/dif/diffi/difficult_British_English_pronunciation.ogg"
+  },
   "dog": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/d/dog/dog_B/dog_British_English_pronunciation_74410.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/d/dog/dog_B/dog_British_English_pronunciation_74410.ogg"
@@ -79,6 +87,10 @@
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/h/hel/hello/hello_British_English_pronunciation.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/h/hel/hello/hello_British_English_pronunciation.ogg"
   },
+  "hot": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/h/hot/hot_B/hot_British_English_pronunciation_81860.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/h/hot/hot_B/hot_British_English_pronunciation_81860.ogg"
+  },
   "house": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/h/hou/house/house_British_English_pronunciation_81907.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/h/hou/house/house_British_English_pronunciation_81907.ogg"
@@ -87,6 +99,10 @@
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/i/i_B/i_Bri/i_British_English_pronunciation.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/i/i_B/i_Bri/i_British_English_pronunciation.ogg"
   },
+  "important": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/i/imp/impor/important_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/i/imp/impor/important_British_English_pronunciation.ogg"
+  },
   "know": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/k/kno/know_/know_British_English_pronunciation_84399.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/k/kno/know_/know_British_English_pronunciation_84399.ogg"
@@ -94,6 +110,10 @@
   "lake": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/l/lak/lake_/lake_British_English_pronunciation.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/l/lak/lake_/lake_British_English_pronunciation.ogg"
+  },
+  "large": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/l/lar/large/large_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/l/lar/large/large_British_English_pronunciation.ogg"
   },
   "live": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/l/liv/live_/live_British_English_pronunciation_85382.mp3",
@@ -115,9 +135,17 @@
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/n/nig/night/night_British_English_pronunciation_88675.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/n/nig/night/night_British_English_pronunciation_88675.ogg"
   },
+  "old": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/o/old/old_B/old_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/o/old/old_B/old_British_English_pronunciation.ogg"
+  },
   "person": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/p/per/perso/person_British_English_pronunciation.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/p/per/perso/person_British_English_pronunciation.ogg"
+  },
+  "popular": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/p/pop/popul/popular_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/p/pop/popul/popular_British_English_pronunciation.ogg"
   },
   "recreation": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/r/rec/recre/recreation_British_English_pronunciation_94313.mp3",
@@ -154,6 +182,10 @@
   "understand": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/u/und/under/understand_British_English_pronunciation_103798.mp3",
     "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/u/und/under/understand_British_English_pronunciation_103798.ogg"
+  },
+  "useful": {
+    "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/u/use/usefu/useful_British_English_pronunciation.mp3",
+    "ogg": "https://www.macmillandictionary.com/media/british/uk_pron_ogg/u/use/usefu/useful_British_English_pronunciation.ogg"
   },
   "winter": {
     "mp3": "https://www.macmillandictionary.com/media/british/uk_pron/w/win/winte/winter_British_English_pronunciation_106057.mp3",
