@@ -48,7 +48,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:cdc2e4c6a29af99c860a1372e118d5a1b07804661fe24ad7af615b3bfd04a52e"
+  digest = "1:40a1ccfa1e93fcdf667e7837961f61363dc06dd982de6dc29f5577e860b77652"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -89,8 +89,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "4a2b0831f1351f3ece1962805a88fcc667cedd3e"
-  version = "v1.19.0"
+  revision = "f778816ebd8f4a83264c207c77e6bcd0a5a76603"
+  version = "v1.19.1"
 
 [[projects]]
   branch = "master"
@@ -376,12 +376,12 @@
   version = "v1.7.0"
 
 [[projects]]
-  digest = "1:529dd39ce1a3837709c5f1dbf0a803ecb22e4fef79c722cdd9805e2a63ca686e"
+  digest = "1:fa4fc0747e5d97478a303f0540a7e1207b286cad68e5b0009114814444e6c174"
   name = "github.com/gorilla/schema"
   packages = ["."]
   pruneopts = ""
-  revision = "d0e4c24cff97ae983e9847e0ed5a02dc10013d41"
-  version = "v1.0.2"
+  revision = "124d17ef95858a10835ce95502446cb5a9e9f715"
+  version = "v1.1.0"
 
 [[projects]]
   digest = "1:51a1d17ba9fe6648d9fdd5b822baa616d6ec7f28c8669c2091126d206796b5ae"
@@ -886,7 +886,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ced597cd18c9d5a5b0b2ec62e8bc74194965d703694d7a5bc2277c0f2b2f4d73"
+  digest = "1:edcbef5f8532db18c25ae0b5ee8a06e64103768895756b7406304b73033a946e"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -905,7 +905,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "1272bf9dcd53ea65c09668fb4c76e65deb740072"
+  revision = "addf6b3196f61cd44ce5a76657913698c73479d0"
 
 [[projects]]
   branch = "master"
@@ -923,7 +923,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ba9161ae486a23244987306b85436483df7b276c2364d61a033ad3aebeeec8d0"
+  digest = "1:919aaa36fe27d6fba3bea8067d0dea806269c45c8e5f329713eef4e2637dc2f4"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
@@ -931,7 +931,7 @@
     "windows",
   ]
   pruneopts = ""
-  revision = "f7bb7a8bee54210937e93ec56d007d892c1f0580"
+  revision = "f49334f85ddcf0f08d7fb6dd7363e9e6d6b777eb"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
