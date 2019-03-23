@@ -292,6 +292,9 @@ func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth
 	}
 
 	in := makeAccount(data)
+	if len(accountID) == 0 {
+		in["registered_at"] = time.Now()
+	}
 
 	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
