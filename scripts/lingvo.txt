@@ -1,3 +1,19 @@
+_:word <Tag> "" .
+_:word <text> "word"@en .
+_:word <text> "слово"@ru .
+
+_:noun <Tag> "" .
+_:noun <text> "noun"@en .
+_:noun <text> "существительное"@ru .
+
+_:verb <Tag> "" .
+_:verb <text> "verb"@en .
+_:verb <text> "глагол"@ru .
+
+_:adjective <Tag> "" .
+_:adjective <text> "adjective"@en .
+_:adjective <text> "прилагательное"@ru .
+
 _:img_afternoon1 <url> "" .
 
 _:afternoon_en <text> "afternoon" .
@@ -18,16 +34,16 @@ _:img_apple1 <url> "http://static1.squarespace.com/static/5849b12a2e69cf47aecece
 
 _:apple_en <text> "apple" .
 _:apple_en <lang> "en" .
-_:apple_en <word> "" .
-_:apple_en <noun> "" .
+_:apple_en <tag> _:word .
+_:apple_en <tag> _:noun .
 _:apple_en <visual> _:img_apple1 .
 _:apple_en <transcript> "ˈæp(ə)l"@en .
 _:apple_en <transcript> "эпл"@ru .
 
 _:apple_ru <text> "яблоко" .
 _:apple_ru <lang> "ru" .
-_:apple_ru <word> "" .
-_:apple_ru <noun> "" .
+_:apple_ru <tag> _:word .
+_:apple_ru <tag> _:noun .
 _:apple_ru <visual> _:img_apple1 .
 _:apple_ru <transcript> "яблако"@ru .
 
@@ -37,16 +53,19 @@ _:img_autumn1 <url> "http://img1.likar.info/uploads/cc/b5/4d/ccb54d24-8a7c-41b9-
 
 _:autumn_en <text> "autumn" .
 _:autumn_en <lang> "en" .
+_:autumn_en <tag> _:word .
+_:autumn_en <tag> _:noun .
 _:autumn_en <visual> _:img_autumn1 .
 _:autumn_en <transcript> "ˈɔːtəm"@en .
 _:autumn_en <transcript> "отэм"@ru .
 
 _:autumn_ru <text> "осень" .
 _:autumn_ru <lang> "ru" .
+_:autumn_ru <tag> _:word .
+_:autumn_ru <tag> _:noun .
 _:autumn_ru <visual> _:img_autumn1 .
 _:autumn_ru <transcript> "осинь"@ru .
 _:autumn_ru <transcript> "osen'"@en .
-
 
 _:autumn_en <translated_as> _:autumn_ru .
 
@@ -54,16 +73,16 @@ _:img_bed1 <url> "https://hoff.ru//upload/iblock/9be/9be0921f96cf2f30b4e5136c4ec
 
 _:bed_en <text> "bed" .
 _:bed_en <lang> "en" .
-_:bed_en <word> "" .
-_:bed_en <noun> "" .
+_:bed_en <tag> _:word .
+_:bed_en <tag> _:noun .
 _:bed_en <visual> _:img_bed1 .
 _:bed_en <transcript> "bed"@en .
 _:bed_en <transcript> "бэд"@ru .
 
 _:bed_ru <text> "кровать" .
 _:bed_ru <lang> "ru" .
-_:bed_ru <word> "" .
-_:bed_ru <noun> "" .
+_:bed_ru <tag> _:word .
+_:bed_ru <tag> _:noun .
 _:bed_ru <visual> _:img_bed1 .
 _:bed_ru <transcript> "кравать"@ru .
 
@@ -73,16 +92,16 @@ _:img_body1 <url> "https://cdn.britannica.com/96/177096-049-64B1A5A5.jpg" .
 
 _:body_en <text> "body" .
 _:body_en <lang> "en" .
-_:body_en <word> "" .
-_:body_en <noun> "" .
+_:body_en <tag> _:word .
+_:body_en <tag> _:noun .
 _:body_en <visual> _:img_body1 .
 _:body_en <transcript> "ˈbɒdi"@en .
 _:body_en <transcript> "бади"@ru .
 
 _:body_ru <text> "тело" .
 _:body_ru <lang> "ru" .
-_:body_ru <word> "" .
-_:body_ru <noun> "" .
+_:body_ru <tag> _:word .
+_:body_ru <tag> _:noun .
 _:body_ru <visual> _:img_body1 .
 _:body_ru <transcript> "тело"@ru .
 
@@ -92,16 +111,16 @@ _:img_boy1 <url> "https://www.paparazzi.ru/upload/wysiwyg_files/img/1472483485.j
 
 _:boy_en <text> "boy" .
 _:boy_en <lang> "en" .
-_:boy_en <word> "" .
-_:boy_en <noun> "" .
+_:boy_en <tag> _:word .
+_:boy_en <tag> _:noun .
 _:boy_en <visual> _:img_boy1 .
 _:boy_en <transcript> "bɔɪ"@en .
 _:boy_en <transcript> "бой"@ru .
 
 _:boy_ru <text> "мальчик" .
 _:boy_ru <lang> "ru" .
-_:boy_ru <word> "" .
-_:boy_ru <noun> "" .
+_:boy_ru <tag> _:word .
+_:boy_ru <tag> _:noun .
 _:boy_ru <visual> _:img_boy1 .
 _:boy_ru <transcript> "мальчик"@ru .
 
@@ -111,12 +130,16 @@ _:img_brother1 <url> "" .
 
 _:brother_en <text> "brother" .
 _:brother_en <lang> "en" .
+_:brother_en <tag> _:word .
+_:brother_en <tag> _:noun .
 _:brother_en <visual> _:img_brother1 .
 _:brother_en <transcript> "ˈbrʌðə(r)"@en .
 _:brother_en <transcript> "бразэ(р)"@ru .
 
 _:brother_ru <text> "брат" .
 _:brother_ru <lang> "ru" .
+_:brother_ru <tag> _:word .
+_:brother_ru <tag> _:noun .
 _:brother_ru <visual> _:img_brother1 .
 _:brother_ru <transcript> "брат"@ru .
 _:brother_ru <transcript> "brat"@en .
@@ -127,16 +150,19 @@ _:img_can1 <url> "https://ic.pics.livejournal.com/era_elto/21153527/185357/18535
 
 _:can_en <text> "can" .
 _:can_en <lang> "en" .
+_:can_en <tag> _:word .
+_:can_en <tag> _:verb .
 _:can_en <visual> _:img_can1 .
 _:can_en <transcript> "kæn"@en .
 _:can_en <transcript> "кэн"@ru .
 
 _:can_ru <text> "могу" .
 _:can_ru <lang> "ru" .
+_:can_ru <tag> _:word .
+_:can_ru <tag> _:verb .
 _:can_ru <visual> _:img_can1 .
 _:can_ru <transcript> "магу"@ru .
 _:can_ru <transcript> "mogu"@en .
-
 
 _:can_en <translated_as> _:can_ru .
 
@@ -144,16 +170,19 @@ _:img_cat1 <url> "https://cs9.pikabu.ru/post_img/big/2017/09/23/6/15061561431169
 
 _:cat_en <text> "cat" .
 _:cat_en <lang> "en" .
+_:cat_en <tag> _:word .
+_:cat_en <tag> _:noun .
 _:cat_en <visual> _:img_cat1 .
 _:cat_en <transcript> "kæt"@en .
 _:cat_en <transcript> "кэт"@ru .
 
 _:cat_ru <text> "кошка" .
 _:cat_ru <lang> "ru" .
+_:cat_ru <tag> _:word .
+_:cat_ru <tag> _:noun .
 _:cat_ru <visual> _:img_cat1 .
 _:cat_ru <transcript> "кошка"@ru .
 _:cat_ru <transcript> " koshka"@en .
-
 
 _:cat_en <translated_as> _:cat_ru .
 
@@ -161,12 +190,16 @@ _:img_child1 <url> "https://ocheninteresno.com/wp-content/uploads/2017/05/kakim-
 
 _:child_en <text> "child" .
 _:child_en <lang> "en" .
+_:child_en <tag> _:word .
+_:child_en <tag> _:noun .
 _:child_en <visual> _:img_child1 .
 _:child_en <transcript> "tʃaɪld"@en .
 _:child_en <transcript> "чайлд"@ru .
 
 _:child_ru <text> "ребёнок" .
 _:child_ru <lang> "ru" .
+_:child_ru <tag> _:word .
+_:child_ru <tag> _:noun .
 _:child_ru <visual> _:img_child1 .
 _:child_ru <transcript> "рибёнок"@ru .
 _:child_ru <transcript> " rebenok"@en .
@@ -177,16 +210,16 @@ _:img_different1 <url> "" .
 
 _:different_en <text> "different" .
 _:different_en <lang> "en" .
-_:different_en <word> "" .
-_:different_en <noun> "" .
+_:different_en <tag> _:word .
+_:different_en <tag> _:adjective .
 _:different_en <visual> _:img_different1 .
 _:different_en <transcript> "ˈdɪfrənt"@en .
 _:different_en <transcript> "дифрэнт"@ru .
 
 _:different_ru <text> "разный" .
 _:different_ru <lang> "ru" .
-_:different_ru <word> "" .
-_:different_ru <noun> "" .
+_:different_ru <tag> _:word .
+_:different_ru <tag> _:adjective .
 _:different_ru <visual> _:img_different1 .
 _:different_ru <transcript> "разный"@ru .
 _:different_ru <transcript> "razny'"@en .
@@ -197,12 +230,16 @@ _:img_father1 <url> "https://ваш-сонник.рф/wp-content/uploads/2018/01
 
 _:father_en <text> "father" .
 _:father_en <lang> "en" .
+_:father_en <tag> _:word .
+_:father_en <tag> _:noun .
 _:father_en <visual> _:img_father1 .
 _:father_en <transcript> "ˈfɑːðə(r)"@en .
 _:father_en <transcript> "фазэ(р)"@ru .
 
 _:father_ru <text> "отец" .
 _:father_ru <lang> "ru" .
+_:father_ru <tag> _:word .
+_:father_ru <tag> _:noun .
 _:father_ru <visual> _:img_father1 .
 _:father_ru <transcript> "атец"@ru .
 _:father_ru <transcript> " otets"@en .
@@ -213,12 +250,16 @@ _:img_difficult1 <url> "http://tv.akado.ru/images/data/akadotv/picture/imgbig/40
 
 _:difficult_en <text> "difficult" .
 _:difficult_en <lang> "en" .
+_:difficult_en <tag> _:word .
+_:difficult_en <tag> _:adjective .
 _:difficult_en <visual> _:img_difficult1 .
 _:difficult_en <transcript> "ˈdɪfɪk(ə)lt"@en .
 _:difficult_en <transcript> "дификлт"@ru .
 
 _:difficult_ru <text> "трудный" .
 _:difficult_ru <lang> "ru" .
+_:difficult_ru <tag> _:word .
+_:difficult_ru <tag> _:adjective .
 _:difficult_ru <visual> _:img_difficult1 .
 _:difficult_ru <transcript> "трудный"@ru .
 _:difficult_ru <transcript> "trudnyy"@en .
@@ -229,12 +270,16 @@ _:img_dog1 <url> "https://cdn21.img.ria.ru/images/154960/82/1549608248_0:93:433:
 
 _:dog_en <text> "dog" .
 _:dog_en <lang> "en" .
+_:dog_en <tag> _:word .
+_:dog_en <tag> _:noun .
 _:dog_en <visual> _:img_dog1 .
 _:dog_en <transcript> "dɒɡ"@en .
 _:dog_en <transcript> "дог"@ru .
 
 _:dog_ru <text> "собака" .
 _:dog_ru <lang> "ru" .
+_:dog_ru <tag> _:word .
+_:dog_ru <tag> _:noun .
 _:dog_ru <visual> _:img_dog1 .
 _:dog_ru <transcript> "сабака"@ru .
 _:dog_ru <transcript> "sobaka"@en .
@@ -245,16 +290,16 @@ _:img_door1 <url> "https://images.obi.ru/product/RU/800x600/400211_1.jpg" .
 
 _:door_en <text> "door" .
 _:door_en <lang> "en" .
-_:door_en <word> "" .
-_:door_en <noun> "" .
+_:door_en <tag> _:word .
+_:door_en <tag> _:noun .
 _:door_en <visual> _:img_door1 .
 _:door_en <transcript> "dɔː(r)"@en .
 _:door_en <transcript> "дор"@ru .
 
 _:door_ru <text> "дверь" .
 _:door_ru <lang> "ru" .
-_:door_ru <word> "" .
-_:door_ru <noun> "" .
+_:door_ru <tag> _:word .
+_:door_ru <tag> _:noun .
 _:door_ru <visual> _:img_door1 .
 _:door_ru <transcript> "дверь"@ru .
 
@@ -264,12 +309,16 @@ _:img_evening1 <url> "https://uchim-klass.ru/images/preview/6-klass/125/sochinen
 
 _:evening_en <text> "evening" .
 _:evening_en <lang> "en" .
+_:evening_en <tag> _:word .
+_:evening_en <tag> _:noun .
 _:evening_en <visual> _:img_evening1 .
 _:evening_en <transcript> "ˈiːvnɪŋ"@en .
 _:evening_en <transcript> "ивнин"@ru .
 
 _:evening_ru <text> "вечер" .
 _:evening_ru <lang> "ru" .
+_:evening_ru <tag> _:word .
+_:evening_ru <tag> _:noun .
 _:evening_ru <visual> _:img_evening1 .
 _:evening_ru <transcript> "вечер"@ru .
 _:evening_ru <transcript> "vecher"@en .
@@ -280,12 +329,16 @@ _:img_have1 <url> "https://strongautomotive.com/wp-content/uploads/2014/05/have-
 
 _:have_en <text> "have" .
 _:have_en <lang> "en" .
+_:have_en <tag> _:word .
+_:have_en <tag> _:verb .
 _:have_en <visual> _:img_have1 .
 _:have_en <transcript> "hæv"@en .
 _:have_en <transcript> "хэв"@ru .
 
 _:have_ru <text> "иметь" .
 _:have_ru <lang> "ru" .
+_:have_ru <tag> _:word .
+_:have_ru <tag> _:verb .
 _:have_ru <visual> _:img_have1 .
 _:have_ru <transcript> "иметь"@ru .
 _:have_ru <transcript> "imet'"@en .
@@ -296,12 +349,16 @@ _:img_hot1 <url> "http://humor.fm/uploads/posts/2018-02/1518030154_1.jpg" .
 
 _:hot_en <text> "hot" .
 _:hot_en <lang> "en" .
+_:hot_en <tag> _:word .
+_:hot_en <tag> _:adjective .
 _:hot_en <visual> _:img_hot1 .
 _:hot_en <transcript> "hɒt"@en .
 _:hot_en <transcript> "хот"@ru .
 
 _:hot_ru <text> "горячий" .
 _:hot_ru <lang> "ru" .
+_:hot_ru <tag> _:word .
+_:hot_ru <tag> _:adjective .
 _:hot_ru <visual> _:img_hot1 .
 _:hot_ru <transcript> "гарячий"@ru .
 _:hot_ru <transcript> "goryachyy"@en .
@@ -312,16 +369,16 @@ _:img_house1 <url> "http://epicpix.com/wp-content/uploads/2016/04/ff_3280.jpg" .
 
 _:house_en <text> "house" .
 _:house_en <lang> "en" .
-_:house_en <word> "" .
-_:house_en <noun> "" .
+_:house_en <tag> _:word .
+_:house_en <tag> _:noun .
 _:house_en <visual> _:img_house1 .
 _:house_en <transcript> "haʊs"@en .
 _:house_en <transcript> "хаус"@ru .
 
 _:house_ru <text> "дом" .
 _:house_ru <lang> "ru" .
-_:house_ru <word> "" .
-_:house_ru <noun> "" .
+_:house_ru <tag> _:word .
+_:house_ru <tag> _:noun .
 _:house_ru <visual> _:img_house1 .
 _:house_ru <transcript> "дом"@ru .
 
@@ -331,12 +388,16 @@ _:img_hello1 <url> "https://www.chitalnya.ru/upload/611/55060960771515.gif" .
 
 _:hello_en <text> "hello" .
 _:hello_en <lang> "en" .
+_:hello_en <tag> _:word .
+_:hello_en <tag> _:noun .
 _:hello_en <visual> _:img_hello1 .
 _:hello_en <transcript> "həˈləʊ"@en .
 _:hello_en <transcript> "хэлэу"@ru .
 
 _:hello_ru <text> "привет" .
 _:hello_ru <lang> "ru" .
+_:hello_ru <tag> _:word .
+_:hello_ru <tag> _:noun .
 _:hello_ru <visual> _:img_hello1 .
 _:hello_ru <transcript> "привет"@ru .
 _:hello_ru <transcript> "Privet'"@en .
@@ -347,12 +408,16 @@ _:img_i1 <url> "http://animalbooks.ru/uploads/animals/24/24_cover.png" .
 
 _:i_en <text> "i" .
 _:i_en <lang> "en" .
+_:i_en <tag> _:word .
+_:i_en <tag> _:noun .
 _:i_en <visual> _:img_i1 .
 _:i_en <transcript> "I"@en .
 _:i_en <transcript> "ай"@ru .
 
 _:i_ru <text> "Я" .
 _:i_ru <lang> "ru" .
+_:i_ru <tag> _:word .
+_:i_ru <tag> _:noun .
 _:i_ru <visual> _:img_i1 .
 _:i_ru <transcript> "йа"@ru .
 
@@ -362,12 +427,16 @@ _:img_important1 <url> "https://www.b17.ru/foto/uploaded/ea5266eb66e42cb1f63438c
 
 _:important_en <text> "important" .
 _:important_en <lang> "en" .
+_:important_en <tag> _:word .
+_:important_en <tag> _:adjective .
 _:important_en <visual> _:img_important1 .
 _:important_en <transcript> "ɪmˈpɔː(r)t(ə)nt"@en .
 _:important_en <transcript> "импотэнт"@ru .
 
 _:important_ru <text> "важный" .
 _:important_ru <lang> "ru" .
+_:important_ru <tag> _:word .
+_:important_ru <tag> _:adjective .
 _:important_ru <visual> _:img_important1 .
 _:important_ru <transcript> "важный"@ru .
 _:important_ru <transcript> "vazhnyy"@en .
@@ -379,12 +448,16 @@ _:img_go1 <url> "http://womenshik.ru/uploads/posts/1305876049_1.jpg" .
 
 _:go_en <text> "go " .
 _:go_en <lang> "en" .
+_:go_en <tag> _:word .
+_:go_en <tag> _:verb .
 _:go_en <visual> _:img_go1 .
 _:go_en <transcript> "ɡəʊ"@en .
 _:go_en <transcript> "гоу"@ru .
 
 _:go_ru <text> "идти" .
 _:go_ru <lang> "ru" .
+_:go_ru <tag> _:word .
+_:go_ru <tag> _:verb .
 _:go_ru <visual> _:img_go1 .
 _:go_ru <transcript> "идти"@ru .
 _:go_ru <transcript> "idti'"@en .
@@ -396,16 +469,16 @@ _:aud_girl1 <url> "https://howjsay.com/mp3/girl.mp3" .
 
 _:girl_en <text> "girl" .
 _:girl_en <lang> "en" .
-_:girl_en <word> "" .
-_:girl_en <noun> "" .
+_:girl_en <tag> _:word .
+_:girl_en <tag> _:noun .
 _:girl_en <visual> _:img_girl1 .
 _:girl_en <transcript> "ɡɜː(r)l"@en .
 _:girl_en <transcript> "гёл"@ru .
 
 _:girl_ru <text> "девушка" .
 _:girl_ru <lang> "ru" .
-_:girl_ru <word> "" .
-_:girl_ru <noun> "" .
+_:girl_ru <tag> _:word .
+_:girl_ru <tag> _:noun .
 _:girl_ru <visual> _:img_girl1 .
 _:girl_ru <transcript> "девушка"@ru .
 
@@ -417,8 +490,8 @@ _:img_gum3 <url> "https://cdn.shopify.com/s/files/1/0004/8132/9204/products/doub
 
 _:gum_en <text> "gum" .
 _:gum_en <lang> "en" .
-_:gum_en <word> "" .
-_:gum_en <noun> "" .
+_:gum_en <tag> _:word .
+_:gum_en <tag> _:noun .
 _:gum_en <visual> _:img_gum1 .
 _:gum_en <visual> _:img_gum2 .
 _:gum_en <visual> _:img_gum3 .
@@ -427,8 +500,8 @@ _:gum_en <transcript> "гам"@ru .
 
 _:gum_ru <text> "жевачка" .
 _:gum_ru <lang> "ru" .
-_:gum_ru <word> "" .
-_:gum_ru <noun> "" .
+_:gum_ru <tag> _:word .
+_:gum_ru <tag> _:noun .
 _:gum_ru <visual> _:img_gum1 .
 _:gum_ru <visual> _:img_gum2 .
 _:gum_ru <visual> _:img_gum3 .
@@ -437,14 +510,19 @@ _:gum_ru <transcript> "живачка"@ru .
 _:gum_en <translated_as> _:gum_ru .
 
 _:img_know1 <url> "http://polyglotcentre.ru/d/lyuboznatelnyy.jpg" .
+
 _:know_en <text> "know" .
 _:know_en <lang> "en" .
+_:know_en <tag> _:word .
+_:know_en <tag> _:verb .
 _:know_en <visual> _:img_know1 .
 _:know_en <transcript> "nəʊ"@en .
 _:know_en <transcript> "ноу"@ru .
 
 _:know_ru <text> "знать" .
 _:know_ru <lang> "ru" .
+_:know_ru <tag> _:word .
+_:know_ru <tag> _:verb .
 _:know_ru <visual> _:img_know1 .
 _:know_ru <transcript> "знать"@ru .
 _:know_ru <transcript> "znat'"@en .
@@ -455,16 +533,16 @@ _:img_lake1 <url> "https://odis.homeaway.com/odis/destination/2d62f656-a052-4d93
 
 _:lake_en <text> "lake" .
 _:lake_en <lang> "en" .
-_:lake_en <word> "" .
-_:lake_en <noun> "" .
+_:lake_en <tag> _:word .
+_:lake_en <tag> _:noun .
 _:lake_en <visual> _:img_lake1 .
 _:lake_en <transcript> "leɪk"@en .
 _:lake_en <transcript> "лэйк"@ru .
 
 _:lake_ru <text> "озеро" .
 _:lake_ru <lang> "ru" .
-_:lake_ru <word> "" .
-_:lake_ru <noun> "" .
+_:lake_ru <tag> _:word .
+_:lake_ru <tag> _:noun .
 _:lake_ru <visual> _:img_lake1 .
 _:lake_en <transcript> "озеро"@ru .
 
@@ -474,12 +552,16 @@ _:img_large1 <url> "http://krabov.net/uploads/posts/2016-06/1466056722_01.jpg" .
 
 _:large_en <text> "large" .
 _:large_en <lang> "en" .
+_:large_en <tag> _:word .
+_:large_en <tag> _:adjective .
 _:large_en <visual> _:img_large1 .
 _:large_en <transcript> "lɑː(r)dʒ"@en .
 _:large_en <transcript> "ладьжь"@ru .
 
 _:large_ru <text> "большой" .
 _:large_ru <lang> "ru" .
+_:large_ru <tag> _:word .
+_:large_ru <tag> _:adjective .
 _:large_ru <visual> _:img_large1 .
 _:large_ru <transcript> "бальшой"@ru .
 _:large_ru <transcript> "bol'shoy"@en .
@@ -490,12 +572,16 @@ _:img_live1 <url> "https://www.matrony.ru/wp-content/uploads/2017/07/matrony_min
 
 _:live_en <text> "live" .
 _:live_en <lang> "en" .
+_:live_en <tag> _:word .
+_:live_en <tag> _:verb .
 _:live_en <visual> _:img_live1 .
 _:live_en <transcript> "lɪv"@en .
 _:live_en <transcript> "лив"@ru .
 
 _:live_ru <text> "жить" .
 _:live_ru <lang> "ru" .
+_:live_ru <tag> _:word .
+_:live_ru <tag> _:verb .
 _:live_ru <visual> _:img_live1 .
 _:live_ru <transcript> "жыть"@ru .
 _:live_ru <transcript> " zhit'"@en .
@@ -506,12 +592,16 @@ _:img_man1 <url> "http://www.sncmedia.ru/upload/iblock/b14/b14180996e0f649f5243e
 
 _:man_en <text> "man" .
 _:man_en <lang> "en" .
+_:man_en <tag> _:word .
+_:man_en <tag> _:noun .
 _:man_en <visual> _:img_man1 .
 _:man_en <transcript> "mæn"@en .
 _:man_en <transcript> "мэн"@ru .
 
 _:man_ru <text> "мужчина" .
 _:man_ru <lang> "ru" .
+_:man_ru <tag> _:word .
+_:man_ru <tag> _:noun .
 _:man_ru <visual> _:img_man1 .
 _:man_ru <transcript> "мущина"@ru .
 _:man_ru <transcript> "muzhchina"@en .
@@ -522,12 +612,16 @@ _:img_morning1 <url> "https://img.tyt.by/n/lady.tut.by/09/2/utro_byvaet_dobrym_0
 
 _:morning_en <text> "morning" .
 _:morning_en <lang> "en" .
+_:morning_en <tag> _:word .
+_:morning_en <tag> _:noun .
 _:morning_en <visual> _:img_morning1 .
 _:morning_en <transcript> "ˈmɔː(r)nɪŋ"@en .
 _:morning_en <transcript> "монин"@ru .
 
 _:morning_ru <text> "утро" .
 _:morning_ru <lang> "ru" .
+_:morning_ru <tag> _:word .
+_:morning_ru <tag> _:noun .
 _:morning_ru <visual> _:img_mother1 .
 _:morning_ru <transcript> "утра"@ru .
 _:morning_ru <transcript> "utro'"@en .
@@ -538,12 +632,16 @@ _:img_mother1 <url> "https://materinstvo.ru/content/article_images/articles_1572
 
 _:mother_en <text> "mother" .
 _:mother_en <lang> "en" .
+_:mother_en <tag> _:word .
+_:mother_en <tag> _:noun .
 _:mother_en <visual> _:img_mother1 .
 _:mother_en <transcript> "ˈmʌðə(r)"@en .
 _:mother_en <transcript> "мазэ"@ru .
 
 _:mother_ru <text> "мама" .
 _:mother_ru <lang> "ru" .
+_:mother_ru <tag> _:word .
+_:mother_ru <tag> _:noun .
 _:mother_ru <visual> _:img_mother1 .
 _:mother_ru <transcript> "мама"@ru .
 _:mother_ru <transcript> "mama'"@en .
@@ -554,12 +652,16 @@ _:img_night1 <url> "http://media.ykt.ru/upload/photo/2015/05/11/196419132_1d4245
 
 _:night_en <text> "night" .
 _:night_en <lang> "en" .
+_:night_en <tag> _:word .
+_:night_en <tag> _:noun .
 _:night_en <visual> _:img_night1 .
 _:night_en <transcript> "naɪt"@en .
 _:night_en <transcript> "найт"@ru .
 
 _:night_ru <text> "ночь" .
 _:night_ru <lang> "ru" .
+_:night_ru <tag> _:word .
+_:night_ru <tag> _:noun .
 _:night_ru <visual> _:img_night1 .
 _:night_ru <transcript> "ноч"@ru .
 _:night_ru <transcript> "noch'"@en .
@@ -570,12 +672,16 @@ _:img_old1 <url> "http://pravda-team.ru/pravda/image/article/4/9/2/344492.jpeg" 
 
 _:old_en <text> "old" .
 _:old_en <lang> "en" .
+_:old_en <tag> _:word .
+_:old_en <tag> _:adjective .
 _:old_en <visual> _:img_old1 .
 _:old_en <transcript> "əʊld"@en .
 _:old_en <transcript> "эулд"@ru . 
 
 _:old_ru <text> "старый" .
 _:old_ru <lang> "ru" .
+_:old_ru <tag> _:word .
+_:old_ru <tag> _:adjective .
 _:old_ru <visual> _:img_old1 .
 _:old_ru <transcript> "старый"@ru .
 _:old_ru <transcript> "staryy"@en .
@@ -586,12 +692,16 @@ _:img_person1 <url> "https://st.depositphotos.com/1548395/2578/i/950/depositphot
 
 _:person_en <text> "person" .
 _:person_en <lang> "en" .
+_:person_en <tag> _:word .
+_:person_en <tag> _:noun .
 _:person_en <visual> _:img_person1 .
 _:person_en <transcript> "ˈpɜː(r)s(ə)n"@en .
 _:person_en <transcript> "пё(р)сон"@ru .
 
 _:person_ru <text> "человек" .
 _:person_ru <lang> "ru" .
+_:person_ru <tag> _:word .
+_:person_ru <tag> _:noun .
 _:person_ru <visual> _:img_person1 .
 _:person_ru <transcript> "чилавек"@ru .
 _:person_ru <transcript> "chelovek"@en .
@@ -602,12 +712,16 @@ _:img_popular1 <url> "http://podrobnosti.ua/media/pictures/2017/5/11/thumbs/740x
 
 _:popular_en <text> "popular" .
 _:popular_en <lang> "en" .
+_:popular_en <tag> _:word .
+_:popular_en <tag> _:noun .
 _:popular_en <visual> _:img_popular1 .
 _:popular_en <transcript> "ˈpɒpjʊlə(r)"@en .
 _:popular_en <transcript> "попьюлэ"@ru .
 
 _:popular_ru <text> "популярный" .
 _:popular_ru <lang> "ru" .
+_:popular_ru <tag> _:word .
+_:popular_ru <tag> _:noun .
 _:popular_ru <visual> _:img_popular1 .
 _:popular_ru <transcript> "папулярный"@ru .
 _:popular_ru <transcript> "populyarnyy"@en .
@@ -620,8 +734,8 @@ _:img_recreation3 <url> "http://www.worldwar-collectibles.com/wp-content/uploads
 
 _:recreation_en <text> "recreation" .
 _:recreation_en <lang> "en" .
-_:recreation_en <word> "" .
-_:recreation_en <noun> "" .
+_:recreation_en <tag> _:word .
+_:recreation_en <tag> _:noun .
 _:recreation_en <visual> _:img_recreation1 .
 _:recreation_en <visual> _:img_recreation2 .
 _:recreation_en <visual> _:img_recreation3 .
@@ -630,8 +744,8 @@ _:recreation_en <transcript> "рикри`эйшен"@ru .
 
 _:recreation_ru <text> "отдых" .
 _:recreation_ru <lang> "ru" .
-_:recreation_ru <word> "" .
-_:recreation_ru <noun> "" .
+_:recreation_ru <tag> _:word .
+_:recreation_ru <tag> _:noun .
 _:recreation_ru <visual> _:img_recreation1 .
 _:recreation_ru <visual> _:img_recreation2 .
 _:recreation_ru <visual> _:img_recreation3 .
@@ -643,12 +757,16 @@ _:img_sister1 <url> "https://steptohealth.ru/wp-content/uploads/2016/06/sestra-e
 
 _:sister_en <text> "sister" .
 _:sister_en <lang> "en" .
+_:sister_en <tag> _:word .
+_:sister_en <tag> _:noun .
 _:sister_en <visual> _:img_sister1 .
 _:sister_en <transcript> "ˈsɪstə(r)"@en .
 _:sister_en <transcript> "систэ"@ru .
 
 _:sister_ru <text> "сестра" .
 _:sister_ru <lang> "ru" .
+_:sister_ru <tag> _:word .
+_:sister_ru <tag> _:noun .
 _:sister_ru <visual> _:img_sister1 .
 _:sister_ru <transcript> "систра"@ru .
 _:sister_ru <transcript> "sestra"@en .
@@ -659,12 +777,16 @@ _:img_speak1 <url> "http://corp.lingualeo.com/ru/wp-content/uploads/sites/4/2017
 
 _:speak_en <text> "speak" .
 _:speak_en <lang> "en" .
+_:speak_en <tag> _:word .
+_:speak_en <tag> _:verb .
 _:speak_en <visual> _:img_speak1 .
 _:speak_en <transcript> "spiːk"@en .
 _:speak_en <transcript> "спик"@ru .
 
 _:speak_ru <text> "говорить" .
 _:speak_ru <lang> "ru" .
+_:speak_ru <tag> _:word .
+_:speak_ru <tag> _:verb .
 _:speak_ru <visual> _:img_speak1 .
 _:speak_ru <transcript> "спик"@ru .
 _:speak_ru <transcript> "govorit'"@en .
@@ -675,16 +797,16 @@ _:img_spoon1 <url> "https://coubsecure-s.akamaihd.net/get/b45/p/coub/simple/cw_t
 
 _:spoon_en <text> "spoon" .
 _:spoon_en <lang> "en" .
-_:spoon_en <word> "" .
-_:spoon_en <noun> "" .
+_:spoon_en <tag> _:word .
+_:spoon_en <tag> _:noun .
 _:spoon_en <visual> _:img_spoon1 .
 _:spoon_en <transcript> "spuːn"@en .
 _:spoon_en <transcript> "спун"@ru .
 
 _:spoon_ru <text> "ложка" .
 _:spoon_ru <lang> "ru" .
-_:spoon_ru <word> "" .
-_:spoon_ru <noun> "" .
+_:spoon_ru <tag> _:word .
+_:spoon_ru <tag> _:noun .
 _:spoon_ru <visual> _:img_spoon1 .
 _:spoon_ru <transcript> "лошка"@ru .
 
@@ -694,12 +816,16 @@ _:img_spring1 <url> "https://sr.gallerix.ru/1075871509/_EX/982971191.jpg" .
 
 _:spring_en <text> "spring" .
 _:spring_en <lang> "en" .
+_:spring_en <tag> _:word .
+_:spring_en <tag> _:noun .
 _:spring_en <visual> _:img_spring1 .
 _:spring_en <transcript> "sprɪŋ"@en .
 _:spring_en <transcript> "сприн"@ru .
 
 _:spring_ru <text> "весна" .
 _:spring_ru <lang> "ru" .
+_:spring_ru <tag> _:word .
+_:spring_ru <tag> _:noun .
 _:spring_ru <visual> _:img_spring1 .
 _:spring_ru <transcript> "висна"@ru .
 _:spring_ru <transcript> "vesna"@en .
@@ -710,12 +836,16 @@ _:img_summer1 <url> "http://u74.ru/files/images/news/2018/04/30/24488_b22066546.
 
 _:summer_en <text> "summer" .
 _:summer_en <lang> "en" .
+_:summer_en <tag> _:word .
+_:summer_en <tag> _:noun .
 _:summer_en <visual> _:img_summer1 .
 _:summer_en <transcript> "ˈsʌmə(r)"@en .
 _:summer_en <transcript> "самэ"@ru .
 
 _:summer_ru <text> "лето" .
 _:summer_ru <lang> "ru" .
+_:summer_ru <tag> _:word .
+_:summer_ru <tag> _:noun .
 _:summer_ru <visual> _:img_summer1 .
 _:summer_ru <transcript> "лета"@ru .
 _:summer_ru <transcript> "leto"@en .
@@ -726,12 +856,16 @@ _:img_sun1 <url> "https://i.pinimg.com/originals/47/d7/a6/47d7a6f83632c86e1bec78
 
 _:sun_en <text> "sun" .
 _:sun_en <lang> "en" .
+_:sun_en <tag> _:word .
+_:sun_en <tag> _:noun .
 _:sun_en <visual> _:img_sun1 .
 _:sun_en <transcript> "sʌn"@en .
 _:sun_en <transcript> "сан"@ru .
 
 _:sun_ru <text> "солнце" .
 _:sun_ru <lang> "ru" .
+_:sun_ru <tag> _:word .
+_:sun_ru <tag> _:noun .
 _:sun_ru <visual> _:img_sun1 .
 _:sun_ru <transcript> "сонце"@ru .
 _:sun_ru <transcript> "solntse"@en .
@@ -742,16 +876,16 @@ _:img_table1 <url> "https://cdn.shopify.com/s/files/1/2660/5106/products/wisz8mr
 
 _:table_en <text> "table" .
 _:table_en <lang> "en" .
-_:table_en <word> "" .
-_:table_en <noun> "" .
+_:table_en <tag> _:word .
+_:table_en <tag> _:noun .
 _:table_en <visual> _:img_table1 .
 _:table_en <transcript> "ˈteɪb(ə)l"@en .
 _:table_en <transcript> "тэйбл"@ru .
 
 _:table_ru <text> "стол" .
 _:table_ru <lang> "ru" .
-_:table_ru <word> "" .
-_:table_ru <noun> "" .
+_:table_ru <tag> _:word .
+_:table_ru <tag> _:noun .
 _:table_ru <visual> _:img_table1 .
 _:table_ru <transcript> "стол"@ru .
 
@@ -761,12 +895,16 @@ _:img_understand1 <url> "https://englex.ru/wp-content/uploads/320489023803.jpg" 
 
 _:understand_en <text> "understand " .
 _:understand_en <lang> "en" .
+_:understand_en <tag> _:word .
+_:understand_en <tag> _:verb .
 _:understand_en <visual> _:img_understand1 .
 _:understand_en <transcript> "ˌʌndə(r)ˈstænd"@en .
 _:understand_en <transcript> "андэ(р)стэнд"@ru .
 
 _:understand_ru <text> "понимать" .
 _:understand_ru <lang> "ru" .
+_:understand_ru <tag> _:word .
+_:understand_ru <tag> _:verb .
 _:understand_ru <visual> _:img_understand1 .
 _:understand_ru <transcript> "понимать"@ru .
 _:understand_ru <transcript> "ponimat'"@en .
@@ -777,12 +915,16 @@ _:img_useful1 <url> "http://tofeelgood.ru/wp-content/uploads/2017/05/zavtrak.jpg
 
 _:useful_en <text> "useful" .
 _:useful_en <lang> "en" .
+_:useful_en <tag> _:word .
+_:useful_en <tag> _:adjective .
 _:useful_en <visual> _:img_useful1 .
 _:useful_en <transcript> "ˈjuːsf(ə)l"@en .
 _:useful_en <transcript> "юсфул"@ru .
 
 _:useful_ru <text> "полезный" .
 _:useful_ru <lang> "ru" .
+_:useful_ru <tag> _:word .
+_:useful_ru <tag> _:adjective .
 _:useful_ru <visual> _:img_useful1 .
 _:useful_ru <transcript> "палезный"@ru .
 _:useful_ru <transcript> "poleznyy"@en .
@@ -793,12 +935,16 @@ _:img_winter1 <url> "https://www.ampravda.ru/files/contests/12/29907ce7b829a6d61
 
 _:winter_en <text> "winter" .
 _:winter_en <lang> "en" .
+_:winter_en <tag> _:word .
+_:winter_en <tag> _:noun .
 _:winter_en <visual> _:img_winter1 .
 _:winter_en <transcript> "ˈwɪntə(r)"@en .
 _:winter_en <transcript> "уинтэ(р)"@ru .
 
 _:winter_ru <text> "зима" .
 _:winter_ru <lang> "ru" .
+_:winter_ru <tag> _:word .
+_:winter_ru <tag> _:noun .
 _:winter_ru <visual> _:img_winter1 .
 _:winter_ru <transcript> "зима"@ru .
 _:winter_ru <transcript> "zima"@en .
@@ -809,12 +955,16 @@ _:img_woman1 <url> "https://whymagic.ru/images/a1/mudraia-jenschina.jpg" .
 
 _:woman_en <text> "woman" .
 _:woman_en <lang> "en" .
+_:woman_en <tag> _:word .
+_:woman_en <tag> _:noun .
 _:woman_en <visual> _:img_woman1 .
 _:woman_en <transcript> "ˈwʊmən"@en .
 _:woman_en <transcript> "вумэн)"@ru .
 
 _:woman_ru <text> "женщина" .
 _:woman_ru <lang> "ru" .
+_:woman_ru <tag> _:word .
+_:woman_ru <tag> _:noun .
 _:woman_ru <visual> _:img_woman1 .
 _:woman_ru <transcript> "женьщина"@ru .
 _:woman_ru <transcript> "zhenshchina"@en .

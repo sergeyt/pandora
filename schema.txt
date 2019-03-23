@@ -30,6 +30,7 @@ follow: uid @count .
 member_of: uid @count .
 part_of: uid @count .
 in: uid @count .
+tag: uid @count .
 
 type: string @index(term, hash) .
 content_type: string @index(term, hash) .
