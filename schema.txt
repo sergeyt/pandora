@@ -47,6 +47,8 @@ translated_as: uid @count @reverse .
 visual: uid @count .
 audio: uid @count .
 related: uid @count @reverse .
+synonym: uid @count @reverse .
+antonym: uid @count @reverse .
 
 registered_at: dateTime .
 created_at: dateTime .
