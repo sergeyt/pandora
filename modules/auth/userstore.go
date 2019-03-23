@@ -256,8 +256,8 @@ func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth
 	tx := client.NewTxn()
 	defer tx.Discard(ctx)
 
-	query := `query($provider: string, $email: string) {
-		accounts(has(Account)) @filter(eq(provider, $provider) AND eq(email, $email)) {
+	query := `query accounts($provider: string, $email: string) {
+		accounts(func: has(Account)) @filter(eq(provider, $provider) AND eq(email, $email)) {
 			uid
 		}
 	}`
