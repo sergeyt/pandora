@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/gocontrib/auth"
@@ -123,12 +124,40 @@ func (s *userStore) FindUser(ctx context.Context, query string, vars map[string]
 		ID:    user.ID,
 		Name:  user.Name,
 		Email: user.Email,
-		Admin: user.Role == "admin",
+		Admin: isAdmin(user.Role),
 		Claims: map[string]interface{}{
 			"email": user.Email,
 			"role":  user.Role,
 		},
 	}, nil
+}
+
+func isAdmin(role string) bool {
+	roles := splitRoles(role)
+	isAdmin := false
+	for _, r := range roles {
+		if r == "admin" {
+			isAdmin = true
+			break
+		}
+	}
+	return isAdmin
+}
+
+func splitRoles(s string) []string {
+	s = strings.TrimSpace(s)
+	if len(s) == 0 {
+		return []string{}
+	}
+	parts := strings.Split(s, ",")
+	result := make([]string, 0)
+	for _, p := range parts {
+		t := strings.TrimSpace(p)
+		if len(t) > 0 {
+			result = append(result, strings.ToLower(t))
+		}
+	}
+	return result
 }
 
 func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth.User, error) {
@@ -140,7 +169,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	tx := client.NewTxn()
 	defer tx.Discard(ctx)
 
-	// TODO fill JSON using reflection
+	// TODO generate unique login
 	in := make(utils.OrderedJSON)
 	in["name"] = account.Name
 	in["first_name"] = account.FirstName
@@ -150,7 +179,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	in["location"] = account.Location
 	in["registered_at"] = time.Now()
 
-	_, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
+	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
 		NodeLabel: userLabel(),
 		By:        "system",
@@ -159,8 +188,76 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 		return nil, err
 	}
 
-	// TODO optimize decode map to auth.UserInfo
-	// result := results[0]
+	user := mapUser(results[0])
 
-	return s.FindUserByEmail(ctx, account.Email)
+	// create account for given oauth provider
+	in = make(utils.OrderedJSON)
+	in["provider"] = account.Provider
+	in["email"] = account.Email
+	in["name"] = account.Name
+	in["first_name"] = account.FirstName
+	in["last_name"] = account.LastName
+	in["nick_name"] = account.NickName
+	in["user_id"] = account.UserID
+	in["description"] = account.Description
+	in["avatar"] = account.AvatarURL
+	in["location"] = account.Location
+	in["role"] = account.Role
+	in["registered_at"] = time.Now()
+
+	results, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
+		Input:     in,
+		NodeLabel: dgraph.NodeLabel("account"),
+		By:        "system",
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	// link account with user record
+	acc := results[0]
+	accountID := getString(acc, "uid")
+
+	in = make(utils.OrderedJSON)
+	in["account"] = map[string]interface{}{
+		"uid": accountID,
+	}
+
+	results, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
+		Input:     in,
+		NodeLabel: userLabel(),
+		ID:        user.ID,
+		By:        "system",
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return user, nil
+}
+
+func mapUser(raw map[string]interface{}) *auth.UserInfo {
+	email := getString(raw, "email")
+	role := getString(raw, "role")
+	return &auth.UserInfo{
+		ID:    getString(raw, "uid"),
+		Name:  getString(raw, "name"),
+		Email: email,
+		Admin: isAdmin(role),
+		Claims: map[string]interface{}{
+			"email": email,
+			"role":  role,
+		},
+	}
+}
+
+func getString(m map[string]interface{}, key string) string {
+	v, ok := m[key]
+	if ok {
+		s, ok := v.(string)
+		if ok {
+			return s
+		}
+	}
+	return ""
 }

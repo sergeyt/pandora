@@ -9,6 +9,7 @@ Channel: string @count .
 name: string @index(term, hash) .
 first_name: string @index(term, hash) .
 last_name: string @index(term, hash) .
+nick_name: string @index(term, hash) .
 login: string @index(term, hash) .
 phone: string @index(term, hash) .
 password: password .
@@ -23,6 +24,7 @@ state: string @index(term, hash) .
 city: string @index(term, hash) .
 provider: string @index(term, hash) .
 status: string @index(term, hash) .
+user_id: string @index(term, hash) .
 
 account: uid @count .
 friend: uid @count .
