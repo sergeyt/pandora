@@ -1,4 +1,5 @@
 User: string @count .
+Account: string @count .
 Term: string @count .
 Tag: string @count .
 File: string @count .
