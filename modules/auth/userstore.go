@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/dgraph-io/dgo"
 	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"
@@ -191,18 +192,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	user := mapUser(results[0])
 
 	// create account for given oauth provider
-	in = make(utils.OrderedJSON)
-	in["provider"] = account.Provider
-	in["email"] = account.Email
-	in["name"] = account.Name
-	in["first_name"] = account.FirstName
-	in["last_name"] = account.LastName
-	in["nick_name"] = account.NickName
-	in["user_id"] = account.UserID
-	in["description"] = account.Description
-	in["avatar"] = account.AvatarURL
-	in["location"] = account.Location
-	in["role"] = account.Role
+	in = makeAccount(account)
 	in["registered_at"] = time.Now()
 
 	results, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
@@ -217,23 +207,104 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	// link account with user record
 	acc := results[0]
 	accountID := getString(acc, "uid")
-
-	in = make(utils.OrderedJSON)
-	in["account"] = map[string]interface{}{
-		"uid": accountID,
-	}
-
-	results, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
-		Input:     in,
-		NodeLabel: userLabel(),
-		ID:        user.ID,
-		By:        "system",
-	})
+	err = linkAccount(ctx, tx, user.ID, accountID)
 	if err != nil {
 		return nil, err
 	}
 
 	return user, nil
+}
+
+func makeAccount(account auth.UserData) utils.OrderedJSON {
+	in := make(utils.OrderedJSON)
+	in["provider"] = account.Provider
+	in["email"] = account.Email
+	in["name"] = account.Name
+	in["first_name"] = account.FirstName
+	in["last_name"] = account.LastName
+	in["nick_name"] = account.NickName
+	in["user_id"] = account.UserID
+	in["description"] = account.Description
+	in["avatar"] = account.AvatarURL
+	in["location"] = account.Location
+	in["role"] = account.Role
+	return in
+}
+
+func linkAccount(ctx context.Context, tx *dgo.Txn, userID, accountID string) error {
+	in := make(utils.OrderedJSON)
+	in["account"] = map[string]interface{}{
+		"uid": accountID,
+	}
+
+	_, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
+		Input:     in,
+		NodeLabel: userLabel(),
+		ID:        userID,
+		By:        "system",
+	})
+
+	return err
+}
+
+func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth.UserData) error {
+	client, err := dgraph.NewClient()
+	if err != nil {
+		return err
+	}
+
+	tx := client.NewTxn()
+	defer tx.Discard(ctx)
+
+	query := `query($provider: string, $email: string) {
+		accounts(has(Account)) @filter(eq(provider, $provider) AND eq(email, $email)) {
+			uid
+		}
+	}`
+
+	vars := map[string]string{
+		"$provider": data.Provider,
+		"$email":    data.Email,
+	}
+
+	resp, err := tx.QueryWithVars(ctx, query, vars)
+	if err != nil {
+		log.Errorf("dgraph.Txn.QueryWithVars fail: %v", err)
+		return err
+	}
+
+	var result struct {
+		Accounts []struct {
+			ID string `json:"uid"`
+		} `json:"accounts"`
+	}
+	err = json.Unmarshal(resp.GetJson(), &result)
+	if err != nil {
+		log.Errorf("json.Unmarshal fail: %v", err)
+		return err
+	}
+
+	accountID := ""
+	if len(result.Accounts) > 0 {
+		accountID = result.Accounts[0].ID
+	}
+
+	in := makeAccount(data)
+
+	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
+		Input:     in,
+		NodeLabel: dgraph.NodeLabel("account"),
+		ID:        accountID,
+		By:        "system",
+	})
+	if err != nil {
+		return err
+	}
+
+	// link account with user record
+	acc := results[0]
+	accountID = getString(acc, "uid")
+	return linkAccount(ctx, tx, user.GetID(), accountID)
 }
 
 func mapUser(raw map[string]interface{}) *auth.UserInfo {
