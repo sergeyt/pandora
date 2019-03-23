@@ -89,6 +89,7 @@ type Mutation struct {
 	NodeLabel string
 	ID        string
 	By        string
+	NoCommit  bool
 }
 
 func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interface{}, error) {
@@ -150,10 +151,12 @@ func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interfac
 		results = []map[string]interface{}{result}
 	}
 
-	err = tx.Commit(ctx)
-	if err != nil {
-		log.Errorf("dgraph.Txn.Commit fail: %v", err)
-		return nil, err
+	if !m.NoCommit {
+		err = tx.Commit(ctx)
+		if err != nil {
+			log.Errorf("dgraph.Txn.Commit fail: %v", err)
+			return nil, err
+		}
 	}
 
 	return results, nil

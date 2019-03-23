@@ -184,6 +184,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 		Input:     in,
 		NodeLabel: userLabel(),
 		By:        "system",
+		NoCommit:  true,
 	})
 	if err != nil {
 		return nil, err
@@ -199,6 +200,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 		Input:     in,
 		NodeLabel: dgraph.NodeLabel("account"),
 		By:        "system",
+		NoCommit:  true,
 	})
 	if err != nil {
 		return nil, err
@@ -296,6 +298,7 @@ func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth
 		NodeLabel: dgraph.NodeLabel("account"),
 		ID:        accountID,
 		By:        "system",
+		NoCommit:  true,
 	})
 	if err != nil {
 		return err
