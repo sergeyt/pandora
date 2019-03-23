@@ -226,6 +226,46 @@ _:different_ru <transcript> "razny'"@en .
 
 _:different_en <translated_as> _:different_ru .
 
+_:img_electrical1 <url> "https://meanders.ru/wp-content/uploads/electricity.jpg" .
+
+_:electrical_en <text> "electrical" .
+_:electrical_en <lang> "en" .
+_:electrical_en <tag> _:word .
+_:electrical_en <tag> _:adjective .
+_:electrical_en <visual> _:img_electrical1 .
+_:electrical_en <transcript> "ɪˈlektrɪk(ə)l"@en .
+_:electrical_en <transcript> "илэктрикл"@ru .
+
+_:electrical_ru <text> "электрический" .
+_:electrical_ru <lang> "ru" .
+_:electrical_ru <tag> _:word .
+_:electrical_ru <tag> _:adjective .
+_:medicalelectrical_ru <visual> _:img_electrical1 .
+_:electrical_ru <transcript> "эликтричиский"@ru .
+_:electrical_ru <transcript> "elektricheskiy"@en .
+
+_:electrical_en <translated_as> _:electrical_ru .
+
+_:img_expensive1 <url> "http://www.zr.ru/d/story/e2/575714/201309180713-201309180713-gold-platinum-and-diamond-encrusted-la-6.jpg" .
+
+_:expensive_en <text> "electrical" .
+_:expensive_en <lang> "en" .
+_:expensive_en <tag> _:word .
+_:expensive_en <tag> _:adjective .
+_:expensive_en <visual> _:img_expensive1 .
+_:expensive_en <transcript> "ɪˈlektrɪk(ə)l"@en .
+_:expensive_en <transcript> "илэктрикл"@ru .
+
+_:expensive_ru <text> "электрический" .
+_:expensive_ru <lang> "ru" .
+_:expensive_ru <tag> _:word .
+_:expensive_ru <tag> _:adjective .
+_:expensive_ru <visual> _:img_expensive1 .
+_:expensive_ru <transcript> "эликтричиский"@ru .
+_:expensive_ru <transcript> "elektricheskiy"@en .
+
+_:expensive_en <translated_as> _:expensive_ru .
+
 _:img_father1 <url> "https://ваш-сонник.рф/wp-content/uploads/2018/01/sonnik-k-chemu-snitsya-pokojnyj-otets-zhivym.jpg" .
 
 _:father_en <text> "father" .
@@ -384,6 +424,27 @@ _:house_ru <transcript> "дом"@ru .
 
 _:house_en <translated_as> _:house_ru .
 
+_:img_healthy1 <url> "https://s-english.ru/images/topik/t-199.jpg" .
+
+_:healthy_en <text> "healthy" .
+_:healthy_en <lang> "en" .
+_:healthy_en <tag> _:word .
+_:healthy_en <tag> _:adjective .
+_:healthy_en <visual> _:img_healthy1 .
+_:healthy_en <transcript> "ˈhelθi"@en .
+_:healthy_en <transcript> "хэлси"@ru .
+
+_:healthy_ru <text> "здоровый" .
+_:healthy_ru <lang> "ru" .
+_:healthy_ru <tag> _:word .
+_:healthy_ru <tag> _:adjective .
+_:healthy_ru <visual> _:img_healthy1 .
+_:healthy_ru <transcript> "здаровый"@ru .
+_:healthy_ru <transcript> "zdorovyy"@en .
+
+
+_:healthy_en <translated_as> _:healthy_ru .
+
 _:img_hello1 <url> "https://www.chitalnya.ru/upload/611/55060960771515.gif" .
 
 _:hello_en <text> "hello" .
@@ -443,6 +504,26 @@ _:important_ru <transcript> "vazhnyy"@en .
 
 
 _:important_en <translated_as> _:important_ru .
+
+_:img_intelligent1 <url> "https://novostivmire.com/wp-content/uploads/2017/08/s-2e7dcabe9561b53b8b883c571dff66e09eb431a8-800x445.jpg" .
+
+_:intelligent_en <text> "intelligent" .
+_:intelligent_en <lang> "en" .
+_:intelligent_en <tag> _:word .
+_:intelligent_en <tag> _:adjective .
+_:intelligent_en <visual> _:img_intelligent1 .
+_:intelligent_en <transcript> "ɪnˈtelɪdʒ(ə)nt"@en .
+_:intelligent_en <transcript> "интэлиджэнт"@ru .
+
+_:intelligent_ru <text> "умный" .
+_:intelligent_ru <lang> "ru" .
+_:intelligent_ru <tag> _:word .
+_:intelligent_ru <tag> _:adjective .
+_:intelligent_ru <visual> _:img_intelligent1 .
+_:intelligent_ru <transcript> "умный"@ru .
+_:intelligent_ru <transcript> "umnyy"@en .
+
+_:intelligent_en <translated_as> _:intelligent_ru .
 
 _:img_go1 <url> "http://womenshik.ru/uploads/posts/1305876049_1.jpg" .
 
@@ -607,6 +688,26 @@ _:man_ru <transcript> "мущина"@ru .
 _:man_ru <transcript> "muzhchina"@en .
 
 _:man_en <translated_as> _:man_ru .
+
+_:img_medical1 <url> "http://investmentsbg.com/wp-content/uploads/2018/04/medcenter.jpg" .
+
+_:medical_en <text> "medical " .
+_:medical_en <lang> "en" .
+_:medical_en <tag> _:word .
+_:medical_en <tag> _:adjective .
+_:medical_en <visual> _:img_medical1 .
+_:medical_en <transcript> "ˈmedɪk(ə)l"@en .
+_:medical_en <transcript> "мэдикл"@ru .
+
+_:medical_ru <text> "медицинский" .
+_:medical_ru <lang> "ru" .
+_:medical_ru <tag> _:word .
+_:medical_ru <tag> _:adjective .
+_:medical_ru <visual> _:img_medical1 .
+_:medical_ru <transcript> "медицинский"@ru .
+_:medical_ru <transcript> "meditsinskyy"@en .
+
+_:medical_en <translated_as> _:medical_ru .
 
 _:img_morning1 <url> "https://img.tyt.by/n/lady.tut.by/09/2/utro_byvaet_dobrym_01.jpg" .
 
@@ -832,6 +933,48 @@ _:spring_ru <transcript> "vesna"@en .
 
 _:spring_en <translated_as> _:spring_ru .
 
+_:img_strong1 <url> "https://st03.kakprosto.ru/tumb/680/images/article/2014/1/27/1_52ff01050bc0e52ff01050bc4a.jpg" .
+
+_:strong_en <text> "strong" .
+_:strong_en <lang> "en" .
+_:strong_en <tag> _:word .
+_:strong_en <tag> _:adjective .
+_:strong_en <visual> _:img_strong1 .
+_:strong_en <transcript> "strɒŋ"@en .
+_:strong_en <transcript> "строн"@ru .
+
+_:strong_ru <text> "сильный" .
+_:strong_ru <lang> "ru" .
+_:strong_ru <tag> _:word .
+_:strong_ru <tag> _:adjective .
+_:strong_ru <visual> _:img_strong1 .
+_:strong_ru <transcript> "сильный"@ru .
+_:strong_ru <transcript> "sil'nyy"@en .
+
+
+_:strong_en <translated_as> _:strong_ru .
+
+_:img_successful1 <url> "http://success-people.ru/uploads/posts/2017-04/1491650532_uspeshnyy-chelovek-2.jpg" .
+
+_:successful_en <text> "successful" .
+_:successful_en <lang> "en" .
+_:successful_en <tag> _:word .
+_:successful_en <tag> _:adjective .
+_:successful_en <visual> _:img_successful1 .
+_:successful_en <transcript> "səkˈsesf(ə)l"@en .
+_:successful_en <transcript> "сэксэсфул"@ru .
+
+_:successful_ru <text> "успешный" .
+_:successful_ru <lang> "ru" .
+_:successful_ru <tag> _:word .
+_:successful_ru <tag> _:adjective .
+_:successful_ru <visual> _:img_successful1 .
+_:successful_ru <transcript> "успешный"@ru .
+_:successful_ru <transcript> "uspeshnyy"@en .
+
+
+_:successful_en <translated_as> _:successful_ru .
+
 _:img_summer1 <url> "http://u74.ru/files/images/news/2018/04/30/24488_b22066546.jpg" .
 
 _:summer_en <text> "summer" .
@@ -890,6 +1033,27 @@ _:table_ru <visual> _:img_table1 .
 _:table_ru <transcript> "стол"@ru .
 
 _:table_en <translated_as> _:table_ru .
+
+_:img_traditional1 <url> "http://www.pribaikal.ru/fileadmin/Images/Unions/FolkMasters/Russian-Costume/russian-native-costume-0020.jpg" .
+
+_:traditional_en <text> "traditional" .
+_:traditional_en <lang> "en" .
+_:traditional_en <tag> _:word .
+_:traditional_en <tag> _:adjective .
+_:traditional_en <visual> _:img_traditional1 .
+_:traditional_en <transcript> "trəˈdɪʃ(ə)nəl"@en .
+_:traditional_en <transcript> "трэдишнл"@ru .
+
+_:traditional_ru <text> "традиционный" .
+_:traditional_ru <lang> "ru" .
+_:traditional_ru <tag> _:word .
+_:traditional_ru <tag> _:adjective .
+_:traditional_ru <visual> _:img_traditional1 .
+_:traditional_ru <transcript> "традиционый"@ru .
+_:traditional_ru <transcript> "traditsionnyy"@en .
+
+
+_:traditional_en <translated_as> _:traditional_ru .
 
 _:img_understand1 <url> "https://englex.ru/wp-content/uploads/320489023803.jpg" .
 
