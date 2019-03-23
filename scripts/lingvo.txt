@@ -173,24 +173,25 @@ _:child_ru <transcript> " rebenok"@en .
 
 _:child_en <translated_as> _:child_ru .
 
-_:img_car1 <url> "https://media.wired.com/photos/59bafdf204afdc5248726f5c/master/w_2400,c_limit/BMW-TA.jpg" .
+_:img_different1 <url> "" .
 
-_:car_en <text> "car" .
-_:car_en <lang> "en" .
-_:car_en <word> "" .
-_:car_en <noun> "" .
-_:car_en <visual> _:img_car1 .
-_:car_en <transcript> "kɑː(r)"@en .
-_:car_en <transcript> "кар"@ru .
+_:different_en <text> "different" .
+_:different	_en <lang> "en" .
+_:different_en <word> "" .
+_:different_en <noun> "" .
+_:different_en <visual> _:img_different1 .
+_:different_en <transcript> "ˈdɪfrənt"@en .
+_:different_en <transcript> "дифрэнт"@ru .
 
-_:car_ru <text> "автомобиль" .
-_:car_ru <lang> "ru" .
-_:car_ru <word> "" .
-_:car_ru <noun> "" .
-_:car_ru <visual> _:img_car1 .
-_:car_ru <transcript> "автамабиль"@ru .
+_:different_ru <text> "разный" .
+_:different_ru <lang> "ru" .
+_:different_ru <word> "" .
+_:different_ru <noun> "" .
+_:different_ru <visual> _:img_different1 .
+_:different_ru <transcript> "разный"@ru .
+_:different_ru <transcript> "razny'"@en .
 
-_:car_en <translated_as> _:car_ru .
+_:different_en <translated_as> _:different_ru .
 
 _:img_father1 <url> "https://ваш-сонник.рф/wp-content/uploads/2018/01/sonnik-k-chemu-snitsya-pokojnyj-otets-zhivym.jpg" .
 
@@ -207,6 +208,22 @@ _:father_ru <transcript> "атец"@ru .
 _:father_ru <transcript> " otets"@en .
 
 _:father_en <translated_as> _:father_ru .
+
+_:img_difficult1 <url> "http://tv.akado.ru/images/data/akadotv/picture/imgbig/408293/3-s.jpg" .
+
+_:difficult_en <text> "difficult" .
+_:difficult_en <lang> "en" .
+_:difficult_en <visual> _:img_difficult1 .
+_:difficult_en <transcript> "ˈdɪfɪk(ə)lt"@en .
+_:difficult_en <transcript> "дификлт"@ru .
+
+_:difficult_ru <text> "трудный" .
+_:difficult_ru <lang> "ru" .
+_:difficult_ru <visual> _:img_difficult1 .
+_:difficult_ru <transcript> "трудный"@ru .
+_:difficult_ru <transcript> "trudnyy"@en .
+
+_:difficult_en <translated_as> _:difficult_ru .
 
 _:img_dog1 <url> "https://cdn21.img.ria.ru/images/154960/82/1549608248_0:93:433:337_600x0_80_0_0_27e0eb5c66dad54fb001392a98f8a4b2.jpg" .
 
@@ -275,6 +292,22 @@ _:have_ru <transcript> "imet'"@en .
 
 _:have_en <translated_as> _:have_ru .
 
+_:img_hot1 <url> "http://humor.fm/uploads/posts/2018-02/1518030154_1.jpg" .
+
+_:hot_en <text> "hot" .
+_:hot_en <lang> "en" .
+_:hot_en <visual> _:img_hot1 .
+_:hot_en <transcript> "hɒt"@en .
+_:hot_en <transcript> "хот"@ru .
+
+_:hot_ru <text> "горячий" .
+_:hot_ru <lang> "ru" .
+_:hot_ru <visual> _:img_hot1 .
+_:hot_ru <transcript> "гарячий"@ru .
+_:hot_ru <transcript> "goryachyy"@en .
+
+_:hot_en <translated_as> _:hot_ru .
+
 _:img_house1 <url> "http://epicpix.com/wp-content/uploads/2016/04/ff_3280.jpg" .
 
 _:house_en <text> "house" .
@@ -324,6 +357,23 @@ _:i_ru <visual> _:img_i1 .
 _:i_ru <transcript> "йа"@ru .
 
 _:i_en <translated_as> _:i_ru .
+
+_:img_important1 <url> "https://www.b17.ru/foto/uploaded/ea5266eb66e42cb1f63438c41256e240.jpg" .
+
+_:important_en <text> "important" .
+_:important_en <lang> "en" .
+_:important_en <visual> _:img_important1 .
+_:important_en <transcript> "ɪmˈpɔː(r)t(ə)nt"@en .
+_:important_en <transcript> "импотэнт"@ru .
+
+_:important_ru <text> "важный" .
+_:important_ru <lang> "ru" .
+_:important_ru <visual> _:img_important1 .
+_:important_ru <transcript> "важный"@ru .
+_:important_ru <transcript> "vazhnyy"@en .
+
+
+_:important_en <translated_as> _:important_ru .
 
 _:img_go1 <url> "http://womenshik.ru/uploads/posts/1305876049_1.jpg" .
 
@@ -420,6 +470,22 @@ _:lake_en <transcript> "озеро"@ru .
 
 _:lake_en <translated_as> _:lake_ru .
 
+_:img_large1 <url> "http://krabov.net/uploads/posts/2016-06/1466056722_01.jpg" .
+
+_:large_en <text> "large" .
+_:large_en <lang> "en" .
+_:large_en <visual> _:img_large1 .
+_:large_en <transcript> "lɑː(r)dʒ"@en .
+_:large_en <transcript> "ладьжь"@ru .
+
+_:large_ru <text> "большой" .
+_:large_ru <lang> "ru" .
+_:large_ru <visual> _:img_large1 .
+_:large_ru <transcript> "бальшой"@ru .
+_:large_ru <transcript> "bol'shoy"@en .
+
+_:large_en <translated_as> _:large_ru .
+
 _:img_live1 <url> "https://www.matrony.ru/wp-content/uploads/2017/07/matrony_mini_25072017_1-1200x520.jpg" .
 
 _:live_en <text> "live" .
@@ -500,6 +566,22 @@ _:night_ru <transcript> "noch'"@en .
 
 _:night_en <translated_as> _:night_ru .
 
+_:img_old1 <url> "http://pravda-team.ru/pravda/image/article/4/9/2/344492.jpeg" .
+
+_:old_en <text> "old" .
+_:old_en <lang> "en" .
+_:old_en <visual> _:img_old1 .
+_:old_en <transcript> "əʊld"@en .
+_:old_en <transcript> "эулд"@ru . 
+
+_:old_ru <text> "старый" .
+_:old_ru <lang> "ru" .
+_:old_ru <visual> _:img_old1 .
+_:old_ru <transcript> "старый"@ru .
+_:old_ru <transcript> "staryy"@en .
+
+_:old_en <translated_as> _:old_ru .
+
 _:img_person1 <url> "https://st.depositphotos.com/1548395/2578/i/950/depositphotos_25787629-stock-photo-man-in-swimsuit-in-bossy.jpg" .
 
 _:person_en <text> "person" .
@@ -515,6 +597,22 @@ _:person_ru <transcript> "чилавек"@ru .
 _:person_ru <transcript> "chelovek"@en .
 
 _:person_en <translated_as> _:person_ru .
+
+_:img_popular1 <url> "http://podrobnosti.ua/media/pictures/2017/5/11/thumbs/740x415/populjarnyj-gollivudskij-akter-poboretsja-za-post-prezidenta-ssha_rect_e2363af02e5a0c6f06560bea5b6ec3f7.jpg" .
+
+_:popular_en <text> "popular" .
+_:popular_en <lang> "en" .
+_:popular_en <visual> _:img_popular1 .
+_:popular_en <transcript> "ˈpɒpjʊlə(r)"@en .
+_:popular_en <transcript> "попьюлэ"@ru .
+
+_:popular_ru <text> "популярный" .
+_:popular_ru <lang> "ru" .
+_:popular_ru <visual> _:img_popular1 .
+_:popular_ru <transcript> "папулярный"@ru .
+_:popular_ru <transcript> "populyarnyy"@en .
+
+_:popular_en <translated_as> _:popular_ru .
 
 _:img_recreation1 <url> "http://www.bridgewaternj.gov/wp-content/uploads/Images/recphoto.jpg" .
 _:img_recreation2 <url> "https://vmcdn.ca/f/files/halifaxtoday/images/sports/071818-sports-equipment-recreation-gym-fitness-adobestock_190038155.jpeg;w=630" .
@@ -674,6 +772,22 @@ _:understand_ru <transcript> "понимать"@ru .
 _:understand_ru <transcript> "ponimat'"@en .
 
 _:understand_en <translated_as> _:understand_ru .
+
+_:img_useful1 <url> "http://tofeelgood.ru/wp-content/uploads/2017/05/zavtrak.jpg" .
+
+_:useful_en <text> "useful" .
+_:useful_en <lang> "en" .
+_:useful_en <visual> _:img_useful1 .
+_:useful_en <transcript> "ˈjuːsf(ə)l"@en .
+_:useful_en <transcript> "юсфул"@ru .
+
+_:useful_ru <text> "полезный" .
+_:useful_ru <lang> "ru" .
+_:useful_ru <visual> _:img_useful1 .
+_:useful_ru <transcript> "палезный"@ru .
+_:useful_ru <transcript> "poleznyy"@en .
+
+_:useful_en <translated_as> _:useful_ru .
 
 _:img_winter1 <url> "https://www.ampravda.ru/files/contests/12/29907ce7b829a6d61b1440a3c6b98dfc_medium.JPG" .
 
