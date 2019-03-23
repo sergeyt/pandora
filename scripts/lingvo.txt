@@ -14,6 +14,14 @@ _:adjective <Tag> "" .
 _:adjective <text> "adjective"@en .
 _:adjective <text> "прилагательное"@ru .
 
+_:idiom <Tag> "" .
+_:idiom <text> "idiom"@en .
+_:idiom <text> "фразеологизм"@ru .
+
+_:slang <Tag> "" .
+_:slang <text> "slang"@en .
+_:slang <text> "жаргон"@ru .
+
 _:img_afternoon1 <url> "" .
 
 _:afternoon_en <text> "afternoon" .
@@ -584,7 +592,6 @@ _:important_ru <visual> _:img_important3 .
 _:important_ru <transcript> "важный"@ru .
 _:important_ru <transcript> "vazhnyy"@en .
 
-
 _:important_en <translated_as> _:important_ru .
 
 _:img_intelligent1 <url> "https://novostivmire.com/wp-content/uploads/2017/08/s-2e7dcabe9561b53b8b883c571dff66e09eb431a8-800x445.jpg" .
@@ -1072,7 +1079,6 @@ _:strong_ru <visual> _:img_strong1 .
 _:strong_ru <transcript> "сильный"@ru .
 _:strong_ru <transcript> "sil'nyy"@en .
 
-
 _:strong_en <translated_as> _:strong_ru .
 
 _:img_successful1 <url> "http://success-people.ru/uploads/posts/2017-04/1491650532_uspeshnyy-chelovek-2.jpg" .
@@ -1092,7 +1098,6 @@ _:successful_ru <tag> _:adjective .
 _:successful_ru <visual> _:img_successful1 .
 _:successful_ru <transcript> "успешный"@ru .
 _:successful_ru <transcript> "uspeshnyy"@en .
-
 
 _:successful_en <translated_as> _:successful_ru .
 
@@ -1172,7 +1177,6 @@ _:traditional_ru <tag> _:adjective .
 _:traditional_ru <visual> _:img_traditional1 .
 _:traditional_ru <transcript> "традиционый"@ru .
 _:traditional_ru <transcript> "traditsionnyy"@en .
-
 
 _:traditional_en <translated_as> _:traditional_ru .
 
