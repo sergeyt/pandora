@@ -16,7 +16,7 @@ _:adjective <text> "прилагательное"@ru .
 
 _:idiom <Tag> "" .
 _:idiom <text> "idiom"@en .
-_:idiom <text> "фразеологизм"@ru .
+_:idiom <text> "идиома"@ru .
 
 _:slang <Tag> "" .
 _:slang <text> "slang"@en .
