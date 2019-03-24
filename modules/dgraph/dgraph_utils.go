@@ -45,7 +45,7 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 
 	var result struct {
 		Items []map[string]interface{} `json:"items"`
-		Total struct {
+		Total []struct {
 			Count int64 `json:"count"`
 		} `json:"total"`
 	}
@@ -57,7 +57,7 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 
 	return &ListResult{
 		Items: result.Items,
-		Total: result.Total.Count,
+		Total: result.Total[0].Count,
 	}, nil
 }
 
