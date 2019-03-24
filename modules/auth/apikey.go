@@ -4,14 +4,24 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strings"
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/sergeyt/pandora/modules/apiutil"
+	"github.com/sergeyt/pandora/modules/config"
 	log "github.com/sirupsen/logrus"
 )
 
 // RequireAPIKey middleware to check API key
 func RequireAPIKey(next http.Handler) http.Handler {
+	hostname := config.Hostname()
+	allowedReferers := []string{
+		fmt.Sprintf("http://%s", hostname),
+		fmt.Sprintf("https://%s", hostname),
+		"http://localhost",
+		"https://localhost",
+	}
+
 	apiKeySecret := os.Getenv("API_KEY_SECRET")
 	if len(apiKeySecret) == 0 {
 		panic("API_KEY_SECRET is not defined")
@@ -44,6 +54,17 @@ func RequireAPIKey(next http.Handler) http.Handler {
 	}
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// code taken from allowed server can make calls without api key
+		from := r.Header.Get("Referer")
+		if len(from) > 0 {
+			for _, a := range allowedReferers {
+				if strings.HasPrefix(from, a) {
+					next.ServeHTTP(w, r)
+					return
+				}
+			}
+		}
+
 		apiKey := getAPIKey(r)
 		if len(apiKey) == 0 {
 			err := fmt.Errorf("missing API key")
