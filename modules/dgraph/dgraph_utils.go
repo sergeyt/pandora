@@ -19,7 +19,12 @@ func NodeLabel(resourceType string) string {
 	return strings.Title(strings.ToLower(resourceType))
 }
 
-func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Pagination) ([]map[string]interface{}, error) {
+type ListResult struct {
+	Items []map[string]interface{} `json:"items"`
+	Total int64                    `json:"total"`
+}
+
+func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Pagination) (*ListResult, error) {
 	query := fmt.Sprintf(`query items($offset: int, $limit: int) {
   items(func: has(%s), offset: $offset, first: $limit) {
     uid
@@ -39,7 +44,10 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 	}
 
 	var result struct {
-		Results []map[string]interface{} `json:"items"`
+		Items []map[string]interface{} `json:"items"`
+		Total struct {
+			Count int64 `json:"count"`
+		} `json:"total"`
 	}
 	err = json.Unmarshal(resp.GetJson(), &result)
 	if err != nil {
@@ -47,7 +55,10 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 		return nil, err
 	}
 
-	return result.Results, nil
+	return &ListResult{
+		Items: result.Items,
+		Total: result.Total.Count,
+	}, nil
 }
 
 func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface{}, error) {
