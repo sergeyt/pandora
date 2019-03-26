@@ -2,6 +2,7 @@
 
 import os
 import re
+from datetime import datetime
 import api
 import macmillan
 import requests
@@ -13,8 +14,10 @@ dir = os.path.dirname(os.path.realpath(__file__))
 
 
 def init():
-    # TODO get admin creds from env
-    api.login("admin", "admin123")
+    api.login("system", os.getenv("SYSTEM_PWD"))
+    user = api.current_user()
+    user_id = user['uid']
+    now = datetime.now().isoformat()
 
     with open(os.path.join(dir, 'lingvo.txt'), 'r', encoding='utf-8') as f:
         src = f.read().split('\n')
@@ -31,6 +34,8 @@ def init():
             if kind and id not in typed:
                 add_audio(line, id, buf, audio)
                 buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
+                buf.append('{0} <created_at> "{1}"^^<xs:dateTime> .'.format(id, now))
+                buf.append('{0} <created_by> <{1}> .'.format(id, user_id))
                 typed[id] = True
 
             if "<visual>" in line and id in audio:

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
+import os
 import api
 import requests
 
 
 def test_upload():
-    api.login("admin", "admin123")
+    api.login("system", os.getenv("SYSTEM_PWD"))
     headers = api.headers()
     params = {'key': api.API_KEY}
 
@@ -38,7 +39,7 @@ def test_upload():
 
 
 def test_delete_file_node():
-    api.login("admin", "admin123")
+    api.login("system", os.getenv("SYSTEM_PWD"))
     headers = api.headers()
     params = {'key': api.API_KEY}
 

@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
+import os
 import api
 
 # todo check bad auth cases as separate test cases
 
 
 def test_crud():
-    api.login("admin", "admin123")
+    api.login("system", os.getenv("SYSTEM_PWD"))
 
     data = {
         'name': "bob",
@@ -66,7 +67,7 @@ def test_crud():
 
 
 def test_graph_update():
-    api.login("admin", "admin123")
+    api.login("system", os.getenv("SYSTEM_PWD"))
 
     data = {
         'name': "bob",

@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 	"testing"
 )
 
@@ -10,7 +11,7 @@ func TestAuth(t *testing.T) {
 	defer c.Close()
 
 	resp := c.expect.POST("/api/login").
-		WithBasicAuth("admin", "admin123").
+		WithBasicAuth("admin", os.Getenv("ADMIN_PWD")).
 		Expect().
 		Status(http.StatusOK).
 		JSON()

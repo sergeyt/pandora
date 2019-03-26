@@ -104,6 +104,10 @@ def login(username, password):
     return access_token
 
 
+def current_user():
+    return get('/api/me')
+
+
 def fileproxy(url):
     def path_from_url():
         return re.sub(r'https?://', '', url)
