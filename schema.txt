@@ -75,5 +75,6 @@ forgot: uid @count .
 learning: uid @count .
 interesting: uid @count .
 
+see: uid @count .
 like: uid @count .
 dislike: uid @count .
