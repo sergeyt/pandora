@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:7c0db328d23a0765c032489393c24106b3cf2b3feb716ce3fc57e859ab5151b2"
+  digest = "1:2a9bb06f4bb795b22f4f73e0eeb3aa781c3a2278148ea8e60cc9b61a8cea2a10"
   name = "cloud.google.com/go"
   packages = ["compute/metadata"]
   pruneopts = ""
-  revision = "2fa99f4c25c422525316dcb1fd3d5b94e1944cfd"
-  version = "v0.37.1"
+  revision = "458e1f376a2b44413160b5d301183b65debaa3f6"
+  version = "v0.37.2"
 
 [[projects]]
   digest = "1:c39642fccd7092e7fbc39e4f3eb62b4bcdf0765a6648d0ea4c90cd1ed1a9c70a"
@@ -48,7 +48,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:40a1ccfa1e93fcdf667e7837961f61363dc06dd982de6dc29f5577e860b77652"
+  digest = "1:acc172a8e517023b4bea240af35e8396d55239f1d9684de83ea05e3316e1a062"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -89,8 +89,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "f778816ebd8f4a83264c207c77e6bcd0a5a76603"
-  version = "v1.19.1"
+  revision = "bae168494294b48b3fc9d6722a711246a8543034"
+  version = "v1.19.2"
 
 [[projects]]
   branch = "master"
@@ -113,14 +113,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:1e58b3ffa87d9222ae2a1b4448e9f3677f386a5c958742cd27a8b5506c46101d"
+  digest = "1:63bee6ca344a07da0844b63004e65daaa3e5ac662e1a3d0df2e06f437f7ed127"
   name = "github.com/captncraig/cors"
   packages = [
     ".",
     "caddy",
   ]
   pruneopts = ""
-  revision = "376d45073b49d69d8460c8c4237208bdbce12d29"
+  revision = "48080ede89fe41f3e3ba556770d0f3fd6ed02e38"
 
 [[projects]]
   digest = "1:59df7ab87ddca233bb586ff32c6feba12bf787260f6694dc45ceecea9d3e1a7e"
@@ -215,21 +215,29 @@
   revision = "6f8212e8d10df7383609d3c377ca08884d8f3ec0"
 
 [[projects]]
-  digest = "1:80c65aa3d7fb8f3dd7b5c37a786e21cb5562e5e1eb1c6b2ba403f69cfd268d18"
+  digest = "1:b7538ff270310615c73f076630bee1581fb773412b7f5bad69284fad41d6bf9e"
   name = "github.com/go-acme/lego"
   packages = [
     "acme",
+    "acme/api",
+    "acme/api/internal/nonces",
+    "acme/api/internal/secure",
+    "acme/api/internal/sender",
     "certcrypto",
     "certificate",
     "challenge",
+    "challenge/dns01",
     "challenge/http01",
+    "challenge/resolver",
     "challenge/tlsalpn01",
     "lego",
+    "log",
+    "platform/wait",
     "registration",
   ]
   pruneopts = ""
-  revision = "52e43eb318b07ace590c2144804292c89aa74802"
-  version = "v2.2.0"
+  revision = "aaecc1ca7254190b71c5f01f57ee3bb6701bc937"
+  version = "v2.4.0"
 
 [[projects]]
   digest = "1:26d175e5ae3907016981aae86d2ef8acbbb94391a2b6a01b96a5f7fb682dc04c"
@@ -525,7 +533,7 @@
   version = "v1.8.0"
 
 [[projects]]
-  digest = "1:b5f0db644057287e018690cca0f76b037dff0115be4c06cf78dcc5897161dffb"
+  digest = "1:f8ac485db21926b688041684f6d87b5519b326ac55aab09ab223cd3f5a995596"
   name = "github.com/markbates/goth"
   packages = [
     ".",
@@ -535,8 +543,8 @@
     "providers/vk",
   ]
   pruneopts = ""
-  revision = "157987f620ff2fc5e1f6a1427a3685219fbf6ff4"
-  version = "v1.49.0"
+  revision = "55fc853e522b8742c046c2aacce186cfad097871"
+  version = "v1.50.0"
 
 [[projects]]
   digest = "1:9ea83adf8e96d6304f394d40436f2eb44c1dc3250d223b74088cc253a6cd0a1c"
@@ -712,15 +720,15 @@
   version = "v1.4.0"
 
 [[projects]]
-  digest = "1:d9f371ceb44045ca4405b65fed916e4b45396340b9e8674851c3d652f6351cde"
+  digest = "1:956f655c87b7255c6b1ae6c203ebb0af98cf2a13ef2507e34c9bf1c0332ac0f5"
   name = "github.com/spf13/afero"
   packages = [
     ".",
     "mem",
   ]
   pruneopts = ""
-  revision = "f4711e4db9e9a1d3887343acb72b2bbfc2f686f5"
-  version = "v1.2.1"
+  revision = "588a75ec4f32903aa5e39a2619ba6a4631e28424"
+  version = "v1.2.2"
 
 [[projects]]
   digest = "1:ae3493c780092be9d576a1f746ab967293ec165e8473425631f06658b6212afc"
@@ -818,28 +826,16 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:1a4d48ede01bad9ef78166f8cbd1238698d934c1ce3f04bb9f25133b749e3b42"
+  digest = "1:b7538ff270310615c73f076630bee1581fb773412b7f5bad69284fad41d6bf9e"
   name = "github.com/xenolf/lego"
   packages = [
-    "acme",
-    "acme/api",
-    "acme/api/internal/nonces",
-    "acme/api/internal/secure",
-    "acme/api/internal/sender",
     "certcrypto",
-    "certificate",
     "challenge",
-    "challenge/dns01",
-    "challenge/http01",
-    "challenge/resolver",
     "challenge/tlsalpn01",
-    "log",
-    "platform/wait",
-    "registration",
   ]
   pruneopts = ""
-  revision = "2952cdaebd4da7cd560e195343bdd3cb78a67643"
-  version = "v2.3.0"
+  revision = "aaecc1ca7254190b71c5f01f57ee3bb6701bc937"
+  version = "v2.4.0"
 
 [[projects]]
   branch = "master"
@@ -870,7 +866,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:c81a0b59fb29b7b1db82ab9022fcb4a4284317b6cadc015048e994ed6b9599ab"
+  digest = "1:36ef1d8645934b1744cc7d8726e00d3dd9d8d84c18617bf7367a3a6d532f3370"
   name = "golang.org/x/crypto"
   packages = [
     "curve25519",
@@ -882,11 +878,11 @@
     "ssh/terminal",
   ]
   pruneopts = ""
-  revision = "b7391e95e576cacdcdd422573063bc057239113d"
+  revision = "a5d413f7728c81fb97d96a2b722368945f651e78"
 
 [[projects]]
   branch = "master"
-  digest = "1:edcbef5f8532db18c25ae0b5ee8a06e64103768895756b7406304b73033a946e"
+  digest = "1:ca92e2feb3da3eafb66a9a5604e4bec7a1df56fd3715324c7c003e335bddaed5"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -905,7 +901,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "addf6b3196f61cd44ce5a76657913698c73479d0"
+  revision = "15845e8f865bdabdefb6e7da65b4d9e8de5e94ef"
 
 [[projects]]
   branch = "master"
