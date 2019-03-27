@@ -207,7 +207,7 @@ func setNquads(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if mediaType != "application/n-quads" {
-		apiutil.SendError(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
+		apiutil.SendError(w, fmt.Errorf("unsupported media type: %s", mediaType), http.StatusUnsupportedMediaType)
 		return
 	}
 
