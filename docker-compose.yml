@@ -132,6 +132,8 @@ services:
       HTTPS_PORT: ${HTTPS_PORT}
       DGRAPH_TOKEN: ${DGRAPH_TOKEN}
       JWT_SECRET: ${JWT_SECRET}
+      SYSTEM_PWD: ${SYSTEM_PWD}
+      ADMIN_PWD: ${ADMIN_PWD}
       # api key protection
       API_KEY_SECRET: ${API_KEY_SECRET}
       APP_ID: ${APP_ID}
@@ -179,6 +181,8 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       DGRAPH_TOKEN: ${DGRAPH_TOKEN}
       ADMIN_SECRET: ${ADMIN_SECRET}
+      SYSTEM_PWD: ${SYSTEM_PWD}
+      ADMIN_PWD: ${ADMIN_PWD}
       API_KEY: ${API_KEY}
       CADDYPATH: /data/caddy
     volumes:
