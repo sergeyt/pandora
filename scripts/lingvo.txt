@@ -292,7 +292,8 @@ _:electrical_ru <transcript> "elektricheskiy'"@en .
 _:electrical_en <translated_as> _:electrical_ru .
 
 _:img_expensive1 <url> "http://www.zr.ru/d/story/e2/575714/201309180713-201309180713-gold-platinum-and-diamond-encrusted-la-6.jpg" .
-_:img_expensive2 <url> "https://cdnimg.rg.ru/img/content/152/33/18/m08_1000_d_850.jpg" .
+_:img_expensive2 <url> "https://i.ytimg.com/vi/2TmoaY3QS-A/maxresdefault.jpg" .
+_:img_expensive3 <url> "https://i.ytimg.com/vi/qvuvjEkeDAw/maxresdefault.jpg" .
 
 _:expensive_en <text> "expensive" .
 _:expensive_en <lang> "en" .
@@ -300,6 +301,7 @@ _:expensive_en <tag> _:word .
 _:expensive_en <tag> _:adjective .
 _:expensive_en <visual> _:img_expensive1 .
 _:expensive_en <visual> _:img_expensive2 .
+_:expensive_en <visual> _:img_expensive3 .
 _:expensive_en <transcript> "ɪkˈspensɪv"@en .
 _:expensive_en <transcript> "икспэнсив"@ru .
 
@@ -309,6 +311,7 @@ _:expensive_ru <tag> _:word .
 _:expensive_ru <tag> _:adjective .
 _:expensive_ru <visual> _:img_expensive1 .
 _:expensive_ru <visual> _:img_expensive2 .
+_:expensive_ru <visual> _:img_expensive3 .
 _:expensive_ru <transcript> "дарагой"@ru .
 _:expensive_ru <transcript> "dorogoy'"@en .
 
