@@ -198,19 +198,6 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func setNquads(w http.ResponseWriter, r *http.Request) {
-	contentType := r.Header.Get("Content-Type")
-	mediaType, _, err := mime.ParseMediaType(contentType)
-	if err != nil {
-		log.Errorf("mime.ParseMediaType fail: %v", err)
-		apiutil.SendError(w, err)
-		return
-	}
-
-	if mediaType != "application/n-quads" {
-		apiutil.SendError(w, fmt.Errorf("unsupported media type: %s", mediaType), http.StatusUnsupportedMediaType)
-		return
-	}
-
 	nquads, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		apiutil.SendError(w, err, http.StatusInternalServerError)
