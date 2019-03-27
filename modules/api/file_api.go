@@ -242,7 +242,7 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	}
 
 	http := rest.NewHTTPClient(&rest.Config{
-		Timeout: 60,
+		Timeout: 120,
 	})
 
 	resp, err := http.Get(c.path)
