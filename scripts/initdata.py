@@ -11,9 +11,10 @@ SYSTEM_PWD = os.getenv('SYSTEM_PWD')
 ADMIN_PWD = os.getenv('ADMIN_PWD')
 
 if not SYSTEM_PWD:
-  raise Exception('SYSTEM_PWD is not defined')
+    raise Exception('SYSTEM_PWD is not defined')
 if not ADMIN_PWD:
-  raise Exception('ADMIN_PWD is not defined')
+    raise Exception('ADMIN_PWD is not defined')
+
 
 def user_exists(user):
     try:
@@ -26,7 +27,6 @@ def user_exists(user):
 def ensure_user(user):
     if not user_exists(user):
         api.post('/api/data/user', user)
-
 
 
 users = [
@@ -69,7 +69,6 @@ def init():
 #             'password': name + '123',
 #         }
 #         ensure_user(user)
-
 
 if __name__ == '__main__':
     init()

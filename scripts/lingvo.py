@@ -34,7 +34,8 @@ def init():
             if kind and id not in typed:
                 add_audio(line, id, buf, audio)
                 buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
-                buf.append('{0} <created_at> "{1}"^^<xs:dateTime> .'.format(id, now))
+                buf.append('{0} <created_at> "{1}"^^<xs:dateTime> .'.format(
+                    id, now))
                 buf.append('{0} <created_by> <{1}> .'.format(id, user_id))
                 typed[id] = True
 
@@ -67,6 +68,8 @@ def add_audio(line, id, buf, audio):
         return
 
     word = m.group(1)
+    if word.find('_') >= 0:
+        return
 
     m = macmillan.find_audio(word)
     url1 = api.fileproxy('https://howjsay.com/mp3/{0}.mp3'.format(word))
