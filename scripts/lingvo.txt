@@ -30,12 +30,16 @@ _:img_afternoon1 <url> "" .
 
 _:afternoon_en <text> "afternoon" .
 _:afternoon_en <lang> "en" .
+_:afternoon_en <tag> _:word .
+_:afternoon_en <tag> _:noun .
 _:afternoon_en <visual> _:img_afternoon1 .
 _:afternoon_en <transcript> "ˌɑːftə(r)ˈnuːn"@en .
 _:afternoon_en <transcript> "афтэ(р)нун"@ru .
 
 _:afternoon_ru <text> "после полудня" .
 _:afternoon_ru <lang> "ru" .
+_:afternoon_ru <tag> _:word .
+_:afternoon_ru <tag> _:noun .
 _:afternoon_ru <visual> _:img_afternoon1 .
 _:afternoon_ru <transcript> "после палуднйа"@ru .
 _:have_ru <transcript> " posle poludnya"@en .
@@ -64,6 +68,18 @@ _:apple_ru <transcript> "яблако"@ru .
 
 _:apple_en <translated_as> _:apple_ru .
 
+_:apple_phrase1_en <text> "a second bite of the apple" .
+_:apple_phrase1_en <lang> "en" .
+_:apple_phrase1_en <tag> _:phrase .
+_:apple_phrase1_en <tag> _:idiom .
+
+_:apple_phrase1_ru <text> "второй шанс" .
+_:apple_phrase1_ru <lang> "ru" .
+_:apple_phrase1_ru <tag> _:phrase .
+_:apple_phrase1_ru <tag> _:idiom .
+
+_:apple_en <in> _:apple_phrase1_en .
+
 _:img_autumn1 <url> "http://img1.likar.info/uploads/cc/b5/4d/ccb54d24-8a7c-41b9-bfef-9a508b970dbd_670x0_resize.jpg" .
 _:img_autumn2 <url> "https://2018god.com/wp-content/uploads/Russian_autumn_1.jpg" .
 
@@ -87,6 +103,18 @@ _:autumn_ru <transcript> "osen'"@en .
 
 _:autumn_en <translated_as> _:autumn_ru .
 
+_:autumn_phrase1_en <text> "come to one's autumn" .
+_:autumn_phrase1_en <lang> "en" .
+_:autumn_phrase1_en <tag> _:phrase .
+_:autumn_phrase1_en <tag> _:idiom .
+
+_:autumn_phrase1_ru <text> "получать по заслугам" .
+_:autumn_phrase1_ru <lang> "ru" .
+_:autumn_phrase1_ru <tag> _:phrase .
+_:autumn_phrase1_ru <tag> _:idiom .
+
+_:autumn_en <in> _:autumn_phrase1_en .
+
 _:img_bed1 <url> "https://hoff.ru//upload/iblock/9be/9be0921f96cf2f30b4e5136c4eccd7d8.jpg" .
 _:img_bed2 <url> "https://meb-online.ru/upload/iblock/cd6/cd60cce8c6ea839e0109b1a5d599c7cc.jpg" .
 
@@ -108,6 +136,18 @@ _:bed_ru <visual> _:img_bed2 .
 _:bed_ru <transcript> "кравать"@ru .
 
 _:bed_en <translated_as> _:bed_ru .
+
+_:bed_phrase1_en <text> "bed of roses" .
+_:bed_phrase1_en <lang> "en" .
+_:bed_phrase1_en <tag> _:phrase .
+_:bed_phrase1_en <tag> _:idiom .
+
+_:bed_phrase1_ru <text> "беззаботная жизнь" .
+_:bed_phrase1_ru <lang> "ru" .
+_:bed_phrase1_ru <tag> _:phrase .
+_:bed_phrase1_ru <tag> _:idiom .
+
+_:bed_en <in> _:bed_phrase1_en .
 
 _:img_body1 <url> "https://cdn.britannica.com/96/177096-049-64B1A5A5.jpg" .
 _:img_body2 <url> "https://cdn.lifehacker.ru/wp-content/uploads/2018/05/Kak-prokachat-vse%CC%88-telo-zanimayas-po-10-minut-v-den_1525637023-1140x570.jpg" .
@@ -131,6 +171,18 @@ _:body_ru <transcript> "тело"@ru .
 
 _:body_en <translated_as> _:body_ru .
 
+_:body_phrase1_en <text> "out-of-body experience" .
+_:body_phrase1_en <lang> "en" .
+_:body_phrase1_en <tag> _:phrase .
+_:body_phrase1_en <tag> _:idiom .
+
+_:body_phrase1_ru <text> "астральное путешествие" .
+_:body_phrase1_ru <lang> "ru" .
+_:body_phrase1_ru <tag> _:phrase .
+_:body_phrase1_ru <tag> _:idiom .
+
+_:body_en <in> _:body_phrase1_en .
+
 _:img_boy1 <url> "https://www.paparazzi.ru/upload/wysiwyg_files/img/1472483485.jpg" .
 _:img_boy2 <url> "https://static6.depositphotos.com/1002007/664/i/450/depositphotos_6646061-stock-photo-portrait-of-boy.jpg" .
 
@@ -152,6 +204,18 @@ _:boy_ru <visual> _:img_boy2 .
 _:boy_ru <transcript> "мальчик"@ru .
 
 _:boy_en <translated_as> _:boy_ru .
+
+_:boy_phrase1_en <text> "foolish little boy!" .
+_:boy_phrase1_en <lang> "en" .
+_:boy_phrase1_en <tag> _:phrase .
+_:boy_phrase1_en <tag> _:idiom .
+
+_:boy_phrase1_ru <text> "глупый мальчишка!" .
+_:boy_phrase1_ru <lang> "ru" .
+_:boy_phrase1_ru <tag> _:phrase .
+_:boy_phrase1_ru <tag> _:idiom .
+
+_:boy_en <in> _:boy_phrase1_en .
 
 _:img_brother1 <url> "https://www.eg.ru/wp-content/uploads/2017/09/72177849525041614.jpg" .
 _:img_brother2 <url> "https://www.miloserdie.ru/wp-content/uploads/2019/03/ashton-kutcher-net-worth-2-640x420.jpg" .
@@ -176,6 +240,18 @@ _:brother_ru <transcript> "brat"@en .
 
 _:brother_en <translated_as> _:brother_ru .
 
+_:brother_phrase1_en <text> "I am not my brother's keeper" .
+_:brother_phrase1_en <lang> "en" .
+_:brother_phrase1_en <tag> _:phrase .
+_:brother_phrase1_en <tag> _:idiom .
+
+_:brother_phrase1_ru <text> "моя хата с краю, ничего не знаю" .
+_:brother_phrase1_ru <lang> "ru" .
+_:brother_phrase1_ru <tag> _:phrase .
+_:brother_phrase1_ru <tag> _:idiom .
+
+_:brother_en <in> _:brother_phrase1_en .
+
 _:img_can1 <url> "https://ic.pics.livejournal.com/era_elto/21153527/185357/185357_original.jpg" .
 _:img_can2 <url> "http://sports900.com/_images/20100415084711_rockclimbing_foto_100.jpg" .
 
@@ -198,6 +274,18 @@ _:can_ru <transcript> "магу"@ru .
 _:can_ru <transcript> "mogu"@en .
 
 _:can_en <translated_as> _:can_ru .
+
+_:can_phrase1_en <text> "I can't stand" .
+_:can_phrase1_en <lang> "en" .
+_:can_phrase1_en <tag> _:phrase .
+_:can_phrase1_en <tag> _:idiom .
+
+_:can_phrase1_ru <text> "терпеть ненавижу" .
+_:can_phrase1_ru <lang> "ru" .
+_:can_phrase1_ru <tag> _:phrase .
+_:can_phrase1_ru <tag> _:idiom .
+
+_:can_en <in> _:can_phrase1_en .
 
 _:img_cat1 <url> "https://cs9.pikabu.ru/post_img/big/2017/09/23/6/1506156143116966561.jpg" .
 _:img_cat2 <url> "https://memepedia.ru/wp-content/uploads/2018/07/cover-3-1.jpg" .
@@ -222,6 +310,18 @@ _:cat_ru <transcript> " koshka"@en .
 
 _:cat_en <translated_as> _:cat_ru .
 
+_:cat_phrase1_en <text> "call a cat a cat" .
+_:cat_phrase1_en <lang> "en" .
+_:cat_phrase1_en <tag> _:phrase .
+_:cat_phrase1_en <tag> _:idiom .
+
+_:cat_phrase1_ru <text> "называть вещи своими именами" .
+_:cat_phrase1_ru <lang> "ru" .
+_:cat_phrase1_ru <tag> _:phrase .
+_:cat_phrase1_ru <tag> _:idiom .
+
+_:cat_en <in> _:cat_phrase1_en .
+
 _:img_child1 <url> "https://ocheninteresno.com/wp-content/uploads/2017/05/kakim-budem-moj-rebenok.jpg" .
 _:img_child2 <url> "http://v-izhikowa.ru/wp-content/uploads/2016/06/Malchik-v-kepke-1024x576.jpg" .
 
@@ -244,6 +344,18 @@ _:child_ru <transcript> "рибёнок"@ru .
 _:child_ru <transcript> " rebenok"@en .
 
 _:child_en <translated_as> _:child_ru .
+
+_:child_phrase1_en <text> "child's play" .
+_:child_phrase1_en <lang> "en" .
+_:child_phrase1_en <tag> _:phrase .
+_:child_phrase1_en <tag> _:idiom .
+
+_:child_phrase1_ru <text> "плёвое дело" .
+_:child_phrase1_ru <lang> "ru" .
+_:child_phrase1_ru <tag> _:phrase .
+_:child_phrase1_ru <tag> _:idiom .
+
+_:child_en <in> _:child_phrase1_en .
 
 _:img_different1 <url> "https://ladyeve.ru/wp-content/uploads/2013/08/raznye.jpg" .
 _:img_different2 <url> "https://lifesecrets.in.ua/images/site/success-and-happiness-in-life/success-secrets/229-02-everyone-is-different.jpg" .
@@ -268,6 +380,18 @@ _:different_ru <transcript> "razny'"@en .
 
 _:different_en <translated_as> _:different_ru .
 
+_:different_phrase1_en <text> "different languages" .
+_:different_phrase1_en <lang> "en" .
+_:different_phrase1_en <tag> _:phrase .
+_:different_phrase1_en <tag> _:idiom .
+
+_:different_phrase1_ru <text> "на разных языках" .
+_:different_phrase1_ru <lang> "ru" .
+_:different_phrase1_ru <tag> _:phrase .
+_:different_phrase1_ru <tag> _:idiom .
+
+_:different_en <in> _:different_phrase1_en .
+
 _:img_electrical1 <url> "https://meanders.ru/wp-content/uploads/electricity.jpg" .
 _:img_electrical2 <url> "https://domelectrik.ru/sites/default/files/field/image/verbindung.jpg" .
 
@@ -290,6 +414,18 @@ _:electrical_ru <transcript> "эликтричиский"@ru .
 _:electrical_ru <transcript> "elektricheskiy'"@en .
 
 _:electrical_en <translated_as> _:electrical_ru .
+
+_:electrical_phrase1_en <text> "bio-electric potential" .
+_:electrical_phrase1_en <lang> "en" .
+_:electrical_phrase1_en <tag> _:phrase .
+_:electrical_phrase1_en <tag> _:idiom .
+
+_:electrical_phrase1_ru <text> "биопотенциал" .
+_:electrical_phrase1_ru <lang> "ru" .
+_:electrical_phrase1_ru <tag> _:phrase .
+_:electrical_phrase1_ru <tag> _:idiom .
+
+_:electrical_en <in> _:electrical_phrase1_en .
 
 _:img_expensive1 <url> "http://www.zr.ru/d/story/e2/575714/201309180713-201309180713-gold-platinum-and-diamond-encrusted-la-6.jpg" .
 _:img_expensive2 <url> "https://i.ytimg.com/vi/2TmoaY3QS-A/maxresdefault.jpg" .
@@ -317,6 +453,18 @@ _:expensive_ru <transcript> "dorogoy'"@en .
 
 _:expensive_en <translated_as> _:expensive_ru .
 
+_:expensive_phrase1_en <text> "expensive and tasty, cheap and nasty" .
+_:expensive_phrase1_en <lang> "en" .
+_:expensive_phrase1_en <tag> _:phrase .
+_:expensive_phrase1_en <tag> _:idiom .
+
+_:expensive_phrase1_ru <text> "дёшево, да гнило, дорого, да мило" .
+_:expensive_phrase1_ru <lang> "ru" .
+_:expensive_phrase1_ru <tag> _:phrase .
+_:expensive_phrase1_ru <tag> _:idiom .
+
+_:expensive_en <in> _:expensive_phrase1_en .
+
 _:img_father1 <url> "https://ваш-сонник.рф/wp-content/uploads/2018/01/sonnik-k-chemu-snitsya-pokojnyj-otets-zhivym.jpg" .
 _:img_father2 <url> "https://shkolazhizni.ru/img/content/i138/138460_or.jpg" .
 
@@ -339,6 +487,18 @@ _:father_ru <transcript> "атец"@ru .
 _:father_ru <transcript> " otets"@en .
 
 _:father_en <translated_as> _:father_ru .
+
+_:father_phrase1_en <text> "the wish is father to the thought" .
+_:father_phrase1_en <lang> "en" .
+_:father_phrase1_en <tag> _:phrase .
+_:father_phrase1_en <tag> _:idiom .
+
+_:father_phrase1_ru <text> "желание-отец мысли" .
+_:father_phrase1_ru <lang> "ru" .
+_:father_phrase1_ru <tag> _:phrase .
+_:father_phrase1_ru <tag> _:idiom .
+
+_:father_en <in> _:father_phrase1_en .
 
 _:img_difficult1 <url> "http://tv.akado.ru/images/data/akadotv/picture/imgbig/408293/3-s.jpg" .
 _:img_difficult2 <url> "https://ovp1.ru/wp-content/uploads/2018/05/mmdhulte.jpg" .
@@ -363,6 +523,18 @@ _:difficult_ru <transcript> "trudnyy"@en .
 
 _:difficult_en <translated_as> _:difficult_ru .
 
+_:difficult_phrase1_en <text> "it's difficult to say" .
+_:difficult_phrase1_en <lang> "en" .
+_:difficult_phrase1_en <tag> _:phrase .
+_:difficult_phrase1_en <tag> _:idiom .
+
+_:difficult_phrase1_ru <text> "трудно сказать" .
+_:difficult_phrase1_ru <lang> "ru" .
+_:difficult_phrase1_ru <tag> _:phrase .
+_:difficult_phrase1_ru <tag> _:idiom .
+
+_:difficult_en <in> _:difficult_phrase1_en .
+
 _:img_dog1 <url> "https://cdn21.img.ria.ru/images/154960/82/1549608248_0:93:433:337_600x0_80_0_0_27e0eb5c66dad54fb001392a98f8a4b2.jpg" .
 _:img_dog2 <url> "https://kor.ill.in.ua/m/610x385/2131414.jpg" .
 
@@ -385,6 +557,18 @@ _:dog_ru <transcript> "сабака"@ru .
 _:dog_ru <transcript> "sobaka"@en .
 
 _:dog_en <translated_as> _:dog_ru .
+
+_:dog_phrase1_en <text> "dirty dog" .
+_:dog_phrase1_en <lang> "en" .
+_:dog_phrase1_en <tag> _:phrase .
+_:dog_phrase1_en <tag> _:idiom .
+
+_:dog_phrase1_ru <text> "подлый человек" .
+_:dog_phrase1_ru <lang> "ru" .
+_:dog_phrase1_ru <tag> _:phrase .
+_:dog_phrase1_ru <tag> _:idiom .
+
+_:dog_en <in> _:dog_phrase1_en .
 
 _:img_door1 <url> "https://images.obi.ru/product/RU/800x600/400211_1.jpg" .
 _:img_door2 <url> "https://dverimassivspb.ru/wp-content/uploads/2017/04/d01.png" .
@@ -409,6 +593,18 @@ _:door_ru <transcript> "dver'"@en .
 
 _:door_en <translated_as> _:door_ru .
 
+_:door_phrase1_en <text> "get foot in the door" .
+_:door_phrase1_en <lang> "en" .
+_:door_phrase1_en <tag> _:phrase .
+_:door_phrase1_en <tag> _:idiom .
+
+_:door_phrase1_ru <text> "сделать первый шаг" .
+_:door_phrase1_ru <lang> "ru" .
+_:door_phrase1_ru <tag> _:phrase .
+_:door_phrase1_ru <tag> _:idiom .
+
+_:door_en <in> _:door_phrase1_en .
+
 _:img_evening1 <url> "https://uchim-klass.ru/images/preview/6-klass/125/sochinenie-na-temu-vecher-v-gorode.jpg" .
 _:img_evening2 <url> "https://cs9.pikabu.ru/post_img/big/2017/07/06/11/1499364716119670426.jpg" .
 
@@ -432,6 +628,18 @@ _:evening_ru <transcript> "vecher"@en .
 
 _:evening_en <translated_as> _:evening_ru .
 
+_:evening_phrase1_en <text> "in the late evening" .
+_:evening_phrase1_en <lang> "en" .
+_:evening_phrase1_en <tag> _:phrase .
+_:evening_phrase1_en <tag> _:idiom .
+
+_:evening_phrase1_ru <text> "на ночь глядя" .
+_:evening_phrase1_ru <lang> "ru" .
+_:evening_phrase1_ru <tag> _:phrase .
+_:evening_phrase1_ru <tag> _:idiom .
+
+_:evening_en <in> _:evening_phrase1_en .
+
 _:img_have1 <url> "https://strongautomotive.com/wp-content/uploads/2014/05/have-have-not.png" .
 _:img_have2 <url> "https://kicontent.s3.amazonaws.com/assets/images/HAVE_A_BALL.jpg" .
 
@@ -454,6 +662,18 @@ _:have_ru <transcript> "иметь"@ru .
 _:have_ru <transcript> "imet'"@en .
 
 _:have_en <translated_as> _:have_ru .
+
+_:have_phrase1_en <text> "have a big mouth" .
+_:have_phrase1_en <lang> "en" .
+_:have_phrase1_en <tag> _:phrase .
+_:have_phrase1_en <tag> _:idiom .
+
+_:have_phrase1_ru <text> "трепать языком" .
+_:have_phrase1_ru <lang> "ru" .
+_:have_phrase1_ru <tag> _:phrase .
+_:have_phrase1_ru <tag> _:idiom .
+
+_:have_en <in> _:have_phrase1_en .
 
 _:img_hot1 <url> "http://humor.fm/uploads/posts/2018-02/1518030154_1.jpg" .
 _:img_hot2 <url> "https://www.merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/hot-take-2974-38ae3523b46f4055f2455dcdd5a1c92f@1x.jpg" .
