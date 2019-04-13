@@ -3,7 +3,7 @@
 This small box of pandora (aka small app basis) composed from the following technologies:
 
 * [Dgraph](https://dgraph.io/) as data store with GraphQL support, write operations using REST
-* [tusd](https://tus.io/) as file store service baked by Amazon S3 compatible storage like [Minio](https://www.minio.io/)
+* [Minio](https://www.minio.io/) as Amazon S3 compatible storage
 * [ElasticSearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data is automatically replicated in elasticseach index
 * [Kibana](https://www.elastic.co/products/kibana) to visualize Elasticsearch data
 * [NATS](https://nats.io/) as messaging system with streaming of push notifications (events) via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
@@ -23,7 +23,6 @@ I'd like to have simple, flexible, dynamic, declarative, reactive, realtime info
 1. `nats` - plays as message bus
 1. `pubsub` - event streaming service based on [SSE](https://en.wikipedia.org/wiki/Server-sent_events) protocol
 1. `minio` - Amazon S3 compatible file store
-1. `tusd` - service with Open Protocol for Resumable File Uploads
 1. `imageproxy` - [service](https://willnorris.com/go/imageproxy) with image manipulation ops like resizing
 1. `elasticsearch` - search and analitycs engine
 1. `kibana` - Elasticsearch dashboard

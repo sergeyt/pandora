@@ -25,17 +25,6 @@ services:
       MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
     command: server --config-dir /etc/minio /data
     restart: on-failure
-  # file upload service
-  tusd:
-    # image: tusproject/tusd
-    build:
-      context: ./
-      dockerfile: ./docker/Dockerfile-empty
-    container_name: tusd
-    command: -base-path "/api/files" -metrics-path "/api/metrics/tusd" -behind-proxy -s3-bucket ${AWS_S3_BUCKET} -s3-endpoint http://minio:9000
-    ports:
-      - 1080:1080
-    restart: on-failure
   # image ops service (we need resizing at least)
   imageproxy:
     image: willnorris/imageproxy
