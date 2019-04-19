@@ -37,7 +37,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:cfdf93c69bbb572df7f30dfebedcb91a19351538167a0989aab9c4869725b7eb"
+  digest = "1:012fac888b7218cd93a1c11d0593cfc4832b5a99ffdad04eae6e7899dbfb4296"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -78,8 +78,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "cf58d169c2d60e36f54964ceb4b9baa3434dbfe7"
-  version = "v1.19.12"
+  revision = "85ae0e8271315ab6e2e7867a01e5de8a0eb45b40"
+  version = "v1.19.14"
 
 [[projects]]
   branch = "master"
@@ -126,7 +126,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:362ca778151fb7b778774dd8a4778fc8ce3ffa085662552f600fa88ac4ddcfdf"
+  digest = "1:7b16954837ef2f0d25b4ac5951acbd76e1f761df8bd95b5b327a619568641a1c"
   name = "github.com/dgraph-io/dgo"
   packages = [
     ".",
@@ -134,7 +134,7 @@
     "y",
   ]
   pruneopts = ""
-  revision = "95299da439fdb3190e94dda8e27276fde80435d6"
+  revision = "087e431c0fdacdee2992b1464176608b8c0a56d7"
 
 [[projects]]
   digest = "1:6098222470fe0172157ce9bbef5d2200df4edde17ee649c5d6e48330e4afa4c6"
@@ -186,14 +186,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:44e52e928b91a686e2b9518f7eea82ba729d227d94b69574416bbe2d9d418b33"
+  digest = "1:ddb3836d12922e5506272be0f9bffb6690bf097da75e17056a52a2c199ea6291"
   name = "github.com/gavv/monotime"
   packages = ["."]
   pruneopts = ""
-  revision = "6f8212e8d10df7383609d3c377ca08884d8f3ec0"
+  revision = "30dba43534243e3484a34676a0f068d12b989f84"
 
 [[projects]]
-  digest = "1:b7538ff270310615c73f076630bee1581fb773412b7f5bad69284fad41d6bf9e"
+  digest = "1:e022dfba403a0a0bd218ac5473aab538e9dbf06710f9ed2f63ae91173243ad50"
   name = "github.com/go-acme/lego"
   packages = [
     "acme",
@@ -214,8 +214,8 @@
     "registration",
   ]
   pruneopts = ""
-  revision = "aaecc1ca7254190b71c5f01f57ee3bb6701bc937"
-  version = "v2.4.0"
+  revision = "3d13faf68920543a393ad6cdfdea429627af2d34"
+  version = "v2.5.0"
 
 [[projects]]
   digest = "1:26d175e5ae3907016981aae86d2ef8acbbb94391a2b6a01b96a5f7fb682dc04c"
@@ -784,7 +784,7 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:b7538ff270310615c73f076630bee1581fb773412b7f5bad69284fad41d6bf9e"
+  digest = "1:e022dfba403a0a0bd218ac5473aab538e9dbf06710f9ed2f63ae91173243ad50"
   name = "github.com/xenolf/lego"
   packages = [
     "certcrypto",
@@ -792,8 +792,8 @@
     "challenge/tlsalpn01",
   ]
   pruneopts = ""
-  revision = "aaecc1ca7254190b71c5f01f57ee3bb6701bc937"
-  version = "v2.4.0"
+  revision = "3d13faf68920543a393ad6cdfdea429627af2d34"
+  version = "v2.5.0"
 
 [[projects]]
   branch = "master"
@@ -824,7 +824,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:958ad9932fc5ac9fb5c794f97580ed123ddfed1d965e1de0f98e2a590d6e9e3e"
+  digest = "1:cebc91a148c3d35354b53496d684130b149b607a4ba4feb035a0eb591284a96a"
   name = "golang.org/x/crypto"
   packages = [
     "chacha20poly1305",
@@ -841,11 +841,11 @@
     "poly1305",
   ]
   pruneopts = ""
-  revision = "88737f569e3a9c7ab309cdc09a07fe7fc87233c3"
+  revision = "df01cb2cc480549d72034218dd98bf97671450ac"
 
 [[projects]]
   branch = "master"
-  digest = "1:ff4ca88748be8051a3fd7143898dc5567389a4097a96fbad6dd4dcb7056dfb26"
+  digest = "1:d3f85f6aabd2d40191238b8ecfcc0ca2611ed769aefe1dfe2ac9d9b8347973d6"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -864,7 +864,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "1da14a5a36f220ea3f03470682b737b1dfd5de22"
+  revision = "1f3472d942ba824034fb77cab6a6cfc1bc8a2c3c"
 
 [[projects]]
   branch = "master"
@@ -882,14 +882,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:de13f0afd479cb8b33fd54e449a5d455d186c25a8488a94dbc49f854b7348659"
+  digest = "1:8be0627b49a5b2fcb1cf83e1e348b935371a9c55c73085eebfceee4ef49b52df"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
     "unix",
   ]
   pruneopts = ""
-  revision = "12500544f89f9420afe9529ba8940bf72d294972"
+  revision = "e8e3143a4f4a00f1fafef0dd82ba78223281b01b"
 
 [[projects]]
   digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
@@ -935,14 +935,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:5eba71baa7efc80aa2c73b94290c85b06b5c35297f7172a83d57011b7e21e347"
+  digest = "1:e2b33f74fe0b06fd0d0b41562eeb4b7142ca2a8ff10d7b8cb3eb3ade1ed23ac0"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = ""
-  revision = "d1146b9035b912113a38af3b138eb2af567b2c67"
+  revision = "e7d98fc518a78c9f8b5ee77be7b0b317475d89e1"
 
 [[projects]]
-  digest = "1:c4e8733914b7b1b535988fb5d5bd3de60845fb4553227b7a1ce1b7180204e462"
+  digest = "1:afc1b03a6d5ba3cbb2e0a12133e734d472e4df3b65f06e600a3d57a4b82f26cc"
   name = "google.golang.org/grpc"
   packages = [
     ".",
@@ -979,8 +979,8 @@
     "tap",
   ]
   pruneopts = ""
-  revision = "236199dd5f8031d698fb64091194aecd1c3895b2"
-  version = "v1.20.0"
+  revision = "25c4f928eaa6d96443009bd842389fb4fa48664e"
+  version = "v1.20.1"
 
 [[projects]]
   digest = "1:039b95e6ba078fe5a22315dcae7bc9859226ee34672ce9ab01708576bf2abd38"
@@ -992,11 +992,11 @@
 
 [[projects]]
   branch = "v1"
-  digest = "1:7a98bc5cfa8e0c82156a33edb7ed582a9e700af089994e1b89bdb8517cd2db58"
+  digest = "1:c14d53f780fce4ea732db7d8f9186f20cc7a5330fdd20d1970b6086084239e23"
   name = "gopkg.in/gavv/httpexpect.v1"
   packages = ["."]
   pruneopts = ""
-  revision = "bdde308713130a703436e014ff782958c251d20a"
+  revision = "db1fd357d58f43e545656a9c6fe74305ccc46873"
 
 [[projects]]
   digest = "1:367baf06b7dbd0ef0bbdd785f6a79f929c96b0c18e9d3b29c0eed1ac3f5db133"
