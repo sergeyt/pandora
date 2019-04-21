@@ -37,7 +37,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:012fac888b7218cd93a1c11d0593cfc4832b5a99ffdad04eae6e7899dbfb4296"
+  digest = "1:1713df27130c2745660c1773b3101e63b0888d930089687be5b2f61b3f2fe8e9"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -78,8 +78,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "85ae0e8271315ab6e2e7867a01e5de8a0eb45b40"
-  version = "v1.19.14"
+  revision = "ca6d5f771b63df153f02fe5b117434d5ebafeeda"
+  version = "v1.19.15"
 
 [[projects]]
   branch = "master"
@@ -536,12 +536,12 @@
   version = "v0.11.5"
 
 [[projects]]
-  branch = "master"
-  digest = "1:fa9ebd3af01e39f4b1a10711adf54eeb0e28acf7115667914257577df6c90c53"
+  digest = "1:4ad651f3a575aaf809347ebb434400d3406867a23dc311c84f8389339317ebad"
   name = "github.com/mholt/certmagic"
   packages = ["."]
   pruneopts = ""
-  revision = "f1fdb7fe9cd13ea581d3a781e3612211af137efd"
+  revision = "fe0876b1cb304ac2f5e4af78b038f0dd48e13ea4"
+  version = "v0.5.0"
 
 [[projects]]
   digest = "1:bd95ada143d11b4711db3cfef17613a19002f3aac1e9740e3babdd10b57171f3"
@@ -845,7 +845,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:d3f85f6aabd2d40191238b8ecfcc0ca2611ed769aefe1dfe2ac9d9b8347973d6"
+  digest = "1:a2a9a2c106855d5fd3b11383f7c591064a81f25ee0d9749524801f636e7f473a"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -864,7 +864,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "1f3472d942ba824034fb77cab6a6cfc1bc8a2c3c"
+  revision = "afa5a82059c6356159f699d81beff22a81842231"
 
 [[projects]]
   branch = "master"
