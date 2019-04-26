@@ -37,7 +37,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:1713df27130c2745660c1773b3101e63b0888d930089687be5b2f61b3f2fe8e9"
+  digest = "1:ab7a0f61d6e30502acaade5e5d855e4915c5927f6789d20b0ecbe65bd66c4463"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -78,8 +78,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "ca6d5f771b63df153f02fe5b117434d5ebafeeda"
-  version = "v1.19.15"
+  revision = "2024b98be3d7bca1d26036f16ef34b0275ebb562"
+  version = "v1.19.18"
 
 [[projects]]
   branch = "master"
@@ -126,7 +126,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7b16954837ef2f0d25b4ac5951acbd76e1f761df8bd95b5b327a619568641a1c"
+  digest = "1:c63591cf915db3f7e28846cc8325e1a4b6a6f63a00a53052cbe556c8ba7926ad"
   name = "github.com/dgraph-io/dgo"
   packages = [
     ".",
@@ -134,7 +134,7 @@
     "y",
   ]
   pruneopts = ""
-  revision = "087e431c0fdacdee2992b1464176608b8c0a56d7"
+  revision = "51c75bd1badca5ff86758b591484bced92ca5f0b"
 
 [[projects]]
   digest = "1:6098222470fe0172157ce9bbef5d2200df4edde17ee649c5d6e48330e4afa4c6"
@@ -428,7 +428,7 @@
   revision = "c2b33e84"
 
 [[projects]]
-  digest = "1:064eb4d2277fb6a23944380644268b99acc0ae0576c72d0b6d7288d3c2fe4a1e"
+  digest = "1:8ac93048c032ad7bc4d5d45ee4857da8985d90687eec1b806813e1ecffacc20e"
   name = "github.com/klauspost/compress"
   packages = [
     "flate",
@@ -436,16 +436,16 @@
     "zlib",
   ]
   pruneopts = ""
-  revision = "30be6041bed523c18e269a700ebd9c2ea9328574"
-  version = "v1.4.1"
+  revision = "b4b6d9e7f099f14b3a4a08f0664986cd4c85ebd6"
+  version = "v1.5.0"
 
 [[projects]]
-  digest = "1:198af4ad42013a3779477b597458f860a6a99e57e1674fa4f61eb04b8b5b768f"
+  digest = "1:cb39bebc72505b4120988fb9e258ecffba4ed679dc04794d517198887160df80"
   name = "github.com/klauspost/cpuid"
   packages = ["."]
   pruneopts = ""
-  revision = "e7e905edc00ea8827e58662220139109efea09db"
-  version = "v1.2.0"
+  revision = "05a8198c0f5a27739aec358908d7e12c64ce6eb7"
+  version = "v1.2.1"
 
 [[projects]]
   digest = "1:0f51cee70b0d254dbc93c22666ea2abf211af81c1701a96d04e2284b408621db"
@@ -521,7 +521,7 @@
   version = "v0.0.7"
 
 [[projects]]
-  digest = "1:a20bef41961c1f1f46aabe02960a5e14a69552d4d7dfde8366380734ba0332cf"
+  digest = "1:4144ffb8f056589159e4c1a9dc40f69760210c6af566314de50e4e181348a6f7"
   name = "github.com/mholt/caddy"
   packages = [
     ".",
@@ -532,8 +532,8 @@
     "telemetry",
   ]
   pruneopts = ""
-  revision = "80dfb8b2a7f89b120a627bc4d866a1dc5ed3d92f"
-  version = "v0.11.5"
+  revision = "15fecbc16151308959674a5ce3843efb9e66bd5f"
+  version = "v1.0.0"
 
 [[projects]]
   digest = "1:4ad651f3a575aaf809347ebb434400d3406867a23dc311c84f8389339317ebad"
@@ -784,18 +784,6 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:e022dfba403a0a0bd218ac5473aab538e9dbf06710f9ed2f63ae91173243ad50"
-  name = "github.com/xenolf/lego"
-  packages = [
-    "certcrypto",
-    "challenge",
-    "challenge/tlsalpn01",
-  ]
-  pruneopts = ""
-  revision = "3d13faf68920543a393ad6cdfdea429627af2d34"
-  version = "v2.5.0"
-
-[[projects]]
   branch = "master"
   digest = "1:81daf39130b8efb47ab2b841ee42adedeaaf20ab3675236f577722ae78d37728"
   name = "github.com/yalp/jsonpath"
@@ -824,7 +812,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:cebc91a148c3d35354b53496d684130b149b607a4ba4feb035a0eb591284a96a"
+  digest = "1:90ee1a8a60a9d5f6d75772a93bdf176735441420c1a9d7cb9afad11bf68ddf33"
   name = "golang.org/x/crypto"
   packages = [
     "chacha20poly1305",
@@ -841,11 +829,11 @@
     "poly1305",
   ]
   pruneopts = ""
-  revision = "df01cb2cc480549d72034218dd98bf97671450ac"
+  revision = "a29dc8fdc73485234dbef99ebedb95d2eced08de"
 
 [[projects]]
   branch = "master"
-  digest = "1:a2a9a2c106855d5fd3b11383f7c591064a81f25ee0d9749524801f636e7f473a"
+  digest = "1:368c063ff749ce9640ae6b8b7ce31b863f351b3ce24687ddd78d3c005b9fe248"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -864,7 +852,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "afa5a82059c6356159f699d81beff22a81842231"
+  revision = "4829fb13d2c62012c17688fa7f629f371014946d"
 
 [[projects]]
   branch = "master"
@@ -882,23 +870,25 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:8be0627b49a5b2fcb1cf83e1e348b935371a9c55c73085eebfceee4ef49b52df"
+  digest = "1:6e401b3dbdf516869a75b5e69a6229379104273b1d9535493160c285622b679a"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
     "unix",
   ]
   pruneopts = ""
-  revision = "e8e3143a4f4a00f1fafef0dd82ba78223281b01b"
+  revision = "a129542de9ae0895210abff9c95d67a1f33cb93d"
 
 [[projects]]
-  digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
+  digest = "1:740b51a55815493a8d0f2b1e0d0ae48fe48953bf7eaf3fcc4198823bf67768c0"
   name = "golang.org/x/text"
   packages = [
     "collate",
     "collate/build",
     "internal/colltab",
     "internal/gen",
+    "internal/language",
+    "internal/language/compact",
     "internal/tag",
     "internal/triegen",
     "internal/ucd",
@@ -911,8 +901,8 @@
     "unicode/rangetable",
   ]
   pruneopts = ""
-  revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
-  version = "v0.3.0"
+  revision = "342b2e1fbaa52c93f31447ad2c6abc048c63e475"
+  version = "v0.3.2"
 
 [[projects]]
   digest = "1:0a6cbf5be24f00105d33c9f6d2f40b8149e0316537a92be1b0d4c761b7ae39fb"
@@ -935,11 +925,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e2b33f74fe0b06fd0d0b41562eeb4b7142ca2a8ff10d7b8cb3eb3ade1ed23ac0"
+  digest = "1:1fd2aac86d11f64e62d7c1cb2642e7927cd6deb83ff6fef7f39b015c3e1defa6"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = ""
-  revision = "e7d98fc518a78c9f8b5ee77be7b0b317475d89e1"
+  revision = "357c62f0e4bbba7e6cc403ae09edcf3e2b9028fe"
 
 [[projects]]
   digest = "1:afc1b03a6d5ba3cbb2e0a12133e734d472e4df3b65f06e600a3d57a4b82f26cc"
