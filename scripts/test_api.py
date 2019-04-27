@@ -74,18 +74,25 @@ def test_graph_update():
         'age': 39,
     }
 
-    print('CREATE')
-
     resp = api.post('/api/data/user', data)
 
     id = resp['uid']
+    user_url = '/api/data/user/{0}'.format(id)
 
     nquads = '\n'.join(['<{0}> <first_lang> "ru" .'.format(id)])
-
     api.post('/api/nquads', nquads, content_type='application/n-quads')
 
-    resp = api.get('/api/data/user/list')
+    resp = api.get(user_url)
+    assert resp['first_lang'] == 'ru'
 
-    print('DELETE')
+    mutation = {
+      'set': '\n'.join(['<{0}> <age> "38"^^<xs:int> .'.format(id)]),
+      'delete': '\n'.join(['<{0}> <first_lang> * .'.format(id)]),
+    }
+    api.post('/api/nquads', mutation)
 
-    api.delete('/api/data/user/' + id)
+    resp = api.get(user_url)
+    assert resp['age'] == 38
+    assert 'first_lang' not in resp
+
+    api.delete(user_url)

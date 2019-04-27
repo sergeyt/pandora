@@ -28,13 +28,13 @@ func dataAPI(r chi.Router) {
 
 	r.Post("/api/query", queryHandler)
 	r.Get("/api/me", meHandler)
-	r.Post("/api/nquads", setNquads)
+	r.Post("/api/nquads", nquadMutationHandler)
 	r.Get("/api/data/{type}/list", listHandler)
 	r.Get("/api/data/{type}/{id}", readHandler)
 
 	// mutation api
-	r.Post("/api/data/{type}", mutateHandler)
-	r.Put("/api/data/{type}/{id}", mutateHandler)
+	r.Post("/api/data/{type}", jsonMutationHandler)
+	r.Put("/api/data/{type}/{id}", jsonMutationHandler)
 	r.Delete("/api/data/{type}/{id}", deleteHandler)
 
 	// TODO allow to delete triples from graph
@@ -133,7 +133,7 @@ func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
 	apiutil.SendJSON(w, data)
 }
 
-func mutateHandler(w http.ResponseWriter, r *http.Request) {
+func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
 	contentType := r.Header.Get("Content-Type")
 	mediaType, _, err := mime.ParseMediaType(contentType)
 	if err != nil {
@@ -197,29 +197,81 @@ func mutateHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func setNquads(w http.ResponseWriter, r *http.Request) {
-	nquads, err := ioutil.ReadAll(r.Body)
+func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
+	contentType := r.Header.Get("Content-Type")
+	mediaType, _, err := mime.ParseMediaType(contentType)
 	if err != nil {
-		apiutil.SendError(w, err, http.StatusInternalServerError)
+		log.Errorf("mime.ParseMediaType fail: %v", err)
+		apiutil.SendError(w, err)
 		return
 	}
 
+	var mutation *api.Mutation
+
+	if mediaType == apiutil.TypeJSON {
+		var input struct {
+			Set    string `json:"set,omitempty"`
+			Delete string `json:"delete,omitempty"`
+		}
+		err := json.NewDecoder(r.Body).Decode(&input)
+		if err != nil {
+			log.Errorf("json.Decoder.Decode fail: %v", err)
+			apiutil.SendError(w, err)
+			return
+		}
+		if len(input.Set) == 0 && len(input.Delete) == 0 {
+			apiutil.SendError(w, fmt.Errorf("invalid input. please specify set or delete mutations"))
+		}
+
+		mutation = &api.Mutation{}
+		if len(input.Set) > 0 {
+			mutation.SetNquads = []byte(input.Set)
+		}
+		if len(input.Delete) > 0 {
+			mutation.DelNquads = []byte(input.Delete)
+		}
+	} else {
+		nquads, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			apiutil.SendError(w, err, http.StatusInternalServerError)
+			return
+		}
+
+		mutation = &api.Mutation{
+			SetNquads: nquads,
+		}
+	}
+
 	ctx := r.Context()
+	user := authbase.GetContextUser(ctx)
 	// TODO add metadata props created_by, modified_by
 	tx := dgraph.RequestTransaction(r)
 
-	resp, err := tx.Mutate(ctx, &api.Mutation{
-		SetNquads: nquads,
-		CommitNow: true,
-	})
+	mutation.CommitNow = true
+	resp, err := tx.Mutate(ctx, mutation)
 	if err != nil {
 		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
 		apiutil.SendError(w, err, http.StatusInternalServerError)
 		return
 	}
 
-	// TODO raise pubsub event
-	apiutil.SendJSON(w, resp)
+	err = apiutil.SendJSON(w, resp)
+	if err != nil {
+		return
+	}
+
+	now := time.Now()
+
+	for _, v := range resp.Uids {
+		apiutil.SendEvent(user, &pubsub.Event{
+			Action:     r.Method,
+			Method:     r.Method,
+			URL:        r.URL.String(),
+			ResourceID: v,
+			CreatedBy:  user.GetID(),
+			CreatedAt:  now,
+		})
+	}
 }
 
 func deleteHandler(w http.ResponseWriter, r *http.Request) {
