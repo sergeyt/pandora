@@ -18,18 +18,18 @@
     "default": {
         "boto3": {
             "hashes": [
-                "sha256:9fedb9ca5f5c32672f633db18d82b33bb8792506d6298602d356c16889ce504e",
-                "sha256:e63831daad499191811851e6c6016b1fc710fc2d92ddc221288b26f6bdea8f74"
+                "sha256:882cc4869b47b51dae4b4a900769e72171ff00e0b6bca644b2d7a7ad7378f324",
+                "sha256:cd503a7e7a04f1c14d2801f9727159dfa88c393b4004e98940fa4aa205d920c8"
             ],
             "index": "pypi",
-            "version": "==1.9.133"
+            "version": "==1.9.137"
         },
         "botocore": {
             "hashes": [
-                "sha256:3b5968fc897b590c2b57fd6105b52ba8bdf5eb2100b7e181d4c17c7c05a2f83a",
-                "sha256:cc270cc2c282b2679f44bd1de011a270c4d8b5364afc2f705152ca187821d4eb"
+                "sha256:0d95794f6b1239c75e2c5f966221bcd4b68020fddb5676f757531eedbb612ed8",
+                "sha256:3213cf48cf2ceee10fc3b93221f2cd1c38521cca7584f547d5c086213cc60f35"
             ],
-            "version": "==1.12.133"
+            "version": "==1.12.137"
         },
         "certifi": {
             "hashes": [
@@ -153,11 +153,11 @@
         },
         "minio": {
             "hashes": [
-                "sha256:72c8ab7b1c25f875273e66762982816af8ada2ced88b6cd991e979f479c34875",
-                "sha256:7b83612abf315f1c892a5702eafb9654346e0faa22b1626adcb6cb43499bcf4d"
+                "sha256:bbf76f9d196a39b64e7c76b226502f0dac0dfc021a083afbbea5b02fbfee3ce9",
+                "sha256:d38633d65d810ee9da30adfb21c764120fa7f1d405a2f58f1f58564c880eaa6e"
             ],
             "index": "pypi",
-            "version": "==4.0.14"
+            "version": "==4.0.15"
         },
         "pyjwt": {
             "hashes": [
