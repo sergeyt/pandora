@@ -15,6 +15,7 @@ import (
 	"github.com/gocontrib/rest"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/dgraph"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -233,11 +234,12 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	}
 
 	if file != nil {
-		err := c.store.DownloadFile(ctx, file, w)
+		fileNode, err := dgraph.ReadNodeTx(ctx, file.ID)
 		if err != nil {
-			log.Errorf("FileStore.Download fail: %v", err)
 			apiutil.SendError(w, err)
+			return
 		}
+		apiutil.SendJSON(w, fileNode)
 		return
 	}
 

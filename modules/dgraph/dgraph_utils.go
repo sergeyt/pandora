@@ -95,6 +95,18 @@ func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface
 	return d, nil
 }
 
+func ReadNodeTx(ctx context.Context, id string) (map[string]interface{}, error) {
+	dc, err := NewClient()
+	if err != nil {
+		return nil, err
+	}
+
+	tx := dc.NewTxn()
+	defer tx.Discard(ctx)
+
+	return ReadNode(ctx, tx, id)
+}
+
 type Mutation struct {
 	Input     utils.OrderedJSON
 	NodeLabel string

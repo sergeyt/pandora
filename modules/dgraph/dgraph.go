@@ -19,6 +19,7 @@ import (
 func NewClient() (*dgo.Dgraph, error) {
 	d, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure())
 	if err != nil {
+		log.Errorf("grpc.Dial fail: %v", err)
 		return nil, err
 	}
 
