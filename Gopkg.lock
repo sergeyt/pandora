@@ -37,7 +37,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:1d1f81ff3aabcbf6875c6199a650b049070e27b8d933d5c7a6715651cb791684"
+  digest = "1:f7141230677b06da4a245bba6f5bb221e214de1335185e5e0b09e5ed532f648c"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -78,8 +78,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "7e9cd5af6d09680b0f9b3d983432e880425d42e7"
-  version = "v1.19.19"
+  revision = "26af3c32ec16138888e2b1c1fdc2ea66b99b0ef3"
+  version = "v1.19.20"
 
 [[projects]]
   branch = "master"
@@ -536,20 +536,20 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:4ad651f3a575aaf809347ebb434400d3406867a23dc311c84f8389339317ebad"
+  digest = "1:7d9f6258435bd5244bbcf4d4dddb28477e994739ade1b2d5000216c1bd52287a"
   name = "github.com/mholt/certmagic"
   packages = ["."]
   pruneopts = ""
-  revision = "fe0876b1cb304ac2f5e4af78b038f0dd48e13ea4"
-  version = "v0.5.0"
+  revision = "0030c3ed9a43567fe81571f0750141725f468c55"
+  version = "v0.5.1"
 
 [[projects]]
-  digest = "1:bd95ada143d11b4711db3cfef17613a19002f3aac1e9740e3babdd10b57171f3"
+  digest = "1:fe5c46307cbb2fd38045ddfebb50860ca396599f1f166a46e53206c64c69ea50"
   name = "github.com/miekg/dns"
   packages = ["."]
   pruneopts = ""
-  revision = "73601d4aed9d844322611759d7f3619110b7c88e"
-  version = "v1.1.8"
+  revision = "8aa92d4e02c501ba21e26fb92cf2fb9f23f56917"
+  version = "v1.1.9"
 
 [[projects]]
   digest = "1:bcc46a0fbd9e933087bef394871256b5c60269575bb661935874729c65bbbf60"
@@ -603,15 +603,15 @@
   version = "v1.0.1"
 
 [[projects]]
-  digest = "1:ae0d3e671ee4df62f10e8436db7f699514f17701162ba8545344efc440de418a"
+  digest = "1:feca1208f250d6672fb97ffd944c911b3a648284428dab028d728d665be2d0ea"
   name = "github.com/nicolasazrak/caddy-cache"
   packages = [
     ".",
     "storage",
   ]
   pruneopts = ""
-  revision = "4a19b62c234833a81eaeb74db5d3bb249424e109"
-  version = "v0.3.1"
+  revision = "234a8f7be1fccfc4e88e87e9dbc14a4b679323c8"
+  version = "v0.3.2"
 
 [[projects]]
   digest = "1:1abf7411185ed8dde4e62c3d3fe9f2de5ffb3a86d1fbd405177afc8a40916adf"
@@ -870,14 +870,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:8d640f7cac092cf55380ad85555ad07687e2afce95eb896037bdc3ca1a957bd9"
+  digest = "1:2f5c5fbafbc17ead793c4584c8d6ebbc16cf666d969488a0009a8a6a5008a86f"
   name = "golang.org/x/sys"
   packages = [
     "cpu",
     "unix",
   ]
   pruneopts = ""
-  revision = "804c0c7841b595338f049388006a3945cb3cfad1"
+  revision = "d89cdac9e8725f2aefce25fcbfef41134c9ad412"
 
 [[projects]]
   digest = "1:740b51a55815493a8d0f2b1e0d0ae48fe48953bf7eaf3fcc4198823bf67768c0"
