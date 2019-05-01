@@ -37,7 +37,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:f7141230677b06da4a245bba6f5bb221e214de1335185e5e0b09e5ed532f648c"
+  digest = "1:b10ee2ca03c8ff20c5af677d8a29d2f3a2685dcdded0377a9fb156791dda1f56"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -78,8 +78,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "26af3c32ec16138888e2b1c1fdc2ea66b99b0ef3"
-  version = "v1.19.20"
+  revision = "2091105f8d54d87f8e99a84a37a5065bd5b3ab9c"
+  version = "v1.19.21"
 
 [[projects]]
   branch = "master"
@@ -126,7 +126,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:c63591cf915db3f7e28846cc8325e1a4b6a6f63a00a53052cbe556c8ba7926ad"
+  digest = "1:797d3f4a9155e43ffbfdb09fae7b46c4e11e6cf71bed89e412dc0319ec010b5e"
   name = "github.com/dgraph-io/dgo"
   packages = [
     ".",
@@ -134,7 +134,7 @@
     "y",
   ]
   pruneopts = ""
-  revision = "51c75bd1badca5ff86758b591484bced92ca5f0b"
+  revision = "7517ac021e22457b8b14c151a3476aa8c1e22a64"
 
 [[projects]]
   digest = "1:6098222470fe0172157ce9bbef5d2200df4edde17ee649c5d6e48330e4afa4c6"
@@ -833,7 +833,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:368c063ff749ce9640ae6b8b7ce31b863f351b3ce24687ddd78d3c005b9fe248"
+  digest = "1:61cef2a67d6e25d898888038baa7c5b4afc4e2aac9c1d01ed0665408cb2e4364"
   name = "golang.org/x/net"
   packages = [
     "bpf",
@@ -852,7 +852,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "4829fb13d2c62012c17688fa7f629f371014946d"
+  revision = "9ce7a6920f093fc0b908c4a5f66ae049110f417e"
 
 [[projects]]
   branch = "master"
