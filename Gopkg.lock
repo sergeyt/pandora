@@ -10,25 +10,6 @@
   version = "v0.37.4"
 
 [[projects]]
-  digest = "1:c39642fccd7092e7fbc39e4f3eb62b4bcdf0765a6648d0ea4c90cd1ed1a9c70a"
-  name = "github.com/BTBurke/caddy-jwt"
-  packages = ["."]
-  pruneopts = ""
-  revision = "0918f999bb14b98d62ae90e2624a9ddc0dc13408"
-  version = "v3.7.0"
-
-[[projects]]
-  branch = "master"
-  digest = "1:a27663807e017a8e560c1e69dea602d00fcad71cd4043873d3c0ae9a07a4a870"
-  name = "github.com/abiosoft/caddy-git"
-  packages = [
-    ".",
-    "gitos",
-  ]
-  pruneopts = ""
-  revision = "c2dcbb48de985127ac44b94f507230de5daf7520"
-
-[[projects]]
   digest = "1:e8f914c174ebc670d1713986d5e4f47a21f349209ac929d00558a496f59c7384"
   name = "github.com/ajg/form"
   packages = ["."]
@@ -82,41 +63,6 @@
   version = "v1.19.21"
 
 [[projects]]
-  branch = "master"
-  digest = "1:d2eaed30b9b26e842e79f9971fa47e6b62ccc258ff28904c4ef153539f17041e"
-  name = "github.com/captncraig/caddy-realip"
-  packages = ["."]
-  pruneopts = ""
-  revision = "5dd1f4047d0f649f21ba9f8d7e491d712be9a5b0"
-
-[[projects]]
-  branch = "master"
-  digest = "1:63bee6ca344a07da0844b63004e65daaa3e5ac662e1a3d0df2e06f437f7ed127"
-  name = "github.com/captncraig/cors"
-  packages = [
-    ".",
-    "caddy",
-  ]
-  pruneopts = ""
-  revision = "48080ede89fe41f3e3ba556770d0f3fd6ed02e38"
-
-[[projects]]
-  digest = "1:59df7ab87ddca233bb586ff32c6feba12bf787260f6694dc45ceecea9d3e1a7e"
-  name = "github.com/cenkalti/backoff"
-  packages = ["."]
-  pruneopts = ""
-  revision = "1e4cf3da559842a91afcb6ea6141451e6c30c618"
-  version = "v2.1.1"
-
-[[projects]]
-  digest = "1:108a84d9d6addb51cf57029b0376b07544b9bab21f176d75f310188f6c474ffb"
-  name = "github.com/cheekybits/genny"
-  packages = ["generic"]
-  pruneopts = ""
-  revision = "d2cf3cdd35ce0d789056c4bc02a4d6349c947caf"
-  version = "v1.0.0"
-
-[[projects]]
   digest = "1:0deddd908b6b4b768cfc272c16ee61e7088a60f7fe2f06c547bd3d8e1f8b8e77"
   name = "github.com/davecgh/go-spew"
   packages = ["spew"]
@@ -145,14 +91,6 @@
   version = "v3.2.0"
 
 [[projects]]
-  digest = "1:52e3f726e562ee4524e82563b218418f1a52e7ea3e65e3bce599763526b089a9"
-  name = "github.com/epicagency/caddy-expires"
-  packages = ["."]
-  pruneopts = ""
-  revision = "507b5b80cfd1feb3f849007bbe92daed436c5977"
-  version = "v1.1.0"
-
-[[projects]]
   digest = "1:e988ed0ca0d81f4d28772760c02ee95084961311291bdfefc1b04617c178b722"
   name = "github.com/fatih/color"
   packages = ["."]
@@ -169,14 +107,6 @@
   version = "v1.1.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:93a4238f875be092b3bc5c68424a91d8f948d5f0cda99b44bc6de4849047d883"
-  name = "github.com/flynn/go-shlex"
-  packages = ["."]
-  pruneopts = ""
-  revision = "3f9db97f856818214da2e1057f8ad84803971cff"
-
-[[projects]]
   digest = "1:eb53021a8aa3f599d29c7102e65026242bdedce998a54837dc67f14b6a97c5fd"
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
@@ -191,31 +121,6 @@
   packages = ["."]
   pruneopts = ""
   revision = "30dba43534243e3484a34676a0f068d12b989f84"
-
-[[projects]]
-  digest = "1:e022dfba403a0a0bd218ac5473aab538e9dbf06710f9ed2f63ae91173243ad50"
-  name = "github.com/go-acme/lego"
-  packages = [
-    "acme",
-    "acme/api",
-    "acme/api/internal/nonces",
-    "acme/api/internal/secure",
-    "acme/api/internal/sender",
-    "certcrypto",
-    "certificate",
-    "challenge",
-    "challenge/dns01",
-    "challenge/http01",
-    "challenge/resolver",
-    "challenge/tlsalpn01",
-    "lego",
-    "log",
-    "platform/wait",
-    "registration",
-  ]
-  pruneopts = ""
-  revision = "3d13faf68920543a393ad6cdfdea429627af2d34"
-  version = "v2.5.0"
 
 [[projects]]
   digest = "1:26d175e5ae3907016981aae86d2ef8acbbb94391a2b6a01b96a5f7fb682dc04c"
@@ -330,14 +235,6 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:ad92aa49f34cbc3546063c7eb2cabb55ee2278b72842eda80e2a20a8a06a8d73"
-  name = "github.com/google/uuid"
-  packages = ["."]
-  pruneopts = ""
-  revision = "0cd6bf5da1e1c83f8b45653022c74f71af0538a4"
-  version = "v1.1.1"
-
-[[projects]]
   digest = "1:dbbeb8ddb0be949954c8157ee8439c2adfd8dc1c9510eb44a6e58cb68c3dce28"
   name = "github.com/gorilla/context"
   packages = ["."]
@@ -384,14 +281,6 @@
   pruneopts = ""
   revision = "f57b7e2d29c6211d16ffa52a0998272f75799030"
   version = "v1.1.3"
-
-[[projects]]
-  digest = "1:0a48cb9c2757781932550a45ad11dd497722d4018a28077de65674aec7eee90e"
-  name = "github.com/hashicorp/go-syslog"
-  packages = ["."]
-  pruneopts = ""
-  revision = "8d1874e3e8d1862b74e0536851e218c4571066a5"
-  version = "v1.0.0"
 
 [[projects]]
   digest = "1:d14365c51dd1d34d5c79833ec91413bfbb166be978724f15701e17080dc06dec"
@@ -456,25 +345,6 @@
   version = "v1.0.2"
 
 [[projects]]
-  digest = "1:c54040013790aad67f2f2de4a2821f44b128ed301339501db3be9162b73439af"
-  name = "github.com/lucas-clemente/quic-go"
-  packages = [
-    ".",
-    "h2quic",
-    "internal/ackhandler",
-    "internal/congestion",
-    "internal/flowcontrol",
-    "internal/handshake",
-    "internal/protocol",
-    "internal/qerr",
-    "internal/utils",
-    "internal/wire",
-  ]
-  pruneopts = ""
-  revision = "8dcdf12ff78def6cfd36107d8bf42aa38110fa94"
-  version = "v0.11.1"
-
-[[projects]]
   digest = "1:961dc3b1d11f969370533390fdf203813162980c858e1dabe827b60940c909a5"
   name = "github.com/magiconair/properties"
   packages = ["."]
@@ -497,14 +367,6 @@
   version = "v1.50.0"
 
 [[projects]]
-  digest = "1:97828887666797e8cc4b5fe1a6a4f4867ad077262b9f1b328c57eb6adf3dff8f"
-  name = "github.com/marten-seemann/qtls"
-  packages = ["."]
-  pruneopts = ""
-  revision = "65ca381cd298d7e0aef0de8ba523a870ec5a96fe"
-  version = "v0.2.3"
-
-[[projects]]
   digest = "1:9ea83adf8e96d6304f394d40436f2eb44c1dc3250d223b74088cc253a6cd0a1c"
   name = "github.com/mattn/go-colorable"
   packages = ["."]
@@ -519,37 +381,6 @@
   pruneopts = ""
   revision = "c2a7a6ca930a4cd0bc33a3f298eb71960732a3a7"
   version = "v0.0.7"
-
-[[projects]]
-  digest = "1:4144ffb8f056589159e4c1a9dc40f69760210c6af566314de50e4e181348a6f7"
-  name = "github.com/mholt/caddy"
-  packages = [
-    ".",
-    "caddyfile",
-    "caddyhttp/httpserver",
-    "caddyhttp/staticfiles",
-    "caddytls",
-    "telemetry",
-  ]
-  pruneopts = ""
-  revision = "15fecbc16151308959674a5ce3843efb9e66bd5f"
-  version = "v1.0.0"
-
-[[projects]]
-  digest = "1:7d9f6258435bd5244bbcf4d4dddb28477e994739ade1b2d5000216c1bd52287a"
-  name = "github.com/mholt/certmagic"
-  packages = ["."]
-  pruneopts = ""
-  revision = "0030c3ed9a43567fe81571f0750141725f468c55"
-  version = "v0.5.1"
-
-[[projects]]
-  digest = "1:fe5c46307cbb2fd38045ddfebb50860ca396599f1f166a46e53206c64c69ea50"
-  name = "github.com/miekg/dns"
-  packages = ["."]
-  pruneopts = ""
-  revision = "8aa92d4e02c501ba21e26fb92cf2fb9f23f56917"
-  version = "v1.1.9"
 
 [[projects]]
   digest = "1:bcc46a0fbd9e933087bef394871256b5c60269575bb661935874729c65bbbf60"
@@ -603,17 +434,6 @@
   version = "v1.0.1"
 
 [[projects]]
-  digest = "1:feca1208f250d6672fb97ffd944c911b3a648284428dab028d728d665be2d0ea"
-  name = "github.com/nicolasazrak/caddy-cache"
-  packages = [
-    ".",
-    "storage",
-  ]
-  pruneopts = ""
-  revision = "234a8f7be1fccfc4e88e87e9dbc14a4b679323c8"
-  version = "v0.3.2"
-
-[[projects]]
   digest = "1:1abf7411185ed8dde4e62c3d3fe9f2de5ffb3a86d1fbd405177afc8a40916adf"
   name = "github.com/pelletier/go-toml"
   packages = ["."]
@@ -638,35 +458,11 @@
   version = "v1.0.0"
 
 [[projects]]
-  branch = "master"
-  digest = "1:de5481dda0c081b66450e391bbb1a5c4435b13e3c0bbf0133ba1a5baeda7b7af"
-  name = "github.com/pquerna/cachecontrol"
-  packages = ["cacheobject"]
-  pruneopts = ""
-  revision = "1555304b9b35fdd2b425bccf1a5613677705e7d0"
-
-[[projects]]
-  digest = "1:87dffed114a34c714199c74e15c04ecb1c332c669f63f722220a5e4e6eb2ef52"
-  name = "github.com/russross/blackfriday"
-  packages = ["."]
-  pruneopts = ""
-  revision = "d3b5b032dc8e8927d31a5071b56e14c89f045135"
-  version = "v2.0.1"
-
-[[projects]]
   digest = "1:3962f553b77bf6c03fc07cd687a22dd3b00fe11aa14d31194f5505f5bb65cdc8"
   name = "github.com/sergi/go-diff"
   packages = ["diffmatchpatch"]
   pruneopts = ""
   revision = "1744e2970ca51c86172c8190fadad617561ed6e7"
-  version = "v1.0.0"
-
-[[projects]]
-  digest = "1:42a59e0ee70c485f96de4a30f86f88266d50b50f918053dec798f0cb2b4b7a88"
-  name = "github.com/shurcooL/sanitized_anchor_name"
-  packages = ["."]
-  pruneopts = ""
-  revision = "7bfe4c7ecddb3666a94b053b422cdd8f5aaa3615"
   version = "v1.0.0"
 
 [[projects]]
@@ -815,18 +611,8 @@
   digest = "1:90ee1a8a60a9d5f6d75772a93bdf176735441420c1a9d7cb9afad11bf68ddf33"
   name = "golang.org/x/crypto"
   packages = [
-    "chacha20poly1305",
-    "cryptobyte",
-    "cryptobyte/asn1",
-    "curve25519",
     "ed25519",
     "ed25519/internal/edwards25519",
-    "hkdf",
-    "internal/chacha20",
-    "internal/subtle",
-    "ocsp",
-    "pbkdf2",
-    "poly1305",
   ]
   pruneopts = ""
   revision = "a29dc8fdc73485234dbef99ebedb95d2eced08de"
@@ -836,18 +622,13 @@
   digest = "1:61cef2a67d6e25d898888038baa7c5b4afc4e2aac9c1d01ed0665408cb2e4364"
   name = "golang.org/x/net"
   packages = [
-    "bpf",
     "context",
     "context/ctxhttp",
     "http/httpguts",
     "http2",
     "http2/hpack",
     "idna",
-    "internal/iana",
-    "internal/socket",
     "internal/timeseries",
-    "ipv4",
-    "ipv6",
     "publicsuffix",
     "trace",
   ]
@@ -872,10 +653,7 @@
   branch = "master"
   digest = "1:2f5c5fbafbc17ead793c4584c8d6ebbc16cf666d969488a0009a8a6a5008a86f"
   name = "golang.org/x/sys"
-  packages = [
-    "cpu",
-    "unix",
-  ]
+  packages = ["unix"]
   pruneopts = ""
   revision = "d89cdac9e8725f2aefce25fcbfef41134c9ad412"
 
@@ -997,26 +775,6 @@
   version = "v2.5.1"
 
 [[projects]]
-  digest = "1:11c58e19ff7ce22740423bb933f1ddca3bf575def40d5ac3437ec12871b1648b"
-  name = "gopkg.in/natefinch/lumberjack.v2"
-  packages = ["."]
-  pruneopts = ""
-  revision = "a96e63847dc3c67d17befa69c303767e2f84e54f"
-  version = "v2.1"
-
-[[projects]]
-  digest = "1:40cf02345bfa29fb217cfe0767a9416d99569d4ff21dbb1fd3378ef10682549c"
-  name = "gopkg.in/square/go-jose.v2"
-  packages = [
-    ".",
-    "cipher",
-    "json",
-  ]
-  pruneopts = ""
-  revision = "730df5f748271903322feb182be83b43ebbbe27d"
-  version = "v2.3.1"
-
-[[projects]]
   digest = "1:cedccf16b71e86db87a24f8d4c70b0a855872eb967cb906a66b95de56aefbd0d"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
@@ -1028,19 +786,14 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/BTBurke/caddy-jwt",
-    "github.com/abiosoft/caddy-git",
     "github.com/aws/aws-sdk-go/aws",
     "github.com/aws/aws-sdk-go/aws/credentials",
     "github.com/aws/aws-sdk-go/aws/session",
     "github.com/aws/aws-sdk-go/service/s3",
     "github.com/aws/aws-sdk-go/service/s3/s3manager",
-    "github.com/captncraig/caddy-realip",
-    "github.com/captncraig/cors/caddy",
     "github.com/dgraph-io/dgo",
     "github.com/dgraph-io/dgo/protos/api",
     "github.com/dgrijalva/jwt-go",
-    "github.com/epicagency/caddy-expires",
     "github.com/fsnotify/fsnotify",
     "github.com/go-chi/chi",
     "github.com/go-chi/chi/middleware",
@@ -1055,7 +808,6 @@
     "github.com/markbates/goth/providers/facebook",
     "github.com/markbates/goth/providers/google",
     "github.com/markbates/goth/providers/vk",
-    "github.com/nicolasazrak/caddy-cache",
     "github.com/sirupsen/logrus",
     "github.com/spf13/viper",
     "github.com/stretchr/testify/assert",
