@@ -14,9 +14,11 @@ dir = os.path.dirname(os.path.realpath(__file__))
 
 # utils.enable_logging_with_headers()
 
+
 def proxy_url(url):
     return url
     # return api.fileproxy(url)
+
 
 def init():
     api.login("system", os.getenv("SYSTEM_PWD"))
@@ -93,7 +95,7 @@ def add_audio(line, id, buf, audio):
     lang = m.group(2)
     text = m.group(3)
     print('finding audio for {0}@{1} <text>={2}'.format(word, lang, text))
-    
+
     if lang == 'ru':
         f = forvo.find_audio(text)
         urls = f['mp3']
