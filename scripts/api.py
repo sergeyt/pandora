@@ -8,6 +8,7 @@ import random
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
+VERBOSE = False
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
 HTTP_PORT = os.getenv('HTTP_PORT', 80)
 DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
@@ -40,7 +41,7 @@ def is_json(resp):
 
 
 def dump_json(resp):
-    if resp.ok and is_json(resp):
+    if VERBOSE and resp.ok and is_json(resp):
         print(json.dumps(resp.json(), sort_keys=True, indent=2))
 
 

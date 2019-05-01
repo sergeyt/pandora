@@ -15,7 +15,7 @@ first = lambda a: next(iter(a or []), None)
 dir = os.path.dirname(os.path.realpath(__file__))
 cachePath = os.path.join(dir, 'forvo.json')
 cache = {}
-testing = True
+testing = False
 
 
 def decode_base64(s):
@@ -38,13 +38,25 @@ def parse_fn(src):
     return {'name': name, 'args': args}
 
 
+def translate_gender(val):
+    return val.strip()
+
+
+def translate_counry(val):
+    return val.strip()
+
+
 def parse_from(s):
     if not s:
         return None
     s = s.strip('(').strip(')')
     a = s.split(',')
-    # translate gender and country
-    return {'gender': a[0].strip(), 'country': a[1].strip()}
+    if len(a) == 0:
+        return None
+    result = {'gender': translate_gender(a[0])}
+    if len(a) == 2:
+        result['country'] = translate_counry(a[1])
+    return result
 
 
 def parse_item(item):
@@ -98,7 +110,10 @@ def find_audio(word):
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, 'html.parser')
-    ul = first(soup.find_all('ul', class_="show-all-pronunciations"))
+    article = soup.find('article', class_='pronunciations')
+    if article is None:
+        return None
+    ul = article.find('ul', class_="show-all-pronunciations")
     if ul is None:
         return None
 

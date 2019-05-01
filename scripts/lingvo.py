@@ -10,21 +10,33 @@ import requests
 import utils
 import urllib
 
+testing = False
+now = datetime.now().isoformat()
 dir = os.path.dirname(os.path.realpath(__file__))
 
 # utils.enable_logging_with_headers()
 
 
-def proxy_url(url):
-    return url
-    # return api.fileproxy(url)
-
-
-def init():
+def login():
+    global user
+    global user_id
+    if testing:
+        user = {'uid': '0x1', 'name': 'system'}
+        user_id = user['uid']
+        return
     api.login("system", os.getenv("SYSTEM_PWD"))
     user = api.current_user()
     user_id = user['uid']
-    now = datetime.now().isoformat()
+
+
+def proxy_url(url):
+    return url if testing else api.fileproxy(url)
+
+
+def init():
+    global user
+    global user_id
+    login()
 
     with open(os.path.join(dir, 'lingvo.txt'), 'r', encoding='utf-8') as f:
         src = f.read().split('\n')
@@ -56,8 +68,8 @@ def init():
             buf.append(line)
 
     data = '\n'.join(buf)
-    # print(data)
-    # api.set_nquads(data)
+    print(data)
+    api.set_nquads(data)
 
 
 def map_type(line):
@@ -75,12 +87,13 @@ def idof(line):
 
 
 def aud_nquads(id, url, i):
+    id = id.lstrip('_').lstrip(':')
     u = urllib.parse.urlparse(url)
     src = '{0}://{1}'.format(u.scheme, u.netloc)
     aud = '_:aud_{0}{1}'.format(id, i)
     t1 = '{0} <url> "{1}" .'.format(aud, url)
     t2 = '{0} <source> "{1}" .'.format(aud, src)
-    return [t1, t2]
+    return aud, [t1, t2]
 
 
 def add_audio(line, id, buf, audio):
@@ -94,11 +107,12 @@ def add_audio(line, id, buf, audio):
 
     lang = m.group(2)
     text = m.group(3)
-    print('finding audio for {0}@{1} <text>={2}'.format(word, lang, text))
 
     if lang == 'ru':
         f = forvo.find_audio(text)
-        urls = f['mp3']
+        if f is None:
+            return
+        urls = [t['url'] for t in f['mp3']]
     else:
         m = macmillan.find_audio(word)
         urls = ['https://howjsay.com/mp3/{0}.mp3'.format(word), m['mp3']]
@@ -111,16 +125,15 @@ def add_audio(line, id, buf, audio):
         except:
             print('cannot proxy {0}'.format(url))
 
+    audio[id] = []
     lines = []
     for i, url in enumerate(proxy_urls):
-        lines.extend(aud_nquads(id, url, i + 1))
+        (aud_id, nquads) = aud_nquads(id, url, i + 1)
+        audio[id].append('{0} <audio> {1} .'.format(id, aud_id))
+        lines.extend(nquads)
     for t in lines:
         buf.append(t)
     buf.append('')
-
-    audio[id] = []
-    for i in range(1, 3):
-        audio[id].append('{0} <audio> _:aud_{1}{2} .'.format(id, word, i))
 
 
 def change_url(line):
