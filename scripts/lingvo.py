@@ -11,7 +11,6 @@ import utils
 import urllib
 
 testing = False
-now = datetime.now().isoformat()
 dir = os.path.dirname(os.path.realpath(__file__))
 
 # utils.enable_logging_with_headers()
@@ -31,6 +30,15 @@ def login():
 
 def proxy_url(url):
     return url if testing else api.fileproxy(url)
+
+
+def created_at(id):
+    now = datetime.now().isoformat()
+    return '{0} <created_at> "{1}"^^<xs:dateTime> .'.format(id, now)
+
+
+def created_by(id):
+    return '{0} <created_by> <{1}> .'.format(id, user_id)
 
 
 def init():
@@ -55,10 +63,8 @@ def init():
                     add_audio(line, id, buf, audio)
                 if kind != 'tag':
                     buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
-                created_at = '{0} <created_at> "{1}"^^<xs:dateTime> .'
-                created_by = '{0} <created_by> <{1}> .'
-                buf.append(created_at.format(id, now))
-                buf.append(created_by.format(id, user_id))
+                buf.append(created_at(id))
+                buf.append(created_by(id))
                 typed[id] = True
 
             if "<visual>" in line and id in audio:
@@ -69,7 +75,8 @@ def init():
 
     data = '\n'.join(buf)
     print(data)
-    api.set_nquads(data)
+    if not testing:
+        api.set_nquads(data)
 
 
 def map_type(line):
@@ -86,14 +93,19 @@ def idof(line):
     return line.split(' ')[0]
 
 
-def aud_nquads(id, url, i):
-    id = id.lstrip('_').lstrip(':')
+def audio_nquads(term_id, url, i):
+    term_id = term_id.lstrip('_').lstrip(':')
     u = urllib.parse.urlparse(url)
     src = '{0}://{1}'.format(u.scheme, u.netloc)
-    aud = '_:aud_{0}{1}'.format(id, i)
-    t1 = '{0} <url> "{1}" .'.format(aud, url)
-    t2 = '{0} <source> "{1}" .'.format(aud, src)
-    return aud, [t1, t2]
+    id = '_:aud_{0}{1}'.format(term_id, i)
+    nquads = [
+        '{0} <File> "" .'.format(id),
+        created_at(id),
+        created_by(id),
+        '{0} <url> "{1}" .'.format(id, url),
+        '{0} <source> "{1}" .'.format(id, src),
+    ]
+    return id, nquads
 
 
 def add_audio(line, id, buf, audio):
@@ -128,7 +140,7 @@ def add_audio(line, id, buf, audio):
     audio[id] = []
     lines = []
     for i, url in enumerate(proxy_urls):
-        (aud_id, nquads) = aud_nquads(id, url, i + 1)
+        (aud_id, nquads) = audio_nquads(id, url, i + 1)
         audio[id].append('{0} <audio> {1} .'.format(id, aud_id))
         lines.extend(nquads)
     for t in lines:
