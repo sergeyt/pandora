@@ -11,6 +11,11 @@ services:
       - 6222:6222
       - 8222:8222
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # Amazon S3 compatible file store
   minio:
     image: minio/minio:latest
@@ -25,6 +30,11 @@ services:
       MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
     command: server --config-dir /etc/minio /data
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # image ops service (we need resizing at least)
   imageproxy:
     image: willnorris/imageproxy
@@ -33,6 +43,11 @@ services:
     ports:
      - 1081:1081
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # dgraph cluster manager
   zero:
     image: dgraph/dgraph:v1.0.14
@@ -44,6 +59,11 @@ services:
       - 6080:6080
     command: dgraph zero --my=zero:5080
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # dgraph node
   dgraph:
     image: dgraph/dgraph:v1.0.14
@@ -55,6 +75,11 @@ services:
       - 9080:9080
     command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --auth_token=${DGRAPH_TOKEN}
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # dgraph UI
   ratel:
     image: dgraph/dgraph:v1.0.14
@@ -63,6 +88,11 @@ services:
       - 8000:8000
     command: dgraph-ratel
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # elasticsearch node1
   # see also https://github.com/deviantony/docker-elk
   # todo elasticsearch production config
@@ -81,6 +111,11 @@ services:
     ports:
       - 9200:9200
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # elasticsearch node2
   elasticsearch2:
     build:
@@ -95,6 +130,11 @@ services:
     volumes:
       - esdata2:/usr/share/elasticsearch/data
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # kibana - elasticsearch dashboard
   kibana:
     # image: docker.elastic.co/kibana/kibana:6.4.1
@@ -109,6 +149,11 @@ services:
     ports:
       - 5601:5601
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # application API service
   app:
     build:
@@ -145,6 +190,11 @@ services:
     ports:
       - 3000:3000
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # event streaming service
   pubsub:
     build:
@@ -156,6 +206,11 @@ services:
     ports:
       - 4302:4302
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # web server - service gateway
   caddy:
     build:
@@ -184,6 +239,11 @@ services:
       - 80:80
       - 443:443
     restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
 
 volumes:
   minio:
