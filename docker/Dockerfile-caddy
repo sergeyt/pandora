@@ -1,26 +1,14 @@
 # Build image
 FROM golang:1.12-alpine as builder
 
-ARG CADDY_VERSION="0.11.5"
+ARG version="1.0.0"
+ARG plugins=cors,realip,expires,cache,jwt,git
 
-RUN apk add --no-cache git
-
-# clone caddy
-RUN git clone https://github.com/mholt/caddy -b "v$CADDY_VERSION" /go/src/github.com/mholt/caddy \
-    && cd /go/src/github.com/mholt/caddy \
-    && git checkout -b "v$CADDY_VERSION"
-
-# import plugins
-COPY config/caddy/plugins.go /go/src/github.com/mholt/caddy/caddyhttp/plugins.go
-
-# clone builder
-RUN git clone https://github.com/caddyserver/builds /go/src/github.com/caddyserver/builds
+RUN apk add --no-cache git gcc musl-dev
 
 # build caddy
-RUN cd /go/src/github.com/mholt/caddy/caddy \
-    && go get ./... \
-    && go run build.go \
-    && mv caddy /go/bin
+COPY ./docker/caddy_build.sh /usr/bin/caddy_build.sh
+RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/caddy_build.sh
 
 # Dist image
 FROM python:3.6-alpine
@@ -36,7 +24,7 @@ RUN apk update \
         && adduser -S -D -h /app -u 1001 -G app app
 
 # copy caddy binary
-COPY --from=builder /go/bin/caddy /usr/bin/caddy
+COPY --from=builder /install/caddy /usr/bin/caddy
 
 # list plugins
 RUN /usr/bin/caddy -plugins
