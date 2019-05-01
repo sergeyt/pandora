@@ -86,8 +86,8 @@ def test_graph_update():
     assert resp['first_lang'] == 'ru'
 
     mutation = {
-      'set': '\n'.join(['<{0}> <age> "38"^^<xs:int> .'.format(id)]),
-      'delete': '\n'.join(['<{0}> <first_lang> * .'.format(id)]),
+        'set': '\n'.join(['<{0}> <age> "38"^^<xs:int> .'.format(id)]),
+        'delete': '\n'.join(['<{0}> <first_lang> * .'.format(id)]),
     }
     api.post('/api/nquads', mutation)
 

@@ -5,13 +5,18 @@ import re
 from datetime import datetime
 import api
 import macmillan
+import forvo
 import requests
 import utils
+import urllib
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
 # utils.enable_logging_with_headers()
 
+def proxy_url(url):
+    return url
+    # return api.fileproxy(url)
 
 def init():
     api.login("system", os.getenv("SYSTEM_PWD"))
@@ -32,11 +37,14 @@ def init():
                 line = change_url(line)
 
             if kind and id not in typed:
-                add_audio(line, id, buf, audio)
-                buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
-                buf.append('{0} <created_at> "{1}"^^<xs:dateTime> .'.format(
-                    id, now))
-                buf.append('{0} <created_by> <{1}> .'.format(id, user_id))
+                if kind == 'term':
+                    add_audio(line, id, buf, audio)
+                if kind != 'tag':
+                    buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
+                created_at = '{0} <created_at> "{1}"^^<xs:dateTime> .'
+                created_by = '{0} <created_by> <{1}> .'
+                buf.append(created_at.format(id, now))
+                buf.append(created_by.format(id, user_id))
                 typed[id] = True
 
             if "<visual>" in line and id in audio:
@@ -46,8 +54,8 @@ def init():
             buf.append(line)
 
     data = '\n'.join(buf)
-    print(data)
-    api.set_nquads(data)
+    # print(data)
+    # api.set_nquads(data)
 
 
 def map_type(line):
@@ -55,6 +63,8 @@ def map_type(line):
         return 'file'
     if re.match(r'_:\w+_(en|ru)', line):
         return 'term'
+    if line.find('<Tag>') >= 0:
+        return 'tag'
     return None
 
 
@@ -62,8 +72,17 @@ def idof(line):
     return line.split(' ')[0]
 
 
+def aud_nquads(id, url, i):
+    u = urllib.parse.urlparse(url)
+    src = '{0}://{1}'.format(u.scheme, u.netloc)
+    aud = '_:aud_{0}{1}'.format(id, i)
+    t1 = '{0} <url> "{1}" .'.format(aud, url)
+    t2 = '{0} <source> "{1}" .'.format(aud, src)
+    return [t1, t2]
+
+
 def add_audio(line, id, buf, audio):
-    m = re.match(r'_:(\w+)_en', line)
+    m = re.match(r'_:(\w+)_(en|ru)\s*<text>\s*"([^"]+)"\s*\.', line)
     if m is None:
         return
 
@@ -71,17 +90,28 @@ def add_audio(line, id, buf, audio):
     if word.find('_') >= 0:
         return
 
-    m = macmillan.find_audio(word)
-    url1 = api.fileproxy('https://howjsay.com/mp3/{0}.mp3'.format(word))
-    url2 = api.fileproxy(m['mp3'])
-    src2 = 'https://www.macmillandictionary.com'
+    lang = m.group(2)
+    text = m.group(3)
+    print('finding audio for {0}@{1} <text>={2}'.format(word, lang, text))
+    
+    if lang == 'ru':
+        f = forvo.find_audio(text)
+        urls = f['mp3']
+    else:
+        m = macmillan.find_audio(word)
+        urls = ['https://howjsay.com/mp3/{0}.mp3'.format(word), m['mp3']]
 
-    lines = [
-        '_:aud_{0}1 <url> "{1}" .'.format(word, url1),
-        '_:aud_{0}1 <source> "https://howjsay.com" .'.format(word),
-        '_:aud_{0}2 <url> "{1}" .'.format(word, url2),
-        '_:aud_{0}2 <source> "{1}" .'.format(word, src2),
-    ]
+    proxy_urls = []
+    for url in urls:
+        try:
+            url2 = proxy_url(url)
+            proxy_urls.append(url2)
+        except:
+            print('cannot proxy {0}'.format(url))
+
+    lines = []
+    for i, url in enumerate(proxy_urls):
+        lines.extend(aud_nquads(id, url, i + 1))
     for t in lines:
         buf.append(t)
     buf.append('')
@@ -101,10 +131,10 @@ def change_url(line):
     if image_url == '':
         image_url = placeholder
     try:
-        image_url = api.fileproxy(image_url)
+        image_url = proxy_url(image_url)
     except:
         try:
-            image_url = api.fileproxy(placeholder)
+            image_url = proxy_url(placeholder)
         except:
             image_url = placeholder
     return '_:{0} <url> "{1}" .'.format(id, image_url)
