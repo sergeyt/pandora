@@ -27,18 +27,18 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:09b82fe8c0e5a73cb0406c137869ad2bb0d307513a4a43f993217b25bab4857a",
-                "sha256:f3cfeadcf864730e8ac7934393eada5d398710b23e37ac66ade11fd5544acff9"
+                "sha256:7485ae2b6d9a380af74285890229659d6f114168ab5133aed924b5c41a28860a",
+                "sha256:b8107b5b4296c2c8a68cd67b44988317dd1e11dd2b295e41d502c17b1e227bfc"
             ],
             "index": "pypi",
-            "version": "==1.9.139"
+            "version": "==1.9.140"
         },
         "botocore": {
             "hashes": [
-                "sha256:36779f02ce5e4568bb718edde9c4095d187e5f47fb840a640ddf3f33e163c80f",
-                "sha256:abb07082f80c6a487236cb488492258df4a97365cf63e091c79f4c7b202469e5"
+                "sha256:bab1762dddeca752f5e7fe8fb87dc27a1ef2da7498a98c2be3802547cbb182f4",
+                "sha256:e3120e6d36e06145ce1c6289776f4292805e5119c6f7077cb8782b8e573a01fd"
             ],
-            "version": "==1.12.139"
+            "version": "==1.12.140"
         },
         "certifi": {
             "hashes": [
@@ -170,11 +170,11 @@
         },
         "minio": {
             "hashes": [
-                "sha256:bbf76f9d196a39b64e7c76b226502f0dac0dfc021a083afbbea5b02fbfee3ce9",
-                "sha256:d38633d65d810ee9da30adfb21c764120fa7f1d405a2f58f1f58564c880eaa6e"
+                "sha256:301d9000c5b10bd08c9b6f6450352b440f0261445a4bb02dd2f5cda67a5eea08",
+                "sha256:ee302e04662c065a99fb9a357b47cad533fe74bbe8347b58fe351e65ad0c0d18"
             ],
             "index": "pypi",
-            "version": "==4.0.15"
+            "version": "==4.0.16"
         },
         "pyjwt": {
             "hashes": [
@@ -326,10 +326,10 @@
         },
         "isort": {
             "hashes": [
-                "sha256:01cb7e1ca5e6c5b3f235f0385057f70558b70d2f00320208825fa62887292f43",
-                "sha256:268067462aed7eb2a1e237fcb287852f22077de3fb07964e87e00f829eea2d1a"
+                "sha256:1349c6f7c2a0f7539f5f2ace51a9a8e4a37086ce4de6f78f5f53fb041d0a3cd5",
+                "sha256:f09911f6eb114e5592abe635aded8bf3d2c3144ebcfcaf81ee32e7af7b7d1870"
             ],
-            "version": "==4.3.17"
+            "version": "==4.3.18"
         },
         "lazy-object-proxy": {
             "hashes": [

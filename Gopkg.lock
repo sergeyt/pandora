@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:dd11641415f7854e5ee0c83b3d865bf8dced203f6b050b4ad7bd16707dc25cc6"
+  digest = "1:e5861f2dad9cf45a99ee137e41f012fe8158d9a028b55e6f6df8405cd7ac0e36"
   name = "cloud.google.com/go"
   packages = ["compute/metadata"]
   pruneopts = ""
-  revision = "fcb9a2d5f791d07be64506ab54434de65989d370"
-  version = "v0.37.4"
+  revision = "8c41231e01b2085512d98153bcffb847ff9b4b9f"
+  version = "v0.38.0"
 
 [[projects]]
   digest = "1:e8f914c174ebc670d1713986d5e4f47a21f349209ac929d00558a496f59c7384"
@@ -18,7 +18,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:b10ee2ca03c8ff20c5af677d8a29d2f3a2685dcdded0377a9fb156791dda1f56"
+  digest = "1:a4249c18353d7a8f18ece5916afc41ca3b80a8df25918eaa74e098b14036499b"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -59,8 +59,8 @@
     "service/sts",
   ]
   pruneopts = ""
-  revision = "2091105f8d54d87f8e99a84a37a5065bd5b3ab9c"
-  version = "v1.19.21"
+  revision = "6da73e9d95fc247fc64d0de87cf33655ed615e3f"
+  version = "v1.19.22"
 
 [[projects]]
   digest = "1:0deddd908b6b4b768cfc272c16ee61e7088a60f7fe2f06c547bd3d8e1f8b8e77"
@@ -434,12 +434,12 @@
   version = "v1.0.1"
 
 [[projects]]
-  digest = "1:1abf7411185ed8dde4e62c3d3fe9f2de5ffb3a86d1fbd405177afc8a40916adf"
+  digest = "1:3d2c33720d4255686b9f4a7e4d3b94938ee36063f14705c5eb0f73347ed4c496"
   name = "github.com/pelletier/go-toml"
   packages = ["."]
   pruneopts = ""
-  revision = "63909f0a90ab0f36909e8e044e46ace10cf13ba2"
-  version = "v1.3.0"
+  revision = "728039f679cbcd4f6a54e080d2219a4c4928c546"
+  version = "v1.4.0"
 
 [[projects]]
   digest = "1:1d7e1867c49a6dd9856598ef7c3123604ea3daabf5b83f303ff457bcbc410b1d"
