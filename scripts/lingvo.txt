@@ -18,55 +18,105 @@ _:noun_ru <Term> "" .
 _:noun_ru <lang> "ru" .
 _:noun_ru <text> "существительное" .
 
+_:word_en <tag> _:word_en .
+_:word_en <tag> _:word_ru .
+_:word_en <tag> _:noun_en .
+_:word_en <tag> _:noun_ru .
+
+_:noun_en <tag> _:word_en .
+_:noun_en <tag> _:word_ru .
+_:noun_ru <tag> _:noun_en .
+_:noun_ru <tag> _:noun_ru .
+
 _:verb_en <Tag> "" .
 _:verb_en <Term> "" .
 _:verb_en <lang> "en" .
 _:verb_en <text> "verb" .
+_:verb_en <tag> _:word_en .
+_:verb_en <tag> _:word_ru .
+_:verb_en <tag> _:noun_en .
+_:verb_en <tag> _:noun_ru .
 
 _:verb_ru <Tag> "" .
 _:verb_ru <Term> "" .
 _:verb_ru <lang> "ru" .
 _:verb_ru <text> "глагол" .
+_:verb_ru <tag> _:word_en .
+_:verb_ru <tag> _:word_ru .
+_:verb_ru <tag> _:noun_en .
+_:verb_ru <tag> _:noun_ru .
 
 _:adjective_en <Tag> "" .
 _:adjective_en <Term> "" .
 _:adjective_en <lang> "en" .
 _:adjective_en <text> "adjective" .
+_:adjective_en <tag> _:word_en .
+_:adjective_en <tag> _:word_ru .
+_:adjective_en <tag> _:noun_en .
+_:adjective_en <tag> _:noun_ru .
 
 _:adjective_ru <Tag> "" .
 _:adjective_ru <Term> "" .
 _:adjective_ru <lang> "" .
 _:adjective_ru <text> "прилагательное" .
+_:adjective_ru <tag> _:word_en .
+_:adjective_ru <tag> _:word_ru .
+_:adjective_ru <tag> _:noun_en .
+_:adjective_ru <tag> _:noun_ru .
 
 _:phrase_en <Tag> "" .
 _:phrase_en <Term> "" .
 _:phrase_en <lang> "en" .
 _:phrase_en <text> "phrase" .
+_:phrase_en <tag> _:word_en .
+_:phrase_en <tag> _:word_ru .
+_:phrase_en <tag> _:noun_en .
+_:phrase_en <tag> _:noun_ru .
 
 _:phrase_ru <Tag> "" .
 _:phrase_ru <Term> "" .
 _:phrase_ru <lang> "ru" .
 _:phrase_ru <text> "фраза" .
+_:phrase_ru <tag> _:word_en .
+_:phrase_ru <tag> _:word_ru .
+_:phrase_ru <tag> _:noun_en .
+_:phrase_ru <tag> _:noun_ru .
 
 _:idiom_en <Tag> "" .
 _:idiom_en <Term> "" .
 _:idiom_en <lang> "en" .
 _:idiom_en <text> "idiom" .
+_:idiom_en <tag> _:word_en .
+_:idiom_en <tag> _:word_ru .
+_:idiom_en <tag> _:noun_en .
+_:idiom_en <tag> _:noun_ru .
 
 _:idiom_ru <Tag> "" .
 _:idiom_ru <Term> "" .
 _:idiom_ru <lang> "ru" .
 _:idiom_ru <text> "идиома" .
+_:idiom_ru <tag> _:word_en .
+_:idiom_ru <tag> _:word_ru .
+_:idiom_ru <tag> _:noun_en .
+_:idiom_ru <tag> _:noun_ru .
 
 _:slang_en <Tag> "" .
 _:slang_en <Term> "" .
 _:slang_en <lang> "en" .
 _:slang_en <text> "slang" .
+_:slang_en <tag> _:word_en .
+_:slang_en <tag> _:word_ru .
+_:slang_en <tag> _:noun_en .
+_:slang_en <tag> _:noun_ru .
 
 _:slang_ru <Tag> "" .
 _:slang_ru <Term> "" .
 _:slang_ru <lang> "ru" .
 _:slang_ru <text> "жаргон" .
+_:slang_ru <tag> _:word_en .
+_:slang_ru <tag> _:word_ru .
+_:slang_ru <tag> _:noun_en .
+_:slang_ru <tag> _:noun_ru .
 
 _:img_afternoon1 <url> "" .
 
