@@ -95,13 +95,13 @@ def find_in_cache(word):
     return cache[word] if word in cache else None
 
 
-def find_audio(word):
+def find_audio(word, lang = 'ru'):
     result = find_in_cache(word)
     if not testing and result is not None:
         return result
 
-    pat = 'https://ru.forvo.com/word/{0}/#ru'
-    url = pat.format(urllib.parse.quote(word))
+    pat = 'https://ru.forvo.com/word/{0}/#{1}'
+    url = pat.format(urllib.parse.quote(word), lang)
     headers = {
         'User-Agent': 'script',
         'Accept': 'text/html',

@@ -1,4 +1,4314 @@
 {
+  "afternoon": {
+    "mp3": [
+      {
+        "author": "fordum",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/j/sj_8973497_39_282291_1.mp3"
+      },
+      {
+        "author": "compasssion",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/x/0x_9525720_39_282291.mp3"
+      },
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/p/4p_8975595_39_282291_34720.mp3"
+      },
+      {
+        "author": "emsr2d2",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/6/v6_9053935_39_282291_38318.mp3"
+      },
+      {
+        "author": "gemmelo",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/l/al_9218662_39_282291_1178509.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/w/yw_9488892_39_282291.mp3"
+      },
+      {
+        "author": "toddsschneider",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/e/se_9155738_39_282291.mp3"
+      },
+      {
+        "author": "lwelland",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/e/0e_9739253_39_282291.mp3"
+      }
+    ]
+  },
+  "apple": {
+    "mp3": [
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/q/xq_9230373_39_1151.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/t/ht_8981864_39_1151.mp3"
+      },
+      {
+        "author": "wordfactory",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/r/7r_9349102_39_1151.mp3"
+      },
+      {
+        "author": "Atalina",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/2/62_9567265_39_1151.mp3"
+      },
+      {
+        "author": "RedRobbieEnglish",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/g/gg_9450833_39_1151.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/c/pc_9378780_39_1151.mp3"
+      },
+      {
+        "author": "Daisy555",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/e/7e_9542434_39_1151.mp3"
+      },
+      {
+        "author": "simonorr",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/u/3u_9490961_39_1151.mp3"
+      },
+      {
+        "author": "rmckayfleming",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/h/hh_9717250_39_1151.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/i/li_9497651_39_1151.mp3"
+      },
+      {
+        "author": "harbour1971",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/o/ho_9606133_39_1151.mp3"
+      },
+      {
+        "author": "kalonkakon",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/0/z0_9512233_39_1151.mp3"
+      }
+    ]
+  },
+  "autumn": {
+    "mp3": [
+      {
+        "author": "Jeane",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/m/fm_8978242_39_318041_1.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/b/sb_8981864_39_318041_1345920.mp3"
+      },
+      {
+        "author": "GaileIrene",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/8/58_9023849_39_318041_73304.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/6/x6_9326074_39_318041.mp3"
+      },
+      {
+        "author": "mightysparks",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/z/oz_9172896_39_318041_1056013.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/r/lr_9378780_39_318041.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/p/ip_9419270_39_318041.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/l/nl_9230373_39_318041.mp3"
+      },
+      {
+        "author": "Gabrianne",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/3/r3_9337379_39_318041.mp3"
+      },
+      {
+        "author": "prinfrog",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/k/nk_9787316_39_318041.mp3"
+      },
+      {
+        "author": "harbour1971",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/0/30_9606133_39_318041.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/t/it_9488892_39_318041.mp3"
+      },
+      {
+        "author": "LadCoply",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/0/u0_9455483_39_318041.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/e/0e_9446602_39_318041.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/h/8h_9410655_39_318041.mp3"
+      },
+      {
+        "author": "1056012",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/l/ul_8986237_39_318041_827890.mp3"
+      },
+      {
+        "author": "MichaelDS",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/j/aj_9863721_39_318041.mp3"
+      }
+    ]
+  },
+  "bed": {
+    "mp3": [
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/p/2p_8986237_39_6104_974176.mp3"
+      },
+      {
+        "author": "danr",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/u/pu_8972118_39_6104_1.mp3"
+      },
+      {
+        "author": "auduende",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/f/cf_9497112_39_6104.mp3"
+      },
+      {
+        "author": "bananaman",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/a/za_9065958_39_6104_1390237.mp3"
+      },
+      {
+        "author": "greengobbie92",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/v/mv_9007926_39_6104_542787.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/z/1z_9125401_39_6104_1050835.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/4/m4_9488892_39_6104.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/s/zs_9230373_39_6104.mp3"
+      },
+      {
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/s/gs_9314125_39_6104.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/n/qn_9187295_39_6104.mp3"
+      },
+      {
+        "author": "chewton",
+        "country": "\u041d\u043e\u0432\u0430\u044f \u0417\u0435\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/a/ya_9008060_39_6104.mp3"
+      }
+    ]
+  },
+  "body": {
+    "mp3": [
+      {
+        "author": "floridagirl",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/q/xq_9054385_39_6055_498036.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/g/4g_9189479_39_6055_1383710.mp3"
+      },
+      {
+        "author": "babsrocks",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/t/lt_9063917_39_6055_595811.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/t/qt_9488892_39_6055.mp3"
+      }
+    ]
+  },
+  "boy": {
+    "mp3": [
+      {
+        "author": "DaoistCheetah",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/d/1d_8972901_39_16393_1.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/5/d5_9189479_39_16393_1317736.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/v/dv_9410655_39_16393.mp3"
+      },
+      {
+        "author": "bijoufaerie",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/u/yu_9329869_39_16393.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/i/0i_9488892_39_16393.mp3"
+      }
+    ]
+  },
+  "brother": {
+    "mp3": [
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/2/e2_8981864_39_854_513656.mp3"
+      },
+      {
+        "author": "JuliusBeezer",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/j/tj_8998878_39_854_171177.mp3"
+      },
+      {
+        "author": "mrj6328",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/b/nb_8973348_39_854_602.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/t/kt_9410655_39_854.mp3"
+      },
+      {
+        "author": "roman_candle",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/e/5e_9094060_39_854_1544129.mp3"
+      },
+      {
+        "author": "pterojacktyl",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/m/zm_9491349_39_854.mp3"
+      },
+      {
+        "author": "Cobra1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/1/q1_9208109_39_854_1281304.mp3"
+      },
+      {
+        "author": "MissyEnglish",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/i/li_9386535_39_854.mp3"
+      },
+      {
+        "author": "josebernaola",
+        "country": "\u041f\u0435\u0440\u0443",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/w/sw_9158431_39_854_875796.mp3"
+      },
+      {
+        "author": "488247",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/g/cg_9035625_39_854_252993.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/p/op_9378780_39_854.mp3"
+      },
+      {
+        "author": "eris",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/e/fe_8990111_39_854_17823.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/0/a0_9187295_39_854.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/w/0w_9419270_39_854.mp3"
+      }
+    ]
+  },
+  "can": {
+    "mp3": [
+      {
+        "author": "delibes",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/j/ej_9049999_39_2239_533212.mp3"
+      },
+      {
+        "author": "falconfling",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/y/vy_8976598_39_2239_3727.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/4/g4_9326074_39_2239.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/q/bq_9187295_39_2239_1669947.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/j/cj_9378780_39_2239.mp3"
+      },
+      {
+        "author": "harbour1971",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/y/2y_9606133_39_2239.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/m/cm_8986237_39_2239_1058016.mp3"
+      },
+      {
+        "author": "mikebill",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/l/4l_9665640_39_2239.mp3"
+      },
+      {
+        "author": "Coupon",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/j/ij_9514083_39_2239.mp3"
+      },
+      {
+        "author": "presidentof69",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/t/kt_9518353_39_2239.mp3"
+      },
+      {
+        "author": "jences",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/x/gx_9561555_39_2239.mp3"
+      },
+      {
+        "author": "Kareena",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/e/ie_9015755_39_2239.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/p/hp_9468274_39_2239.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/n/7n_9853898_39_2239.mp3"
+      }
+    ]
+  },
+  "cat": {
+    "mp3": [
+      {
+        "author": "FrazJam",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/d/qd_9052362_39_284116_541457.mp3"
+      },
+      {
+        "author": "jollysunbro",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/s/es_9304132_39_284116.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/u/4u_9008673_39_284116_593799.mp3"
+      },
+      {
+        "author": "Megan1006a",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/i/mi_9616580_39_284116.mp3"
+      },
+      {
+        "author": "goats",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/g/lg_9227747_39_284116_1611408.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/k/ck_9187295_39_284116_1420815.mp3"
+      },
+      {
+        "country": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/d/jd_8980236_39_284116_101411.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/b/ab_8999059_39_284116_234097.mp3"
+      },
+      {
+        "author": "EnoNeal",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/0/q0_9024955_39_284116_309767.mp3"
+      },
+      {
+        "author": "bamp",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/w/rw_9508382_39_284116.mp3"
+      },
+      {
+        "author": "joemidge",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/5/v5_9777190_39_284116.mp3"
+      },
+      {
+        "author": "scotsleid",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/w/zw_9298226_39_284116.mp3"
+      },
+      {
+        "author": "ausg",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/j/2j_9576081_39_284116.mp3"
+      },
+      {
+        "author": "Atalina",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/5/l5_9567265_39_284116.mp3"
+      },
+      {
+        "author": "beanfoot",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/w/ew_9645858_39_284116.mp3"
+      },
+      {
+        "author": "koolkoala",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/c/oc_9616700_39_284116.mp3"
+      },
+      {
+        "author": "Micha1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/l/fl_9594553_39_284116.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/u/hu_9497651_39_284116.mp3"
+      },
+      {
+        "author": "5078381",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/n/8n_9724235_39_284116.mp3"
+      },
+      {
+        "author": "tomuk",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/j/bj_9724230_39_284116.mp3"
+      },
+      {
+        "author": "stevendevine",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/8/a8_9740236_39_284116.mp3"
+      },
+      {
+        "author": "ellamuir",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/m/nm_9775152_39_284116.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/c/tc_9488892_39_284116.mp3"
+      },
+      {
+        "author": "MichaelDS",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/a/va_9863721_39_284116.mp3"
+      },
+      {
+        "author": "calvo",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/k/lk_9033693_39_284116_429183.mp3"
+      },
+      {
+        "author": "keili",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/l/ml_9038060_39_284116_473505.mp3"
+      },
+      {
+        "author": "1062417",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/4/24_9084356_39_284116_1022389.mp3"
+      },
+      {
+        "author": "jburria",
+        "country": "\u0418\u0441\u043f\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/h/rh_9215421_39_284116_1453977.mp3"
+      },
+      {
+        "author": "BrianBoru1014",
+        "country": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/z/iz_9486382_39_284116.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/d/3d_9467361_39_284116.mp3"
+      },
+      {
+        "author": "LadCoply",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/o/wo_9455483_39_284116.mp3"
+      },
+      {
+        "author": "tokioKAT",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/3/u3_8978607_39_284116_37939.mp3"
+      },
+      {
+        "author": "Cobra1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/w/kw_9208109_39_284116_1608526.mp3"
+      }
+    ]
+  },
+  "child": {
+    "mp3": [
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/n/kn_8975595_39_284112_1.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/o/ho_8981864_39_284112.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/o/ho_9410655_39_284112.mp3"
+      },
+      {
+        "author": "clarkdavej",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/x/9x_9086584_39_284112_37919.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/8/x8_9497651_39_284112.mp3"
+      },
+      {
+        "author": "ijarritos",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/7/j7_9350085_39_284112.mp3"
+      },
+      {
+        "author": "itiwat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/j/vj_9175222_39_284112.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/o/2o_9488892_39_284112.mp3"
+      }
+    ]
+  },
+  "different": {
+    "mp3": [
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/8/78_8981864_39_3314.mp3"
+      },
+      {
+        "author": "Brett",
+        "gender": "\u0418\u0437 \u0421\u0428\u0410",
+        "url": "https://audio00.forvo.com/audios/mp3/k/b/kb_8971936_39_3314_1.mp3"
+      },
+      {
+        "author": "carroll27",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/y/6y_9045305_39_3314_3550.mp3"
+      },
+      {
+        "author": "Pariolino",
+        "country": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/1/h1_9083638_39_3314_566904.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/w/gw_8986237_39_3314_806721.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/8/18_9187295_39_3314_1368152.mp3"
+      },
+      {
+        "author": "RoseJ",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/k/vk_9438404_39_3314.mp3"
+      },
+      {
+        "author": "1368151",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/o/eo_9098169_39_3314_1131280.mp3"
+      },
+      {
+        "author": "delibes",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/y/1y_9049999_39_3314_541831.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/e/se_9467361_39_3314.mp3"
+      }
+    ]
+  },
+  "difficult": {
+    "mp3": [
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/c/nc_9033393_39_12563.mp3"
+      },
+      {
+        "author": "evergreen",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/e/ce_8972330_39_12563_1.mp3"
+      },
+      {
+        "author": "tipit",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/o/io_9470185_39_12563.mp3"
+      },
+      {
+        "author": "andyha11",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/z/fz_9719946_39_12563.mp3"
+      },
+      {
+        "author": "rodent",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/j/1j_9525850_39_12563.mp3"
+      },
+      {
+        "author": "kstone11",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/t/tt_9261923_39_12563.mp3"
+      },
+      {
+        "author": "prinfrog",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/1/41_9787316_39_12563.mp3"
+      },
+      {
+        "author": "mightymouse",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/u/du_9135350_39_12563.mp3"
+      },
+      {
+        "author": "RoseJ",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/q/aq_9438404_39_12563.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/a/2a_9187295_39_12563.mp3"
+      }
+    ]
+  },
+  "dog": {
+    "mp3": [
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/a/6a_9189479_39_1720_1338246.mp3"
+      },
+      {
+        "author": "telruen",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/3/i3_9128897_39_1720_1022390.mp3"
+      },
+      {
+        "author": "sugardaddy",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/z/kz_8971826_39_1720_3092.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/m/am_8981864_39_1720_1840946.mp3"
+      },
+      {
+        "author": "Chaynes2",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/a/1a_9522146_39_1720.mp3"
+      },
+      {
+        "author": "easyasabg",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/s/os_9191986_39_1720_1434856.mp3"
+      },
+      {
+        "author": "emicini",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/h/7h_9303352_39_1720.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/u/ku_9724235_39_1720.mp3"
+      },
+      {
+        "author": "jackabrams",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/p/qp_9112612_39_1720_1005988.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/4/k4_9378780_39_1720.mp3"
+      },
+      {
+        "author": "imscotte1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/4/j4_8979744_39_1720_109110.mp3"
+      },
+      {
+        "author": "4428548",
+        "country": "\u042e\u0436\u043d\u0430\u044f \u0410\u0444\u0440\u0438\u043a\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/t/nt_9439691_39_1720.mp3"
+      },
+      {
+        "author": "thurd87",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/j/yj_9577020_39_1720.mp3"
+      },
+      {
+        "author": "ausg",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/1/m1_9576081_39_1720.mp3"
+      },
+      {
+        "author": "disheveledfox",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/m/gm_9482589_39_1720.mp3"
+      },
+      {
+        "author": "JBranch1998",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/0/80_9520686_39_1720.mp3"
+      },
+      {
+        "author": "ibasquerice",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/c/cc_9664982_39_1720.mp3"
+      },
+      {
+        "author": "ellamuir",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/o/0o_9775152_39_1720.mp3"
+      },
+      {
+        "author": "RyanVoiceOver",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/z/ez_9449438_39_1720.mp3"
+      },
+      {
+        "author": "Istger",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/0/40_9823112_39_1720.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/q/eq_9488892_39_1720.mp3"
+      },
+      {
+        "author": "tomuk",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/c/uc_9724230_39_1720.mp3"
+      },
+      {
+        "author": "franzshire",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/m/5m_9224629_39_1720.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/5/d5_9467361_39_1720.mp3"
+      },
+      {
+        "author": "captainpolaris",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/f/tf_8996194_39_1720_199821.mp3"
+      },
+      {
+        "author": "GordonRugg",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/e/6e_9087337_39_1720_605827.mp3"
+      },
+      {
+        "author": "goats",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/j/oj_9227747_39_1720_1445144.mp3"
+      },
+      {
+        "author": "jl447",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/h/6h_9255195_39_1720_1757860.mp3"
+      },
+      {
+        "author": "jollysunbro",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/3/u3_9304132_39_1720.mp3"
+      },
+      {
+        "author": "AndrewErrant",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/c/2c_9442393_39_1720.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/0/s0_9446602_39_1720.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/8/88_9410655_39_1720.mp3"
+      },
+      {
+        "author": "kurtss",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/r/7r_9403303_39_1720.mp3"
+      },
+      {
+        "author": "81546",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/n/rn_8978929_39_1720_6421.mp3"
+      },
+      {
+        "author": "JeffreyH123",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/8/j8_9030459_39_1720_240313.mp3"
+      },
+      {
+        "author": "cclioness",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/t/9t_8986078_39_1720_130436.mp3"
+      }
+    ]
+  },
+  "door": {
+    "mp3": [
+      {
+        "author": "bjhinton",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/5/35_8971534_39_2617_2868.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/2/c2_8981864_39_2617_687399.mp3"
+      },
+      {
+        "author": "mstakagi",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/r/gr_9306864_39_2617.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/e/we_9446602_39_2617.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/6/i6_9410655_39_2617.mp3"
+      },
+      {
+        "author": "acarlow",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/h/gh_9726297_39_2617.mp3"
+      },
+      {
+        "author": "emicini",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/j/dj_9303352_39_2617.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/o/1o_9187295_39_2617.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/s/fs_9488892_39_2617.mp3"
+      },
+      {
+        "author": "jmarnin09",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/h/rh_9729549_39_2617.mp3"
+      },
+      {
+        "author": "greengobbie92",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/1/51_9007926_39_2617_153167.mp3"
+      }
+    ]
+  },
+  "electrical": {
+    "mp3": [
+      {
+        "author": "kbrock",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/w/tw_8977219_39_297367_1.mp3"
+      },
+      {
+        "author": "gemmelo",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/x/ux_9218662_39_297367_316299.mp3"
+      },
+      {
+        "author": "SkypeEnglishSchool",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/k/fk_9007100_39_297367_54221.mp3"
+      },
+      {
+        "author": "Wasch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/8/38_9008515_39_297367_308031.mp3"
+      },
+      {
+        "author": "hatjr",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/9/e9_9190385_39_297367.mp3"
+      }
+    ]
+  },
+  "evening": {
+    "mp3": [
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/t/bt_8975595_39_282362_34660.mp3"
+      },
+      {
+        "author": "gemmelo",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/i/xi_9218662_39_282362_1063436.mp3"
+      },
+      {
+        "author": "fordum",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/y/dy_8973497_39_282362_1.mp3"
+      },
+      {
+        "author": "susan1430",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/s/ps_9146639_39_282362.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/s/zs_9378780_39_282362.mp3"
+      },
+      {
+        "author": "Atalina",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/9/l9_9567265_39_282362.mp3"
+      },
+      {
+        "author": "MissyEnglish",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/s/us_9386535_39_282362.mp3"
+      },
+      {
+        "author": "go2rose",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/w/aw_9119775_39_282362_38735.mp3"
+      },
+      {
+        "author": "RoseJ",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/0/e0_9438404_39_282362.mp3"
+      },
+      {
+        "author": "mightysparks",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/4/y4_9172896_39_282362.mp3"
+      },
+      {
+        "author": "diaduitamigo",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/x/sx_9728633_39_282362.mp3"
+      }
+    ]
+  },
+  "expensive": {
+    "mp3": [
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/n/cn_8975595_39_286134.mp3"
+      },
+      {
+        "author": "gemmelo",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/j/vj_9218662_39_286134_1096626.mp3"
+      },
+      {
+        "author": "wildlandwoman907",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/f/zf_9324342_39_286134.mp3"
+      },
+      {
+        "author": "1096625",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/u/0u_8986237_39_286134_44336.mp3"
+      }
+    ]
+  },
+  "father": {
+    "mp3": [
+      {
+        "author": "eris",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/x/kx_8990111_39_3858_166636.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/4/w4_8981864_39_3858_1900099.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/v/ov_9378780_39_3858.mp3"
+      },
+      {
+        "author": "RebeccaYemm",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/5/n5_9103060_39_3858_732435.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/i/hi_9410655_39_3858.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/h/yh_9187295_39_3858.mp3"
+      },
+      {
+        "country": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/i/zi_9265115_39_3858_1900449.mp3"
+      },
+      {
+        "author": "roman_candle",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/6/96_9094060_39_3858_939436.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/m/pm_9230373_39_3858.mp3"
+      },
+      {
+        "author": "mikebill",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/p/op_9665640_39_3858.mp3"
+      },
+      {
+        "author": "bijoufaerie",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/x/lx_9329869_39_3858.mp3"
+      },
+      {
+        "author": "nanobyte55",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/r/sr_9647982_39_3858.mp3"
+      },
+      {
+        "author": "Atalina",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/a/4a_9567265_39_3858.mp3"
+      },
+      {
+        "author": "jackNoc",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/3/c3_8990102_39_3858_1.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/5/55_9467361_39_3858.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/s/3s_9853898_39_3858.mp3"
+      },
+      {
+        "author": "Juc1",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/h/qh_9019825_39_3858_167217.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/7/g7_9488892_39_3858.mp3"
+      },
+      {
+        "author": "greengobbie92",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/9/49_9007926_39_3858_379439.mp3"
+      },
+      {
+        "author": "cbjones82",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/0/z0_9224631_39_3858.mp3"
+      },
+      {
+        "author": "tugulshan",
+        "gender": "\u0418\u0437 \u0421\u0428\u0410",
+        "url": "https://audio00.forvo.com/audios/mp3/d/c/dc_9456541_39_3858.mp3"
+      },
+      {
+        "author": "lennard121",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/a/ta_9278997_39_3858_1901874.mp3"
+      }
+    ]
+  },
+  "girl": {
+    "mp3": [
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/m/6m_9326074_39_6037.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/p/hp_8981864_39_6037_1937859.mp3"
+      },
+      {
+        "author": "kstone11",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/3/23_9261923_39_6037.mp3"
+      },
+      {
+        "author": "jeno",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/l/al_8989575_39_6037.mp3"
+      },
+      {
+        "author": "joaniffer",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/u/bu_8977385_39_6037_6758.mp3"
+      },
+      {
+        "author": "LauraT",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/6/r6_8988869_39_6037_56657.mp3"
+      },
+      {
+        "author": "lemony",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/l/sl_9351379_39_6037.mp3"
+      },
+      {
+        "author": "gabo864",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/p/8p_9015246_39_6037_1587024.mp3"
+      },
+      {
+        "author": "Jazzy9",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/6/e6_9341549_39_6037.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/f/pf_9446602_39_6037.mp3"
+      },
+      {
+        "author": "4013785",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/a/fa_9548000_39_6037.mp3"
+      },
+      {
+        "author": "Narratio",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/q/8q_9610766_39_6037.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/2/k2_9378780_39_6037.mp3"
+      },
+      {
+        "author": "beanfoot",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/8/58_9645858_39_6037.mp3"
+      },
+      {
+        "author": "acarlow",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/3/o3_9726297_39_6037.mp3"
+      },
+      {
+        "author": "BacksideAttack",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/a/ea_9562767_39_6037.mp3"
+      },
+      {
+        "author": "Marlfox",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/5/k5_9419634_39_6037.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/6/n6_9410655_39_6037.mp3"
+      },
+      {
+        "author": "bijoufaerie",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/z/rz_9329869_39_6037.mp3"
+      },
+      {
+        "author": "mightysparks",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/1/61_9172896_39_6037_1189268.mp3"
+      },
+      {
+        "author": "1435057",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/e/5e_9189479_39_6037_1345898.mp3"
+      },
+      {
+        "author": "Mollydub",
+        "country": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/j/mj_9211679_39_6037_1578808.mp3"
+      },
+      {
+        "author": "little_mia",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/j/kj_9327478_39_6037.mp3"
+      },
+      {
+        "author": "2449241",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/3/d3_9342102_39_6037.mp3"
+      },
+      {
+        "author": "coolmichelle",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/l/3l_9342152_39_6037.mp3"
+      },
+      {
+        "author": "ijarritos",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/l/ul_9350085_39_6037.mp3"
+      },
+      {
+        "author": "Scrybler",
+        "country": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/3/a3_9323917_39_6037.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/b/gb_9488892_39_6037.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/d/9d_9419270_39_6037.mp3"
+      }
+    ]
+  },
+  "go ": {
+    "mp3": [
+      {
+        "author": "trice",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/3/q3_9207327_39_337630_1759929.mp3"
+      },
+      {
+        "author": "Rayis",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/d/wd_9081456_39_337630_584549.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/t/zt_9410655_39_337630.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/y/1y_9084356_39_337630_814633.mp3"
+      },
+      {
+        "author": "petruchi41",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/a/za_8982769_39_337630_93849.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/s/cs_9467361_39_337630.mp3"
+      },
+      {
+        "author": "telruen",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/a/ga_9128897_39_337630_1071041.mp3"
+      },
+      {
+        "author": "danigirl789",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/q/pq_8979512_39_337630_1.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/k/xk_9230373_39_337630.mp3"
+      },
+      {
+        "author": "harbour1971",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/h/oh_9606133_39_337630.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/r/4r_9488892_39_337630.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/7/67_9187295_39_337630.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/m/ym_9853898_39_337630.mp3"
+      },
+      {
+        "author": "LadCoply",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/3/83_9455483_39_337630.mp3"
+      },
+      {
+        "author": "GoDo",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/z/nz_9007238_39_337630_237076.mp3"
+      },
+      {
+        "author": "greengobbie92",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/o/oo_9007926_39_337630.mp3"
+      }
+    ]
+  },
+  "gum": {
+    "mp3": [
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/u/gu_9467361_39_379529.mp3"
+      },
+      {
+        "author": "itiwat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/z/xz_9175222_39_379529.mp3"
+      },
+      {
+        "author": "2763052",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/o/4o_9314125_39_379529.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/q/uq_8989699_39_379529_112132.mp3"
+      },
+      {
+        "author": "yallhearme",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/e/me_9479363_39_379529.mp3"
+      }
+    ]
+  },
+  "have": {
+    "mp3": [
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/r/ir_8981864_39_65497_599866.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/c/ec_9378780_39_65497.mp3"
+      },
+      {
+        "author": "falconfling",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/m/cm_8976598_39_65497_23849.mp3"
+      },
+      {
+        "author": "FrazJam",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/e/9e_9052362_39_65497_541464.mp3"
+      },
+      {
+        "author": "RoseJ",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/b/vb_9438404_39_65497.mp3"
+      },
+      {
+        "author": "readd1",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/z/jz_9022106_39_65497.mp3"
+      },
+      {
+        "author": "TristanJaimes",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/j/tj_8973277_39_65497_1.mp3"
+      },
+      {
+        "author": "LadCoply",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/o/6o_9455483_39_65497.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/h/lh_9488892_39_65497.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/7/c7_9468274_39_65497.mp3"
+      },
+      {
+        "author": "ausg",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/5/p5_9576081_39_65497.mp3"
+      },
+      {
+        "author": "BacksideAttack",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/l/9l_9562767_39_65497.mp3"
+      },
+      {
+        "author": "carinejthomas",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/g/pg_9760690_39_65497.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/u/iu_9230373_39_65497.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/s/6s_9467361_39_65497.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/3/o3_9125401_39_65497_893764.mp3"
+      },
+      {
+        "author": "EveningStar",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/5/b5_9138467_39_65497_1098079.mp3"
+      },
+      {
+        "author": "1384528",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/z/rz_9179520_39_65497_1369144.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/4/54_9410655_39_65497.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/u/4u_9446602_39_65497.mp3"
+      },
+      {
+        "author": "Ryguy8219",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/6/f6_9873909_39_65497.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/3/z3_9419270_39_65497.mp3"
+      },
+      {
+        "author": "greengobbie92",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/7/p7_9007926_39_65497_303498.mp3"
+      }
+    ]
+  },
+  "healthy": {
+    "mp3": [
+      {
+        "author": "Bella",
+        "country": "\u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/g/hg_8974893_39_74165_1.mp3"
+      },
+      {
+        "author": "Chaynes2",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/l/nl_9522146_39_74165.mp3"
+      },
+      {
+        "author": "jennyskene",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/4/z4_9511957_39_74165.mp3"
+      },
+      {
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/0/a0_9252897_39_74165.mp3"
+      },
+      {
+        "author": "ausgirl",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/l/2l_9508596_39_74165.mp3"
+      },
+      {
+        "author": "bronshtein",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/d/id_9466885_39_74165.mp3"
+      },
+      {
+        "author": "Atalina",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/h/2h_9567265_39_74165.mp3"
+      }
+    ]
+  },
+  "hello": {
+    "mp3": [
+      {
+        "author": "imscotte1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/d/sd_8979744_39_490_113885.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/l/yl_8981864_39_490_171150.mp3"
+      },
+      {
+        "author": "emiily",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/o/ao_8991929_39_490_174442.mp3"
+      },
+      {
+        "author": "GeauxTigers",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/9/69_8971513_39_490_1.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/m/jm_9189479_39_490_1434068.mp3"
+      },
+      {
+        "author": "bananaman",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/x/ux_9065958_39_490_1358822.mp3"
+      },
+      {
+        "author": "krotova24",
+        "country": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/a/0a_9261446_39_1764684_1803792.mp3"
+      },
+      {
+        "author": "ianpage",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/m/2m_9294628_39_1764684.mp3"
+      },
+      {
+        "author": "PaulJWright",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/k/3k_9046708_39_490_531425.mp3"
+      },
+      {
+        "author": "OTAKU",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/d/vd_8976513_39_490_38992.mp3"
+      },
+      {
+        "author": "Fearsomedude",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/v/3v_9025322_39_490_368060.mp3"
+      },
+      {
+        "author": "katisings",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/w/3w_9095772_39_490_948822.mp3"
+      },
+      {
+        "author": "trice",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/6/66_9207327_39_1764684_1649656.mp3"
+      },
+      {
+        "author": "hdo001",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/n/hn_9082871_39_490_747629.mp3"
+      },
+      {
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/3/l3_8999405_39_490_243972.mp3"
+      },
+      {
+        "author": "dangelovich",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/e/me_8979171_39_490_1039397.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/d/9d_9033393_39_1764684.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/l/ll_9410655_39_1764684.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/4/f4_9446602_39_1764684.mp3"
+      },
+      {
+        "author": "qqch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/i/di_9446742_39_1764684.mp3"
+      },
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/k/nk_8975595_39_490_37235.mp3"
+      },
+      {
+        "author": "go2rose",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/q/hq_9119775_39_490_1057068.mp3"
+      },
+      {
+        "author": "hollyevans70",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/e/9e_9324455_39_1764684.mp3"
+      },
+      {
+        "author": "Flossie",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/4/f4_9347510_39_1764684.mp3"
+      },
+      {
+        "author": "jackabrams",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/s/us_9112612_39_490_997408.mp3"
+      },
+      {
+        "author": "ausg",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/w/0w_9576081_39_1764684.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/x/dx_9326074_39_1764684.mp3"
+      },
+      {
+        "author": "kstone11",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/a/pa_9261923_39_1764684.mp3"
+      },
+      {
+        "author": "itiwat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/5/m5_9175222_39_1764684.mp3"
+      },
+      {
+        "author": "BlueIceBlade",
+        "country": "\u042e\u0436\u043d\u0430\u044f \u0410\u0444\u0440\u0438\u043a\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/o/0o_9025547_39_490_410709.mp3"
+      },
+      {
+        "author": "lovelieb",
+        "country": "\u0410\u0440\u0433\u0435\u043d\u0442\u0438\u043d\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/0/70_9537028_39_1764684.mp3"
+      },
+      {
+        "author": "rodent",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/7/j7_9525850_39_1764684.mp3"
+      },
+      {
+        "author": "Boccaccio",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/o/2o_9696333_39_1764684.mp3"
+      },
+      {
+        "author": "404UsernameNotFound",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/d/ad_9747229_39_1764684.mp3"
+      },
+      {
+        "author": "2565353",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/9/m9_9309768_39_1764684.mp3"
+      },
+      {
+        "author": "Barra",
+        "country": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/l/cl_9328658_39_1764684.mp3"
+      },
+      {
+        "author": "alkessle",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/o/ko_9073178_39_490_708910.mp3"
+      },
+      {
+        "author": "CJG91011",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/k/5k_9029738_39_490_675363.mp3"
+      },
+      {
+        "author": "ceruleanbill",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/m/7m_9072777_39_1764684_1751660.mp3"
+      },
+      {
+        "author": "andzoz02",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/a/ra_9109129_39_490_978173.mp3"
+      },
+      {
+        "author": "Jazzy9",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/v/8v_9341549_39_1764684.mp3"
+      },
+      {
+        "author": "dbkm100",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/s/es_9100897_39_490_901694.mp3"
+      },
+      {
+        "author": "DanDanimals",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/6/e6_9085294_39_490_920720.mp3"
+      },
+      {
+        "author": "AlexKNZ",
+        "country": "\u0420\u043e\u0441\u0441\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/l/9l_9245314_39_1764684_1783047.mp3"
+      },
+      {
+        "author": "John1",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/g/8g_9005435_39_490_262528.mp3"
+      },
+      {
+        "author": "gdfbnjghbdfjgv",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/8/p8_9364211_39_1764684.mp3"
+      },
+      {
+        "author": "ajsloan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/t/7t_9057003_39_490_602311.mp3"
+      },
+      {
+        "author": "izzyluvsdogs",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/o/do_9114378_39_490_1082153.mp3"
+      },
+      {
+        "author": "TeKToNiiK",
+        "country": "\u041d\u043e\u0432\u0430\u044f \u0417\u0435\u043b\u0430\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/k/mk_9033734_39_490_472163.mp3"
+      },
+      {
+        "author": "Outhere",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/c/8c_9733546_39_1764684.mp3"
+      },
+      {
+        "author": "bijoufaerie",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/2/d2_9329869_39_1764684.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/a/fa_9488892_39_1764684.mp3"
+      },
+      {
+        "author": "LetsHigh5",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/j/5j_9833123_39_1764684.mp3"
+      },
+      {
+        "author": "prinfrog",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/2/j2_9787316_39_1764684.mp3"
+      },
+      {
+        "author": "marcet",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/4/84_8973818_39_1764684.mp3"
+      },
+      {
+        "author": "CheesePlease",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/v/zv_9824242_39_1764684.mp3"
+      },
+      {
+        "author": "dgdean",
+        "country": "\u042e\u0436\u043d\u0430\u044f \u0410\u0444\u0440\u0438\u043a\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/r/zr_9712399_39_1764684.mp3"
+      },
+      {
+        "author": "Digmaster",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/1/l1_9034137_39_490_474374.mp3"
+      },
+      {
+        "author": "liamglen",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/0/40_9259715_39_1764684.mp3"
+      },
+      {
+        "author": "languagefreak",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/2/j2_9251045_39_1764684_1799438.mp3"
+      },
+      {
+        "author": "eris",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/2/22_8990111_39_490_157819.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/w/ww_9378780_39_1764684.mp3"
+      },
+      {
+        "author": "Marlfox",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/4/c4_9419634_39_1764684.mp3"
+      },
+      {
+        "author": "Atalina",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/a/6a_9567265_39_1764684.mp3"
+      },
+      {
+        "author": "brad1637",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/c/2c_9104093_39_490_921799.mp3"
+      },
+      {
+        "author": "MichaelDS",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/7/p7_9863721_39_1764684.mp3"
+      }
+    ]
+  },
+  "hot": {
+    "mp3": [
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/k/3k_8992148_39_317181_70767.mp3"
+      },
+      {
+        "author": "mooncow",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/u/hu_8976924_39_317181_1.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/t/6t_8981864_39_317181.mp3"
+      },
+      {
+        "author": "floridagirl",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/k/ak_9054385_39_317181_400837.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/d/9d_9189479_39_317181_1359119.mp3"
+      },
+      {
+        "author": "bananaman",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/7/07_9065958_39_317181_595749.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/j/kj_9187295_39_317181.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/q/uq_9468274_39_317181.mp3"
+      },
+      {
+        "author": "showmeandrew",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/l/0l_9846355_39_317181.mp3"
+      },
+      {
+        "author": "agosta",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/c/pc_9033728_39_317181_1435003.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/x/tx_9488892_39_317181.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/0/y0_9125401_39_317181_748632.mp3"
+      }
+    ]
+  },
+  "house": {
+    "mp3": [
+      {
+        "author": "wkshimself",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/5/05_9043306_39_3910774.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/9/i9_9497651_39_3910774.mp3"
+      },
+      {
+        "author": "rosamundo",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/t/tt_9417657_39_3910774.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/f/af_9488892_39_3910774.mp3"
+      },
+      {
+        "author": "acarlow",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/d/9d_9726297_39_3910774.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/s/rs_9230373_39_3910774.mp3"
+      },
+      {
+        "author": "languagejunkie",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/d/ud_9818998_39_3910774.mp3"
+      },
+      {
+        "author": "dklaas",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/t/gt_9761514_39_3910774.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/w/gw_9853898_39_3910774.mp3"
+      },
+      {
+        "author": "mikebill",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/f/9f_9665640_39_3910774.mp3"
+      }
+    ]
+  },
+  "i": {
+    "mp3": [
+      {
+        "author": "eris",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/b/wb_8990111_39_21940_163702.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/4/y4_9410655_39_21940.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/7/c7_8981864_39_21940.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/l/jl_9125401_39_21940_1079844.mp3"
+      },
+      {
+        "author": "mooncow",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/w/ow_8976924_39_21940_32487.mp3"
+      },
+      {
+        "author": "falconfling",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/4/c4_8976598_39_21940_80701.mp3"
+      },
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/3/l3_8975595_39_21940_1377190.mp3"
+      },
+      {
+        "author": "FrazJam",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/d/gd_9052362_39_21940_585927.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/3/33_9326074_39_21940.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/g/vg_9488892_39_21940.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/z/6z_9467361_39_21940.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/w/vw_9468274_39_21940.mp3"
+      },
+      {
+        "author": "evanescolife",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/z/1z_9335568_39_21940.mp3"
+      },
+      {
+        "author": "2352055",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/z/zz_9252897_39_21940.mp3"
+      },
+      {
+        "author": "rkaup",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/p/3p_9311056_39_21940.mp3"
+      },
+      {
+        "author": "LemonadeLuver",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/w/uw_9295738_39_21940.mp3"
+      },
+      {
+        "author": "ROFL",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/j/rj_9172991_39_21940_1278443.mp3"
+      }
+    ]
+  },
+  "important": {
+    "mp3": [
+      {
+        "author": "incazzata",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/h/2h_9022569_39_334365_506755.mp3"
+      },
+      {
+        "author": "JDRG",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/2/x2_9219173_39_334365_1626289.mp3"
+      },
+      {
+        "author": "ismckenz",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/i/ti_9525421_39_334365.mp3"
+      },
+      {
+        "author": "deadowl",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/u/uu_9217757_39_334365_1624056.mp3"
+      },
+      {
+        "author": "bananaman",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/a/ia_9065958_39_334365_1624202.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/y/yy_8986237_39_334365_1035966.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/7/77_9326074_39_334365.mp3"
+      },
+      {
+        "author": "palitoner",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/h/yh_8979874_39_334365_1.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/o/ro_9230373_39_334365.mp3"
+      }
+    ]
+  },
+  "intelligent": {
+    "mp3": [
+      {
+        "author": "kimberleyjb",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/v/xv_9056313_39_284129_479087.mp3"
+      },
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/c/hc_8975595_39_284129_1.mp3"
+      },
+      {
+        "author": "Digmaster",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/e/8e_9034137_39_284129_182480.mp3"
+      },
+      {
+        "author": "Elinamo",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/h/eh_9330068_39_284129.mp3"
+      },
+      {
+        "author": "Icysyrup",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/k/tk_9714639_39_284129.mp3"
+      }
+    ]
+  },
+  "know": {
+    "mp3": [
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/y/2y_8992148_39_5095_190452.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/5/w5_8981864_39_5095_1672718.mp3"
+      },
+      {
+        "author": "goats",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/b/eb_9227747_39_5095_1432572.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/f/wf_9326074_39_5095.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/m/xm_9468274_39_5095.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/t/dt_9488892_39_5095.mp3"
+      },
+      {
+        "author": "prinfrog",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/q/vq_9787316_39_5095.mp3"
+      },
+      {
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/3/z3_9314125_39_5095.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/i/5i_9467361_39_5095.mp3"
+      },
+      {
+        "author": "RoseJ",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/x/tx_9438404_39_5095.mp3"
+      }
+    ]
+  },
+  "lake": {
+    "mp3": [
+      {
+        "author": "carsonpowers",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/y/0y_8982350_39_389464_1.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/t/qt_9410655_39_389464.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/h/rh_9497651_39_389464.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/w/0w_9488892_39_389464.mp3"
+      },
+      {
+        "author": "pocoapoco",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/x/dx_9666900_39_389464.mp3"
+      },
+      {
+        "author": "CharlesOE",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/x/rx_9510270_39_389464.mp3"
+      },
+      {
+        "author": "LetsHigh5",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/4/24_9833123_39_389464.mp3"
+      },
+      {
+        "author": "MichaelDS",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/b/6b_9863721_39_389464.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/8/p8_9853898_39_389464.mp3"
+      }
+    ]
+  },
+  "large": {
+    "mp3": [
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/1/e1_9467361_39_5867.mp3"
+      },
+      {
+        "author": "bjhinton",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/j/tj_8971534_39_5867_1.mp3"
+      },
+      {
+        "author": "pauldavey",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/o/do_9389589_39_5867.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/o/ho_9187295_39_5867.mp3"
+      },
+      {
+        "author": "HarlieSumner",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/r/9r_9133797_39_5867_1037814.mp3"
+      },
+      {
+        "author": "greengobbie92",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/f/yf_9007926_39_5867_493486.mp3"
+      },
+      {
+        "author": "SimonAu",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/6/56_9597432_39_5867.mp3"
+      }
+    ]
+  },
+  "live": {
+    "mp3": [
+      {
+        "author": "jackabrams",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/v/cv_9112612_39_52_682857.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/j/hj_8981864_39_52_635743.mp3"
+      },
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/i/8i_8975595_39_52.mp3"
+      },
+      {
+        "author": "ashmac1988",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/r/lr_9023487_39_52_398732.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/9/y9_8999059_39_52_96381.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/d/8d_9326074_39_52.mp3"
+      },
+      {
+        "author": "craigt",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/9/69_9074795_39_52_1026354.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/1/41_9378780_39_52.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/e/xe_9125401_39_52_1070902.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/r/gr_9410655_39_52.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/7/o7_9488892_39_52.mp3"
+      },
+      {
+        "author": "nellswell",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/j/0j_9601516_39_52.mp3"
+      },
+      {
+        "author": "agosta",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/o/uo_9033728_39_52.mp3"
+      },
+      {
+        "author": "mrturtle",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/e/ie_9023483_39_52_274809.mp3"
+      },
+      {
+        "author": "jackpaleczny",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/5/l5_9055436_39_52_549489.mp3"
+      },
+      {
+        "author": "Chellspecker",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/n/un_9067309_39_52_681202.mp3"
+      },
+      {
+        "author": "1070901",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/f/cf_9084356_39_52_1042309.mp3"
+      },
+      {
+        "author": "PaulJWright",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/a/ea_9046708_39_52_398733.mp3"
+      }
+    ]
+  },
+  "man": {
+    "mp3": [
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/t/it_9326074_39_16593.mp3"
+      },
+      {
+        "author": "ManHub",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/o/3o_9388427_39_16593.mp3"
+      },
+      {
+        "author": "itiwat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/m/nm_9175222_39_16593.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/j/lj_9125401_39_16593_1096990.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/f/of_9378780_39_16593.mp3"
+      },
+      {
+        "author": "adgje",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/5/c5_8976238_39_16593_765223.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/5/85_9446602_39_16593.mp3"
+      },
+      {
+        "author": "Outhere",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/6/16_9733546_39_16593.mp3"
+      },
+      {
+        "author": "imscotte1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/f/ef_8979744_39_16593_93639.mp3"
+      },
+      {
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/l/6l_9314125_39_16593.mp3"
+      },
+      {
+        "author": "LadCoply",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/f/nf_9455483_39_16593.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/a/6a_9853898_39_16593.mp3"
+      },
+      {
+        "author": "harbour1971",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/z/1z_9606133_39_16593.mp3"
+      },
+      {
+        "author": "greengobbie92",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/1/51_9007926_39_16593.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/t/4t_9008673_39_16593_605818.mp3"
+      }
+    ]
+  },
+  "medical ": {
+    "mp3": [
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/c/rc_8986237_39_317339_849795.mp3"
+      },
+      {
+        "author": "kstone11",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/p/5p_9261923_39_317339.mp3"
+      },
+      {
+        "author": "mooncow",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/6/d6_8976924_39_317339_1.mp3"
+      },
+      {
+        "author": "Daisy555",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/7/l7_9542434_39_317339.mp3"
+      }
+    ]
+  },
+  "morning": {
+    "mp3": [
+      {
+        "author": "itiwat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/d/od_9175222_39_1648.mp3"
+      },
+      {
+        "author": "bjhinton",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/i/ki_8971534_39_1648_1.mp3"
+      },
+      {
+        "author": "PaulJWright",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/f/vf_9046708_39_1648_1543.mp3"
+      },
+      {
+        "author": "kithuis",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/b/jb_9517324_39_1648.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/8/i8_9468274_39_1648.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/9/v9_9488892_39_1648.mp3"
+      },
+      {
+        "author": "diaduitamigo",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/b/cb_9728633_39_1648.mp3"
+      }
+    ]
+  },
+  "mother": {
+    "mp3": [
+      {
+        "author": "davechristi",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/h/6h_9004571_39_3848_732431.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/h/wh_8981864_39_3848_617378.mp3"
+      },
+      {
+        "author": "Voyagerfan5761",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/0/n0_8971702_39_3848_1.mp3"
+      },
+      {
+        "author": "roman_candle",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/5/b5_9094060_39_3848_1544138.mp3"
+      },
+      {
+        "author": "Adcro",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/5/f5_9301197_39_3848.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/q/2q_9187295_39_3848.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/r/fr_9410655_39_3848.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/c/gc_9378780_39_3848.mp3"
+      },
+      {
+        "author": "browniesareg",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/d/gd_8977476_39_3848_4209.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/f/if_9419270_39_3848.mp3"
+      },
+      {
+        "author": "whiteo",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/0/p0_9057396_39_3848_57822.mp3"
+      },
+      {
+        "author": "ymous_anon",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/8/u8_9358938_39_3848.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/f/vf_9230373_39_3848.mp3"
+      },
+      {
+        "author": "harbour1971",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/k/4k_9606133_39_3848.mp3"
+      },
+      {
+        "author": "Icysyrup",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/e/he_9714639_39_3848.mp3"
+      },
+      {
+        "author": "mikebill",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/e/1e_9665640_39_3848.mp3"
+      },
+      {
+        "author": "Atalina",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/y/zy_9567265_39_3848.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/w/jw_9326074_39_3848.mp3"
+      },
+      {
+        "author": "Cobra1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/b/2b_9208109_39_3848_1432526.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/6/56_9853898_39_3848.mp3"
+      }
+    ]
+  },
+  "night": {
+    "mp3": [
+      {
+        "author": "Artful",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/x/1x_9154281_39_5980_1266195.mp3"
+      },
+      {
+        "author": "bjhinton",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/4/a4_8971534_39_5980_1.mp3"
+      },
+      {
+        "author": "itiwat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/g/ag_9175222_39_5980.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/v/yv_8992148_39_5980_6741.mp3"
+      },
+      {
+        "author": "MaidinLeith",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/1/m1_9154233_39_5980_190820.mp3"
+      },
+      {
+        "author": "acarlow",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/h/1h_9726297_39_5980.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/8/68_9497651_39_5980.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/t/tt_9468274_39_5980.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/l/4l_9467361_39_5980.mp3"
+      },
+      {
+        "author": "Kae4",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/y/7y_9391168_39_5980.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/p/2p_9853898_39_5980.mp3"
+      }
+    ]
+  },
+  "old": {
+    "mp3": [
+      {
+        "author": "Voyagerfan5761",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/l/6l_8971702_39_3533_1.mp3"
+      },
+      {
+        "author": "ijarritos",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/n/dn_9350085_39_3533.mp3"
+      },
+      {
+        "author": "go2rose",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/g/zg_9119775_39_3533_4230.mp3"
+      },
+      {
+        "author": "pauldavey",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/r/2r_9389589_39_3533.mp3"
+      },
+      {
+        "author": "mikebill",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/6/c6_9665640_39_3533.mp3"
+      },
+      {
+        "author": "SimonAu",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/u/wu_9597432_39_3533.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/g/eg_9187295_39_3533.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/w/rw_9468274_39_3533.mp3"
+      },
+      {
+        "author": "showmeandrew",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/f/of_9846355_39_3533.mp3"
+      }
+    ]
+  },
+  "person": {
+    "mp3": [
+      {
+        "author": "kstone11",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/p/mp_9261923_39_5999.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/2/p2_8981864_39_5999_1870807.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/2/z2_9467361_39_5999.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/s/9s_9098169_39_5999_1364199.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/h/0h_9488892_39_5999.mp3"
+      },
+      {
+        "author": "bjhinton",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/1/41_8971534_39_5999_1.mp3"
+      },
+      {
+        "author": "bananaman",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/m/6m_9065958_39_5999_1363786.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/s/ms_9230373_39_5999.mp3"
+      },
+      {
+        "author": "falconfling",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/o/co_8976598_39_5999_6820.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/t/ft_9853898_39_5999.mp3"
+      }
+    ]
+  },
+  "popular": {
+    "mp3": [
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/z/fz_9275625_39_15166.mp3"
+      },
+      {
+        "author": "Bernard12",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/b/4b_9255648_39_15166_1786837.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/3/s3_8986237_39_15166_724652.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/7/k7_8980652_39_15166_1.mp3"
+      },
+      {
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/k/jk_9252897_39_15166.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/t/qt_9497651_39_15166.mp3"
+      },
+      {
+        "author": "Cynicalbf",
+        "country": "\u042f\u043f\u043e\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/x/dx_9871283_39_15166.mp3"
+      }
+    ]
+  },
+  "recreation": {
+    "mp3": [
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/x/mx_8981864_39_986953_693139.mp3"
+      },
+      {
+        "author": "thethirdmilk",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/h/ah_9068234_39_986953_1.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/p/lp_9189479_39_986953_693943.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/0/60_9410655_39_986953.mp3"
+      }
+    ]
+  },
+  "sister": {
+    "mp3": [
+      {
+        "author": "falconfling",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/w/lw_8976598_39_305455_1.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/0/g0_8981864_39_305455_636299.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/e/ge_9187295_39_305455.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/5/g5_8999059_39_305455_149686.mp3"
+      },
+      {
+        "author": "dangelovich",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/5/a5_8979171_39_305455_137266.mp3"
+      },
+      {
+        "author": "susan1430",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/i/4i_9146639_39_305455.mp3"
+      },
+      {
+        "author": "acarlow",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/h/hh_9726297_39_305455.mp3"
+      },
+      {
+        "author": "Cassie84",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/w/zw_9467503_39_305455.mp3"
+      },
+      {
+        "author": "roman_candle",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/4/64_9094060_39_305455_1213247.mp3"
+      },
+      {
+        "author": "amanda1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/j/o/jo_9141671_39_305455_875794.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/b/7b_9853898_39_305455.mp3"
+      }
+    ]
+  },
+  "speak": {
+    "mp3": [
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/k/rk_8981864_39_6485.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/a/na_9187295_39_6485_1806999.mp3"
+      },
+      {
+        "author": "BritishEnglish",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/1/q1_9058872_39_6485_402540.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/2/92_8986237_39_6485_635782.mp3"
+      },
+      {
+        "author": "clc3030",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/3/m3_9198709_39_6485_1838482.mp3"
+      },
+      {
+        "author": "owlishemily",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/e/z/ez_9248851_39_6485_1149071.mp3"
+      },
+      {
+        "author": "Lmaonade",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/9/p9_9251455_39_6485_1785120.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/s/ps_9488892_39_6485.mp3"
+      }
+    ]
+  },
+  "spoon": {
+    "mp3": [
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/3/23_8981864_39_321612_78949.mp3"
+      },
+      {
+        "author": "falconfling",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/p/5p_8976598_39_321612_1.mp3"
+      },
+      {
+        "author": "jpogli",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/a/2a_9372894_39_321612.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/a/ya_9187295_39_321612.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/w/xw_9189479_39_321612_595729.mp3"
+      },
+      {
+        "author": "floridagirl",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/7/77_9054385_39_321612_551179.mp3"
+      }
+    ]
+  },
+  "spring": {
+    "mp3": [
+      {
+        "author": "fast46",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/j/lj_8982825_39_399122_1.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/x/px_8986237_39_399122_703324.mp3"
+      },
+      {
+        "author": "trice",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/j/3j_9207327_39_399122_1123531.mp3"
+      },
+      {
+        "author": "yayjimin",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/x/9x_9725834_39_399122.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/y/py_9468274_39_399122.mp3"
+      },
+      {
+        "author": "Gabrianne",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/6/66_9337379_39_399122.mp3"
+      },
+      {
+        "author": "MichaelDS",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/3/s3_9863721_39_399122.mp3"
+      }
+    ]
+  },
+  "strong": {
+    "mp3": [
+      {
+        "author": "eris",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/n/2n_8990111_39_4061_166625.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/4/p4_9468274_39_4061.mp3"
+      },
+      {
+        "author": "jackNoc",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/5/e/5e_8990102_39_4061_1.mp3"
+      },
+      {
+        "author": "katierh",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/c/uc_9524530_39_4061.mp3"
+      },
+      {
+        "author": "Istger",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/y/2y_9823112_39_4061.mp3"
+      }
+    ]
+  },
+  "successful": {
+    "mp3": [
+      {
+        "author": "BritishEnglish",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/1/d1_9058872_39_294996_610376.mp3"
+      },
+      {
+        "author": "fordum",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/2/q2_8973497_39_294996_1.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/p/4p_8986237_39_294996_632161.mp3"
+      },
+      {
+        "author": "stalwartlover",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/b/9b_9142139_39_294996.mp3"
+      },
+      {
+        "author": "kstone11",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/l/tl_9261923_39_294996.mp3"
+      },
+      {
+        "author": "rxcello",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/7/r7_9154720_39_294996.mp3"
+      }
+    ]
+  },
+  "summer": {
+    "mp3": [
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/l/ql_8975595_39_13440.mp3"
+      },
+      {
+        "author": "abeluther24",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/f/3f_9547026_39_13440.mp3"
+      },
+      {
+        "author": "yayjimin",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/z/3z_9725834_39_13440.mp3"
+      },
+      {
+        "author": "fordum",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/h/k/hk_8973497_39_13440_13613.mp3"
+      },
+      {
+        "author": "lythena",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/z/tz_8990302_39_13440_42740.mp3"
+      },
+      {
+        "author": "MichaelDS",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/a/ga_9863721_39_13440.mp3"
+      },
+      {
+        "author": "Gabrianne",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/j/wj_9337379_39_13440.mp3"
+      },
+      {
+        "author": "JBranch1998",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/j/3j_9520686_39_13440.mp3"
+      },
+      {
+        "author": "go2rose",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/u/su_9119775_39_13440_168637.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/p/sp_9468274_39_13440.mp3"
+      },
+      {
+        "author": "RoseJ",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/3/y3_9438404_39_13440.mp3"
+      },
+      {
+        "author": "2940725",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/e/ae_9409569_39_13440.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/h/sh_9853898_39_13440.mp3"
+      }
+    ]
+  },
+  "sun": {
+    "mp3": [
+      {
+        "author": "floridagirl",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/7/r7_9054385_39_3707_115182.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/a/4a_8981864_39_3707.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/s/1/s1_9467361_39_3707.mp3"
+      },
+      {
+        "author": "falconfling",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/s/ps_8976598_39_3707_57015.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/m/cm_9187295_39_3707.mp3"
+      },
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/i/0i_9378780_39_3707.mp3"
+      },
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/r/b/rb_8986237_39_3707_1061760.mp3"
+      }
+    ]
+  },
+  "table": {
+    "mp3": [
+      {
+        "author": "SeanMauch",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/t/zt_9378780_39_206.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/c/3c_9125401_39_206_259695.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/l/o/lo_9187295_39_206.mp3"
+      },
+      {
+        "author": "SimonAu",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/s/qs_9597432_39_206.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/q/kq_9230373_39_206.mp3"
+      },
+      {
+        "author": "nervebrain",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/6/76_9497651_39_206.mp3"
+      },
+      {
+        "author": "juand927",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/a/va_9408461_39_206.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/z/1z_9853898_39_206.mp3"
+      },
+      {
+        "country": "\u0422\u0443\u0440\u0446\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/0/x0_9653930_39_206.mp3"
+      }
+    ]
+  },
+  "traditional": {
+    "mp3": [
+      {
+        "author": "ropa",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/l/bl_8993947_39_499242_1.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/x/1x_8981864_39_499242.mp3"
+      },
+      {
+        "author": "Matt3799",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/v/4v_9446602_39_499242.mp3"
+      },
+      {
+        "author": "wordfactory",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/0/i0_9349102_39_499242.mp3"
+      }
+    ]
+  },
+  "understand ": {
+    "mp3": [
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/4/04_8981864_39_11812.mp3"
+      },
+      {
+        "author": "Sarotchka",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/u/8u_9375417_39_11812.mp3"
+      },
+      {
+        "author": "Storeback",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/2/i/2i_9199903_39_11812_1378419.mp3"
+      },
+      {
+        "author": "jilllandon",
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/c/7c_9315658_39_11812.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/i/ki_9488892_39_11812.mp3"
+      },
+      {
+        "author": "wkshimself",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/u/e/ue_9043306_39_11812.mp3"
+      },
+      {
+        "author": "w0rldprinc3ss",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/o/to_9547270_39_11812.mp3"
+      },
+      {
+        "author": "blobby27",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/t/b/tb_9259067_39_11812_1560375.mp3"
+      },
+      {
+        "author": "Home",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/m/v/mv_9027542_39_11812_12231.mp3"
+      },
+      {
+        "author": "2583720",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/3/63_9309768_39_11812.mp3"
+      },
+      {
+        "author": "wordfactory",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/i/pi_9349102_39_11812.mp3"
+      },
+      {
+        "author": "togig",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/h/vh_9209999_39_11812_1544082.mp3"
+      },
+      {
+        "author": "musicaletty",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/v/l/vl_9478649_39_11812.mp3"
+      },
+      {
+        "author": "Cobra1",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/x/cx_9208109_39_11812_1488141.mp3"
+      },
+      {
+        "author": "stevesuna",
+        "country": "\u0422\u0443\u0440\u0446\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/x/v/xv_9257562_39_11812_1852368.mp3"
+      }
+    ]
+  },
+  "useful": {
+    "mp3": [
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/e/pe_8975595_39_75331.mp3"
+      },
+      {
+        "country": "\u041a\u0430\u043d\u0430\u0434\u0430",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/t/3t_9252897_39_75331.mp3"
+      },
+      {
+        "author": "jennyskene",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/d/x/dx_9511957_39_75331.mp3"
+      },
+      {
+        "author": "fordum",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/0/6/06_8973497_39_75331_1.mp3"
+      },
+      {
+        "author": "Chaynes2",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/w/iw_9522146_39_75331.mp3"
+      }
+    ]
+  },
+  "winter": {
+    "mp3": [
+      {
+        "author": "anakat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/q/s/qs_8975595_39_5693.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/n/8n_9189479_39_5693_1350199.mp3"
+      },
+      {
+        "author": "2Crow",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/9/k9_9744922_39_5693.mp3"
+      },
+      {
+        "author": "NipponJapan",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/z/i/zi_9467361_39_5693.mp3"
+      },
+      {
+        "author": "JessicaMS",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/o/k/ok_9410655_39_5693.mp3"
+      },
+      {
+        "author": "griffeblanche",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/9/b/9b_9187295_39_5693.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/a/ya_9853898_39_5693.mp3"
+      },
+      {
+        "author": "MichaelDS",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/b/5/b5_9863721_39_5693.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/4/o/4o_9230373_39_5693.mp3"
+      },
+      {
+        "author": "Gabrianne",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/7/c/7c_9337379_39_5693.mp3"
+      },
+      {
+        "author": "imwasserverbrannt",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/g/o/go_9783341_39_5693.mp3"
+      },
+      {
+        "author": "fordum",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/1/1/11_8973497_39_5693_13615.mp3"
+      },
+      {
+        "author": "GRizwan",
+        "country": "\u0418\u043d\u0434\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/w/s/ws_9115872_39_5693_1038714.mp3"
+      }
+    ]
+  },
+  "woman": {
+    "mp3": [
+      {
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/f/g/fg_8992148_39_16392_151217.mp3"
+      },
+      {
+        "author": "TopQuark",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/a/0/a0_8981864_39_16392_190835.mp3"
+      },
+      {
+        "author": "tipit",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/q/pq_9470185_39_16392.mp3"
+      },
+      {
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/y/yy_9189479_39_16392_1098467.mp3"
+      },
+      {
+        "author": "Neptunium",
+        "country": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/y/yy_9488892_39_16392.mp3"
+      },
+      {
+        "author": "wasptamer",
+        "gender": "\u0418\u0437 \u0421\u0428\u0410",
+        "url": "https://audio00.forvo.com/audios/mp3/8/5/85_8987718_39_16392_15014.mp3"
+      },
+      {
+        "author": "mmdills22",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/6/y/6y_9468274_39_16392.mp3"
+      },
+      {
+        "author": "4028359",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/n/y/ny_9548000_39_16392.mp3"
+      },
+      {
+        "author": "JerrySun",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/k/o/ko_9230373_39_16392.mp3"
+      },
+      {
+        "author": "itiwat",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/3/1/31_9175222_39_16392.mp3"
+      },
+      {
+        "author": "Slick",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/8/6/86_9326074_39_16392.mp3"
+      },
+      {
+        "author": "cate0012",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/p/h/ph_9207731_39_16392_1756276.mp3"
+      },
+      {
+        "author": "1098466",
+        "country": "\u0421\u0428\u0410",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/i/4/i4_8986237_39_16392_1098088.mp3"
+      },
+      {
+        "author": "enfield",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u0436\u0435\u043d\u0449\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/6/c6_9125401_39_16392_549546.mp3"
+      },
+      {
+        "author": "eggypp",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/y/h/yh_9853898_39_16392.mp3"
+      },
+      {
+        "author": "PaulJWright",
+        "country": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f",
+        "gender": "\u043c\u0443\u0436\u0447\u0438\u043d\u0430",
+        "url": "https://audio00.forvo.com/audios/mp3/c/2/c2_9046708_39_16392_256787.mp3"
+      }
+    ]
+  },
   "\u042f": {
     "mp3": [
       {

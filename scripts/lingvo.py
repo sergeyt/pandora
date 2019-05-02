@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 
+import sys
 import os
 import re
 from datetime import datetime
 import api
 import macmillan
 import forvo
-import requests
-import utils
 import urllib
 
-testing = False
+first = lambda a: next(iter(a or []), None)
+testing = first(filter(lambda a: a.find('testing') >= 0, sys.argv)) is not None
 dir = os.path.dirname(os.path.realpath(__file__))
 
 # utils.enable_logging_with_headers()
@@ -61,7 +61,7 @@ def init():
             if kind and id not in typed:
                 if kind == 'term':
                     add_audio(line, id, buf, audio)
-                if kind != 'tag':
+                if line.find('<Term>') < 0:
                     buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
                 buf.append(created_at(id))
                 buf.append(created_by(id))
@@ -84,8 +84,6 @@ def map_type(line):
         return 'file'
     if re.match(r'_:\w+_(en|ru)', line):
         return 'term'
-    if line.find('<Tag>') >= 0:
-        return 'tag'
     return None
 
 
@@ -120,14 +118,15 @@ def add_audio(line, id, buf, audio):
     lang = m.group(2)
     text = m.group(3)
 
-    if lang == 'ru':
-        f = forvo.find_audio(text)
-        if f is None:
-            return
-        urls = [t['url'] for t in f['mp3']]
-    else:
+    urls = []
+    if lang == 'en':
         m = macmillan.find_audio(word)
         urls = ['https://howjsay.com/mp3/{0}.mp3'.format(word), m['mp3']]
+
+    f = forvo.find_audio(text, lang)
+    if f is None and len(urls) == 0:
+        return
+    urls.extend([t['url'] for t in f['mp3']])
 
     proxy_urls = []
     for url in urls:
