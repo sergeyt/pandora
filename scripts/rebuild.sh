@@ -4,10 +4,12 @@ set -e
 
 git checkout Gopkg.lock
 git pull
+
+docker-compose down
+
 dep ensure
 go install
 
-docker-compose down
 docker-compose build --no-cache
 docker-compose up -d
 # TODO wait while all services is up
