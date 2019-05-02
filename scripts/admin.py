@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
 import os
-import logging
-import traceback
 import subprocess
 
 import api
-import initdata
-import lingvo
+import resetdb as resetdb_impl
 
 from functools import wraps
 from flask import Flask, request
@@ -50,10 +46,7 @@ def initschema():
 @app.route('/api/pyadmin/resetdb')
 @secret_required
 def resetdb():
-    api.drop_all()
-    api.init_schema()
-    initdata.init()
-    lingvo.init()
+    resetdb_impl.run()
     return done
 
 
