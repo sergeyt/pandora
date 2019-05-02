@@ -95,7 +95,7 @@ def find_in_cache(word):
     return cache[word] if word in cache else None
 
 
-def find_audio(word, lang = 'ru'):
+def find_audio(word, lang='ru'):
     result = find_in_cache(word)
     if not testing and result is not None:
         return result

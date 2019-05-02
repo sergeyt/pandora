@@ -17,12 +17,13 @@ API_KEY = os.getenv('API_KEY')
 
 jwt_secret = os.getenv('JWT_SECRET')
 dgraph_token = os.getenv('DGRAPH_TOKEN')
-system_token = jwt.encode({
-    'user_id': 'system',
-    'user_name': 'system',
-    'email': 'stodyshev@gmail.com',
-    'role': 'admin',
-}, jwt_secret).decode('utf-8')
+system_token = jwt.encode(
+    {
+        'user_id': 'system',
+        'user_name': 'system',
+        'email': 'stodyshev@gmail.com',
+        'role': 'admin',
+    }, jwt_secret).decode('utf-8')
 
 access_token = ''
 
@@ -73,8 +74,11 @@ def post(path, payload, auth=None, raw=False, content_type=MIME_JSON):
     params = {'key': API_KEY}
     h = headers(content_type)
     data = payload if raw or content_type != MIME_JSON else jsonstr(payload)
-    resp = requests.post(
-        url(path), data=data, params=params, headers=h, auth=auth)
+    resp = requests.post(url(path),
+                         data=data,
+                         params=params,
+                         headers=h,
+                         auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
@@ -83,8 +87,11 @@ def post(path, payload, auth=None, raw=False, content_type=MIME_JSON):
 def put(path, payload, auth=None, raw=False):
     params = {'key': API_KEY}
     data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
-    resp = requests.put(
-        url(path), data=data, params=params, headers=headers(), auth=auth)
+    resp = requests.put(url(path),
+                        data=data,
+                        params=params,
+                        headers=headers(),
+                        auth=auth)
     dump_json(resp)
     resp.raise_for_status()
     return resp.json()
@@ -92,8 +99,10 @@ def put(path, payload, auth=None, raw=False):
 
 def delete(path, auth=None):
     params = {'key': API_KEY}
-    resp = requests.delete(
-        url(path), params=params, headers=headers(), auth=auth)
+    resp = requests.delete(url(path),
+                           params=params,
+                           headers=headers(),
+                           auth=auth)
     resp.raise_for_status()
     return resp
 
@@ -190,9 +199,9 @@ def set_nquads(dataset):
 
 
 def generate_string(n):
-    return ''.join(
-        random.SystemRandom().choice(string.ascii_uppercase + string.digits)
-        for _ in range(n))
+    return ''.join(random.SystemRandom().choice(string.ascii_uppercase +
+                                                string.digits)
+                   for _ in range(n))
 
 
 def generate_api_key(app_id='', app_secret=''):
@@ -203,7 +212,7 @@ def generate_api_key(app_id='', app_secret=''):
     key = os.getenv('API_KEY_SECRET')
     headers = {'app_secret': app_secret}
     payload = {'app_id': app_id}
-    api_key = jwt.encode(
-        payload, key + app_secret, headers=headers).decode('utf-8')
+    api_key = jwt.encode(payload, key + app_secret,
+                         headers=headers).decode('utf-8')
     result = {'app_id': app_id, 'app_secret': app_secret, 'api_key': api_key}
     return result
