@@ -16,6 +16,8 @@ with open(os.path.join(dir, 'lingvo.txt'), 'r', encoding='utf-8') as f:
         id = m.group(1)
         tag = m.group(3)
         if tag.endswith('_en') or tag.endswith('_ru'):
+            if id[-2:] != tag[-2:]:
+                continue
             lines.append(line)
             continue
         lines.append('{0} <tag> _:{1}_en .'.format(id, tag))
