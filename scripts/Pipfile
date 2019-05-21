@@ -23,6 +23,7 @@ flask = "*"
 flup-py3 = "*"
 beautifulsoup4 = "*"
 html5lib = "*"
+langdetect = "*"
 
 [requires]
 python_version = "3.6"

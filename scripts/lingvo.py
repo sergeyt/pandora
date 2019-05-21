@@ -5,12 +5,13 @@ import os
 import re
 from datetime import datetime
 import api
-import macmillan
-import forvo
+import audiosource
 import urllib
 
+TESTING = os.getenv('TESTING', '')
 first = lambda a: next(iter(a or []), None)
-testing = first(filter(lambda a: a.find('testing') >= 0, sys.argv)) is not None
+testarg = first(filter(lambda a: a.find('testing') >= 0, sys.argv)) is not None
+testing = len(TESTING) > 0 or testarg
 dir = os.path.dirname(os.path.realpath(__file__))
 
 # utils.enable_logging_with_headers()
@@ -78,6 +79,11 @@ def init():
     if not testing:
         api.set_nquads(data)
 
+    # TODO fix recursive tags
+    # _:word_en <tag> _:word_en .
+    # _:word_en <tag> _:noun_en .
+    # _:noun_en <tag> _:noun_en .
+
 
 def map_type(line):
     if line.startswith('_:img_'):
@@ -119,26 +125,27 @@ def add_audio(line, id, buf, audio):
     text = m.group(3)
 
     urls = []
-    if lang == 'en':
-        m = macmillan.find_audio(word)
-        urls = ['https://howjsay.com/mp3/{0}.mp3'.format(word), m['mp3']]
+    a = audiosource.find_audio(text, lang)
+    if a is not None:
+        if 'mp3' in a:
+            urls.extend([t['url'] for t in a['mp3']])
+        if 'ogg' in a and 'mp3' not in a:
+            urls.extend([t['url'] for t in a['ogg']])
 
-    f = forvo.find_audio(text, lang)
-    if f is None and len(urls) == 0:
+    if len(urls) == 0:
         return
-    urls.extend([t['url'] for t in f['mp3']])
 
-    proxy_urls = []
-    for url in urls:
-        try:
-            url2 = proxy_url(url)
-            proxy_urls.append(url2)
-        except:
-            print('cannot proxy {0}'.format(url))
+    # proxy_urls = []
+    # for url in urls:
+    #     try:
+    #         url2 = proxy_url(url)
+    #         proxy_urls.append(url2)
+    #     except:
+    #         print('cannot proxy {0}'.format(url))
 
     audio[id] = []
     lines = []
-    for i, url in enumerate(proxy_urls):
+    for i, url in enumerate(urls):
         (aud_id, nquads) = audio_nquads(id, url, i + 1)
         audio[id].append('{0} <audio> {1} .'.format(id, aud_id))
         lines.extend(nquads)

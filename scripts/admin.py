@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
 import os
-import subprocess
+import audiosource
+from langdetect import detect
 
 import api
 import resetdb as resetdb_impl
@@ -15,7 +16,7 @@ app.debug = True
 done = 'done!'
 
 
-def secret_required(f):
+def auth(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         secret = request.args.get('secret')
@@ -28,7 +29,7 @@ def secret_required(f):
 
 
 @app.route('/api/pyadmin/dropall')
-@secret_required
+@auth
 def dropall():
     api.drop_all()
     api.init_schema()
@@ -36,7 +37,7 @@ def dropall():
 
 
 @app.route('/api/pyadmin/initschema')
-@secret_required
+@auth
 def initschema():
     api.drop_all()
     api.init_schema()
@@ -44,24 +45,21 @@ def initschema():
 
 
 @app.route('/api/pyadmin/resetdb')
-@secret_required
+@auth
 def resetdb():
     resetdb_impl.run()
     return done
 
 
-@app.route('/api/pyadmin/upgrade')
-@secret_required
-def upgrade():
-    subprocess.call(['./upgrade.sh'])
-    return done
-
-
-@app.route('/api/pyadmin/rebuild')
-@secret_required
-def rebuild():
-    subprocess.call(['./rebuild.sh'])
-    return done
+@app.route('/api/pyadmin/search/audio/<text>')
+@auth
+def find_audio(text):
+    lang = request.args.get('lang')
+    if lang is None or lang == '':
+        lang = detect(text)
+        if lang != 'ru':
+            lang = 'en'
+    return audiosource.find_audio(text, lang)
 
 
 app.wsgi_app = ProxyFix(app.wsgi_app)

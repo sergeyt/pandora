@@ -1,4 +1,6 @@
+import sys
 import logging
+from langdetect import detect
 
 # https://stackoverflow.com/questions/16337511/log-all-requests-from-the-python-requests-module
 # https://stackoverflow.com/questions/10588644/how-can-i-see-the-entire-http-request-thats-being-sent-by-my-python-application
@@ -28,3 +30,11 @@ def enable_logging_with_headers():
     requests_log = logging.getLogger("requests.packages.urllib3")
     requests_log.setLevel(logging.DEBUG)
     requests_log.propagate = True
+
+
+def find_audio_args():
+    text = sys.argv[1]
+    lang = sys.argv[2] if len(sys.argv) >= 3 else detect(text)
+    if lang != 'ru':
+        lang = 'en'
+    return (text, lang)

@@ -1,21 +1,19 @@
 #!/usr/bin/env python
 
-import sys
-import os
 import urllib
 import requests
 import base64
 import json
+import dictcom
+import utils
 from bs4 import BeautifulSoup
+from localcache import Cache
 
 AUDIO_HOST = 'https://audio00.forvo.com/audios/mp3'
 
 first = lambda a: next(iter(a or []), None)
 
-dir = os.path.dirname(os.path.realpath(__file__))
-cachePath = os.path.join(dir, 'forvo.json')
-cache = {}
-testing = False
+cache = Cache('forvo')
 
 
 def decode_base64(s):
@@ -39,11 +37,20 @@ def parse_fn(src):
 
 
 def translate_gender(val):
-    return val.strip()
+    val = val.strip()
+    if val == '\u0436\u0435\u043d\u0449\u0438\u043d\u0430':
+        return 'f'
+    if val == '\u043c\u0443\u0436\u0447\u0438\u043d\u0430':
+        return 'm'
+    return val
 
 
 def translate_counry(val):
-    return val.strip()
+    val = val.strip()
+    r = dictcom.translate(val)
+    if r is not None and len(r['tran']) > 0:
+        return r['tran'][0].lower()
+    return val
 
 
 def parse_from(s):
@@ -87,21 +94,13 @@ def parse_item(item):
     return result
 
 
-def find_in_cache(word):
-    global cache
-    if len(cache) == 0:
-        with open(cachePath, 'r') as f:
-            cache = json.load(f)
-    return cache[word] if word in cache else None
-
-
-def find_audio(word, lang='ru'):
-    result = find_in_cache(word)
-    if not testing and result is not None:
+def find_audio(text, lang='ru'):
+    result = cache.get(text)
+    if result is not None:
         return result
 
     pat = 'https://ru.forvo.com/word/{0}/#{1}'
-    url = pat.format(urllib.parse.quote(word), lang)
+    url = pat.format(urllib.parse.quote(text), lang)
     headers = {
         'User-Agent': 'script',
         'Accept': 'text/html',
@@ -122,17 +121,15 @@ def find_audio(word, lang='ru'):
     items = [t for t in parsed_items if t is not None]
     result = {'mp3': items}
 
-    if not testing:
-        cache[word] = result
-        with open(cachePath, 'w') as f:
-            f.write(json.dumps(cache, sort_keys=True, indent='  '))
+    cache.put(text, result)
 
     return result
 
 
 def main():
-    word = sys.argv[1]
-    print(find_audio(word))
+    (text, lang) = utils.find_audio_args()
+    result = find_audio(text, lang)
+    print(json.dumps(result, sort_keys=True, indent='  '))
 
 
 if __name__ == '__main__':

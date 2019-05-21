@@ -1,32 +1,25 @@
 #!/usr/bin/env python
 
-import sys
-import os
 import re
 import requests
 import json
+import utils
+from localcache import Cache
 
 first = lambda a: next(iter(a or []), None)
-dir = os.path.dirname(os.path.realpath(__file__))
-cachePath = os.path.join(dir, 'macmillan.json')
-cache = {}
+cache = Cache('macmillan')
 
 
-def find_in_cache(word):
-    global cache
-    if len(cache) == 0:
-        with open(cachePath, 'r') as f:
-            cache = json.load(f)
-    return cache[word] if word in cache else None
+def find_audio(text, lang='en'):
+    if lang != 'en':
+        return None
 
-
-def find_audio(word):
-    result = find_in_cache(word)
+    result = cache.get(text)
     if result is not None:
         return result
 
     pat = 'https://www.macmillandictionary.com/dictionary/british/{0}'
-    url = pat.format(word)
+    url = pat.format(text)
     headers = {
         'User-Agent': 'script',
         'Accept': 'text/html',
@@ -34,20 +27,26 @@ def find_audio(word):
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
 
-    mp3 = re.findall('data-src-mp3="([^"]+)"', resp.text)
-    ogg = re.findall('data-src-ogg="([^"]+)"', resp.text)
-    result = {'mp3': first(mp3), 'ogg': first(ogg)}
+    mp3 = first(re.findall('data-src-mp3="([^"]+)"', resp.text))
+    ogg = first(re.findall('data-src-ogg="([^"]+)"', resp.text))
+    if mp3 is None and ogg is None:
+        return None
 
-    cache[word] = result
-    with open(cachePath, 'w') as f:
-        f.write(json.dumps(cache, sort_keys=True, indent='  '))
+    result = {}
+    if mp3:
+        result['mp3'] = [{'url': mp3}]
+    if ogg:
+        result['ogg'] = [{'url': ogg}]
+
+    cache.put(text, result)
 
     return result
 
 
 def main():
-    word = sys.argv[1]
-    print(find_audio(word))
+    (text, lang) = utils.find_audio_args()
+    result = find_audio(text, lang)
+    print(json.dumps(result, sort_keys=True, indent='  '))
 
 
 if __name__ == '__main__':
