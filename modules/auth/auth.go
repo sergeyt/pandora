@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/go-chi/chi"
-	authbase "github.com/gocontrib/auth"
+	goauth "github.com/gocontrib/auth"
 	"github.com/gocontrib/auth/oauth"
 	"github.com/markbates/goth/providers/facebook"
 	"github.com/markbates/goth/providers/google"
@@ -14,21 +14,22 @@ import (
 
 var (
 	authConfig  = makeAuthConfig()
-	requireUser = authbase.RequireUser(authConfig)
+	requireUser = goauth.RequireUser(authConfig)
 )
 
 // RegisterAPI registers authentication HTTP API
 func RegisterAPI(mux chi.Router) {
-	mux.Post("/api/login", authbase.LoginHandlerFunc(authConfig))
-	mux.Post("/api/register", authbase.RegisterHandlerFunc(authConfig))
+	mux.Post("/api/login", goauth.LoginHandlerFunc(authConfig))
+	mux.Post("/api/register", goauth.RegisterHandlerFunc(authConfig))
+	mux.Post("/api/token/check", goauth.CheckTokenHandlerFunc(authConfig))
 
 	oauth.WithProviders(authConfig, "vk", vk.New, "google", google.New, "facebook", facebook.New)
 	oauth.RegisterAPI(mux, authConfig)
 }
 
-func makeAuthConfig() *authbase.Config {
+func makeAuthConfig() *goauth.Config {
 	userStore := makeUserStore()
-	return &authbase.Config{
+	return &goauth.Config{
 		UserStore:   userStore,
 		UserStoreEx: userStore,
 	}
@@ -45,7 +46,7 @@ func Middleware(next http.Handler) http.Handler {
 		role := get(claims, "role")
 
 		if len(userID) > 0 && len(userName) > 0 {
-			var user authbase.User = &authbase.UserInfo{
+			var user goauth.User = &goauth.UserInfo{
 				ID:    userID,
 				Name:  userName,
 				Email: email,
@@ -61,12 +62,12 @@ func Middleware(next http.Handler) http.Handler {
 			if userID != "system" {
 				user, err = authConfig.UserStore.FindUserByID(ctx, userID)
 				if err != nil {
-					authbase.SendError(w, authbase.ErrUserNotFound.WithCause(err))
+					goauth.SendError(w, goauth.ErrUserNotFound.WithCause(err))
 					return
 				}
 			}
 
-			ctx = authbase.WithUser(ctx, user)
+			ctx = goauth.WithUser(ctx, user)
 			r = r.WithContext(ctx)
 			next.ServeHTTP(w, r)
 			return
