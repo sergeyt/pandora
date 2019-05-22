@@ -5,6 +5,7 @@ import jwt
 import re
 import string
 import random
+import urllib
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -50,7 +51,8 @@ def headers(content_type=MIME_JSON):
     h = stdHeaders.copy()
     t = access_token if access_token else system_token
     h['Authorization'] = 'Bearer ' + t
-    h['Content-Type'] = content_type
+    if content_type is not None:
+        h['Content-Type'] = content_type
     return h
 
 
@@ -60,7 +62,7 @@ def url(path):
 
 def get(path):
     params = {'key': API_KEY}
-    resp = requests.get(url(path), params=params, headers=headers())
+    resp = requests.get(url(path), params=params, headers=headers(None))
     dump_json(resp)
     resp.raise_for_status()
     return resp.json() if is_json(resp) else resp
@@ -114,8 +116,21 @@ def login(username, password):
     return access_token
 
 
+def check_token(token):
+    headers = {'Authorization': 'Bearer ' + token}
+    resp = requests.get(url('/api/token'), headers=headers)
+    dump_json(resp)
+    return resp
+
+
 def current_user():
     return get('/api/me')
+
+
+def search_audio(text, lang):
+    txt = urllib.parse.quote(text)
+    url = '/api/pyadmin/search/audio/{0}?lang={1}'.format(txt, lang)
+    return get(url)
 
 
 def fileproxy(url):

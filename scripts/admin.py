@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 import os
-import audiosource
-from langdetect import detect
-
 import api
 import resetdb as resetdb_impl
+import audiosource
 
+from langdetect import detect
 from functools import wraps
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
@@ -19,10 +18,15 @@ done = 'done!'
 def auth(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        secret = request.args.get('secret')
-        if secret is None or secret == '' or secret != os.getenv(
-                'ADMIN_SECRET'):
-            return 'bad secret!'
+        auth_ok = False
+        auth = request.headers.get('Authorization', '').split(' ')
+        if len(auth) == 2 and auth[0].lower() == 'bearer':
+            resp = api.check_token(auth[1])
+            auth_ok = resp.ok
+        if not auth_ok:
+            secret = request.args.get('secret')
+            if secret != os.getenv('ADMIN_SECRET'):
+                return 'bad auth', 401
         return f(*args, **kwargs)
 
     return decorated_function
@@ -59,7 +63,8 @@ def find_audio(text):
         lang = detect(text)
         if lang != 'ru':
             lang = 'en'
-    return audiosource.find_audio(text, lang)
+    result = audiosource.find_audio(text, lang)
+    return jsonify(result)
 
 
 app.wsgi_app = ProxyFix(app.wsgi_app)
