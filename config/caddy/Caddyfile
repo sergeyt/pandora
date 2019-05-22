@@ -11,6 +11,7 @@ http://localhost, lingvograph.com {
     jwt {
         path /api
         except /api/login
+        except /api/token
         except /api/register
         except /api/oauth
         except /api/pyadmin

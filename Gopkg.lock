@@ -16,8 +16,8 @@
 [[projects]]
   name = "github.com/aws/aws-sdk-go"
   packages = ["aws","aws/awserr","aws/awsutil","aws/client","aws/client/metadata","aws/corehandlers","aws/credentials","aws/credentials/ec2rolecreds","aws/credentials/endpointcreds","aws/credentials/processcreds","aws/credentials/stscreds","aws/csm","aws/defaults","aws/ec2metadata","aws/endpoints","aws/request","aws/session","aws/signer/v4","internal/ini","internal/s3err","internal/sdkio","internal/sdkrand","internal/sdkuri","internal/shareddefaults","private/protocol","private/protocol/eventstream","private/protocol/eventstream/eventstreamapi","private/protocol/json/jsonutil","private/protocol/query","private/protocol/query/queryutil","private/protocol/rest","private/protocol/restxml","private/protocol/xml/xmlutil","service/s3","service/s3/s3iface","service/s3/s3manager","service/sts"]
-  revision = "3e3b24dd55ca4bb508c7e78142632646ee6e8714"
-  version = "v1.19.34"
+  revision = "98779fb4032754e8d2c6c8ec50c28b215666986d"
+  version = "v1.19.35"
 
 [[projects]]
   name = "github.com/davecgh/go-spew"
@@ -77,7 +77,7 @@
   branch = "master"
   name = "github.com/gocontrib/auth"
   packages = [".","ldap","oauth"]
-  revision = "33cd7b5ce270bd8035a8021885868fcbfabc63b8"
+  revision = "30276bc87d24557d22b4e0e4d4cc0120eb2b1867"
 
 [[projects]]
   branch = "master"
@@ -225,8 +225,8 @@
 [[projects]]
   name = "github.com/mattn/go-isatty"
   packages = ["."]
-  revision = "c2a7a6ca930a4cd0bc33a3f298eb71960732a3a7"
-  version = "v0.0.7"
+  revision = "1311e847b0cb909da63b5fecfb5370aa66236465"
+  version = "v0.0.8"
 
 [[projects]]
   name = "github.com/mitchellh/mapstructure"
@@ -394,7 +394,7 @@
   branch = "master"
   name = "golang.org/x/net"
   packages = ["context","context/ctxhttp","http/httpguts","http2","http2/hpack","idna","internal/timeseries","publicsuffix","trace"]
-  revision = "018c4d40a106a7ae83689758294fcd8d23850745"
+  revision = "f3200d17e092c607f615320ecaad13d87ad9a2b3"
 
 [[projects]]
   branch = "master"
@@ -406,7 +406,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "c432e742b0af385916e013f6a34e9e73d139cf82"
+  revision = "8097e1b27ff5e40620836729a9584e91b094b062"
 
 [[projects]]
   name = "golang.org/x/text"

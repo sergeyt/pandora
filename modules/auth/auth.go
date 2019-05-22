@@ -21,7 +21,9 @@ var (
 func RegisterAPI(mux chi.Router) {
 	mux.Post("/api/login", goauth.LoginHandlerFunc(authConfig))
 	mux.Post("/api/register", goauth.RegisterHandlerFunc(authConfig))
-	mux.Post("/api/token/check", goauth.CheckTokenHandlerFunc(authConfig))
+	checkToken := goauth.CheckTokenHandlerFunc(authConfig)
+	mux.Get("/api/token", checkToken)
+	mux.Post("/api/token", checkToken)
 
 	oauth.WithProviders(authConfig, "vk", vk.New, "google", google.New, "facebook", facebook.New)
 	oauth.RegisterAPI(mux, authConfig)
