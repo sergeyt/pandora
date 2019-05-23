@@ -4,10 +4,6 @@ http://localhost, lingvograph.com {
     gzip
     cors
 
-    proxy /api/pyadmin/ localhost:8000 {
-        transparent
-    }
-
     jwt {
         path /api
         except /api/login
@@ -19,6 +15,9 @@ http://localhost, lingvograph.com {
         except /api/file
     }
 
+    proxy /api/pyadmin/ pyadmin:3001 {
+        transparent
+    }
     proxy /api/imageproxy imageproxy:1081 {
         transparent
     }

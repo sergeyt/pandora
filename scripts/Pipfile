@@ -24,6 +24,8 @@ flup-py3 = "*"
 beautifulsoup4 = "*"
 html5lib = "*"
 langdetect = "*"
+watchdog = "*"
+simplejson = "*"
 
 [requires]
 python_version = "3.6"

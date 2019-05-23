@@ -11,15 +11,13 @@ COPY ./docker/caddy_build.sh /usr/bin/caddy_build.sh
 RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/caddy_build.sh
 
 # Dist image
-FROM python:3.6-alpine
+FROM alpine:latest
 
 ENV HTTP_PORT 4200
 
 # install deps
 RUN apk update \
         && apk add --no-cache git openssh-client \
-        && pip3 install pipenv \
-        && pip3 install gunicorn \
         && addgroup -S -g 1001 app \
         && adduser -S -D -h /app -u 1001 -G app app
 
@@ -30,14 +28,7 @@ COPY --from=builder /install/caddy /usr/bin/caddy
 RUN /usr/bin/caddy -plugins
 
 COPY config/caddy/Caddyfile /etc/caddy/Caddyfile
-COPY scripts /pyadmin
-COPY schema.txt /schema.txt
 COPY docker/caddy_entrypoint.sh /entrypoint.sh
-
-WORKDIR /pyadmin
-
-# install flask and other python deps
-RUN pipenv install --deploy --system
 
 # static files volume
 VOLUME ["/www"]

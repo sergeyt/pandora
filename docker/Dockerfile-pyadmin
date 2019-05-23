@@ -1,0 +1,14 @@
+FROM python:3.6-alpine
+
+RUN apk update \
+    && pip3 install pipenv \
+    && pip3 install gunicorn
+
+COPY scripts /pyadmin
+COPY schema.txt /schema.txt
+COPY docker/pyadmin_entrypoint.sh /entrypoint.sh
+
+WORKDIR /pyadmin
+RUN pipenv install --deploy --system
+
+ENTRYPOINT ["/entrypoint.sh"]

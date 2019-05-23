@@ -24,7 +24,7 @@ services:
       - minio:/data
       - ./config/minio:/etc/minio
     ports:
-      - "9000:9000"
+      - 9000:9000
     environment:
       MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID}
       MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -154,6 +154,38 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+  # pyadmin API service
+  pyadmin:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile-pyadmin
+    container_name: pyadmin
+    environment:
+      HOSTNAME: ${HOSTNAME}
+      HTTP_PORT: ${HTTP_PORT}
+      HTTPS_PORT: ${HTTPS_PORT}
+      DGRAPH_TOKEN: ${DGRAPH_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      SYSTEM_PWD: ${SYSTEM_PWD}
+      ADMIN_PWD: ${ADMIN_PWD}
+      # api key protection
+      API_KEY_SECRET: ${API_KEY_SECRET}
+      APP_ID: ${APP_ID}
+      APP_SECRET: ${APP_SECRET}
+      API_GATEWAY_URL: 'http://app:4201'
+      FLASK_ENV: development
+      FLASK_PORT: 3001
+    volumes:
+      - ./scripts:/pyadmin
+      - ./schema.txt:/schema.txt
+    ports:
+      - 3001:3001
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # application API service
   app:
     build:
@@ -188,7 +220,7 @@ services:
     volumes:
       - .:/go/src/github.com/sergeyt/pandora
     ports:
-      - 3000:3000
+      - 4201:4201
     restart: on-failure
     logging:
       driver: "json-file"
