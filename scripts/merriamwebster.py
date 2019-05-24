@@ -10,11 +10,11 @@ cache = Cache('merriamwebster')
 
 
 def parse_btn(btn):
-    lang = btn['data-lang']
+    lang = btn['data-lang'].replace('_', '/')
     dir = btn['data-dir']
     file = btn['data-file']
-    pat = 'https://media.merriam-webster.com/audio/prons/{0}/{1}/{2}.mp3'
-    return pat.format(lang.replace('_', '/'), dir, file)
+    pat = 'https://media.merriam-webster.com/audio/prons/{0}/mp3/{1}/{2}.mp3'
+    return pat.format(lang, dir, file)
 
 
 def find_audio(text, lang):
@@ -44,7 +44,7 @@ def find_audio(text, lang):
 
     urls = [parse_btn(b) for b in btns]
     result = {}
-    for url in urls:
+    for url in [u for u in urls if utils.url_exists(u)]:
         fmt = 'mp3'
         if fmt not in result:
             result[fmt] = []

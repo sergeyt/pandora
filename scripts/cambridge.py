@@ -47,7 +47,8 @@ def find_audio(text, lang):
                 if fmt not in result:
                     result[fmt] = []
                 url = 'https://dictionary.cambridge.org' + d[fmt]
-                result[fmt].append({'url': url, 'region': d['region']})
+                if utils.url_exists(url):
+                    result[fmt].append({'url': url, 'region': d['region']})
 
     cache.put(text, result)
 

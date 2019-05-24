@@ -118,7 +118,9 @@ def find_audio(text, lang='ru'):
 
     li = ul.find_all('li')
     parsed_items = [parse_item(t) for t in li]
-    items = [t for t in parsed_items if t is not None]
+    items = [
+        t for t in parsed_items if t is not None and utils.url_exists(t['url'])
+    ]
     result = {'mp3': items}
 
     cache.put(text, result)

@@ -1,5 +1,6 @@
 import sys
 import logging
+import requests
 from langdetect import detect
 
 # https://stackoverflow.com/questions/16337511/log-all-requests-from-the-python-requests-module
@@ -38,3 +39,18 @@ def find_audio_args():
     if lang != 'ru':
         lang = 'en'
     return (text, lang)
+
+
+def url_exists(url):
+    if not url:
+        return False
+    try:
+        resp = requests.head(url)
+        if not resp.ok:
+            resp = requests.get(url, stream=True)
+            if not resp.ok:
+                print('not found: {0}'.format(url))
+                return False
+        return True
+    except:
+        return False

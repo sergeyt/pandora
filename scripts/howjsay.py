@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import requests
 import json
 import utils
 from localcache import Cache
@@ -17,8 +16,7 @@ def find_audio(text, lang='en'):
         return result
 
     url = 'https://howjsay.com/mp3/{0}.mp3'.format(text)
-    resp = requests.head(url)
-    if not resp.ok:
+    if not utils.url_exists(url):
         return None
 
     result = {'mp3': [{'url': url}]}
