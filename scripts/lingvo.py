@@ -7,14 +7,18 @@ from datetime import datetime
 import api
 import audiosource
 import urllib
+import utils
+
+
+def first(a): return next(iter(a or []), None)
+
 
 TESTING = os.getenv('TESTING', '')
-first = lambda a: next(iter(a or []), None)
 testarg = first(filter(lambda a: a.find('testing') >= 0, sys.argv)) is not None
 testing = len(TESTING) > 0 or testarg
 dir = os.path.dirname(os.path.realpath(__file__))
 
-# utils.enable_logging_with_headers()
+utils.enable_logging()
 
 
 def login():
