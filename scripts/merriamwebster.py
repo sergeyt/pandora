@@ -43,8 +43,9 @@ def find_audio(text, lang):
         return None
 
     urls = [parse_btn(b) for b in btns]
+    urls = [u for u in urls if utils.url_exists(u)]
     result = {}
-    for url in [u for u in urls if utils.url_exists(u)]:
+    for url in urls:
         fmt = 'mp3'
         if fmt not in result:
             result[fmt] = []

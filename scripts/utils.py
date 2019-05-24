@@ -45,12 +45,18 @@ def url_exists(url):
     if not url:
         return False
     try:
-        resp = requests.head(url)
-        if not resp.ok:
-            resp = requests.get(url, stream=True)
-            if not resp.ok:
-                print('not found: {0}'.format(url))
-                return False
-        return True
+        headers = {
+            'User-Agent': 'script',
+        }
+        resp = requests.head(url, headers=headers)
+        if resp.ok:
+            return True
+        with requests.get(url, headers=headers, stream=True) as resp:
+            if resp.ok:
+                return True
     except:
-        return False
+        pass
+    print('not found: {0}'.format(url))
+    with open("notfound.txt", 'w+') as f:
+        f.write(url)
+    return False

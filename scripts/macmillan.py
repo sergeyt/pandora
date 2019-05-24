@@ -37,6 +37,8 @@ def find_audio(text, lang='en'):
         result['mp3'] = [{'url': mp3}]
     if utils.url_exists(ogg):
         result['ogg'] = [{'url': ogg}]
+    if len(result) == 0:
+        return None
 
     cache.put(text, result)
 
