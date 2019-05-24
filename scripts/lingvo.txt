@@ -8,6 +8,8 @@ _:word_ru <Tag> "" .
 _:word_ru <lang> "ru" .
 _:word_ru <text> "слово" .
 
+_:word_en <translated_as> _:word_ru
+
 _:noun_en <Term> "" .
 _:noun_en <Tag> "" .
 _:noun_en <lang> "en" .
@@ -20,6 +22,8 @@ _:noun_ru <lang> "ru" .
 _:noun_ru <text> "существительное" .
 _:noun_ru <tag> _:word_ru .
 _:noun_ru <tag> _:noun_ru .
+
+_:noun_en <translated_as> _:noun_ru
 
 _:verb_en <Term> "" .
 _:verb_en <Tag> "" .
@@ -35,6 +39,8 @@ _:verb_ru <text> "глагол" .
 _:verb_ru <tag> _:word_ru .
 _:verb_ru <tag> _:noun_ru .
 
+_:verb_en <translated_as> _:verb_ru
+
 _:adjective_en <Term> "" .
 _:adjective_en <Tag> "" .
 _:adjective_en <lang> "en" .
@@ -48,6 +54,8 @@ _:adjective_ru <lang> "" .
 _:adjective_ru <text> "прилагательное" .
 _:adjective_ru <tag> _:word_ru .
 _:adjective_ru <tag> _:noun_ru .
+
+_:adjective_en <translated_as> _:adjective_ru
 
 _:phrase_en <Term> "" .
 _:phrase_en <Tag> "" .
@@ -63,6 +71,8 @@ _:phrase_ru <text> "фраза" .
 _:phrase_ru <tag> _:word_ru .
 _:phrase_ru <tag> _:noun_ru .
 
+_:phrase_en <translated_as> _:phrase_ru
+
 _:idiom_en <Term> "" .
 _:idiom_en <Tag> "" .
 _:idiom_en <lang> "en" .
@@ -77,6 +87,8 @@ _:idiom_ru <text> "идиома" .
 _:idiom_ru <tag> _:word_ru .
 _:idiom_ru <tag> _:noun_ru .
 
+_:idiom_en <translated_as> _:idiom_ru
+
 _:slang_en <Term> "" .
 _:slang_en <Tag> "" .
 _:slang_en <lang> "en" .
@@ -90,6 +102,8 @@ _:slang_ru <lang> "ru" .
 _:slang_ru <text> "жаргон" .
 _:slang_ru <tag> _:word_ru .
 _:slang_ru <tag> _:noun_ru .
+
+_:slang_en <translated_as> _:slang_ru
 
 _:img_afternoon1 <url> "" .
 
