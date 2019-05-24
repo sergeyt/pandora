@@ -213,8 +213,8 @@
 [[projects]]
   name = "github.com/markbates/goth"
   packages = [".","gothic","providers/facebook","providers/google","providers/vk"]
-  revision = "a3986c89570720dfc7c4b263e46a6d2c233d74cd"
-  version = "v1.52.0"
+  revision = "c7b58e2b7a1f73f10757c3b302aed6e421949d6a"
+  version = "v1.53.0"
 
 [[projects]]
   name = "github.com/mattn/go-colorable"
@@ -406,7 +406,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "0e01d883c5c5e3a1741118a9962f68d71b0a6ed4"
+  revision = "c3d486d151ced6de5bcfe3c26c9b9f22cc526edc"
 
 [[projects]]
   name = "golang.org/x/text"
