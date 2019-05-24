@@ -9,7 +9,7 @@ import urllib
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
-VERBOSE = False
+VERBOSE = os.getenv('PYADMIN_VERBOSE', '') == '1'
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
 HTTP_PORT = os.getenv('HTTP_PORT', 80)
 DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
