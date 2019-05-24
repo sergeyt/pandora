@@ -3,14 +3,16 @@
 import sys
 import os
 import re
-from datetime import datetime
+import requests
 import api
 import audiosource
 import urllib
 import utils
+from datetime import datetime
 
 
-def first(a): return next(iter(a or []), None)
+def first(a):
+    return next(iter(a or []), None)
 
 
 TESTING = os.getenv('TESTING', '')
@@ -116,6 +118,17 @@ def audio_nquads(term_id, url, i):
     return id, nquads
 
 
+def url_exists(url):
+    try:
+        resp = requests.head(url)
+        if not resp.ok:
+            print('not found: {0}'.format(url))
+            return False
+        return True
+    except:
+        return False
+
+
 def add_audio(line, id, buf, audio):
     m = re.match(r'_:(\w+)_(en|ru)\s*<text>\s*"([^"]+)"\s*\.', line)
     if m is None:
@@ -136,6 +149,7 @@ def add_audio(line, id, buf, audio):
         if 'ogg' in a and 'mp3' not in a:
             urls.extend([t['url'] for t in a['ogg']])
 
+    urls = [u for u in urls if url_exists(u)]
     if len(urls) == 0:
         return
 
@@ -167,6 +181,9 @@ def change_url(line):
     placeholder = 'https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image'
     if image_url == '':
         image_url = placeholder
+    if not url_exists(image_url):
+        print('not found: {0}'.format(image_url))
+        return line
     try:
         image_url = proxy_url(image_url)
     except:
