@@ -39,4 +39,10 @@ http://localhost, lingvograph.com {
         repo github.com/lingvograph/site
         interval 60
     }
+
+    git {
+        repo https://{$BB_AUTH_STRING}@bitbucket.org/stodyshev/lingvograph-admin.git
+        path admin
+        interval 60
+    }
 }
