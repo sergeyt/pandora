@@ -37,6 +37,7 @@ http://localhost, lingvograph.com {
 
     git {
         repo github.com/lingvograph/site
+        path site
         interval 60
     }
 
@@ -46,4 +47,6 @@ http://localhost, lingvograph.com {
         path admin
         interval 60
     }
+
+    root site
 }
