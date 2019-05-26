@@ -51,6 +51,12 @@ http://localhost, lingvograph.com {
     rewrite /admin {
         to {path} {path}/ /admin/index.html
     }
-    redir / /site/index.html
-    redir /index.html /site/index.html
+    rewrite {
+        if {path} is /
+        to /site/index.html
+    }
+    rewrite {
+        if {path} is /index.html
+        to /site/index.html
+    }
 }
