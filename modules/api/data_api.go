@@ -57,6 +57,32 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 
 	tx := dgraph.RequestTransaction(r)
 
+	send := func(resp []byte) {
+		var m map[string][]interface{}
+		err := json.Unmarshal(resp, m)
+		if err == nil {
+			log.Errorf("json.Unmarshal fail: %v", err)
+			apiutil.SendError(w, err)
+			return
+		}
+
+		empty := true
+		for _, v := range m {
+			if len(v) != 0 {
+				empty = false
+				break
+			}
+		}
+
+		if empty {
+			http.Error(w, "empty result set", http.StatusNotFound)
+			return
+		}
+
+		w.Header().Set("Content-Type", apiutil.TypeJSON)
+		w.Write(resp)
+	}
+
 	if hasVars {
 		vars := make(map[string]string)
 		for k, v := range r.URL.Query() {
@@ -72,8 +98,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		w.Header().Set("Content-Type", apiutil.TypeJSON)
-		w.Write(resp.GetJson())
+		send(resp.GetJson())
 	} else {
 		resp, err := tx.Query(r.Context(), query)
 		if err != nil {
@@ -82,8 +107,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		w.Header().Set("Content-Type", apiutil.TypeJSON)
-		w.Write(resp.GetJson())
+		send(resp.GetJson())
 	}
 }
 
