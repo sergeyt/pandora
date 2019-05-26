@@ -67,11 +67,12 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		empty := true
-		for _, v := range m {
+		for k, v := range m {
 			if len(v) > 0 {
 				empty = false
 				break
 			}
+			log.Infof("%s is empty", k)
 		}
 
 		if empty {
