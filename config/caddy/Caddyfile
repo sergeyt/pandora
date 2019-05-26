@@ -37,16 +37,18 @@ http://localhost, lingvograph.com {
 
     git {
         repo github.com/lingvograph/site
-        path site
+        path /www
         interval 60
     }
 
     git {
         repo https://{$BB_AUTH_STRING}@bitbucket.org/stodyshev/lingvograph-admin.git
         branch gh-pages
-        path admin
+        path /admin
         interval 60
     }
+
+    root /www
 
     rewrite /admin/* /admin/index.html
     rewrite / /site/index.html
