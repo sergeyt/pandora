@@ -49,6 +49,5 @@ http://localhost, lingvograph.com {
     }
 
     rewrite /admin/* {path} /{path} /admin/index.html
-    rewrite / /site/index.html
-    rewrite /index.html /site/index.html
+    rewrite /* {path} /{path} /site/index.html
 }
