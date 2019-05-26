@@ -54,4 +54,6 @@ http://localhost, lingvograph.com {
         if {path} not_starts_with /kibana
         to {path} {path}/ /site/index.html
     }
+    rewrite / /site/index.html
+    rewrite /index.html /site/index.html
 }
