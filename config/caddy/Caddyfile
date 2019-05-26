@@ -49,9 +49,9 @@ http://localhost, lingvograph.com {
     }
 
     rewrite /admin/* {path} /{path} /admin/index.html
-    rewrite /* {
+    rewrite {
         if {path} not_match ^/api
         if {path} not_match ^/kibana
-        to {path} /{path} /index.html
+        to {path} /{path} /site/index.html
     }
 }
