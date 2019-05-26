@@ -48,12 +48,13 @@ http://localhost, lingvograph.com {
         interval 60
     }
 
-    rewrite /admin/* {path} {path}/ /admin/index.html
+    rewrite /admin {
+        to {path} {path}/ /admin/index.html
+    }
     rewrite {
         if {path} not_starts_with /api
         if {path} not_starts_with /kibana
-        to {path} {path}/ /site/index.html
+        if {path} not_starts_with /admin
+        to {path} /site/index.html
     }
-    rewrite / /site/index.html
-    rewrite /index.html /site/index.html
 }
