@@ -49,8 +49,8 @@ http://localhost, lingvograph.com {
     }
 
     rewrite /admin {
-        if {path} not_match .*\.\w+$
-        to {path} {path}/ /admin/index.html
+        if {path} not_match ^/.*\.\w+
+        to {path} {path} /admin/index.html
     }
     rewrite / /site/index.html
     rewrite /index.html /site/index.html
