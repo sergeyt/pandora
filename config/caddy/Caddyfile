@@ -50,7 +50,7 @@ http://localhost, lingvograph.com {
 
     rewrite /admin {
         if {path} not_match (.*\.\w+$)
-        to index.html
+        to /admin/index.html
     }
     rewrite / /site/index.html
     rewrite /index.html /site/index.html
