@@ -67,15 +67,15 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	send := func(resp []byte) {
-		data := make(map[string]interface{})
-		err := json.Unmarshal(resp, &data)
+		var data map[string]interface{}
+		err := json.Unmarshal(resp, data)
 		if err == nil {
 			log.Errorf("json.Unmarshal fail: %v", err)
 			apiutil.SendError(w, err)
 			return
 		}
 
-		empty := true
+		empty := len(data) == 0
 		for _, v := range data {
 			if sizeof(v) > 0 {
 				empty = false
