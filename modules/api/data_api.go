@@ -59,7 +59,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 
 	send := func(resp []byte) {
 		var m map[string][]interface{}
-		err := json.Unmarshal(resp, m)
+		err := json.Unmarshal(resp, &m)
 		if err == nil {
 			log.Errorf("json.Unmarshal fail: %v", err)
 			apiutil.SendError(w, err)
