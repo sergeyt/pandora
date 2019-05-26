@@ -51,10 +51,6 @@ http://localhost, lingvograph.com {
     rewrite /admin {
         to {path} {path}/ /admin/index.html
     }
-    rewrite {
-        if {path} not_starts_with /api
-        if {path} not_starts_with /kibana
-        if {path} not_starts_with /admin
-        to {path} /site/index.html
-    }
+    redir / /site/index.html
+    redir /index.html /site/index.html
 }
