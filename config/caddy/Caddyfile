@@ -48,5 +48,7 @@ http://localhost, lingvograph.com {
         interval 60
     }
 
-    root site
+    rewrite /admin/* /admin/index.html
+    rewrite / /site/index.html
+    rewrite /index.html /site/index.html
 }
