@@ -58,8 +58,8 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 	tx := dgraph.RequestTransaction(r)
 
 	send := func(resp []byte) {
-		var m map[string][]interface{}
-		err := json.Unmarshal(resp, &m)
+		data := make(map[string][]interface{})
+		err := json.Unmarshal(resp, &data)
 		if err == nil {
 			log.Errorf("json.Unmarshal fail: %v", err)
 			apiutil.SendError(w, err)
@@ -67,7 +67,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		empty := true
-		for _, v := range m {
+		for _, v := range data {
 			if len(v) > 0 {
 				empty = false
 				break
@@ -75,7 +75,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if empty {
-			for k, v := range m {
+			for k, v := range data {
 				if len(v) == 0 {
 					log.Infof("%s is empty", k)
 				}
