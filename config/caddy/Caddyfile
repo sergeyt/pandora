@@ -50,8 +50,8 @@ http://localhost, lingvograph.com {
 
     rewrite /admin/* {path} {path}/ /admin/index.html
     rewrite {
-        if {path} not_match ^/api
-        if {path} not_match ^/kibana
+        if {path} not_starts_with /api
+        if {path} not_starts_with /kibana
         to {path} {path}/ /site/index.html
     }
 }
