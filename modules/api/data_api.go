@@ -69,7 +69,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 	send := func(resp []byte) {
 		var data map[string]interface{}
 		err := json.Unmarshal(resp, &data)
-		if err == nil {
+		if err != nil {
 			log.Errorf("json.Unmarshal fail: %v", err)
 			apiutil.SendError(w, err)
 			return
@@ -84,11 +84,6 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if empty {
-			for k, v := range data {
-				if sizeof(v) == 0 {
-					log.Infof("%s is empty", k)
-				}
-			}
 			http.Error(w, "empty result set", http.StatusNotFound)
 			return
 		}
