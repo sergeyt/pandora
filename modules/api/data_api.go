@@ -68,13 +68,14 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 
 		empty := true
 		for _, v := range m {
-			if len(v) != 0 {
+			if len(v) > 0 {
 				empty = false
 				break
 			}
 		}
 
 		if empty {
+			log.Infof("empty result set: %s\n", string(resp))
 			http.Error(w, "empty result set", http.StatusNotFound)
 			return
 		}
