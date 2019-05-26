@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"mime"
 	"net/http"
+	"reflect"
 	"strings"
 	"time"
 
@@ -57,8 +58,16 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 
 	tx := dgraph.RequestTransaction(r)
 
+	sizeof := func(v interface{}) int {
+		val := reflect.ValueOf(v)
+		if val.Kind() == reflect.Array {
+			return val.Len()
+		}
+		return 1
+	}
+
 	send := func(resp []byte) {
-		data := make(map[string][]interface{})
+		data := make(map[string]interface{})
 		err := json.Unmarshal(resp, &data)
 		if err == nil {
 			log.Errorf("json.Unmarshal fail: %v", err)
@@ -68,7 +77,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 
 		empty := true
 		for _, v := range data {
-			if len(v) > 0 {
+			if sizeof(v) > 0 {
 				empty = false
 				break
 			}
@@ -76,7 +85,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 
 		if empty {
 			for k, v := range data {
-				if len(v) == 0 {
+				if sizeof(v) == 0 {
 					log.Infof("%s is empty", k)
 				}
 			}
