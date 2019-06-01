@@ -16,8 +16,8 @@
 [[projects]]
   name = "github.com/aws/aws-sdk-go"
   packages = ["aws","aws/awserr","aws/awsutil","aws/client","aws/client/metadata","aws/corehandlers","aws/credentials","aws/credentials/ec2rolecreds","aws/credentials/endpointcreds","aws/credentials/processcreds","aws/credentials/stscreds","aws/csm","aws/defaults","aws/ec2metadata","aws/endpoints","aws/request","aws/session","aws/signer/v4","internal/ini","internal/s3err","internal/sdkio","internal/sdkrand","internal/sdkuri","internal/shareddefaults","private/protocol","private/protocol/eventstream","private/protocol/eventstream/eventstreamapi","private/protocol/json/jsonutil","private/protocol/query","private/protocol/query/queryutil","private/protocol/rest","private/protocol/restxml","private/protocol/xml/xmlutil","service/s3","service/s3/s3iface","service/s3/s3manager","service/sts"]
-  revision = "8943f83bb1e98c94710f767576fe17cc29adb4dd"
-  version = "v1.19.38"
+  revision = "5312c8dac9067d339c4e68d7e0dd5507b2f01849"
+  version = "v1.19.41"
 
 [[projects]]
   name = "github.com/davecgh/go-spew"
@@ -29,7 +29,7 @@
   branch = "master"
   name = "github.com/dgraph-io/dgo"
   packages = [".","protos/api","y"]
-  revision = "7517ac021e22457b8b14c151a3476aa8c1e22a64"
+  revision = "1479bcfa90af647220aa5344a27b644fefe0a252"
 
 [[projects]]
   name = "github.com/dgrijalva/jwt-go"
@@ -241,16 +241,16 @@
   version = "v1.0.0"
 
 [[projects]]
-  name = "github.com/nats-io/go-nats"
-  packages = ["encoders/builtin","util"]
-  revision = "70fe06cee50d4b6f98248d9675fb55f2a3aa7228"
-  version = "v1.7.2"
-
-[[projects]]
   name = "github.com/nats-io/nats"
   packages = ["."]
-  revision = "70fe06cee50d4b6f98248d9675fb55f2a3aa7228"
-  version = "v1.7.2"
+  revision = "98d6600c35d554f3fed98c81f3ed2e4894931f61"
+  version = "v2.0.0"
+
+[[projects]]
+  name = "github.com/nats-io/nats.go"
+  packages = ["encoders/builtin","util"]
+  revision = "98d6600c35d554f3fed98c81f3ed2e4894931f61"
+  version = "v2.0.0"
 
 [[projects]]
   name = "github.com/nats-io/nkeys"
@@ -388,7 +388,7 @@
   branch = "master"
   name = "golang.org/x/crypto"
   packages = ["ed25519","ed25519/internal/edwards25519"]
-  revision = "22d7a77e9e5f409e934ed268692e56707cd169e5"
+  revision = "20be4c3c3ed52bfccdb2d59a412ee1a936d175a7"
 
 [[projects]]
   branch = "master"
@@ -406,7 +406,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "791d8a0f4d093bd8fe272dea2cd28991154796fb"
+  revision = "4c3a928424d249a1013e789cf5e458d480bcba16"
 
 [[projects]]
   name = "golang.org/x/text"
@@ -424,7 +424,7 @@
   branch = "master"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
-  revision = "c2c4e71fbf6989c3e46a18d65cb88c288f8a3a55"
+  revision = "fb225487d10142b5bcc35abfc6cb9a0609614976"
 
 [[projects]]
   name = "google.golang.org/grpc"
