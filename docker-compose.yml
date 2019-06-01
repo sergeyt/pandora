@@ -50,7 +50,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:v1.0.14
+    image: dgraph/dgraph:v1.0.15
     container_name: zero
     volumes:
       - dgraph:/dgraph
@@ -66,7 +66,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph node
   dgraph:
-    image: dgraph/dgraph:v1.0.14
+    image: dgraph/dgraph:v1.0.15
     container_name: dgraph
     volumes:
       - dgraph:/dgraph
@@ -82,7 +82,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:v1.0.14
+    image: dgraph/dgraph:v1.0.15
     container_name: ratel
     ports:
       - 8000:8000
@@ -97,10 +97,10 @@ services:
   # see also https://github.com/deviantony/docker-elk
   # todo elasticsearch production config
   elasticsearch:
-    build:
-      context: ./
-      # dockerfile: ./docker/Dockerfile-elasticsearch
-      dockerfile: ./docker/Dockerfile-empty
+    image: tianon/true
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/Dockerfile-elasticsearch
     container_name: elasticsearch
     ulimits:
       memlock:
@@ -118,10 +118,10 @@ services:
         max-file: ${LOG_MAX_FILE}
   # elasticsearch node2
   elasticsearch2:
-    build:
-      context: ./
-      # dockerfile: ./docker/Dockerfile-elasticsearch
-      dockerfile: ./docker/Dockerfile-empty
+    image: tianon/true
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/Dockerfile-elasticsearch
     container_name: elasticsearch2
     ulimits:
       memlock:
@@ -138,9 +138,7 @@ services:
   # kibana - elasticsearch dashboard
   kibana:
     # image: docker.elastic.co/kibana/kibana:6.4.1
-    build:
-      context: ./
-      dockerfile: ./docker/Dockerfile-empty
+    image: tianon/true
     container_name: kibana
     environment:
       XPACK_MONITORING_ENABLED: "false"
