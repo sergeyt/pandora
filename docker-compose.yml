@@ -5,7 +5,7 @@ services:
     image: nats:latest
     container_name: nats
     hostname: nats
-    command: -DV -c gnatsd.conf
+    command: -DV
     ports:
       - 4222:4222
       - 6222:6222
@@ -41,7 +41,7 @@ services:
     container_name: imageproxy
     command: "-addr 0.0.0.0:1081"
     ports:
-     - 1081:1081
+      - 1081:1081
     restart: on-failure
     logging:
       driver: "json-file"
@@ -170,7 +170,7 @@ services:
       API_KEY_SECRET: ${API_KEY_SECRET}
       APP_ID: ${APP_ID}
       APP_SECRET: ${APP_SECRET}
-      API_GATEWAY_URL: 'http://app:4201'
+      API_GATEWAY_URL: "http://app:4201"
       FLASK_ENV: development
       FLASK_PORT: 3001
     volumes:
