@@ -192,8 +192,11 @@ func wrapUID(uid string) map[string]string {
 }
 
 func DeleteNode(ctx context.Context, tx *dgo.Txn, id string) (*api.Assigned, error) {
+	// TODO unlink all connected nodes
+	// del2 := fmt.Sprintf("* * <%s> .\n", id)
+	del := fmt.Sprintf("<%s> * * .\n", id)
 	resp, err := tx.Mutate(ctx, &api.Mutation{
-		DelNquads: []byte("<" + id + "> * * .\n"),
+		DelNquads: []byte(del),
 		CommitNow: true,
 	})
 	if err != nil {
