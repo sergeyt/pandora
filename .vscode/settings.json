@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/tsv/.local/share/virtualenvs/pandora-gDBJ691l/bin/python"
+  // "python.pythonPath": "/home/tsv/.local/share/virtualenvs/pandora-gDBJ691l/bin/python"
+  "python.pythonPath": "/Users/admin/.local/share/virtualenvs/scripts-IQkKG-wQ/bin/python"
 }

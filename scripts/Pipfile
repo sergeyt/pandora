@@ -4,11 +4,11 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "<2.0.0"
 pytest = "*"
 autopep8 = "*"
 yapf = "*"
 rope = "*"
+pylint = "*"
 
 [packages]
 python-dotenv = "*"
