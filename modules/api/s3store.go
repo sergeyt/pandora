@@ -67,9 +67,13 @@ type S3Store struct {
 
 // EnsureBucket creates AWS_S3_BUCKET
 func (fs *S3Store) EnsureBucket() error {
-	sess := session.New(fs.config)
+	sess, err := session.NewSession(fs.config)
+	if err != nil {
+		log.Errorf("aws.session.NewSession fail: %v", err)
+		return err
+	}
 	svc := s3.New(sess)
-	_, err := svc.CreateBucket(&s3.CreateBucketInput{
+	_, err = svc.CreateBucket(&s3.CreateBucketInput{
 		Bucket: aws.String(fs.bucket),
 	})
 	return err
@@ -96,9 +100,13 @@ func (fs *S3Store) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer
 	}
 
 	path := file.Path
-	s := session.New(fs.config)
+	s, err := session.NewSession(fs.config)
+	if err != nil {
+		log.Errorf("aws.seesion.NewSession fail: %v", err)
+		return err
+	}
 	d := s3manager.NewDownloader(s)
-	_, err := d.DownloadWithContext(ctx, &s3Writer{w, 0}, &s3.GetObjectInput{
+	_, err = d.DownloadWithContext(ctx, &s3Writer{w, 0}, &s3.GetObjectInput{
 		Bucket: aws.String(fs.bucket),
 		Key:    aws.String(path),
 	})
@@ -129,12 +137,16 @@ func (w *s3Writer) WriteAt(p []byte, off int64) (n int, err error) {
 
 // Upload object at given path
 func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.ReadCloser) (map[string]interface{}, error) {
-	sess := session.New(fs.config)
+	sess, err := session.NewSession(fs.config)
+	if err != nil {
+		log.Errorf("aws.session.NewSession fail: %v", err)
+		return nil, err
+	}
 	up := s3manager.NewUploader(sess, func(u *s3manager.Uploader) {
 		u.PartSize = 5 * 1024 * 1024
 		u.LeavePartsOnError = true
 	})
-	_, err := up.UploadWithContext(ctx, &s3manager.UploadInput{
+	_, err = up.UploadWithContext(ctx, &s3manager.UploadInput{
 		Bucket: aws.String(fs.bucket),
 		Key:    aws.String(path),
 		Body:   r,
@@ -208,7 +220,12 @@ func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, 
 
 	path := file.Path
 	id = file.ID
-	sess := session.New(fs.config)
+	sess, err := session.NewSession(fs.config)
+	if err != nil {
+		log.Errorf("aws.session.NewSession fail: %v", err)
+		return "", nil, err
+	}
+
 	svc := s3.New(sess)
 	_, err = svc.DeleteObject(&s3.DeleteObjectInput{
 		Bucket: aws.String(fs.bucket),
@@ -229,9 +246,13 @@ func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, 
 
 // DeleteObject by given path
 func (fs *S3Store) DeleteObject(ctx context.Context, path string) error {
-	sess := session.New(fs.config)
+	sess, err := session.NewSession(fs.config)
+	if err != nil {
+		log.Errorf("aws.session.NewSession fail: %v", err)
+		return err
+	}
 	svc := s3.New(sess)
-	_, err := svc.DeleteObject(&s3.DeleteObjectInput{
+	_, err = svc.DeleteObject(&s3.DeleteObjectInput{
 		Bucket: aws.String(fs.bucket),
 		Key:    aws.String(path),
 	})
