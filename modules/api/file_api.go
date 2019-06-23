@@ -293,14 +293,25 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteFileObject(fileNode map[string]interface{}) {
+	path := getString(fileNode, "path")
+	if len(path) == 0 {
+		log.Errorf("file node %s has no path property", getUID(fileNode))
+		return
+	}
 	ctx := context.Background()
-	path := fileNode["path"].(string)
 	store := NewFileStore()
-	store.DeleteObject(ctx, path)
+	err := store.DeleteObject(ctx, path)
+	if err != nil {
+		log.Errorf("deleteFileObject fail: %v", err)
+	}
 }
 
 func getUID(result map[string]interface{}) string {
-	v, ok := result["uid"]
+	return getString(result, "uid")
+}
+
+func getString(data map[string]interface{}, key string) string {
+	v, ok := data[key]
 	if ok {
 		s, ok := v.(string)
 		if ok {
