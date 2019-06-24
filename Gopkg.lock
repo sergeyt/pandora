@@ -406,7 +406,7 @@
   branch = "master"
   name = "golang.org/x/sys"
   packages = ["unix"]
-  revision = "d432491b91382bba9c2a91776aa47c9430183a6f"
+  revision = "c5567b49c5d04a5f83870795b8c0e2df43a8ce32"
 
 [[projects]]
   name = "golang.org/x/text"
