@@ -1,7 +1,7 @@
 _:word_en <Term> "" .
 _:word_en <Tag> "" .
 _:word_en <lang> "en" .
-_:word <text> "word" .
+_:word_en <text> "word" .
 
 _:word_ru <Term> "" .
 _:word_ru <Tag> "" .
