@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/go-chi/chi"
@@ -37,7 +38,7 @@ func fileAPI(r chi.Router) {
 func asHTTPHandler(h fileHandler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		path := chi.URLParam(r, "*")
-		err := validatePath(r, path)
+		path, err := normalizePath(r, path)
 		if err != nil {
 			log.Errorf("path is not valid: %v", err)
 			apiutil.SendError(w, err)
@@ -56,13 +57,19 @@ type fsopContext struct {
 
 type fileHandler func(c fsopContext, w http.ResponseWriter, r *http.Request)
 
-func validatePath(r *http.Request, path string) error {
+func normalizePath(r *http.Request, path string) (string, error) {
 	if len(path) == 0 {
+		if strings.HasPrefix(r.URL.Path, "/api/fileproxy/") {
+			path = r.URL.Query().Get("url")
+			if len(path) > 0 {
+				return path, nil
+			}
+		}
 		if r.Method == "GET" || r.Method == "DELETE" {
-			return fmt.Errorf("file path is not defined")
+			return "", fmt.Errorf("file path is not defined")
 		}
 	}
-	return nil
+	return path, nil
 }
 
 func downloadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
