@@ -7,6 +7,7 @@ import (
 	"mime"
 	"net/http"
 	"net/url"
+	"strconv"
 	"time"
 
 	"github.com/go-chi/chi"
@@ -225,7 +226,6 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 
 	localPath := c.path[len(u.Scheme)+3:]
 	ctx := r.Context()
-	user := Auth.GetContextUser(ctx)
 
 	file, err := findFileTx(ctx, localPath)
 	if err != nil {
@@ -240,6 +240,20 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		apiutil.SendJSON(w, fileNode)
+		return
+	}
+
+	if parseBool(r.URL.Query().Get("remote")) {
+		result, err := addFile(ctx, nil, &FileInfo{
+			URL: c.path,
+		})
+		if err != nil {
+			log.Errorf("addFile fail: %v", err)
+			apiutil.SendError(w, err)
+			return
+		}
+
+		notifyFileChange(ctx, getUID(result), localPath)
 		return
 	}
 
@@ -277,19 +291,32 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		id := getUID(result)
-
-		apiutil.SendEvent(user, &pubsub.Event{
-			Action:       "POST",
-			Method:       "POST",
-			URL:          fmt.Sprintf("/api/file/%s", localPath),
-			ResourceID:   id,
-			ResourceType: "file",
-			CreatedBy:    user.GetID(),
-			CreatedAt:    time.Now(),
-			Result:       result,
-		})
+		notifyFileChange(ctx, getUID(result), localPath)
 	}
+}
+
+func parseBool(v string) bool {
+	if v == "true" {
+		return true
+	}
+	i, err := strconv.ParseInt(v, 10, 32)
+	if err == nil && i != 0 {
+		return true
+	}
+	return false
+}
+
+func notifyFileChange(ctx context.Context, id, localPath string) {
+	user := Auth.GetContextUser(ctx)
+	apiutil.SendEvent(user, &pubsub.Event{
+		Action:       "POST",
+		Method:       "POST",
+		URL:          fmt.Sprintf("/api/file/%s", localPath),
+		ResourceID:   id,
+		ResourceType: "file",
+		CreatedBy:    user.GetID(),
+		CreatedAt:    time.Now(),
+	})
 }
 
 func deleteFileObject(fileNode map[string]interface{}) {

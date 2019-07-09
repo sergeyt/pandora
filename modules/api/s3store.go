@@ -14,7 +14,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
-	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"
@@ -170,24 +169,57 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 		return nil, err
 	}
 
-	user := auth.GetContextUser(ctx)
-	baseURL := config.ServerURL()
+	if file == nil {
+		file = &FileInfo{}
+	}
+	file.Path = path
+	file.MediaType = mediaType
 
+	return addFile(ctx, tx, file)
+}
+
+func addFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]interface{}, error) {
 	in := make(utils.OrderedJSON)
-	id := ""
-	if file != nil {
-		id = file.ID
+	id := file.ID
+	if len(id) > 0 {
 		in["uid"] = id
 	}
-	in["path"] = path
-	in["url"] = fmt.Sprintf("%s/api/file/%s", baseURL, path)
-	in["content_type"] = mediaType
+
+	in["content_type"] = file.MediaType
+
+	if len(file.URL) > 0 {
+		in["url"] = file.URL
+	}
+
+	if len(file.Path) > 0 {
+		in["path"] = file.Path
+	}
+
+	if len(file.URL) == 0 && len(file.Path) > 0 {
+		baseURL := config.ServerURL()
+		in["url"] = fmt.Sprintf("%s/api/file/%s", baseURL, file.Path)
+	}
+
+	discardHere := false
+	if tx == nil {
+		dc, err := dgraph.NewClient()
+		if err != nil {
+			return nil, err
+		}
+
+		tx = dc.NewTxn()
+	}
+
+	defer func() {
+		if discardHere {
+			tx.Discard(ctx)
+		}
+	}()
 
 	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
 		NodeLabel: dgraph.NodeLabel("file"),
 		ID:        id,
-		By:        user.GetID(),
 	})
 	if err != nil {
 		return nil, err
@@ -264,8 +296,10 @@ func (fs *S3Store) DeleteObject(ctx context.Context, path string) error {
 }
 
 type FileInfo struct {
-	ID   string `json:"uid"`
-	Path string `json:"path"`
+	ID        string `json:"uid"`
+	Path      string `json:"path"`
+	URL       string `json:"url"`
+	MediaType string `json:"content_type"`
 }
 
 func findFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {

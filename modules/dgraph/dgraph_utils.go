@@ -10,6 +10,7 @@ import (
 
 	"github.com/dgraph-io/dgo"
 	"github.com/dgraph-io/dgo/protos/api"
+	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/utils"
 	log "github.com/sirupsen/logrus"
@@ -119,6 +120,15 @@ func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interfac
 	id := m.ID
 	isNew := len(id) == 0
 	now := time.Now()
+
+	if len(m.By) == 0 {
+		user := auth.GetContextUser(ctx)
+		if user == nil {
+			m.By = "system"
+		} else {
+			m.By = user.GetID()
+		}
+	}
 
 	in := m.Input
 	in["modified_at"] = now
