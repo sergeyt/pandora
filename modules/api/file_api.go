@@ -260,6 +260,11 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		err = apiutil.SendJSON(w, result)
+		if err != nil {
+			return
+		}
+
 		notifyFileChange(ctx, getUID(result), localPath)
 		return
 	}
