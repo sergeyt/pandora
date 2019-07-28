@@ -33,9 +33,9 @@ def enable_logging_with_headers():
     requests_log.propagate = True
 
 
-def find_audio_args():
-    text = sys.argv[1]
-    lang = sys.argv[2] if len(sys.argv) >= 3 else detect(text)
+def find_audio_args(argv=sys.argv):
+    text = argv[1]
+    lang = argv[2] if len(argv) >= 3 else detect(text)
     if lang != 'ru':
         lang = 'en'
     return (text, lang)
