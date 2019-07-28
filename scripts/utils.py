@@ -1,4 +1,5 @@
 import sys
+import urllib
 import logging
 import requests
 from langdetect import detect
@@ -60,3 +61,9 @@ def url_exists(url):
     with open("notfound.txt", 'a') as f:
         f.write(url + '\n')
     return False
+
+
+def url_quote(val):
+    if isinstance(val, str):
+        return urllib.parse.quote(val)
+    return [urllib.parse.quote(s) for s in val]

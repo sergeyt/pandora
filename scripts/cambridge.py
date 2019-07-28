@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import sys
-import urllib
 import requests
 import json
 import utils
@@ -14,12 +13,6 @@ headers = {
     'User-Agent': 'script',
     'Accept': 'text/html',
 }
-
-
-def url_quote(val):
-    if isinstance(val, str):
-        return urllib.parse.quote(val)
-    return [urllib.parse.quote(s) for s in val]
 
 
 def parse_btn(btn):
@@ -100,7 +93,7 @@ def translate(text, lang):
         return None
 
     pat = 'https://dictionary.cambridge.org/ru/{0}/{1}/{2}'
-    url = pat.format(*url_quote(['словарь', 'англо-русский', text]))
+    url = pat.format(*utils.url_quote(['словарь', 'англо-русский', text]))
 
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
