@@ -66,20 +66,24 @@ def find_phrases_impl(text, lang, category):
 
     soup = BeautifulSoup(resp.text, 'html.parser')
     rows = [parse_phrase_row(r) for r in soup.find_all('tr')]
+    phrases = [r for r in rows if r is not None]
+    if len(phrases) == 0:
+        return None
 
     return {
         'text@en': category['text@en'],
         'text@ru': category['text@ru'],
         'multitran_id': category['id'],
-        'phrases': [r for r in rows if r is not None],
+        'phrases': phrases,
     }
 
 
 def find_phrases(text, lang):
+    cats = [find_phrases_impl(text, lang, c) for c in categories]
     return {
         'text': text,
         'lang': lang,
-        'categories': [find_phrases_impl(text, lang, c) for c in categories],
+        'categories': [c for c in cats if c is not None],
     }
 
 
