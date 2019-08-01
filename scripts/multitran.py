@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import sys
 import utils
@@ -10,6 +11,25 @@ headers = {
     'User-Agent': 'script',
     'Accept': 'text/html',
 }
+
+# TODO consider collecting automatically https://www.multitran.com/m.exe?s=place&l1=2&l2=1&fl=1
+categories = [{
+    'text@en': 'idiom',
+    'text@ru': 'идиома',
+    'id': 895,
+}, {
+    'text@en': 'proverb',
+    'text@ru': 'пословица',
+    'id': 310,
+}, {
+    'text@en': 'americanism',
+    'text@ru': 'американизм',
+    'id': 13,
+}, {
+    'text@en': 'bible',
+    'text@ru': 'библия',
+    'id': 66,
+}]
 
 
 def parse_phrase_row(row):
@@ -29,10 +49,10 @@ def parse_phrase_row(row):
         return None
     if any(t is None for t in result):
         return None
-    return result
+    return {'text': result[0], 'trans': result[1]},
 
 
-def find_phrases(text, lang):
+def find_phrases_impl(text, lang, category):
     l1 = "1"
     l2 = "2"
     if lang == 'ru':
@@ -48,9 +68,18 @@ def find_phrases(text, lang):
     rows = [parse_phrase_row(r) for r in soup.find_all('tr')]
 
     return {
+        'text@en': category['text@en'],
+        'text@ru': category['text@ru'],
+        'multitran_id': category['id'],
+        'phrases': [r for r in rows if r is not None],
+    }
+
+
+def find_phrases(text, lang):
+    return {
         'text': text,
         'lang': lang,
-        'phrases': [r for r in rows if r is not None],
+        'categories': [find_phrases_impl(text, lang, c) for c in categories],
     }
 
 
