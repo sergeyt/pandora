@@ -59,6 +59,8 @@ def find_audio(text, lang):
 
 
 def stripped_text(node):
+    if node is None:
+        return None
     return node.get_text().strip()
 
 
@@ -83,8 +85,20 @@ def parse_sense(block, text):
         phrase = stripped_text(d.find('span', class_='phrase'))
     defs = [parse_def(t) for t in block.find_all('div', class_='def-block')]
     return {
-        'phrase': phrase,
+        'text': phrase,
         'defs': defs,
+    }
+
+
+def parse_pron(p):
+    region = 'uk' if p.find('span', class_='uk') else 'us'
+    pron = p.find('span', class_='pron')
+    lab = pron.find('span', class_='lab')
+    ipa = stripped_text(pron.find('span', class_='ipa'))
+    return {
+        'region': region,
+        'lab': None if lab is None else lab.string,
+        'ipa': ipa,
     }
 
 
@@ -99,13 +113,13 @@ def translate(text, lang):
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, 'html.parser')
-    ipa = soup.find('span', class_='ipa').string
+    prons = [parse_pron(p) for p in soup.find_all('span', class_='pron_info')]
     blocks = soup.find_all('div', class_='sense-block')
     phrases = [parse_sense(t, text) for t in blocks]
     return {
         'text': text,
         'lang': lang,
-        'ipa': ipa,
+        'prons': [p for p in prons if p is not None and p['ipa'] is not None],
         'phrases': phrases,
     }
 

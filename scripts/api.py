@@ -197,13 +197,14 @@ def nquad(id, k, v):
     s = rdf_repr(v)
     if len(lang) > 0:
         s += "@{0}".format(lang)
-    return "_:{0} <{1}> {2} .\n".format(id, p, s)
+    return "_:{0} <{1}> {2} .".format(id, p, s)
 
 
+# TODO refactor as generator
 def nquads(d, id='x'):
-    result = ''
+    result = []
     for k, v in d.items():
-        result += nquad(id, k, v)
+        result.append(nquad(id, k, v))
     return result
 
 
