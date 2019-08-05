@@ -52,6 +52,8 @@ audio: uid @count .
 related: uid @count @reverse .
 synonym: uid @count @reverse .
 antonym: uid @count @reverse .
+definition: uid @count .
+definition_of: uid @count .
 
 registered_at: dateTime .
 created_at: dateTime .
