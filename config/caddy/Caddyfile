@@ -1,4 +1,4 @@
-http://localhost {
+http://localhost, lingvograph.com {
     log stdout
     errors stderr
     gzip
