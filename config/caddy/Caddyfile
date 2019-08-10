@@ -37,6 +37,7 @@ http://localhost, lingvograph.com {
 
     git {
         repo github.com/lingvograph/site
+        branch gh-pages
         path site
         interval 60
     }
