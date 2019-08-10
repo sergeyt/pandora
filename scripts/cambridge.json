@@ -1,4 +1,26 @@
 {
+  " Poland": {
+    "mp3": [
+      {
+        "region": "uk",
+        "url": "https://dictionary.cambridge.org/media/english/uk_pron/u/ukc/ukcld/ukcld04285.mp3"
+      },
+      {
+        "region": "us",
+        "url": "https://dictionary.cambridge.org/media/english/us_pron/u/usc/uscld/uscld04288.mp3"
+      }
+    ],
+    "ogg": [
+      {
+        "region": "uk",
+        "url": "https://dictionary.cambridge.org/media/english/uk_pron_ogg/u/ukc/ukcld/ukcld04285.ogg"
+      },
+      {
+        "region": "us",
+        "url": "https://dictionary.cambridge.org/media/english/us_pron_ogg/u/usc/uscld/uscld04288.ogg"
+      }
+    ]
+  },
   "afternoon": {
     "mp3": [
       {
