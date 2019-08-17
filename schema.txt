@@ -1,6 +1,7 @@
 User: string @count .
 Account: string @count .
 Term: string @count .
+MultiTerm: string @count .
 Tag: string @count .
 File: string @count .
 Category: string @count .
@@ -41,6 +42,7 @@ lang: string @index(term) .
 hash: string @index(term) .
 text: string @lang @index(term, fulltext, trigram) .
 transcript: string @lang @index(term, fulltext, trigram) .
+transcription: uid @count .
 
 channel: uid @count .
 from: uid @count .
