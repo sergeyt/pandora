@@ -6,4 +6,5 @@ data
 tmp
 vendor
 .idea/workspace.xml
+.idea/sonarlint
 .vscode/.ropeproject
