@@ -6,6 +6,7 @@ import re
 import string
 import random
 import urllib
+import termquery
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -15,6 +16,10 @@ HTTP_PORT = os.getenv('HTTP_PORT', 80)
 DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
 API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', DEFAULT_SERVER_URL)
 API_KEY = os.getenv('API_KEY')
+
+print('VERBOSE: {0}'.format(VERBOSE))
+print('DGRAPH_URL: {0}'.format(DGRAPH_URL))
+print('API_GATEWAY_URL: {0}'.format(API_GATEWAY_URL))
 
 jwt_secret = os.getenv('JWT_SECRET')
 dgraph_token = os.getenv('DGRAPH_TOKEN')
@@ -42,9 +47,12 @@ def is_json(resp):
     return t.startswith(MIME_JSON)
 
 
-def dump_json(resp):
-    if VERBOSE and resp.ok and is_json(resp):
-        print(json.dumps(resp.json(), sort_keys=True, indent=2))
+def dump_response(resp):
+    if VERBOSE and is_json(resp):
+        try:
+            print(json.dumps(resp.json(), sort_keys=True, indent=2))
+        except:
+            print(resp.text)
 
 
 def headers(content_type=MIME_JSON):
@@ -63,7 +71,7 @@ def url(path):
 def get(path):
     params = {'key': API_KEY}
     resp = requests.get(url(path), params=params, headers=headers(None))
-    dump_json(resp)
+    dump_response(resp)
     resp.raise_for_status()
     return resp.json() if is_json(resp) else resp
 
@@ -72,16 +80,21 @@ def jsonstr(data):
     return json.dumps(data, sort_keys=True, indent=2)
 
 
-def post(path, payload, auth=None, raw=False, content_type=MIME_JSON):
-    params = {'key': API_KEY}
+def post(path,
+         payload,
+         params={},
+         auth=None,
+         raw=False,
+         content_type=MIME_JSON):
+    params_all = {'key': API_KEY, **params}
     h = headers(content_type)
     data = payload if raw or content_type != MIME_JSON else jsonstr(payload)
     resp = requests.post(url(path),
                          data=data,
-                         params=params,
+                         params=params_all,
                          headers=h,
                          auth=auth)
-    dump_json(resp)
+    dump_response(resp)
     resp.raise_for_status()
     return resp.json()
 
@@ -94,7 +107,7 @@ def put(path, payload, auth=None, raw=False):
                         params=params,
                         headers=headers(),
                         auth=auth)
-    dump_json(resp)
+    dump_response(resp)
     resp.raise_for_status()
     return resp.json()
 
@@ -119,12 +132,47 @@ def login(username, password):
 def check_token(token):
     headers = {'Authorization': 'Bearer ' + token}
     resp = requests.get(url('/api/token'), headers=headers)
-    dump_json(resp)
+    dump_response(resp)
     return resp
+
+
+def query(text, params={}):
+    return post('/api/query', text, params=params, raw=True)
 
 
 def current_user():
     return get('/api/me')
+
+
+def search_terms(text, lang):
+    q = termquery.make_term_query(searchString=text, lang=lang)
+    return query(q['text'], q['params'])
+
+
+# todo split text into words
+def add_term(text, lang):
+    resp = search_terms(text, lang)
+    if len(resp['terms']) > 0:
+        return resp['terms'][0]['uid']
+    resp = post('/api/data/term', {'text': text, 'lang': lang})
+    return resp['uid']
+
+
+def link_terms(source_id, target_id, edge):
+    rel = termquery.relation_map[edge]
+    reverse_edge = edge
+    if 'reverse_edge' in rel:
+        reverse_edge = rel['reverse_edge']
+    q = '\n'.join([
+        nquad(source_id, edge, target_id),
+        nquad(target_id, reverse_edge, source_id)
+    ])
+    return post('/api/nquads', {'set': q})
+
+
+def delete_edge(id, edge):
+    q = nquad(id, edge, '*')
+    return post('/api/nquads', {'delete': q})
 
 
 def search_audio(text, lang):
@@ -149,7 +197,7 @@ def drop_all():
     data = '{"drop_all": true}'
     url = DGRAPH_URL + '/alter'
     resp = requests.post(url, headers=headers, data=data)
-    dump_json(resp)
+    dump_response(resp)
     resp.raise_for_status()
 
 
@@ -165,7 +213,7 @@ def init_schema():
         headers = {'X-Dgraph-AuthToken': dgraph_token}
         url = DGRAPH_URL + '/alter'
         resp = requests.post(url, headers=headers, data=schema)
-        dump_json(resp)
+        dump_response(resp)
         resp.raise_for_status()
 
 
@@ -178,15 +226,21 @@ def mutate(data):
         data = data.encode('utf-8')
     url = DGRAPH_URL + '/mutate'
     resp = requests.post(url, headers=headers, data=data)
-    dump_json(resp)
+    dump_response(resp)
     resp.raise_for_status()
     return resp.json()
 
 
 # utils
+def is_uid(s):
+    return len(s) > 0 and re.match(r"^0x[a-f0-9]+$", s) != None
+
+
 def rdf_repr(v):
     if isinstance(v, str):
-        return '"{0}"'.format(v)
+        if v == '*':
+            return v
+        return "<{0}>".format(v) if is_uid(v) else '"{0}"'.format(v)
     return v
 
 
@@ -197,7 +251,8 @@ def nquad(id, k, v):
     s = rdf_repr(v)
     if len(lang) > 0:
         s += "@{0}".format(lang)
-    return "_:{0} <{1}> {2} .".format(id, p, s)
+    id = "<{0}>".format(id) if is_uid(id) else "_:{0}".format(id)
+    return "{0} <{1}> {2} .".format(id, p, s)
 
 
 # TODO refactor as generator
