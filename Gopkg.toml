@@ -26,8 +26,8 @@
 
 
 [[constraint]]
-  branch = "master"
   name = "github.com/dgraph-io/dgo"
+  version = "1.0.0"
 
 [[constraint]]
   name = "github.com/fsnotify/fsnotify"
