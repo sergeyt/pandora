@@ -15,7 +15,7 @@ http://localhost, lingvograph.com {
         except /api/file
     }
 
-    proxy /api/pyadmin/ pyadmin:3001 {
+    proxy /api/pyadmin/ pyadmin:4211 {
         transparent
     }
     proxy /api/imageproxy imageproxy:1081 {
