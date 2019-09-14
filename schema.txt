@@ -13,14 +13,16 @@ first_name: string @index(term, fulltext, trigram) .
 last_name: string @index(term, fulltext, trigram) .
 nick_name: string @index(term, fulltext, trigram) .
 login: string @index(term, trigram) .
-phone: string @index(term, trigram) .
 password: password .
 email: string @index(term, trigram) .
+phone: string @index(term, trigram) .
 role: string @index(term, trigram) .
 avatar: string @index(term) .
 description: string @lang @index(term, fulltext, trigram) .
 age: int @index(int) .
 first_lang: string @index(term) .
+second_lang: string @index(term) .
+region: string @index(term, trigram) .
 country: string @index(term, trigram) .
 state: string @index(term, trigram) .
 city: string @index(term, trigram) .
@@ -80,3 +82,60 @@ interesting: [uid] @count .
 see: [uid] @count .
 like: [uid] @count .
 dislike: [uid] @count .
+
+type User {
+    name: string
+    first_name: string
+    last_name: string
+    nick_name: string
+    login: string
+    password: password
+    email: string
+    phone: string
+    role: string
+    avatar: string
+    age: int
+    first_lang: string
+    second_lang: string
+    region: string
+    country: string
+    state: string
+    city: string
+    status: string
+    description: string
+    location: string
+    created_at: dateTime
+    modified_at: dateTime
+}
+
+type Account {
+    provider: string
+    email: string
+    name: string
+    first_name: string
+    last_name: string
+    nick_name: string
+    user_id: string
+    description: string
+    avatar: string
+    location: string
+    role: string
+    created_at: dateTime
+    modified_at: dateTime
+}
+
+type File {
+    path: string
+    url: string
+    source: string
+    content_type: string
+    region: string
+    created_at: dateTime
+    modified_at: dateTime
+}
+
+type Term {
+    text: string
+    lang: string
+    region: string
+}
