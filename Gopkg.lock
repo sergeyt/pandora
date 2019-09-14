@@ -2,12 +2,12 @@
 
 
 [[projects]]
-  digest = "1:62010c37b093a63520b29cefd17edb3aa43735b265d2f2ede22e85fa86bf4cf0"
+  digest = "1:7246e334ab4b4a95e124c322cfbd59817f37de02679cecc1ba853030519e6f49"
   name = "cloud.google.com/go"
   packages = ["compute/metadata"]
   pruneopts = ""
-  revision = "d1af076dc3f6a314e9dd6610fe83b0f7afaff6d6"
-  version = "v0.45.1"
+  revision = "6e28f1c34522dae46e9c37119b78c54471b13ac8"
+  version = "v0.46.2"
 
 [[projects]]
   digest = "1:e8f914c174ebc670d1713986d5e4f47a21f349209ac929d00558a496f59c7384"
@@ -18,7 +18,7 @@
   version = "v1.5.1"
 
 [[projects]]
-  digest = "1:39a7980573c7724a834ebeac5173a8d68b2e0cc62868e742a0b3ec02690208d9"
+  digest = "1:2c2e212f938cebad0f3ad643390be5e03a16742d56e6d0d3f0e43971793fe953"
   name = "github.com/aws/aws-sdk-go"
   packages = [
     "aws",
@@ -62,8 +62,8 @@
     "service/sts/stsiface",
   ]
   pruneopts = ""
-  revision = "cf5210b77b6f9d40c4c34a0bc793f3bdbe4bc877"
-  version = "v1.23.17"
+  revision = "e8395d83f2fef980d5c2beb88c596e382236e21e"
+  version = "v1.23.21"
 
 [[projects]]
   digest = "1:0deddd908b6b4b768cfc272c16ee61e7088a60f7fe2f06c547bd3d8e1f8b8e77"
@@ -312,7 +312,7 @@
   revision = "c2b33e84"
 
 [[projects]]
-  digest = "1:c9611e8e2e8cc984a4d782e4ce0b4a885d60c1e44dca8b560e79249e97ac4c23"
+  digest = "1:350c60c3c0bff1cfb24c205260235258030190c3464e6d84f9f6e373af7beef9"
   name = "github.com/klauspost/compress"
   packages = [
     "flate",
@@ -320,8 +320,8 @@
     "zlib",
   ]
   pruneopts = ""
-  revision = "fdc46f09595ea8241b9bfe291bbc868a7af19e10"
-  version = "v1.8.2"
+  revision = "9342d2c87674fc9ed5324d5d77d5f11f328bc11b"
+  version = "v1.8.3"
 
 [[projects]]
   digest = "1:cb39bebc72505b4120988fb9e258ecffba4ed679dc04794d517198887160df80"
@@ -603,18 +603,18 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:2f8d339c3b89d5abf9a78aafe1e9fbe548f3b1fb9be5c3117036940904d39527"
+  digest = "1:4a4c4edf69b61bf98e98d22696aa80c4059384895920de4d5e2fe696068d5f13"
   name = "golang.org/x/crypto"
   packages = [
     "ed25519",
     "ed25519/internal/edwards25519",
   ]
   pruneopts = ""
-  revision = "71b5226ff73902d121cd9dbbdfdb67045a805845"
+  revision = "227b76d455e791cb042b03e633e2f7fbcfdf74a5"
 
 [[projects]]
   branch = "master"
-  digest = "1:87c06c289123bf8be0a776c57ca40ce075f6c598a905ff2ff8ba40fba0d5d17c"
+  digest = "1:6cb053a62bf923c2b5d17fb53fa027a479e7b438a8be5b0c5d948dced78c2d1c"
   name = "golang.org/x/net"
   packages = [
     "context",
@@ -628,7 +628,7 @@
     "trace",
   ]
   pruneopts = ""
-  revision = "ba9fcec4b297b415637633c5a6e8fa592e4a16c3"
+  revision = "24e19bdeb0f2d062d8e2640d50a7aaf2a7f80e7a"
 
 [[projects]]
   branch = "master"
@@ -646,11 +646,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:470393ac1bb6b0f82c2e8120deb134fc350cc1fb49e790513f8d469abc413510"
+  digest = "1:9ca8dc3cd9b14099c141cc54e60e703cf5ccf2fd21fd040ba09287082cd88b07"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = ""
-  revision = "d223b2b6db03988709bac9e66576ad6ec0d83695"
+  revision = "c3b328c6e5a763a2bfc82a48b4bd855037210934"
 
 [[projects]]
   digest = "1:740b51a55815493a8d0f2b1e0d0ae48fe48953bf7eaf3fcc4198823bf67768c0"
@@ -698,14 +698,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:d57fc4649c80e946db4ae2064153e5896dc45936752db1ade3d94c52734116c2"
+  digest = "1:f9e92b6d2b267abfae825d2a674c5d18a8a5c05354c428bff7b9e8536a23a2b6"
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = ""
-  revision = "92dd089d5514cecde7a465f807541f83dfd486d5"
+  revision = "1774047e7e5133fa3573a4e51b37a586b6b0360c"
 
 [[projects]]
-  digest = "1:e8a4007e58ea9431f6460d1bc5c7f9dd29fdc0211ab780b6ad3d0581478f2076"
+  digest = "1:7ed022f305690d5843ba3f0bb94f9890a1f9c9459f0158a28304798213326d88"
   name = "google.golang.org/grpc"
   packages = [
     ".",
@@ -743,8 +743,8 @@
     "tap",
   ]
   pruneopts = ""
-  revision = "6eaf6f47437a6b4e2153a190160ef39a92c7eceb"
-  version = "v1.23.0"
+  revision = "39e8a7b072a67ca2a75f57fa2e0d50995f5b22f6"
+  version = "v1.23.1"
 
 [[projects]]
   digest = "1:039b95e6ba078fe5a22315dcae7bc9859226ee34672ce9ab01708576bf2abd38"
