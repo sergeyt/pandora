@@ -262,13 +262,12 @@ services:
       BB_AUTH_STRING: ${BB_AUTH_STRING}
     volumes:
       - caddy:/data/caddy
-      - ./config/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - ./schema.txt:/schema.txt
-      - ./scripts:/pyadmin
+      - ./config/caddy/Caddyfile:/etc/Caddyfile
       - ./docker/caddy_entrypoint.sh:/entrypoint.sh
     ports:
       - 80:80
       - 443:443
+      - 4200:4200
     restart: on-failure
     logging:
       driver: "json-file"
