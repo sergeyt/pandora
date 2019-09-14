@@ -28,57 +28,55 @@ provider: string @index(term) .
 status: string @index(term) .
 user_id: string @index(term) .
 
-account: uid @count .
-friend: uid @count .
-follow: uid @count .
-member_of: uid @count .
-part_of: uid @count .
-in: uid @count .
-tag: uid @count .
-
 type: string @index(term) .
 content_type: string @index(term) .
 lang: string @index(term) .
 hash: string @index(term) .
 text: string @lang @index(term, fulltext, trigram) .
-transcript: string @lang @index(term, fulltext, trigram) .
-transcription: uid @count .
-
-channel: uid @count .
-from: uid @count .
-to: uid @count .
-
-translated_as: uid @count @reverse .
-visual: uid @count .
-audio: uid @count .
-related: uid @count @reverse .
-synonym: uid @count @reverse .
-antonym: uid @count @reverse .
-definition: uid @count .
-definition_of: uid @count .
-
-registered_at: dateTime .
-created_at: dateTime .
-modified_at: dateTime .
-created_by: uid @count .
-modified_by: uid @count .
-
-due: dateTime .
-estimate: int @index(int) .
-remaining_estimate: int @index(int) .
-
-origin: uid @count .
 
 url: string @index(term) .
 source: string @index(term, trigram) .
 geo: geo @index(geo) .
 path: string @index(term, trigram) .
 
-know: uid @count .
-forgot: uid @count .
-learning: uid @count .
-interesting: uid @count .
+registered_at: dateTime .
+created_at: dateTime .
+modified_at: dateTime .
 
-see: uid @count .
-like: uid @count .
-dislike: uid @count .
+due: dateTime .
+estimate: int @index(int) .
+remaining_estimate: int @index(int) .
+
+account: [uid] @count .
+friend: [uid] @count .
+follow: [uid] @count .
+member_of: [uid] @count .
+part_of: [uid] @count .
+in: [uid] @count .
+tag: [uid] @count .
+transcription: [uid] @count .
+
+channel: [uid] @count .
+from: [uid] @count .
+to: [uid] @count .
+
+translated_as: [uid] @count @reverse .
+visual: [uid] @count .
+audio: [uid] @count .
+related: [uid] @count @reverse .
+synonym: [uid] @count @reverse .
+antonym: [uid] @count @reverse .
+definition: [uid] @count .
+definition_of: [uid] @count .
+
+created_by: uid @count .
+modified_by: uid @count .
+
+know: [uid] @count .
+forgot: [uid] @count .
+learning: [uid] @count .
+interesting: [uid] @count .
+
+see: [uid] @count .
+like: [uid] @count .
+dislike: [uid] @count .
