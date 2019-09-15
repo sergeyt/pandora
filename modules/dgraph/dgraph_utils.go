@@ -138,6 +138,7 @@ func Mutate(ctx context.Context, tx *dgo.Txn, m Mutation) ([]map[string]interfac
 
 	if isNew {
 		in[m.NodeLabel] = ""
+		in["dgraph.type"] = m.NodeLabel
 		in["created_at"] = now
 		if len(m.By) > 0 && m.By != "system" {
 			in["created_by"] = wrapUID(m.By)
