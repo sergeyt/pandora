@@ -236,9 +236,13 @@ def is_uid(s):
     return len(s) > 0 and re.match(r"^0x[a-f0-9]+$", s) != None
 
 
+def is_rdf_id(s):
+    return len(s) > 0 and re.match(r"^_:([\w_]+)$", s) != None
+
+
 def rdf_repr(v):
     if isinstance(v, str):
-        if v == '*':
+        if v == '*' or is_uid(v) or is_rdf_id(v):
             return v
         return "<{0}>".format(v) if is_uid(v) else '"{0}"'.format(v)
     return v
@@ -259,6 +263,10 @@ def nquad(id, k, v):
 def nquads(d, id='x'):
     result = []
     for k, v in d.items():
+        if type(v) is list:
+            for t in v:
+                result.append(nquad(id, k, t))
+            continue
         result.append(nquad(id, k, v))
     return result
 
