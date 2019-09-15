@@ -2,6 +2,8 @@ _:word_en <Term> "" .
 _:word_en <Tag> "" .
 _:word_en <lang> "en" .
 _:word_en <text> "word" .
+_:word_en <transcript> "wɜːd"@en .
+_:word_en <transcript> "вод"@ru .
 
 _:word_ru <Term> "" .
 _:word_ru <Tag> "" .
@@ -15,6 +17,8 @@ _:noun_en <Tag> "" .
 _:noun_en <lang> "en" .
 _:noun_en <text> "noun" .
 _:noun_en <tag> _:word_en .
+_:noun_en <transcript> "naʊn"@en .
+_:noun_en <transcript> "наун"@ru .
 
 _:noun_ru <Term> "" .
 _:noun_ru <Tag> "" .
@@ -31,6 +35,7 @@ _:verb_en <lang> "en" .
 _:verb_en <text> "verb" .
 _:verb_en <tag> _:word_en .
 _:verb_en <tag> _:noun_en .
+_:verb_en <transcript> "vɜːb"@en .
 
 _:verb_ru <Term> "" .
 _:verb_ru <Tag> "" .
@@ -47,6 +52,7 @@ _:adjective_en <lang> "en" .
 _:adjective_en <text> "adjective" .
 _:adjective_en <tag> _:word_en .
 _:adjective_en <tag> _:noun_en .
+_:adjective_en <transcript> "ˈædʒɪktɪv"@en .
 
 _:adjective_ru <Term> "" .
 _:adjective_ru <Tag> "" .
@@ -63,6 +69,7 @@ _:phrase_en <lang> "en" .
 _:phrase_en <text> "phrase" .
 _:phrase_en <tag> _:word_en .
 _:phrase_en <tag> _:noun_en .
+_:phrase_en <transcript> "freɪz"@en .
 
 _:phrase_ru <Term> "" .
 _:phrase_ru <Tag> "" .
@@ -79,6 +86,7 @@ _:idiom_en <lang> "en" .
 _:idiom_en <text> "idiom" .
 _:idiom_en <tag> _:word_en .
 _:idiom_en <tag> _:noun_en .
+_:idiom_en <transcript> "ˈɪdiəm"@en .
 
 _:idiom_ru <Term> "" .
 _:idiom_ru <Tag> "" .
@@ -95,6 +103,7 @@ _:slang_en <lang> "en" .
 _:slang_en <text> "slang" .
 _:slang_en <tag> _:word_en .
 _:slang_en <tag> _:noun_en .
+_:slang_en <transcript> "slæŋ"@en .
 
 _:slang_ru <Term> "" .
 _:slang_ru <Tag> "" .
