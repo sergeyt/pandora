@@ -53,10 +53,6 @@
   name = "google.golang.org/grpc"
   version = "1.15.0"
 
-[[constraint]]
-  branch = "v1"
-  name = "gopkg.in/gavv/httpexpect.v1"
-
 [[override]]
   branch = "master"
   name = "github.com/gocontrib/go-ldap-client"
@@ -64,3 +60,6 @@
 [[constraint]]
   name = "github.com/aws/aws-sdk-go"
   version = "1.17.1"
+
+[prune]
+  unused-packages = true
