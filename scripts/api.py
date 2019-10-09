@@ -7,10 +7,12 @@ import string
 import random
 import urllib
 import termquery
+import utils
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
-VERBOSE = os.getenv('PYADMIN_VERBOSE', '') == '1'
+VERBOSE = utils.as_bool(os.getenv('PYADMIN_VERBOSE', '0'))
+TESTING = utils.TESTING
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
 HTTP_PORT = os.getenv('HTTP_PORT', 80)
 DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
@@ -18,8 +20,12 @@ API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', DEFAULT_SERVER_URL)
 API_KEY = os.getenv('API_KEY')
 
 print('VERBOSE: {0}'.format(VERBOSE))
+print('TESTING: {0}'.format(TESTING))
 print('DGRAPH_URL: {0}'.format(DGRAPH_URL))
 print('API_GATEWAY_URL: {0}'.format(API_GATEWAY_URL))
+
+if VERBOSE:
+    utils.enable_logging()
 
 jwt_secret = os.getenv('JWT_SECRET')
 dgraph_token = os.getenv('DGRAPH_TOKEN')
@@ -221,6 +227,7 @@ def mutate(data):
     headers = {
         'X-Dgraph-AuthToken': dgraph_token,
         'X-Dgraph-CommitNow': 'true',
+        'Content-Type': 'application/rdf',
     }
     if getattr(data, 'encode', None):
         data = data.encode('utf-8')

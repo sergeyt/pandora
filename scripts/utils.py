@@ -1,8 +1,16 @@
+import os
 import sys
 import urllib
 import logging
 import requests
 from langdetect import detect
+
+
+def as_bool(s):
+    return len(s) > 0 and (s == '1' or s.lower() == 'true')
+
+
+TESTING = as_bool(os.getenv('TESTING', '0'))
 
 # https://stackoverflow.com/questions/16337511/log-all-requests-from-the-python-requests-module
 # https://stackoverflow.com/questions/10588644/how-can-i-see-the-entire-http-request-thats-being-sent-by-my-python-application

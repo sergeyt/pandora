@@ -1,7 +1,8 @@
 import os
 import json
+import utils
 
-TESTING = os.getenv('TESTING', '')
+TESTING = utils.TESTING
 dir = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -9,7 +10,7 @@ class Cache:
     def __init__(self, name, testing=None):
         self.name = name
         self.cache = None
-        self.testing = len(TESTING) > 0 if testing is None else testing
+        self.testing = TESTING
 
     def file_path(self):
         return os.path.join(dir, self.name + '.json')

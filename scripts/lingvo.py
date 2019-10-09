@@ -15,12 +15,10 @@ def first(a):
     return next(iter(a or []), None)
 
 
-TESTING = os.getenv('TESTING', '')
+TESTING = api.TESTING
 testarg = first(filter(lambda a: a.find('testing') >= 0, sys.argv)) is not None
-testing = len(TESTING) > 0 or testarg
+testing = TESTING or testarg
 dir = os.path.dirname(os.path.realpath(__file__))
-
-utils.enable_logging()
 
 
 def login():
@@ -69,7 +67,9 @@ def init():
                 if kind == 'term':
                     add_audio(line, id, buf, audio)
                 if line.find('<Term>') < 0:
-                    buf.append('{0} <{1}> "" .'.format(id, kind.capitalize()))
+                    label = kind.capitalize()
+                    buf.append('{0} <{1}> "" .'.format(id, label))
+                    buf.append('{0} <dgraph.type> "{1}" .'.format(id, label))
                 buf.append(created_at(id))
                 buf.append(created_by(id))
                 typed[id] = True
@@ -110,6 +110,7 @@ def audio_nquads(term_id, url, i):
     id = '_:aud_{0}{1}'.format(term_id, i)
     nquads = [
         '{0} <File> "" .'.format(id),
+        '{0} <dgraph.type> "File" .'.format(id),
         created_at(id),
         created_by(id),
         '{0} <url> "{1}" .'.format(id, url),
@@ -169,7 +170,7 @@ def change_url(line):
     placeholder = 'https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image'
     if image_url == '':
         image_url = placeholder
-    if not utils.url_exists(image_url):
+    if not testing and not utils.url_exists(image_url):
         print('not found: {0}'.format(image_url))
         return line
     try:
