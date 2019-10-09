@@ -57,6 +57,7 @@ part_of: [uid] @count .
 in: [uid] @count .
 tag: [uid] @count .
 transcription: [uid] @count .
+transcription_of: [uid] @count .
 
 channel: [uid] @count .
 from: [uid] @count .
