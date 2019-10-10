@@ -22,6 +22,7 @@ description: string @lang @index(term, fulltext, trigram) .
 age: int @index(int) .
 first_lang: string @index(term) .
 second_lang: string @index(term) .
+location: string @index(term, trigram) .
 region: string @index(term, trigram) .
 country: string @index(term, trigram) .
 state: string @index(term, trigram) .
@@ -105,6 +106,7 @@ type User {
     status: string
     description: string
     location: string
+    registered_at: dateTime
     created_at: dateTime
     modified_at: dateTime
 }
