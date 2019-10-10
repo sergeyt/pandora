@@ -190,14 +190,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:47fcf42edc0f19aeb5b5e544b26f82a439f7b7eb5a08807f6c78fbcf3de08bd6"
+  digest = "1:68b464f8d8ac2b70e4bc09f4e19b54ca7d4b3a226613a14becbfcb5b9e3945e5"
   name = "github.com/gocontrib/pubsub"
   packages = [
     ".",
     "nats",
   ]
   pruneopts = "U"
-  revision = "0fdd96f5751b52f4d407a41f85f53370b67c2690"
+  revision = "d42d7809a78025410a77b42dc83fb97d9633eca0"
 
 [[projects]]
   branch = "master"
@@ -386,25 +386,10 @@
   version = "v1.1.2"
 
 [[projects]]
-  digest = "1:32b7fbcb60229f3862de1b8f00ae39a96b6e88425026575c838ac68122bcdf88"
-  name = "github.com/moul/http2curl"
-  packages = ["."]
-  pruneopts = "U"
-  revision = "9ac6cf4d929b2fa8fd2d2e6dec5bb0feb4f4911d"
-  version = "v1.0.0"
-
-[[projects]]
-  digest = "1:d05d496fe92950a1cda486543ec74c7d8f203447d3567206c3d6aa0bd8cc06e0"
-  name = "github.com/nats-io/nats"
-  packages = ["."]
-  pruneopts = "U"
-  revision = "e2837a2879e82886f6e21715e3a0217fdc46d370"
-  version = "v1.8.1"
-
-[[projects]]
-  digest = "1:95837473f879ea39a76b82c43c7badf93a4b27b2d5654182ec3d1728f8ebec30"
+  digest = "1:a47efbf803f1a324d35ce1dfbf697005447039f054e1bdb37b5d201fd047e802"
   name = "github.com/nats-io/nats.go"
   packages = [
+    ".",
     "encoders/builtin",
     "util",
   ]
@@ -702,7 +687,7 @@
   name = "google.golang.org/genproto"
   packages = ["googleapis/rpc/status"]
   pruneopts = "U"
-  revision = "a023cd5227bd25fd1f5c5633743ff3eacc93d169"
+  revision = "548a555dbc03994223efbaba0090152849259498"
 
 [[projects]]
   digest = "1:9b0805266646d8d72099e07b64846aef6220bbe85f8e79f5368eeb65e06aea97"
@@ -755,12 +740,12 @@
   version = "v1.3"
 
 [[projects]]
-  digest = "1:24dea5b97fa36f66dc6dd4a9f6ea6068331cdef17c819ce9debe38c7b4d6179c"
+  digest = "1:15a272c45b2d7eb27c0dec244377913ef0170eaf36cdeedb32dd0c9de90b2949"
   name = "gopkg.in/gavv/httpexpect.v1"
   packages = ["."]
   pruneopts = "U"
-  revision = "4bebe300fb2f2c7c264b44af4e323d82affe5317"
-  version = "v1.1.0"
+  revision = "aead6230c2399075b7d97cd3b04ffd27b28343ec"
+  version = "v1.1.1"
 
 [[projects]]
   digest = "1:2070f47bc914577462efb19cf9acc7e82009e72e599633253f9dca2ea4cadbba"
@@ -777,6 +762,14 @@
   pruneopts = "U"
   revision = "f221b8435cfb71e54062f6c6e99e9ade30b124d5"
   version = "v2.2.4"
+
+[[projects]]
+  digest = "1:828f2df7cce0ef7b57c771fd2e519a48584e899f6b6297bcfc48d57c19bd84d1"
+  name = "moul.io/http2curl"
+  packages = ["."]
+  pruneopts = "U"
+  revision = "5cd742060b0e0de91f875277b77dd7d7e68b23ca"
+  version = "v2"
 
 [solve-meta]
   analyzer-name = "dep"
