@@ -6,6 +6,7 @@ import cambridge
 import api
 import re
 import json
+import nquad
 
 __dir__ = os.path.dirname(os.path.realpath(__file__))
 TAGS = {}  # friendly tag name to uid
@@ -25,7 +26,7 @@ def is_word(s):
 
 
 def commit_edges(edges):
-    pass
+    api.update_graph(edges)
 
 
 # TODO refactor as generator
@@ -37,17 +38,22 @@ def read_words():
 
 
 def define_term(data, tags=[]):
+    data['Term'] = ''
+    data['dgraph.type'] = 'Term'
     text = data['text']
     tags.append('word' if is_word(text) else 'phrase')
     id = next_id('term')
     tag_ids = [TAGS[t] for t in tags if t in TAGS]
 
-    res = api.nquads(data, id)
-    res.extend([api.nquad(id, 'tag', t) for t in tag_ids])
-    # TODO commit term to dgraph
+    q = nquad.kv_list(data, id)
+    q.extend([nquad.format(id, 'tag', t) for t in tag_ids])
+
+    res = api.update_graph('\n'.join(q))
+    # FIXME extract term id from response
+    id = res[id]
+
     key = '{0}@{1}'.format(data['text'], data['lang'])
     TERMS[key] = id
-    print('\n'.join(res))
     return id
 
 
@@ -80,9 +86,16 @@ def define_word(word, lang='en'):
     # get tags from cambridge (noun, verb, adjective, etc)
     tags = []
     data = {'text': word, 'lang': lang}
-    for pron in cam['prons']:
-        data['transcript@{0}'.format(pron['region'])] = pron['ipa']
     term_id = define_term(data, tags)
+
+    for pron in cam['prons']:
+        tran = {'text': pron['ipa'], 'lang': 'ipa', 'region': pron['region']}
+        tran_id = define_term(tran)
+        commit_edges([
+            [term_id, 'transcription', tran_id],
+            [tran_id, 'transcription_of', term_id],
+        ])
+
     for phrase in cam['phrases']:
         if phrase['text'] == word:
             # direct translation
@@ -100,7 +113,6 @@ def define_word(word, lang='en'):
 
 
 # TODO define tags
-# TODO define words with definitions, examples (in)
 # TODO define audio and visual edges
 
 
@@ -108,7 +120,8 @@ def main():
     if len(sys.argv) > 1:
         define_word(sys.argv[1])
         return
-    for word in read_words():
+    words = read_words()
+    for word in words[:10]:
         define_word(word)
 
 

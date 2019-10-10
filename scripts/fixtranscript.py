@@ -2,7 +2,7 @@
 
 import os
 import re
-import api
+import nquad
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -25,7 +25,7 @@ def fix_transcripts(props, id):
             lang = 'ru'
             region = 'ru'
         buf.extend(
-            api.nquads({
+            nquad.kv_list({
                 'text': val,
                 'lang': lang,
                 'region': region,
@@ -46,7 +46,7 @@ def commit():
         return
     trans = fix_transcripts(props, current_id)
     lines.extend(trans)
-    buf = api.nquads(props, current_id)
+    buf = nquad.kv_list(props, current_id)
     lines.extend(buf)
     current_id = None
     props = {}

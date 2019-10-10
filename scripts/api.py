@@ -8,6 +8,7 @@ import random
 import urllib
 import termquery
 import utils
+import nquad
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -124,6 +125,7 @@ def delete(path, auth=None):
                            params=params,
                            headers=headers(),
                            auth=auth)
+    dump_response(resp)
     resp.raise_for_status()
     return resp
 
@@ -150,6 +152,22 @@ def current_user():
     return get('/api/me')
 
 
+def update_graph(set_edges, del_edges=None):
+    if set_edges is None and del_edges is None:
+        raise Exception("please specify edges to set or delete")
+    data = {}
+    if set_edges is not None:
+        data['set'] = nquad.format_edges(set_edges)
+    if del_edges is not None:
+        data['delete'] = nquad.format_edges(del_edges)
+    return post('/api/nquads', data)
+
+
+def delete_edge(id, edge):
+    q = nquad.format(id, edge, '*')
+    return post('/api/nquads', {'delete': q})
+
+
 def search_terms(text, lang):
     q = termquery.make_term_query(searchString=text, lang=lang)
     return query(q['text'], q['params'])
@@ -170,15 +188,10 @@ def link_terms(source_id, target_id, edge):
     if 'reverse_edge' in rel:
         reverse_edge = rel['reverse_edge']
     q = '\n'.join([
-        nquad(source_id, edge, target_id),
-        nquad(target_id, reverse_edge, source_id)
+        nquad.format(source_id, edge, target_id),
+        nquad.format(target_id, reverse_edge, source_id)
     ])
     return post('/api/nquads', {'set': q})
-
-
-def delete_edge(id, edge):
-    q = nquad(id, edge, '*')
-    return post('/api/nquads', {'delete': q})
 
 
 def search_audio(text, lang):
@@ -236,46 +249,6 @@ def mutate(data):
     dump_response(resp)
     resp.raise_for_status()
     return resp.json()
-
-
-# utils
-def is_uid(s):
-    return len(s) > 0 and re.match(r"^0x[a-f0-9]+$", s) != None
-
-
-def is_rdf_id(s):
-    return len(s) > 0 and re.match(r"^_:([\w_]+)$", s) != None
-
-
-def rdf_repr(v):
-    if isinstance(v, str):
-        if v == '*' or is_uid(v) or is_rdf_id(v):
-            return v
-        return "<{0}>".format(v) if is_uid(v) else '"{0}"'.format(v)
-    return v
-
-
-def nquad(id, k, v):
-    a = k.split('@')
-    p = a[0]
-    lang = a[1] if len(a) == 2 else ''
-    s = rdf_repr(v)
-    if len(lang) > 0:
-        s += "@{0}".format(lang)
-    id = "<{0}>".format(id) if is_uid(id) else "_:{0}".format(id)
-    return "{0} <{1}> {2} .".format(id, p, s)
-
-
-# TODO refactor as generator
-def nquads(d, id='x'):
-    result = []
-    for k, v in d.items():
-        if type(v) is list:
-            for t in v:
-                result.append(nquad(id, k, t))
-            continue
-        result.append(nquad(id, k, v))
-    return result
 
 
 def set_nquads(dataset):

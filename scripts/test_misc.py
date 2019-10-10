@@ -1,5 +1,5 @@
-import api
+import nquad
 
 
 def test_misc():
-    assert api.is_uid('0x10') == True
+    assert nquad.is_uid('0x10') == True
