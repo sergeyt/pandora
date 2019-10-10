@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dgraph-io/dgo/protos/api"
+	"github.com/dgraph-io/dgo/v2/protos/api"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"

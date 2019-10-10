@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dgraph-io/dgo"
+	dgo "github.com/dgraph-io/dgo/v2"
 	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"

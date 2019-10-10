@@ -7,7 +7,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/dgraph-io/dgo"
+	dgo "github.com/dgraph-io/dgo/v2"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"

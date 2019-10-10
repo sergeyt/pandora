@@ -1,10 +1,10 @@
-# Test binary, build with `go test -c`
-*.test
-*.pyc
-
-data
-tmp
-vendor
 .idea/workspace.xml
 .idea/sonarlint
 .vscode/.ropeproject
+
+*.test
+*.pyc
+
+tmp
+vendor
+pandora

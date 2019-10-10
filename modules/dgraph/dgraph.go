@@ -8,8 +8,8 @@ import (
 
 	"google.golang.org/grpc/metadata"
 
-	"github.com/dgraph-io/dgo"
-	"github.com/dgraph-io/dgo/protos/api"
+	dgo "github.com/dgraph-io/dgo/v2"
+	"github.com/dgraph-io/dgo/v2/protos/api"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/config"
 	log "github.com/sirupsen/logrus"

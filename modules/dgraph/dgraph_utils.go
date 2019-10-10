@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dgraph-io/dgo"
-	"github.com/dgraph-io/dgo/protos/api"
+	dgo "github.com/dgraph-io/dgo/v2"
+	"github.com/dgraph-io/dgo/v2/protos/api"
 	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/utils"
@@ -202,7 +202,7 @@ func wrapUID(uid string) map[string]string {
 	}
 }
 
-func DeleteNode(ctx context.Context, tx *dgo.Txn, id string) (*api.Assigned, error) {
+func DeleteNode(ctx context.Context, tx *dgo.Txn, id string) (*api.Response, error) {
 	// TODO unlink all connected nodes
 	// del2 := fmt.Sprintf("* * <%s> .\n", id)
 	del := fmt.Sprintf("<%s> * * .\n", id)
