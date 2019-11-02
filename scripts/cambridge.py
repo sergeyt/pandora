@@ -27,15 +27,12 @@ def find_strip(container, tag, class_):
 base = 'https://dictionary.cambridge.org'
 
 
-def get_translations(text, src_lang):
+def get_translations(data, text, src_lang):
     # TODO fix dictionary map for all languages
     dmap = {
         'ru': 'english-russian',
         'fr': 'english-french',
         'de': 'english-german',
-    }
-    data = {
-        'translated_as': [],
     }
 
     for lang, dictionary in dmap.items():
@@ -76,6 +73,7 @@ def get_data(text, lang):
         'definition': [],
         'in': [],
         'collocation': [],
+        'translated_as': [],
     }
 
     if utils.is_word(text):
@@ -128,8 +126,7 @@ def get_data(text, lang):
                     term = Term(text=stripped_text(a), lang=lang, region=None)
                     data['collocation'].append(term)
 
-    for k, v in get_translations(text, lang).items():
-        data[k] = v
+    get_translations(data, text, lang)
 
     return data
 
