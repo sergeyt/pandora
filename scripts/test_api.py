@@ -47,6 +47,10 @@ def test_crud():
 }"""
     resp = api.post('/api/query', query, raw=True)
 
+    print('search terms')
+
+    resp = api.search_terms('abc', 'en', no_links=True)
+
     print('UPDATE')
 
     data = {

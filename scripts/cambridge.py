@@ -5,57 +5,13 @@ import requests
 import json
 import utils
 from bs4 import BeautifulSoup
-from localcache import Cache
-
-cache = Cache('cambridge')
+from models import Term, File
 
 headers = {
-    'User-Agent': 'script',
+    'User-Agent':
+    'Mozilla/5.0 AppleWebKit/537.36 (KHTML like Gecko) Chrome/78.0.3883.121',
     'Accept': 'text/html',
 }
-
-
-def parse_btn(btn):
-    mp3 = btn['data-src-mp3']
-    ogg = btn['data-src-ogg']
-    region = btn.parent['class'][0]
-    return {'mp3': mp3, 'ogg': ogg, 'region': region}
-
-
-def find_audio(text, lang):
-    if lang != 'en':
-        return None
-
-    result = cache.get(text)
-    if result is not None:
-        return result
-
-    pat = 'https://dictionary.cambridge.org/dictionary/english/{0}'
-    url = pat.format(text)
-
-    resp = requests.get(url, headers=headers)
-    resp.raise_for_status()
-
-    soup = BeautifulSoup(resp.text, 'html.parser')
-    header = soup.find('div', class_='pos-header')
-    if header is None:
-        return None
-
-    btns = header.find_all('span', class_='audio_play_button')
-    data = [parse_btn(b) for b in btns]
-    result = {}
-    for d in data:
-        for fmt in ['mp3', 'ogg']:
-            if fmt in d:
-                if fmt not in result:
-                    result[fmt] = []
-                url = 'https://dictionary.cambridge.org' + d[fmt]
-                if utils.url_exists(url):
-                    result[fmt].append({'url': url, 'region': d['region']})
-
-    cache.put(text, result)
-
-    return result
 
 
 def stripped_text(node):
@@ -64,74 +20,91 @@ def stripped_text(node):
     return node.get_text().strip()
 
 
-def parse_def(d):
-    text = stripped_text(d.find('b', class_='def'))
-    trans = d.find('span', class_='trans')
-    examples = [stripped_text(t) for t in d.find_all('span', class_='eg')]
-    return {
-        'text': text,
-        'trans': {
-            'text': stripped_text(trans),
-            'lang': trans.attrs['lang'],
-        },
-        'examples': examples,
-    }
+def find_strip(container, tag, class_):
+    node = container.find(tag, class_=class_)
+    return stripped_text(node)
 
 
-def parse_sense(block, text):
-    phrase = text
-    d = block.find('div', class_='phrase-block')
-    if d is not None:
-        phrase = stripped_text(d.find('span', class_='phrase'))
-    defs = [parse_def(t) for t in block.find_all('div', class_='def-block')]
-    return {
-        'text': phrase,
-        'defs': defs,
-    }
-
-
-def parse_pron(p):
-    region = 'uk' if p.find('span', class_='uk') else 'us'
-    pron = p.find('span', class_='pron')
-    lab = pron.find('span', class_='lab')
-    ipa = stripped_text(pron.find('span', class_='ipa'))
-    return {
-        'region': region,
-        'lab': None if lab is None else lab.string,
-        'ipa': ipa,
-    }
-
-
-def translate(text, lang):
+def get_data(text, lang):
     if lang != 'en':
         return None
 
-    pat = 'https://dictionary.cambridge.org/ru/{0}/{1}/{2}'
-    url = pat.format(*utils.url_quote(['словарь', 'англо-русский', text]))
+    base = 'https://dictionary.cambridge.org'
+    pat = '{0}/dictionary/english/{1}'
+    url = pat.format(base, text)
 
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
 
-    soup = BeautifulSoup(resp.text, 'html.parser')
-    prons = [parse_pron(p) for p in soup.find_all('span', class_='pron_info')]
-    blocks = soup.find_all('div', class_='sense-block')
-    phrases = [parse_sense(t, text) for t in blocks]
-    return {
-        'text': text,
-        'lang': lang,
-        'prons': [p for p in prons if p is not None and p['ipa'] is not None],
-        'phrases': phrases,
+    data = {
+        'tag': [],
+        'audio': [],
+        'transcription': [],
+        'definition': [],
+        'in': [],
+        'visual': [],
     }
+
+    if utils.is_word(text):
+        data['tag'].append(Term(text='word', lang=lang, region=None))
+
+    soup = BeautifulSoup(resp.text, 'html.parser')
+    page = soup.find('div', class_='page')
+    for dictionary in page.find_all('div', class_='dictionary'):
+        header = dictionary.find('div', class_='pos-header')
+        body = dictionary.find('div', class_='pos-body')
+
+        posgram = header.find('div', class_='posgram')
+        if posgram:
+            pos = find_strip(posgram, 'span', class_='pos')
+            data['tag'].append(Term(text=pos, lang=lang, region=None))
+        # TODO parse codes like countable, etc
+
+        # parse pronunciations
+        for dpron in header.find_all('span', class_='dpron-i'):
+            region = find_strip(dpron, 'span', 'region')
+            amp = header.find('amp-audio')
+            for source in amp.find_all('source'):
+              file = File(url=base + source.attrs['src'], region=region)
+              data['audio'].append(file)
+
+            ipa = find_strip(dpron, 'span', class_='ipa')
+            data['transcription'].append(
+                Term(text=ipa, lang=lang, region=region))
+
+        for dblock in body.find_all('div', class_='def-block'):
+            def_text = stripped_text(dblock.find('div', class_='def'))
+            data['definition'].append(
+                Term(text=def_text, lang=lang, region=None))
+            img = dblock.find('amp-img')
+            if img is not None:
+                file = File(url=base + img.attrs['src'], region=None)
+                data['visual'].append(file)
+            for eg in dblock.find_all('span', 'eg'):
+                term = Term(text=stripped_text(eg), lang=lang, region=None)
+                data['in'].append(term)
+
+    for dataset in page.find_all('div', class_='dataset'):
+        for eg in dataset.find_all('span', class_='deg'):
+            term = Term(text=stripped_text(eg), lang=lang, region=None)
+            data['in'].append(term)
+
+    # TODO parse collocations
+
+    return data
+
+
+def find_audio(text, lang):
+    data = get_data(text, lang)
+    if data is None:
+        return None
+    return [a._asdict() for a in data['audio']]
 
 
 def main():
-    cmd = sys.argv[1]
-    (text, lang) = utils.find_audio_args(sys.argv[1:])
-    if cmd == 'audio':
-        result = find_audio(text, lang)
-    else:
-        result = translate(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  '))
+    (text, lang) = utils.find_audio_args(sys.argv)
+    result = get_data(text, lang)
+    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
 
 
 if __name__ == '__main__':

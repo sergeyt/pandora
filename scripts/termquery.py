@@ -50,11 +50,11 @@ relation_map = {
 KIND = ['term', 'terms', 'audio', 'visual'] + list(keys(relation_map))
 
 META = """
-  created_at
-  created_by {
-    uid
-    name
-  }
+    created_at
+    created_by {
+      uid
+      name
+    }
 """
 
 TAG = """tag {{
@@ -86,32 +86,34 @@ FILE_BODY = """{{
 
 
 def make_term_query(kind='terms',
-                    termId='',
+                    term_id='',
                     offset=0,
                     limit=10,
                     lang='',
-                    searchString='',
+                    search_string='',
                     tags=[],
-                    onlyTags=False):
+                    only_tags=False,
+                    exact_match=False,
+                    no_links=False):
     if not kind or kind not in KIND:
         raise Exception("invalid kind {0}".format(kind))
-    if kind == 'term' and not termId:
+    if kind == 'term' and not term_id:
         raise Exception('termUid is required')
-    if searchString is None:
-        searchString = ''
+    if search_string is None:
+        search_string = ''
 
     has_term_type = 'has(Term)'
-    match_fn = "uid({0})".format(termId) if termId else has_term_type
+    match_fn = "uid({0})".format(term_id) if term_id else has_term_type
     is_term_list = kind == 'terms'
     is_term = kind == 'term'
-    has_tag_type = 'has(Tag)' if is_term_list and onlyTags else ''
+    has_tag_type = 'has(Tag)' if is_term_list and only_tags else ''
     params = {}
 
     def make_search_filter():
         if not is_term_list:
             return ''
 
-        str = searchString.strip()
+        str = search_string.strip()
         if not str:
             return ''
 
@@ -172,6 +174,12 @@ def make_term_query(kind='terms',
 
     totals = '\n'.join(totals)
 
+    count_query = """
+    count(func: {match_fn}) {term_filter} {{
+      {totals}
+    }}
+    """.format(match_fn=match_fn, term_filter=term_filter, totals=totals)
+
     text = """{param_query}{{
   terms(func: {match_fn}{term_range}) {term_filter} {{
     Tag
@@ -182,20 +190,17 @@ def make_term_query(kind='terms',
     {tag}
     {edges}
   }}
-  count(func: {match_fn}) {term_filter} {{
-    {totals}
-  }}
-  }}""".format(param_query=param_query,
-               match_fn=match_fn,
-               term_range=term_range,
-               term_filter=term_filter,
-               meta=META,
-               tag=TAG,
-               edges=edges,
-               totals=totals)
+  {count}
+}}""".format(param_query=param_query,
+             match_fn=match_fn,
+             term_range=term_range,
+             term_filter=term_filter,
+             meta=META,
+             tag='' if no_links else TAG,
+             edges='' if no_links else edges,
+             count='' if no_links else count_query)
 
     p = re.compile(r"^\s*[\r\n]", flags=re.MULTILINE)
     text = p.sub('', text)
-    print(text)
 
     return {'text': text, 'params': params}

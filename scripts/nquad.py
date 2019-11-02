@@ -11,7 +11,7 @@ def is_rdf_id(s):
 
 def rdf_repr(v):
     if isinstance(v, str):
-        if v == '*' or is_uid(v) or is_rdf_id(v):
+        if v == '*' or is_rdf_id(v):
             return v
         return "<{0}>".format(v) if is_uid(v) else '"{0}"'.format(v)
     return v

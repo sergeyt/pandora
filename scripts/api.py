@@ -168,17 +168,21 @@ def delete_edge(id, edge):
     return post('/api/nquads', {'delete': q})
 
 
-def search_terms(text, lang):
-    q = termquery.make_term_query(searchString=text, lang=lang)
+def search_terms(text, lang, **query_args):
+    q = termquery.make_term_query(search_string=text, lang=lang, **query_args)
     return query(q['text'], q['params'])
 
 
 # todo split text into words
-def add_term(text, lang):
-    resp = search_terms(text, lang)
+def add_term(text, lang, region):
+    resp = search_terms(text, lang, exact_match=True, no_links=True)
     if len(resp['terms']) > 0:
         return resp['terms'][0]['uid']
-    resp = post('/api/data/term', {'text': text, 'lang': lang})
+    resp = post('/api/data/term', {
+        'text': text,
+        'lang': lang,
+        'region': region
+    })
     return resp['uid']
 
 
@@ -200,11 +204,13 @@ def search_audio(text, lang):
     return get(url)
 
 
-def fileproxy(url):
+def fileproxy(url, as_is=False):
     def path_from_url():
         return re.sub(r'https?://', '', url)
 
     resp = get('/api/fileproxy/{0}'.format(url))
+    if as_is: return resp
+
     host = os.getenv('SERVER_URL', 'http://lingvograph.com')
     path = resp['path'] if 'path' in resp else path_from_url()
     result = '{0}/api/file/{1}'.format(host, path)
@@ -253,7 +259,6 @@ def mutate(data):
 
 def set_nquads(dataset):
     data = "{\nset {\n" + dataset + "}}"
-    print(data)
     return mutate(data)
 
 

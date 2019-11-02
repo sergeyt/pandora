@@ -1,5 +1,6 @@
 import os
 import sys
+import re
 import urllib
 import logging
 import requests
@@ -75,3 +76,7 @@ def url_quote(val):
     if isinstance(val, str):
         return urllib.parse.quote(val)
     return [urllib.parse.quote(s) for s in val]
+
+
+def is_word(s):
+    return True if re.match(r'^\w+$', s) else False
