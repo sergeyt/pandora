@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"time"
 
 	"google.golang.org/grpc/metadata"
 
@@ -17,7 +18,8 @@ import (
 )
 
 func NewClient() (*dgo.Dgraph, error) {
-	d, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure())
+	// TODO configurable timeout
+	d, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure(), grpc.WithTimeout(30*time.Second))
 	if err != nil {
 		log.Errorf("grpc.Dial fail: %v", err)
 		return nil, err
