@@ -75,6 +75,13 @@ def get_data(text, lang):
         'collocation': [],
         'translated_as': [],
     }
+    codes = {
+        'C': 'countable',
+        'U': 'uncountable',
+        'S': 'singular',
+    }
+    posgram_found = False
+    gram_found = False
 
     if utils.is_word(text):
         data['tag'].append(Term(text='word', lang=lang, region=None))
@@ -86,10 +93,19 @@ def get_data(text, lang):
         body = dictionary.find('div', class_='pos-body')
 
         posgram = header.find('div', class_='posgram')
-        if posgram:
+        if posgram and not posgram_found:
             pos = find_strip(posgram, 'span', class_='pos')
-            data['tag'].append(Term(text=pos, lang=lang, region=None))
-        # TODO parse codes like countable, etc
+            term = Term(text=pos, lang=lang, region=None)
+            data['tag'].append(term)
+            posgram_found = True
+        if not gram_found:
+            for gram in body.find_all('span', class_='gram'):
+                for gc in gram.find_all('span', class_='gc'):
+                    code = stripped_text(gc)
+                    if code in codes and not gram_found:
+                        term = Term(text=codes[code], lang=lang, region=None)
+                        data['tag'].append(term)
+                        gram_found = True
 
         # parse pronunciations
         for dpron in header.find_all('span', class_='dpron-i'):
