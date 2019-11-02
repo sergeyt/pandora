@@ -24,11 +24,44 @@ def find_strip(container, tag, class_):
     return stripped_text(node)
 
 
+base = 'https://dictionary.cambridge.org'
+
+
+def get_translations(text, src_lang):
+    # TODO fix dictionary map for all languages
+    dmap = {
+        'ru': 'english-russian',
+        'fr': 'english-french',
+        'de': 'english-german',
+    }
+    data = {
+        'translated_as': [],
+    }
+
+    for lang, dictionary in dmap.items():
+        pat = '{0}/dictionary/{1}/{2}'
+        url = pat.format(base, dictionary, text.replace(' ', '-'))
+
+        resp = requests.get(url, headers=headers)
+        resp.raise_for_status()
+
+        soup = BeautifulSoup(resp.text, 'html.parser')
+        for sense in soup.find_all('div', class_='sense-body'):
+            phrase = sense.find('div', class_='phrase-block')
+            if phrase: continue
+            trans = sense.find('span', class_='trans')
+            if trans:
+                for word in stripped_text(trans).split(','):
+                    term = Term(text=word, lang=lang, region=None)
+                    data['translated_as'].append(term)
+
+    return data
+
+
 def get_data(text, lang):
     if lang != 'en':
         return None
 
-    base = 'https://dictionary.cambridge.org'
     pat = '{0}/dictionary/english/{1}'
     url = pat.format(base, text.replace(' ', '-'))
 
@@ -94,6 +127,9 @@ def get_data(text, lang):
                 for a in lbb.find_all('a', class_='hdib'):
                     term = Term(text=stripped_text(a), lang=lang, region=None)
                     data['collocation'].append(term)
+
+    for k, v in get_translations(text, lang).items():
+        data[k] = v
 
     return data
 
