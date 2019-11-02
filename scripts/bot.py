@@ -7,7 +7,9 @@ import api
 from models import Term, File
 
 reverse_edges = {
+    'transcription': 'transcription_of',
     'definition': 'definition_of',
+    'collocation': 'collocation_of',
 }
 
 __dir__ = os.path.dirname(os.path.realpath(__file__))
@@ -29,14 +31,15 @@ def read_words():
         lines = [s.strip() for s in lines]
         return [s for s in lines if len(s) > 0]
 
+def key_of(text, lang):
+    return '{0}@{1}'.format(text, lang)
 
 def define_term(data):
     print('TERM {0}'.format(data.text))
-    key = '{0}@{1}'.format(data.text, data.lang)
+    key = key_of(data.text, data.lang)
     if key in TERMS:
         return TERMS[key]
     id = api.add_term(data.text, data.lang, data.region)
-    key = '{0}@{1}'.format(data.text, data.lang)
     TERMS[key] = id
     return id
 
@@ -56,8 +59,9 @@ def define_word(word, lang='en'):
             else:
                 related_id = define_term(v)
             edges.append([word_id, k, related_id])
-            if k in reverse_edges:
-                edges.append([related_id, reverse_edges[k], word_id])
+            if not is_file:
+                reverse_edge = reverse_edges[k] if k in reverse_edges else k
+                edges.append([related_id, reverse_edge, word_id])
         if len(edges) > 0:
             api.update_graph(edges)
 
