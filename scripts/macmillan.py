@@ -4,19 +4,14 @@ import re
 import requests
 import json
 import utils
-from localcache import Cache
+from models import File
 
 first = lambda a: next(iter(a or []), None)
-cache = Cache('macmillan')
 
 
-def find_audio(text, lang='en'):
+def get_data(text, lang='en'):
     if lang != 'en':
         return None
-
-    result = cache.get(text)
-    if result is not None:
-        return result
 
     pat = 'https://www.macmillandictionary.com/dictionary/british/{0}'
     url = pat.format(text)
@@ -32,23 +27,19 @@ def find_audio(text, lang='en'):
     if mp3 is None and ogg is None:
         return None
 
-    result = {}
-    if utils.url_exists(mp3):
-        result['mp3'] = [{'url': mp3}]
-    if utils.url_exists(ogg):
-        result['ogg'] = [{'url': ogg}]
-    if len(result) == 0:
-        return None
+    data = {
+      'audio': []
+    }
+    for url in [mp3, ogg]:
+      data['audio'].append(File(url=url, region=None))
 
-    cache.put(text, result)
-
-    return result
+    return data
 
 
 def main():
     (text, lang) = utils.find_audio_args()
-    result = find_audio(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  '))
+    result = get_data(text, lang)
+    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
 
 
 if __name__ == '__main__':

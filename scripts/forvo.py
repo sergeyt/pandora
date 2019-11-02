@@ -7,13 +7,11 @@ import json
 import dictcom
 import utils
 from bs4 import BeautifulSoup
-from localcache import Cache
+from models import File
 
 AUDIO_HOST = 'https://audio00.forvo.com/audios/mp3'
 
 first = lambda a: next(iter(a or []), None)
-
-cache = Cache('forvo')
 
 
 def decode_base64(s):
@@ -94,11 +92,7 @@ def parse_item(item):
     return result
 
 
-def find_audio(text, lang='ru'):
-    result = cache.get(text)
-    if result is not None:
-        return result
-
+def get_data(text, lang='ru'):
     pat = 'https://ru.forvo.com/word/{0}/#{1}'
     url = pat.format(urllib.parse.quote(text), lang)
     headers = {
@@ -121,17 +115,18 @@ def find_audio(text, lang='ru'):
     items = [
         t for t in parsed_items if t is not None and utils.url_exists(t['url'])
     ]
-    result = {'mp3': items}
 
-    cache.put(text, result)
+    data = {
+      'audio': [File(url=url, region=None) for url in items]
+    }
 
-    return result
+    return data
 
 
 def main():
     (text, lang) = utils.find_audio_args()
-    result = find_audio(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  '))
+    result = get_data(text, lang)
+    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
 
 
 if __name__ == '__main__':

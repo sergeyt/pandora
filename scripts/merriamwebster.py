@@ -4,9 +4,7 @@ import requests
 import json
 import utils
 from bs4 import BeautifulSoup
-from localcache import Cache
-
-cache = Cache('merriamwebster')
+from models import File
 
 
 def parse_btn(btn):
@@ -17,13 +15,9 @@ def parse_btn(btn):
     return pat.format(lang, dir, file)
 
 
-def find_audio(text, lang):
+def get_data(text, lang):
     if lang != 'en':
         return None
-
-    result = cache.get(text)
-    if result is not None:
-        return result
 
     pat = 'https://www.merriam-webster.com/dictionary/{0}'
     url = pat.format(text)
@@ -44,22 +38,19 @@ def find_audio(text, lang):
 
     urls = [parse_btn(b) for b in btns]
     urls = [u for u in urls if utils.url_exists(u)]
-    result = {}
+    data = {
+      'audio': []
+    }
     for url in urls:
-        fmt = 'mp3'
-        if fmt not in result:
-            result[fmt] = []
-        result[fmt].append({'url': url})
+        data['audio'].append(File(url=url, region=None))
 
-    cache.put(text, result)
-
-    return result
+    return data
 
 
 def main():
     (text, lang) = utils.find_audio_args()
-    result = find_audio(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  '))
+    result = get_data(text, lang)
+    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
 
 
 if __name__ == '__main__':
