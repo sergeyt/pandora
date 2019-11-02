@@ -4,11 +4,12 @@ import sys
 import os
 import cambridge
 import unsplash
+import multitran
 import api
-from models import Term, File
+from models import Term, File, TermWithData
 
 # here you can temporarily remove sources that you don't need to test
-sources = [cambridge, unsplash]
+sources = [cambridge, unsplash, multitran]
 
 reverse_edges = {
     'transcription': 'transcription_of',
@@ -61,6 +62,9 @@ def push_data(term_id, data):
                 related_id = file['uid']
                 if v.region:
                     edges.append([related_id, 'region', v.region])
+            elif isinstance(v, TermWithData):
+                related_id = define_term(v.term)
+                push_data(related_id, v.data)
             else:
                 related_id = define_term(v)
             edges.append([term_id, k, related_id])
@@ -72,16 +76,10 @@ def push_data(term_id, data):
 
 
 def define_word(text, lang='en'):
-    for i in range(2):
-        try:
-            term_id = define_term(Term(text=text, lang=lang, region=None))
-            for source in sources:
-                data = source.get_data(text, lang)
-                push_data(term_id, data)
-        except:
-            # TODO try relogin only on 401
-            api.login("system", os.getenv("SYSTEM_PWD"))
-            print("Unexpected error:", sys.exc_info()[0])
+    term_id = define_term(Term(text=text, lang=lang, region=None))
+    for source in sources:
+        data = source.get_data(text, lang)
+        push_data(term_id, data)
 
 
 def main():
