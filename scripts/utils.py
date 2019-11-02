@@ -12,6 +12,7 @@ def as_bool(s):
 
 
 TESTING = as_bool(os.getenv('TESTING', '0'))
+CHROME_USER_AGENT = 'Mozilla/5.0 AppleWebKit/537.36 (KHTML like Gecko) Chrome/78.0.3883.121'
 
 # https://stackoverflow.com/questions/16337511/log-all-requests-from-the-python-requests-module
 # https://stackoverflow.com/questions/10588644/how-can-i-see-the-entire-http-request-thats-being-sent-by-my-python-application

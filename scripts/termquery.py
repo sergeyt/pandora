@@ -1,6 +1,7 @@
 import re
 from utils import is_word
 
+
 def is_empty(v):
     return len(v) == 0
 

@@ -3,8 +3,12 @@
 import sys
 import os
 import cambridge
+import unsplash
 import api
 from models import Term, File
+
+# here you can temporarily remove sources that you don't need to test
+sources = [cambridge, unsplash]
 
 reverse_edges = {
     'transcription': 'transcription_of',
@@ -31,8 +35,10 @@ def read_words():
         lines = [s.strip() for s in lines]
         return [s for s in lines if len(s) > 0]
 
+
 def key_of(text, lang):
     return '{0}@{1}'.format(text, lang)
+
 
 def define_term(data):
     print('TERM {0}'.format(data.text))
@@ -44,26 +50,38 @@ def define_term(data):
     return id
 
 
-def define_word(word, lang='en'):
-    word_id = define_term(Term(text=word, lang=lang, region=None))
-    data = cambridge.get_data(word, lang)
+def push_data(term_id, data):
     for k, a in data.items():
         edges = []
         for v in a:
             is_file = isinstance(v, File)
             if is_file:
+                # TODO optimize adding file with region
                 file = api.fileproxy(v.url, as_is=True)
                 related_id = file['uid']
                 if v.region:
                     edges.append([related_id, 'region', v.region])
             else:
                 related_id = define_term(v)
-            edges.append([word_id, k, related_id])
+            edges.append([term_id, k, related_id])
             if not is_file:
                 reverse_edge = reverse_edges[k] if k in reverse_edges else k
-                edges.append([related_id, reverse_edge, word_id])
+                edges.append([related_id, reverse_edge, term_id])
         if len(edges) > 0:
             api.update_graph(edges)
+
+
+def define_word(text, lang='en'):
+    for i in range(2):
+        try:
+            term_id = define_term(Term(text=text, lang=lang, region=None))
+            for source in sources:
+                data = source.get_data(text, lang)
+                push_data(term_id, data)
+        except:
+            # TODO try relogin only on 401
+            api.login("system", os.getenv("SYSTEM_PWD"))
+            print("Unexpected error:", sys.exc_info()[0])
 
 
 def main():

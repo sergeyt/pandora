@@ -8,8 +8,7 @@ from bs4 import BeautifulSoup
 from models import Term, File
 
 headers = {
-    'User-Agent':
-    'Mozilla/5.0 AppleWebKit/537.36 (KHTML like Gecko) Chrome/78.0.3883.121',
+    'User-Agent': utils.CHROME_USER_AGENT,
     'Accept': 'text/html',
 }
 
@@ -66,8 +65,8 @@ def get_data(text, lang):
             region = find_strip(dpron, 'span', 'region')
             amp = header.find('amp-audio')
             for source in amp.find_all('source'):
-              file = File(url=base + source.attrs['src'], region=region)
-              data['audio'].append(file)
+                file = File(url=base + source.attrs['src'], region=region)
+                data['audio'].append(file)
 
             ipa = find_strip(dpron, 'span', class_='ipa')
             data['transcription'].append(
