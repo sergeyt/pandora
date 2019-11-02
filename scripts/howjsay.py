@@ -4,6 +4,7 @@ import json
 import utils
 from models import File
 
+
 def get_data(text, lang='en'):
     if lang != 'en':
         return None
@@ -12,9 +13,7 @@ def get_data(text, lang='en'):
     if not utils.url_exists(url):
         return None
 
-    data = {
-      'audio': [File(url=url, region=None)]
-    }
+    data = {'audio': [File(url=url, region=None)]}
 
     return data
 

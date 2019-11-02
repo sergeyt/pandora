@@ -11,21 +11,18 @@ import utils
 
 def find_audio(text, lang):
     result = {}
-    sources = [
-        howjsay, cambridge, macmillan,
-        merriamwebster, forvo
-    ]
+    sources = [howjsay, cambridge, macmillan, merriamwebster, forvo]
     for source in sources:
         data = source.get_data(text, lang)
         if data is None and 'audio' not in data:
             continue
         for file in data['audio']:
-          for fmt in ['mp3', 'ogg']:
-              if not file.url.endswith(fmt):
-                  continue
-              if fmt not in result:
-                  result[fmt] = []
-              result[fmt].extend(file.url)
+            for fmt in ['mp3', 'ogg']:
+                if not file.url.endswith(fmt):
+                    continue
+                if fmt not in result:
+                    result[fmt] = []
+                result[fmt].extend(file.url)
     return None if len(result) == 0 else result
 
 

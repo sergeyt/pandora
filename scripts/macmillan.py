@@ -27,11 +27,9 @@ def get_data(text, lang='en'):
     if mp3 is None and ogg is None:
         return None
 
-    data = {
-      'audio': []
-    }
+    data = {'audio': []}
     for url in [mp3, ogg]:
-      data['audio'].append(File(url=url, region=None))
+        data['audio'].append(File(url=url, region=None))
 
     return data
 

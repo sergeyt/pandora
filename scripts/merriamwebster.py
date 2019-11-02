@@ -38,9 +38,7 @@ def get_data(text, lang):
 
     urls = [parse_btn(b) for b in btns]
     urls = [u for u in urls if utils.url_exists(u)]
-    data = {
-      'audio': []
-    }
+    data = {'audio': []}
     for url in urls:
         data['audio'].append(File(url=url, region=None))
 

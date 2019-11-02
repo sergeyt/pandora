@@ -116,9 +116,7 @@ def get_data(text, lang='ru'):
         t for t in parsed_items if t is not None and utils.url_exists(t['url'])
     ]
 
-    data = {
-      'audio': [File(url=url, region=None) for url in items]
-    }
+    data = {'audio': [File(url=url, region=None) for url in items]}
 
     return data
 
