@@ -72,6 +72,8 @@ synonym: [uid] @count @reverse .
 antonym: [uid] @count @reverse .
 definition: [uid] @count .
 definition_of: [uid] @count .
+collocation: [uid] @count .
+collocation_of: [uid] @count .
 
 created_by: uid @count .
 modified_by: uid @count .

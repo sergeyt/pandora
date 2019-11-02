@@ -31,18 +31,19 @@ def get_data(text, lang):
 
     base = 'https://dictionary.cambridge.org'
     pat = '{0}/dictionary/english/{1}'
-    url = pat.format(base, text)
+    url = pat.format(base, text.replace(' ', '-'))
 
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
 
     data = {
-        'tag': [],
         'audio': [],
+        'visual': [],
+        'tag': [],
         'transcription': [],
         'definition': [],
         'in': [],
-        'visual': [],
+        'collocation': [],
     }
 
     if utils.is_word(text):
@@ -88,8 +89,12 @@ def get_data(text, lang):
         for eg in dataset.find_all('span', class_='deg'):
             term = Term(text=stripped_text(eg), lang=lang, region=None)
             data['in'].append(term)
-
-    # TODO parse collocations
+        cpegs = dataset.find('div', class_='cpegs')
+        if cpegs:
+            for lbb in cpegs.find_all('div', class_='lbb'):
+                for a in lbb.find_all('a', class_='hdib'):
+                    term = Term(text=stripped_text(a), lang=lang, region=None)
+                    data['collocation'].append(term)
 
     return data
 
