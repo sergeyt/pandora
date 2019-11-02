@@ -42,10 +42,7 @@ For the `add-apt-repository` to work install package:
 
 software-properties-common - This software provides an abstraction of the used apt repositories. This allows you to easily manage your distribution and independent software vendors.
 
-Install Docker:
-
-    $ sudo apt update
-    $ sudo apt install docker.io docker-compose
+Install Docker following [these instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
 Add repository to install Go:
 
@@ -56,11 +53,7 @@ Install Go:
     $ sudo apt-get update
     $ sudo apt-get install golang-go
 
-Upload project files:
-
-    $ go get github.com/sergeyt/pandora 
-
-Run project build:
+Run docker services:
 
     $ docker-compose up 
 
