@@ -60,17 +60,6 @@ Upload project files:
 
     $ go get github.com/sergeyt/pandora 
 
-Get loads packages called import paths, along with their dependencies. It then installs named packages, such as “go install”.
-dep ensure - is the main command and is the only command that changes the state of the disk.
-
-Install dep:
-
-    $ curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-
-Set project dependencies:
-
-    $ dep ensure
-
 Run project build:
 
     $ docker-compose up 
