@@ -1,9 +1,5 @@
 import re
-
-
-def is_word(s):
-    return s and re.match(r"^[^\s]+$", s) != None
-
+from utils import is_word
 
 def is_empty(v):
     return len(v) == 0
@@ -117,10 +113,11 @@ def make_term_query(kind='terms',
         if not str:
             return ''
 
+        params['$searchString'] = str
+        if exact_match: return 'eq(text, $searchString)'
+
         # too small word fails with 'regular expression is too wide-ranging and can't be executed efficiently'
         use_regexp = is_word(str) and len(str) >= 3
-
-        params['$searchString'] = str
 
         if use_regexp:
             params['$regexp'] = "{0}.*".format(str)

@@ -175,7 +175,7 @@ def search_terms(text, lang, **query_args):
 
 # todo split text into words
 def add_term(text, lang, region):
-    resp = search_terms(text, lang, exact_match=True, no_links=True)
+    resp = search_terms(text, lang, limit=1, exact_match=True, no_links=True)
     if len(resp['terms']) > 0:
         return resp['terms'][0]['uid']
     resp = post('/api/data/term', {

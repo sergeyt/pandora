@@ -79,4 +79,4 @@ def url_quote(val):
 
 
 def is_word(s):
-    return True if re.match(r'^\w+$', s) else False
+    return s and re.match(r"^[^\s]+$", s) != None
