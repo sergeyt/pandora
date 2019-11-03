@@ -1,0 +1,8 @@
+{
+  "test_admin_api.py::test_search_audio": true,
+  "test_api.py::test_crud": true,
+  "test_api.py::test_graph_update": true,
+  "test_upload.py::test_delete_file_by_id": true,
+  "test_upload.py::test_delete_file_node": true,
+  "test_upload.py::test_upload": true
+}

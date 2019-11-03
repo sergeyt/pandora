@@ -1,0 +1,9 @@
+[
+  "test_admin_api.py::test_search_audio",
+  "test_api.py::test_crud",
+  "test_api.py::test_graph_update",
+  "test_misc.py::test_misc",
+  "test_upload.py::test_upload",
+  "test_upload.py::test_delete_file_node",
+  "test_upload.py::test_delete_file_by_id"
+]
