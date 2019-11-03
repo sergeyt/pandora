@@ -168,6 +168,7 @@ services:
       ADMIN_PWD: ${ADMIN_PWD}
       # api key protection
       API_KEY_SECRET: ${API_KEY_SECRET}
+      API_KEY: ${API_KEY}
       APP_ID: ${APP_ID}
       APP_SECRET: ${APP_SECRET}
       API_GATEWAY_URL: "http://app:4201"
