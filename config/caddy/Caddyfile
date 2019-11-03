@@ -43,7 +43,7 @@ http://localhost, lingvograph.com {
     }
 
     git {
-        repo https://{$BB_AUTH_STRING}@bitbucket.org/stodyshev/lingvograph-admin.git
+        repo https://github.com/lingvograph/admin.git
         branch gh-pages
         path admin
         interval 60

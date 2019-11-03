@@ -259,7 +259,6 @@ services:
       ADMIN_PWD: ${ADMIN_PWD}
       API_KEY: ${API_KEY}
       CADDYPATH: /data/caddy
-      BB_AUTH_STRING: ${BB_AUTH_STRING}
     volumes:
       - caddy:/data/caddy
       - ./config/caddy/Caddyfile:/etc/Caddyfile
