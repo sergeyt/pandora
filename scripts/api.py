@@ -39,6 +39,8 @@ system_token = jwt.encode(
     }, jwt_secret).decode('utf-8')
 
 access_token = ''
+proxy_headers = {}
+flask_app = None
 
 MIME_JSON = 'application/json'
 
@@ -68,6 +70,8 @@ def headers(content_type=MIME_JSON):
     h['Authorization'] = 'Bearer ' + t
     if content_type is not None:
         h['Content-Type'] = content_type
+    for k, v in proxy_headers.items():
+        h[k] = v
     return h
 
 
@@ -138,7 +142,7 @@ def login(username, password):
 
 
 def check_token(token):
-    headers = {'Authorization': 'Bearer ' + token}
+    headers = {'Authorization': 'Bearer ' + token, **proxy_headers}
     resp = requests.get(url('/api/token'), headers=headers)
     dump_response(resp)
     return resp
