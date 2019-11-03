@@ -119,7 +119,7 @@ def get_data(text, lang='ru'):
 
     data = {'audio': []}
     for item in items:
-      data['audio'].append(File(url=item['url'], region=None))
+        data['audio'].append(File(url=item['url'], region=None))
 
     return data
 

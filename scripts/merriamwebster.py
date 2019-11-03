@@ -8,6 +8,7 @@ from models import File
 
 NAME = 'merriam-webster'
 
+
 def parse_btn(btn):
     lang = btn['data-lang'].replace('_', '/')
     dir = btn['data-dir']
