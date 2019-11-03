@@ -9,6 +9,7 @@ import utils
 from bs4 import BeautifulSoup
 from models import File
 
+NAME = 'forvo'
 AUDIO_HOST = 'https://audio00.forvo.com/audios/mp3'
 
 first = lambda a: next(iter(a or []), None)
@@ -96,7 +97,7 @@ def get_data(text, lang='ru'):
     pat = 'https://ru.forvo.com/word/{0}/#{1}'
     url = pat.format(urllib.parse.quote(text), lang)
     headers = {
-        'User-Agent': 'script',
+        'User-Agent': utils.CHROME_USER_AGENT,
         'Accept': 'text/html',
     }
     resp = requests.get(url, headers=headers)
@@ -116,7 +117,9 @@ def get_data(text, lang='ru'):
         t for t in parsed_items if t is not None and utils.url_exists(t['url'])
     ]
 
-    data = {'audio': [File(url=url, region=None) for url in items]}
+    data = {'audio': []}
+    for item in items:
+      data['audio'].append(File(url=item['url'], region=None))
 
     return data
 

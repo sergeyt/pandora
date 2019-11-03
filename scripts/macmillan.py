@@ -6,6 +6,8 @@ import json
 import utils
 from models import File
 
+NAME = 'macmillan'
+
 first = lambda a: next(iter(a or []), None)
 
 

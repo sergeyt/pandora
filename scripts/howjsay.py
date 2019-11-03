@@ -4,6 +4,7 @@ import json
 import utils
 from models import File
 
+NAME = 'howjsay'
 
 def get_data(text, lang='en'):
     if lang != 'en':

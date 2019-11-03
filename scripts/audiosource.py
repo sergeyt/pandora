@@ -22,14 +22,14 @@ def find_audio(text, lang):
                     continue
                 if fmt not in result:
                     result[fmt] = []
-                result[fmt].extend(file.url)
+                result[fmt].append(file.url)
     return None if len(result) == 0 else result
 
 
 def main():
     (text, lang) = utils.find_audio_args()
     result = find_audio(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  '))
+    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
 
 
 if __name__ == '__main__':

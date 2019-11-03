@@ -6,6 +6,7 @@ import utils
 from bs4 import BeautifulSoup
 from models import File
 
+NAME = 'merriam-webster'
 
 def parse_btn(btn):
     lang = btn['data-lang'].replace('_', '/')
