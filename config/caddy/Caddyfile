@@ -1,4 +1,4 @@
-http://localhost, lingvograph.com {
+{$CADDY_URLS} {
     log stdout
     errors stderr
     gzip

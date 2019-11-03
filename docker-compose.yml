@@ -249,6 +249,7 @@ services:
       dockerfile: ./docker/Dockerfile-caddy
     container_name: caddy
     environment:
+      CADDY_URLS: ${CADDY_URLS}
       HOSTNAME: ${HOSTNAME}
       HTTP_PORT: ${HTTP_PORT}
       HTTPS_PORT: ${HTTPS_PORT}
