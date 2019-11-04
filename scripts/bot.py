@@ -5,11 +5,13 @@ import os
 import cambridge
 import unsplash
 import multitran
+import merriamwebster
 import api
 from models import Term, File, TermWithData
 
 # here you can temporarily remove sources that you don't need to test
-sources = [cambridge, unsplash, multitran]
+#sources = [cambridge, unsplash, multitran]
+sources = [merriamwebster]
 
 reverse_edges = {
     'transcription': 'transcription_of',
