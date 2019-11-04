@@ -18,6 +18,9 @@
     proxy /api/pyadmin/ pyadmin:4211 {
         transparent
     }
+    proxy /api/lingvo/ pyadmin:4211 {
+        transparent
+    }
     proxy /api/imageproxy imageproxy:1081 {
         transparent
     }

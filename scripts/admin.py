@@ -4,6 +4,7 @@ import os
 import api
 import resetdb as resetdb_impl
 import audiosource
+import unsplash
 
 from langdetect import detect
 from functools import wraps
@@ -81,19 +82,32 @@ def resetdb():
     return done
 
 
-@app.route('/api/pyadmin/search/audio/<text>')
-@auth
-def find_audio(text):
+def get_lang():
     lang = request.args.get('lang')
     if lang is None or lang == '':
         lang = detect(text)
         if lang != 'ru':
             lang = 'en'
+    return lang
+
+
+@app.route('/api/lingvo/search/audio/<text>')
+@auth
+def find_audio(text):
+    lang = get_lang()
     result = audiosource.find_audio(text, lang)
     return jsonify(result)
 
 
-@app.route('/api/pyadmin/term', methods=['POST'])
+@app.route('/api/lingvo/unsplash/<text>')
+@auth
+def get_unsplash_files(text):
+    lang = get_lang()
+    result = unsplash.get_data(text, lang)
+    return jsonify([t.url for t in result['visual']])
+
+
+@app.route('/api/lingvo/term', methods=['POST'])
 @auth
 def create_term():
     data = request.get_json()
