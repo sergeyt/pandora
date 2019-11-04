@@ -82,7 +82,7 @@ def resetdb():
     return done
 
 
-def get_lang():
+def get_lang(text):
     lang = request.args.get('lang')
     if lang is None or lang == '':
         lang = detect(text)
@@ -94,7 +94,7 @@ def get_lang():
 @app.route('/api/lingvo/search/audio/<text>')
 @auth
 def find_audio(text):
-    lang = get_lang()
+    lang = get_lang(text)
     result = audiosource.find_audio(text, lang)
     return jsonify(result)
 
@@ -102,7 +102,7 @@ def find_audio(text):
 @app.route('/api/lingvo/unsplash/<text>')
 @auth
 def get_unsplash_files(text):
-    lang = get_lang()
+    lang = get_lang(text)
     result = unsplash.get_data(text, lang)
     return jsonify([t.url for t in result['visual']])
 
