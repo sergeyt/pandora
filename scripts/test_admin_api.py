@@ -11,5 +11,5 @@ def test_search_audio():
 
 def test_create_term():
     api.login("system", os.getenv("SYSTEM_PWD"))
-    api.post('/api/pyadmin/term', {'text': 'girl', 'lang': 'en'})
-    api.post('/api/pyadmin/term', {'text': 'girl', 'lang': 'en'})
+    api.post('/api/lingvo/term', {'text': 'girl', 'lang': 'en'})
+    api.post('/api/lingvo/term', {'text': 'girl', 'lang': 'en'})
