@@ -32,7 +32,8 @@ def get_data(text, lang='en'):
             # i = srcset.index('1000w')
             if 'src' in img.attrs:
                 src = img.attrs['src']
-                data['visual'].append(File(url=src, region=None))
+                if not src.startswith('https://images.unsplash.com/profile-'):
+                    data['visual'].append(File(url=src, region=None))
 
     return data
 
