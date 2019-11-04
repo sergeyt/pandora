@@ -19,6 +19,7 @@ HTTP_PORT = os.getenv('HTTP_PORT', 80)
 DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
 API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', DEFAULT_SERVER_URL)
 API_KEY = os.getenv('API_KEY')
+TIMEOUT = 60
 
 if VERBOSE:
     print('VERBOSE: {0}'.format(VERBOSE))
@@ -80,7 +81,10 @@ def url(path):
 
 def get(path):
     params = {'key': API_KEY}
-    resp = requests.get(url(path), params=params, headers=headers(None))
+    resp = requests.get(url(path),
+                        params=params,
+                        headers=headers(None),
+                        timeout=TIMEOUT)
     dump_response(resp)
     resp.raise_for_status()
     return resp.json() if is_json(resp) else resp
@@ -103,7 +107,8 @@ def post(path,
                          data=data,
                          params=params_all,
                          headers=h,
-                         auth=auth)
+                         auth=auth,
+                         timeout=TIMEOUT)
     dump_response(resp)
     resp.raise_for_status()
     return resp.json()
@@ -116,7 +121,8 @@ def put(path, payload, auth=None, raw=False):
                         data=data,
                         params=params,
                         headers=headers(),
-                        auth=auth)
+                        auth=auth,
+                        timeout=TIMEOUT)
     dump_response(resp)
     resp.raise_for_status()
     return resp.json()
@@ -127,7 +133,8 @@ def delete(path, auth=None):
     resp = requests.delete(url(path),
                            params=params,
                            headers=headers(),
-                           auth=auth)
+                           auth=auth,
+                           timeout=TIMEOUT)
     dump_response(resp)
     resp.raise_for_status()
     return resp
@@ -142,7 +149,7 @@ def login(username, password):
 
 def check_token(token):
     headers = {'Authorization': 'Bearer ' + token, **proxy_headers}
-    resp = requests.get(url('/api/token'), headers=headers)
+    resp = requests.get(url('/api/token'), headers=headers, timeout=TIMEOUT)
     dump_response(resp)
     return resp
 
@@ -203,15 +210,15 @@ def link_terms(source_id, target_id, edge):
 
 def search_audio(text, lang):
     txt = urllib.parse.quote(text)
-    url = '/api/pyadmin/search/audio/{0}?lang={1}'.format(txt, lang)
+    url = '/api/lingvo/search/audio/{0}?lang={1}'.format(txt, lang)
     return get(url)
 
 
-def fileproxy(url, as_is=False):
+def fileproxy(url, remote=True, as_is=False):
     def path_from_url():
         return re.sub(r'https?://', '', url)
 
-    resp = get('/api/fileproxy/{0}'.format(url))
+    resp = get('/api/fileproxy/{0}?remote={1}'.format(url, str(remote).lower()))
     if as_is: return resp
 
     host = os.getenv('SERVER_URL', 'http://lingvograph.com')
@@ -224,7 +231,7 @@ def drop_all():
     headers = {'X-Dgraph-AuthToken': dgraph_token}
     data = '{"drop_all": true}'
     url = DGRAPH_URL + '/alter'
-    resp = requests.post(url, headers=headers, data=data)
+    resp = requests.post(url, headers=headers, data=data, timeout=TIMEOUT)
     dump_response(resp)
     resp.raise_for_status()
 
@@ -240,7 +247,10 @@ def init_schema():
         schema = f.read()
         headers = {'X-Dgraph-AuthToken': dgraph_token}
         url = DGRAPH_URL + '/alter'
-        resp = requests.post(url, headers=headers, data=schema)
+        resp = requests.post(url,
+                             headers=headers,
+                             data=schema,
+                             timeout=TIMEOUT)
         dump_response(resp)
         resp.raise_for_status()
 
@@ -254,7 +264,7 @@ def mutate(data):
     if getattr(data, 'encode', None):
         data = data.encode('utf-8')
     url = DGRAPH_URL + '/mutate'
-    resp = requests.post(url, headers=headers, data=data)
+    resp = requests.post(url, headers=headers, data=data, timeout=TIMEOUT)
     dump_response(resp)
     resp.raise_for_status()
     return resp.json()
