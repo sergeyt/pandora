@@ -1,5 +1,6 @@
 .idea/workspace.xml
 .idea/sonarlint
+.idea/shelf
 .vscode/.ropeproject
 
 *.test

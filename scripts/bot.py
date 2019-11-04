@@ -7,6 +7,7 @@ import unsplash
 import multitran
 import api
 from models import Term, File, TermWithData
+from multiprocessing import Process
 
 # here you can temporarily remove sources that you don't need to test
 sources = [cambridge, unsplash, multitran]
@@ -75,21 +76,26 @@ def push_data(term_id, data):
             api.update_graph(edges)
 
 
-def define_word(text, lang='en'):
+def define_word(text, lang='en', source_idx=-1):
     term_id = define_term(Term(text=text, lang=lang, region=None))
-    for source in sources:
+    source_list = sources if source_idx < 0 else [sources[source_idx]]
+    for source in source_list:
         data = source.get_data(text, lang)
         push_data(term_id, data)
 
 
+def define_words(source_idx):
+    words = read_words()
+    for word in words:
+        define_word(word, source_idx=source_idx)
+
+
 def main():
     api.login("system", os.getenv("SYSTEM_PWD"))
-    if len(sys.argv) > 1:
-        define_word(sys.argv[1])
-        return
-    words = read_words()
-    for word in words[:10]:
-        define_word(word)
+    for i in range(len(sources)):
+        p = Process(target=define_words, args=(i, ))
+        p.start()
+        p.join()
 
 
 if __name__ == '__main__':

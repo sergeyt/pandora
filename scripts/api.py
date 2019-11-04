@@ -218,7 +218,8 @@ def fileproxy(url, remote=True, as_is=False):
     def path_from_url():
         return re.sub(r'https?://', '', url)
 
-    resp = get('/api/fileproxy/{0}?remote={1}'.format(url, str(remote).lower()))
+    resp = get('/api/fileproxy/{0}?remote={1}'.format(url,
+                                                      str(remote).lower()))
     if as_is: return resp
 
     host = os.getenv('SERVER_URL', 'http://lingvograph.com')
