@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 
 import os
+import requests
 import api
 import resetdb as resetdb_impl
 import audiosource
 import unsplash
+import utils
 
 from langdetect import detect
 from functools import wraps
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from werkzeug.contrib.fixers import ProxyFix
 
 app = Flask(__name__)
@@ -99,12 +101,34 @@ def find_audio(text):
     return jsonify(result)
 
 
-@app.route('/api/lingvo/unsplash/<text>')
+@app.route('/api/lingvo/search/unsplash/<text>')
 @auth
-def get_unsplash_files(text):
+def search_unsplash(text):
     lang = get_lang(text)
     result = unsplash.get_data(text, lang)
     return jsonify([t.url for t in result['visual']])
+
+
+# TODO support different resolutions
+@app.route('/api/lingvo/unsplash/<text>')
+@auth
+def get_unsplash_image(text):
+    lang = get_lang(text)
+    result = unsplash.get_data(text, lang)
+    if len(result['visual']) == 0:
+        return 'not found', 404
+    url = result['visual'][0].url
+    headers = {
+        'User-Agent': utils.CHROME_USER_AGENT,
+    }
+    resp = requests.get(url, headers=headers)
+    excluded_headers = [
+        'content-encoding', 'content-length', 'transfer-encoding', 'connection'
+    ]
+    headers = [(name, value) for (name, value) in resp.raw.headers.items()
+               if name.lower() not in excluded_headers]
+    response = Response(resp.content, resp.status_code, headers)
+    return response
 
 
 @app.route('/api/lingvo/term', methods=['POST'])

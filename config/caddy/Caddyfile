@@ -11,6 +11,7 @@
         except /api/register
         except /api/oauth
         except /api/pyadmin
+        except /api/lingvo
         except /api/admin
         except /api/file
     }

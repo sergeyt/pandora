@@ -20,12 +20,11 @@ DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
 API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', DEFAULT_SERVER_URL)
 API_KEY = os.getenv('API_KEY')
 
-print('VERBOSE: {0}'.format(VERBOSE))
-print('TESTING: {0}'.format(TESTING))
-print('DGRAPH_URL: {0}'.format(DGRAPH_URL))
-print('API_GATEWAY_URL: {0}'.format(API_GATEWAY_URL))
-
 if VERBOSE:
+    print('VERBOSE: {0}'.format(VERBOSE))
+    print('TESTING: {0}'.format(TESTING))
+    print('DGRAPH_URL: {0}'.format(DGRAPH_URL))
+    print('API_GATEWAY_URL: {0}'.format(API_GATEWAY_URL))
     utils.enable_logging()
 
 jwt_secret = os.getenv('JWT_SECRET')
