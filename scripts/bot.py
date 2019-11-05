@@ -11,8 +11,7 @@ from models import Term, File, TermWithData
 from multiprocessing import Process
 
 # here you can temporarily remove sources that you don't need to test
-#sources = [cambridge, unsplash, multitran]
-sources = [merriamwebster]
+sources = [cambridge, merriamwebster, unsplash, multitran]
 
 reverse_edges = {
     'transcription': 'transcription_of',
