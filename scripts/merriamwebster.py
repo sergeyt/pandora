@@ -72,7 +72,7 @@ def get_data(text, lang):
         for d in definitions:
             text = stripped_text(d)
             if (d.find(class_='mw_t_bc') is not None): 
-                text = text[2:]
+                text = text.lstrip(':').strip()
                 if (d.find(class_='ex-sent') is not None):
                     text = text.split('\n')[0].strip()
                 data['definition'].append(
