@@ -13,7 +13,10 @@ def parse_btn(btn):
     file = btn['data-file']
     pat = 'https://media.merriam-webster.com/audio/prons/{0}/mp3/{1}/{2}.mp3'
     return pat.format(lang, dir, file)
-
+def stripped_text(node):
+    if node is None:
+        return None
+    return node.get_text().strip()
 
 def get_data(text, lang):
     if lang != 'en':
@@ -64,7 +67,7 @@ def get_data(text, lang):
     for v in vg:
         definitions = v.find_all(class_='dt')
         for d in definitions:
-            text = d.get_text().strip()
+            text = stripped_text(d)
             if (d.find(class_='mw_t_bc') is not None): 
                 text = text[2:]
                 if (d.find(class_='ex-sent') is not None):
@@ -76,15 +79,15 @@ def get_data(text, lang):
     for d in data_in:
         if ('t' in d['class']):
             data['in'].append(
-                Term(text=d.get_text().strip(), lang=None, region=None))
+                Term(text=stripped_text(d), lang=None, region=None))
 
     ure = soup.find_all(class_='ure')
     for d in ure:
-        data['related'].append(Term(text=d.text, lang=None, region=None))
+        data['related'].append(Term(text=stripped_text(d), lang=None, region=None))
 
     tag = soup.find_all('span', class_='fl')
     for t in tag:
-        data['tag'].append(Term(text=t.text, lang=None, region=None))
+        data['tag'].append(Term(text=stripped_text(t), lang=None, region=None))
 
     data['tag'].append(Term(text='word', lang=None, region=None))
 
@@ -97,19 +100,19 @@ def get_data(text, lang):
     for d in slist:
         synonyms = d.find_all('a')
         for s in synonyms:
-            data['synonym'].append(Term(text=s.text, lang=None, region=None))
+            data['synonym'].append(Term(text=stripped_text(s), lang=None, region=None))
 
     rlist = soup.find_all('span', class_='rel-list')
     for d in rlist:
         related = d.find_all('a')
         for r in related:
-            data['related'].append(Term(text=r.text, lang=None, region=None))
+            data['related'].append(Term(text=stripped_text(r), lang=None, region=None))
 
     rlist = soup.find_all('span', class_='ant-list')
     for d in rlist:
         antonyms = d.find_all('a')
         for r in antonyms:
-            data['antonym'].append(Term(text=r.text, lang=None, region=None))
+            data['antonym'].append(Term(text=stripped_text(r), lang=None, region=None))
 
     return data
 
