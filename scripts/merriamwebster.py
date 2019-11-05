@@ -18,7 +18,7 @@ def stripped_text(node):
         return None
     return node.get_text().strip()
 
-def get_data(text, lang):
+def get_data(query, lang):
     if lang != 'en':
         return None
 
@@ -35,9 +35,9 @@ def get_data(text, lang):
     }
 
     pat = 'https://www.merriam-webster.com/dictionary/{0}'
-    pat_t = 'https://www.merriam-webster.com/thesaurus/{0}'
-    url = pat.format(text)
-    url_t = pat_t.format(text)
+    
+    url = pat.format(query)
+    
 
     headers = {
         'User-Agent': 'script',
@@ -71,48 +71,53 @@ def get_data(text, lang):
         definitions = v.find_all(class_='dt')
         for d in definitions:
             text = stripped_text(d)
+            #all defenitions start with ':' with class mw_t_bc
             if (d.find(class_='mw_t_bc') is not None): 
                 text = text.lstrip(':').strip()
+                #with defenitions we can take examples of text with class ex-sent, we need drop it
                 if (d.find(class_='ex-sent') is not None):
                     text = text.split('\n')[0].strip()
-                data['definition'].append(
-                    Term(text=text, lang=None, region=None))
-
+                data['definition'].append(Term(text=text, lang=None, region=None))
+    #parse examples
     data_in = soup.find_all(class_='ex-sent')
     for d in data_in:
         if ('t' in d['class']):
             data['in'].append(
                 Term(text=stripped_text(d), lang=None, region=None))
-
+    #parse related
     ure = soup.find_all(class_='ure')
     for d in ure:
         data['related'].append(Term(text=stripped_text(d), lang=None, region=None))
-
+    #parse tags
     tag = soup.find_all('span', class_='fl')
-    for t in tag:
-        data['tag'].append(Term(text=stripped_text(t), lang=None, region=None))
-
+    for d in tag:
+        data['tag'].append(Term(text=stripped_text(d), lang=None, region=None))
+    
+    #add tag with name 'word', becouse our name is word
     data['tag'].append(Term(text='word', lang=None, region=None))
 
+    #move to second page, in teasaurus
+    pat_t = 'https://www.merriam-webster.com/thesaurus/{0}'
+    url_t = pat_t.format(query)
     resp = requests.get(url_t, headers=headers)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, 'html.parser')
 
-    slist = soup.find_all('span', class_='syn-list')
-    for d in slist:
+    dlist = soup.find_all('span', class_='syn-list')
+    for d in dlist:
         synonyms = d.find_all('a')
         for s in synonyms:
             data['synonym'].append(Term(text=stripped_text(s), lang=None, region=None))
 
-    rlist = soup.find_all('span', class_='rel-list')
-    for d in rlist:
+    dlist = soup.find_all('span', class_='rel-list')
+    for d in dlist:
         related = d.find_all('a')
         for r in related:
             data['related'].append(Term(text=stripped_text(r), lang=None, region=None))
 
-    rlist = soup.find_all('span', class_='ant-list')
-    for d in rlist:
+    dlist = soup.find_all('span', class_='ant-list')
+    for d in dlist:
         antonyms = d.find_all('a')
         for r in antonyms:
             data['antonym'].append(Term(text=stripped_text(r), lang=None, region=None))
