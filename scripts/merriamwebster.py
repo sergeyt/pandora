@@ -121,7 +121,7 @@ def get_data(query, lang):
         antonyms = d.find_all('a')
         for r in antonyms:
             data['antonym'].append(Term(text=stripped_text(r), lang=lang, region=None))
-    for 
+
     return data
 
 
