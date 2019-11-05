@@ -77,24 +77,24 @@ def get_data(query, lang):
                 #with defenitions we can take examples of text with class ex-sent, we need drop it
                 if (d.find(class_='ex-sent') is not None):
                     text = text.split('\n')[0].strip()
-                data['definition'].append(Term(text=text, lang=None, region=None))
+                data['definition'].append(Term(text=text, lang=lang, region=None))
     #parse examples
     data_in = soup.find_all(class_='ex-sent')
     for d in data_in:
         if ('t' in d['class']):
             data['in'].append(
-                Term(text=stripped_text(d), lang=None, region=None))
+                Term(text=stripped_text(d), lang=lang, region=None))
     #parse related
     ure = soup.find_all(class_='ure')
     for d in ure:
-        data['related'].append(Term(text=stripped_text(d), lang=None, region=None))
+        data['related'].append(Term(text=stripped_text(d), lang=lang, region=None))
     #parse tags
     tag = soup.find_all('span', class_='fl')
     for d in tag:
-        data['tag'].append(Term(text=stripped_text(d), lang=None, region=None))
+        data['tag'].append(Term(text=stripped_text(d), lang=lang, region=None))
     
     #add tag with name 'word', becouse our name is word
-    data['tag'].append(Term(text='word', lang=None, region=None))
+    data['tag'].append(Term(text='word', lang=lang, region=None))
 
     #move to second page, in teasaurus
     pat_t = 'https://www.merriam-webster.com/thesaurus/{0}'
@@ -108,20 +108,20 @@ def get_data(query, lang):
     for d in dlist:
         synonyms = d.find_all('a')
         for s in synonyms:
-            data['synonym'].append(Term(text=stripped_text(s), lang=None, region=None))
+            data['synonym'].append(Term(text=stripped_text(s), lang=lang, region=None))
 
     dlist = soup.find_all('span', class_='rel-list')
     for d in dlist:
         related = d.find_all('a')
         for r in related:
-            data['related'].append(Term(text=stripped_text(r), lang=None, region=None))
+            data['related'].append(Term(text=stripped_text(r), lang=lang, region=None))
 
     dlist = soup.find_all('span', class_='ant-list')
     for d in dlist:
         antonyms = d.find_all('a')
         for r in antonyms:
-            data['antonym'].append(Term(text=stripped_text(r), lang=None, region=None))
-
+            data['antonym'].append(Term(text=stripped_text(r), lang=lang, region=None))
+    for 
     return data
 
 
