@@ -6,12 +6,15 @@ import re
 import string
 import random
 import urllib
+from retry import retry
 import termquery
 import utils
 import nquad
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
+TRIES = 10
+RETRY_DELAY = 1
 VERBOSE = utils.as_bool(os.getenv('PYADMIN_VERBOSE', '0'))
 TESTING = utils.TESTING
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
@@ -62,6 +65,8 @@ def dump_response(resp):
             print(json.dumps(resp.json(), sort_keys=True, indent=2))
         except:
             print(resp.text)
+    elif VERBOSE and not resp.ok:
+        print(resp.text)
 
 
 def headers(content_type=MIME_JSON):
@@ -79,6 +84,7 @@ def url(path):
     return API_GATEWAY_URL + path
 
 
+@retry(tries=TRIES, delay=RETRY_DELAY)
 def get(path):
     params = {'key': API_KEY}
     resp = requests.get(url(path),
@@ -94,6 +100,7 @@ def jsonstr(data):
     return json.dumps(data, sort_keys=True, indent=2)
 
 
+@retry(tries=TRIES, delay=RETRY_DELAY)
 def post(path,
          payload,
          params={},
@@ -114,6 +121,7 @@ def post(path,
     return resp.json()
 
 
+@retry(tries=TRIES, delay=RETRY_DELAY)
 def put(path, payload, auth=None, raw=False):
     params = {'key': API_KEY}
     data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
@@ -128,6 +136,7 @@ def put(path, payload, auth=None, raw=False):
     return resp.json()
 
 
+@retry(tries=TRIES, delay=RETRY_DELAY)
 def delete(path, auth=None):
     params = {'key': API_KEY}
     resp = requests.delete(url(path),
@@ -147,6 +156,7 @@ def login(username, password):
     return access_token
 
 
+@retry(tries=TRIES, delay=RETRY_DELAY)
 def check_token(token):
     headers = {'Authorization': 'Bearer ' + token, **proxy_headers}
     resp = requests.get(url('/api/token'), headers=headers, timeout=TIMEOUT)

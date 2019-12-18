@@ -26,6 +26,8 @@ html5lib = "*"
 langdetect = "*"
 watchdog = "*"
 simplejson = "*"
+retry = "*"
+decorator = "*"
 
 [requires]
 python_version = "3.7"
