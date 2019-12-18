@@ -4,6 +4,6 @@
   "description": "",
   "license": "ISC",
   "dependencies": {
-    "wordlist-english": "^1.2.1"
+    "wordlist-english": "1.2.1"
   }
 }
