@@ -121,9 +121,9 @@ def make_term_query(kind='terms',
         use_regexp = is_word(str) and len(str) >= 3
 
         if use_regexp:
-            params['$regexp'] = "{0}.*".format(str)
+            params['$regexp'] = "/{0}.*/i".format(str)
 
-        regexp = "regexp(text, /$regexp/i)" if use_regexp else ''
+        regexp = "regexp(text, $regexp)" if use_regexp else ''
         anyoftext = "anyoftext(text, $searchString)"
         exprs = [s for s in [anyoftext, regexp] if len(s) > 0]
         if len(exprs) > 1:
