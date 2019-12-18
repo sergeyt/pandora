@@ -1,7 +1,7 @@
 # Builder based on https://github.com/abiosoft/caddy-docker/blob/master/builder/Dockerfile
 FROM golang:1.13-alpine as builder
 
-ARG version="1.0.3"
+ARG version="1.0.4"
 ARG plugins=cors,realip,expires,cache,jwt,git
 ARG enable_telemetry="true"
 
