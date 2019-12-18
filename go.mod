@@ -5,7 +5,7 @@ go 1.13
 require (
 	cloud.google.com/go v0.47.0 // indirect
 	github.com/ajg/form v1.5.1 // indirect
-	github.com/aws/aws-sdk-go v1.25.25
+	github.com/aws/aws-sdk-go v1.26.5
 	github.com/dgraph-io/dgo/v2 v2.1.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/color v1.7.0 // indirect
