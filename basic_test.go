@@ -10,7 +10,7 @@ import (
 	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
-	httpexpect "gopkg.in/gavv/httpexpect.v1"
+	httpexpect "github.com/gavv/httpexpect/v2"
 )
 
 type TC struct {
