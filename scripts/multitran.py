@@ -64,7 +64,7 @@ def parse_phrase_row(row, lang, trans_lang, tags):
     result = [parse_td(t) for t in row.find_all('td')]
     if len(result) != 2:
         return []
-    if any(t is None for t in result):
+    if any(t for t in result if t is None or len(t) == 0):
         return []
     term = Term(text=result[0], lang=lang, region=None)
     trans = Term(text=result[1], lang=trans_lang, region=None)
