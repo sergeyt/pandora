@@ -31,7 +31,7 @@ require (
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.2 // indirect
-	github.com/markbates/goth v1.59.0
+	github.com/markbates/goth v1.60.0
 	github.com/mattn/go-colorable v0.1.4 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
 	github.com/nats-io/nats-server/v2 v2.1.0 // indirect
