@@ -3,6 +3,7 @@
 import sys
 import os
 import math
+import traceback
 from multiprocessing import Process
 # local modules
 import cambridge
@@ -89,16 +90,27 @@ def push_data(term_id, data):
             api.update_graph(edges)
 
 
+def get_data_safe(source, text, lang):
+    try:
+        return source.get_data(text, lang)
+    except:
+        print(f'{source.NAME}.get_data({text}, {lang}) fail:')
+        traceback.print_exc()
+        return None
+
+
 def define_word(text, lang='en', source_idx=-1, count=1):
     term_id = define_term(Term(text=text, lang=lang, region=None))
     source_list = sources if source_idx < 0 else sources[
         source_idx:source_idx + count]
     for source in source_list:
-        data = source.get_data(text, lang)
+        data = get_data_safe(source, text, lang)
+        if data is None:
+            sys.exit(-1)
         push_data(term_id, data)
 
 
-def define_words(source_idx, count):
+def define_words(source_idx=1, count=1):
     api.login("system", os.getenv("SYSTEM_PWD"))
     words = read_words()
     for word in words:
@@ -106,7 +118,10 @@ def define_words(source_idx, count):
 
 
 def main():
-    plimit = float(int(os.getenv("PARALLEL", "2")))
+    plimit = float(int(os.getenv("PARALLEL", "1")))
+    if plimit == 1:
+        define_words()
+        return
     step = math.ceil(len(sources) / plimit)
     for i in range(0, len(sources), step):
         p = Process(target=define_words, args=(i, step))
