@@ -52,16 +52,18 @@ def get_data(query, lang):
     #find transcription and audio
     prs = soup.find('span', class_='prs')
 
-    transcription = prs.find('span', class_='pr')
-    transcription = stripped_text(transcription)
+    if prs is not None:
+        transcription = prs.find('span', class_='pr')
+        transcription = stripped_text(transcription)
 
-    data['transcription'].append(transcription)
+        data['transcription'].append(
+            Term(text=transcription, lang='ipa', region=None))
 
-    btns = prs.find_all('a', class_='play-pron')
-    urls = [parse_btn(b) for b in btns]
-    urls = [u for u in urls if utils.url_exists(u)]
-    for url in urls:
-        data['audio'].append(File(url=url, region=None))
+        btns = prs.find_all('a', class_='play-pron')
+        urls = [parse_btn(b) for b in btns]
+        urls = [u for u in urls if utils.url_exists(u)]
+        for url in urls:
+            data['audio'].append(File(url=url, region=None))
 
     #find definitions and 'in'
 
