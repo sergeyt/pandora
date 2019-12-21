@@ -67,7 +67,7 @@ def url_exists(url):
                 return True
     except:
         pass
-    print('not found: {0}'.format(url))
+    print(f'not found: {url}')
     with open("notfound.txt", 'a') as f:
         f.write(url + '\n')
     return False

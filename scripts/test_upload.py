@@ -29,7 +29,7 @@ def test_upload():
     print(resp.text)
 
     # download by id
-    file_url2 = api.url('/api/file/{0}'.format(file_id))
+    file_url2 = api.url(f'/api/file/{file_id}')
     resp = requests.get(file_url2, params=params, headers=headers)
     resp.raise_for_status()
     print(resp.text)
@@ -58,12 +58,12 @@ def test_delete_file_node():
     print(resp.text)
 
     # download by id
-    url1 = api.url('/api/file/{0}'.format(file_id))
+    url1 = api.url(f'/api/file/{file_id}')
     resp = requests.get(url1, params=params, headers=headers)
     resp.raise_for_status()
     print(resp.text)
 
-    url2 = api.url('/api/data/file/{0}'.format(file_id))
+    url2 = api.url(f'/api/data/file/{file_id}')
     resp = requests.delete(url2, params=params, headers=headers)
     resp.raise_for_status()
 
@@ -88,11 +88,11 @@ def test_delete_file_by_id():
     print(resp.text)
 
     # download by id
-    url1 = api.url('/api/file/{0}'.format(file_id))
+    url1 = api.url(f'/api/file/{file_id}')
     resp = requests.get(url1, params=params, headers=headers)
     resp.raise_for_status()
     print(resp.text)
 
-    url2 = api.url('/api/file/{0}'.format(file_id))
+    url2 = api.url(f'/api/file/{file_id}')
     resp = requests.delete(url2, params=params, headers=headers)
     resp.raise_for_status()

@@ -15,8 +15,8 @@ headers = {
 
 def get_data(text, lang='en'):
     base = 'https://unsplash.com'
-    pat = '{0}/s/photos/{1}'
-    url = pat.format(base, text.replace(' ', '-'))
+    txt = text.replace(' ', '-')
+    url = f'{base}/s/photos/{txt}'
 
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()

@@ -13,7 +13,7 @@ def rdf_repr(v):
     if isinstance(v, str):
         if v == '*' or is_rdf_id(v):
             return v
-        return "<{0}>".format(v) if is_uid(v) else '"{0}"'.format(v)
+        return f"<{v}>" if is_uid(v) else f'"{v}"'
     return v
 
 
@@ -23,9 +23,9 @@ def format(id, k, v):
     lang = a[1] if len(a) == 2 else ''
     s = rdf_repr(v)
     if len(lang) > 0:
-        s += "@{0}".format(lang)
-    id = "<{0}>".format(id) if is_uid(id) else "_:{0}".format(id)
-    return "{0} <{1}> {2} .".format(id, p, s)
+        s += f"@{lang}"
+    id = f"<{id}>" if is_uid(id) else f"_:{id}"
+    return f"{id} <{p}> {s} ."
 
 
 # TODO refactor as generator

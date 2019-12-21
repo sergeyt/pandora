@@ -5,7 +5,7 @@ import jwt
 import re
 import string
 import random
-import urllib
+from urllib.parse import quote
 from retry import retry
 import termquery
 import utils
@@ -19,16 +19,16 @@ VERBOSE = utils.as_bool(os.getenv('PYADMIN_VERBOSE', '0'))
 TESTING = utils.TESTING
 DGRAPH_URL = os.getenv('DGRAPH_URL', 'http://dgraph:8080')
 HTTP_PORT = os.getenv('HTTP_PORT', 80)
-DEFAULT_SERVER_URL = 'http://localhost:{0}'.format(HTTP_PORT)
+DEFAULT_SERVER_URL = f'http://localhost:{HTTP_PORT}'
 API_GATEWAY_URL = os.getenv('API_GATEWAY_URL', DEFAULT_SERVER_URL)
 API_KEY = os.getenv('API_KEY')
 TIMEOUT = 60
 
 if VERBOSE:
-    print('VERBOSE: {0}'.format(VERBOSE))
-    print('TESTING: {0}'.format(TESTING))
-    print('DGRAPH_URL: {0}'.format(DGRAPH_URL))
-    print('API_GATEWAY_URL: {0}'.format(API_GATEWAY_URL))
+    print(f'VERBOSE: {VERBOSE}')
+    print(f'TESTING: {TESTING}')
+    print(f'DGRAPH_URL: {DGRAPH_URL}')
+    print(f'API_GATEWAY_URL: {API_GATEWAY_URL}')
     utils.enable_logging()
 
 jwt_secret = os.getenv('JWT_SECRET')
@@ -219,8 +219,7 @@ def link_terms(source_id, target_id, edge):
 
 
 def search_audio(text, lang):
-    txt = urllib.parse.quote(text)
-    url = '/api/lingvo/search/audio/{0}?lang={1}'.format(txt, lang)
+    url = f'/api/lingvo/search/audio/{quote(text)}?lang={lang}'
     return get(url)
 
 
@@ -228,13 +227,12 @@ def fileproxy(url, remote=True, as_is=False):
     def path_from_url():
         return re.sub(r'https?://', '', url)
 
-    resp = get('/api/fileproxy/{0}?remote={1}'.format(url,
-                                                      str(remote).lower()))
+    resp = get(f'/api/fileproxy/{url}?remote={str(remote).lower()}')
     if as_is: return resp
 
     host = os.getenv('SERVER_URL', 'http://lingvograph.com')
     path = resp['path'] if 'path' in resp else path_from_url()
-    result = '{0}/api/file/{1}'.format(host, path)
+    result = f'{host}/api/file/{path}'
     return result
 
 

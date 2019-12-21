@@ -13,12 +13,14 @@ def parse_btn(btn):
     lang = btn['data-lang'].replace('_', '/')
     dir = btn['data-dir']
     file = btn['data-file']
-    pat = 'https://media.merriam-webster.com/audio/prons/{0}/mp3/{1}/{2}.mp3'
-    return pat.format(lang, dir, file)
+    return f'https://media.merriam-webster.com/audio/prons/{lang}/mp3/{dir}/{file}.mp3'
+
+
 def stripped_text(node):
     if node is None:
         return None
     return node.get_text().strip()
+
 
 def get_data(query, lang):
     if lang != 'en':
@@ -36,10 +38,7 @@ def get_data(query, lang):
         'related': []
     }
 
-    pat = 'https://www.merriam-webster.com/dictionary/{0}'
-    
-    url = pat.format(query)
-    
+    url = f'https://www.merriam-webster.com/dictionary/{query}'
 
     headers = {
         'User-Agent': 'script',
@@ -54,16 +53,15 @@ def get_data(query, lang):
     prs = soup.find('span', class_='prs')
 
     transcription = prs.find('span', class_='pr')
-    transcription=stripped_text(transcription)
+    transcription = stripped_text(transcription)
 
     data['transcription'].append(transcription)
-    
+
     btns = prs.find_all('a', class_='play-pron')
     urls = [parse_btn(b) for b in btns]
     urls = [u for u in urls if utils.url_exists(u)]
     for url in urls:
         data['audio'].append(File(url=url, region=None))
-    
 
     #find definitions and 'in'
 
@@ -74,12 +72,13 @@ def get_data(query, lang):
         for d in definitions:
             text = stripped_text(d)
             #all defenitions start with ':' with class mw_t_bc
-            if (d.find(class_='mw_t_bc') is not None): 
+            if (d.find(class_='mw_t_bc') is not None):
                 text = text.lstrip(':').strip()
                 #with defenitions we can take examples of text with class ex-sent, we need drop it
                 if (d.find(class_='ex-sent') is not None):
                     text = text.split('\n')[0].strip()
-                data['definition'].append(Term(text=text, lang=lang, region=None))
+                data['definition'].append(
+                    Term(text=text, lang=lang, region=None))
     #parse examples
     data_in = soup.find_all(class_='ex-sent')
     for d in data_in:
@@ -89,18 +88,18 @@ def get_data(query, lang):
     #parse related
     ure = soup.find_all(class_='ure')
     for d in ure:
-        data['related'].append(Term(text=stripped_text(d), lang=lang, region=None))
+        data['related'].append(
+            Term(text=stripped_text(d), lang=lang, region=None))
     #parse tags
     tag = soup.find_all('span', class_='fl')
     for d in tag:
         data['tag'].append(Term(text=stripped_text(d), lang=lang, region=None))
-    
+
     #add tag with name 'word', becouse our name is word
     data['tag'].append(Term(text='word', lang=lang, region=None))
 
     #move to second page, in teasaurus
-    pat_t = 'https://www.merriam-webster.com/thesaurus/{0}'
-    url_t = pat_t.format(query)
+    url_t = f'https://www.merriam-webster.com/thesaurus/{query}'
     resp = requests.get(url_t, headers=headers)
     resp.raise_for_status()
 
@@ -110,19 +109,22 @@ def get_data(query, lang):
     for d in dlist:
         synonyms = d.find_all('a')
         for s in synonyms:
-            data['synonym'].append(Term(text=stripped_text(s), lang=lang, region=None))
+            data['synonym'].append(
+                Term(text=stripped_text(s), lang=lang, region=None))
 
     dlist = soup.find_all('span', class_='rel-list')
     for d in dlist:
         related = d.find_all('a')
         for r in related:
-            data['related'].append(Term(text=stripped_text(r), lang=lang, region=None))
+            data['related'].append(
+                Term(text=stripped_text(r), lang=lang, region=None))
 
     dlist = soup.find_all('span', class_='ant-list')
     for d in dlist:
         antonyms = d.find_all('a')
         for r in antonyms:
-            data['antonym'].append(Term(text=stripped_text(r), lang=lang, region=None))
+            data['antonym'].append(
+                Term(text=stripped_text(r), lang=lang, region=None))
 
     return data
 
