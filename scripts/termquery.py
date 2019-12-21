@@ -93,14 +93,14 @@ def make_term_query(kind='terms',
                     exact_match=False,
                     no_links=False):
     if not kind or kind not in KIND:
-        raise Exception("invalid kind {0}".format(kind))
+        raise Exception(f"invalid kind {kind}")
     if kind == 'term' and not term_id:
         raise Exception('termUid is required')
     if search_string is None:
         search_string = ''
 
     has_term_type = 'has(Term)'
-    match_fn = "uid({0})".format(term_id) if term_id else has_term_type
+    match_fn = f"uid({term_id})" if term_id else has_term_type
     is_term_list = kind == 'terms'
     is_term = kind == 'term'
     has_tag_type = 'has(Tag)' if is_term_list and only_tags else ''
@@ -121,23 +121,24 @@ def make_term_query(kind='terms',
         use_regexp = is_word(str) and len(str) >= 3
 
         if use_regexp:
-            params['$regexp'] = "/{0}.*/i".format(str)
+            params['$regexp'] = f"/{str}.*/i"
 
         regexp = "regexp(text, $regexp)" if use_regexp else ''
         anyoftext = "anyoftext(text, $searchString)"
         exprs = [s for s in [anyoftext, regexp] if len(s) > 0]
         if len(exprs) > 1:
-            return "({0})".format(' or '.join(exprs))
+            s = ' or '.join(exprs)
+            return f"({s})"
         return exprs[0]
 
-    range = "offset: {0}, first: {1}".format(offset, limit)
-    term_range = ", {0}".format(range) if is_term_list else ''
+    range = f"offset: {offset}, first: {limit}"
+    term_range = f", {range}" if is_term_list else ''
 
-    brace = lambda s: "({0})".format(s)
+    brace = lambda s: f"({s})"
     search_filter = make_search_filter()
-    lang_filter = 'eq(lang, "{0}")'.format(lang) if lang else ''
+    lang_filter = f'eq(lang, "{lang}")' if lang else ''
     tag_filter = brace(' or '.join(
-        "uid_in(tag, {0})".format(t['uid'])
+        f"uid_in(tag, {t['uid']})"
         for t in tags)) if not is_empty(tags) else ''
 
     filter_expr = ' and '.join([
@@ -145,26 +146,26 @@ def make_term_query(kind='terms',
         [has_term_type, has_tag_type, lang_filter, tag_filter, search_filter]
         if len(f) > 0
     ])
-    term_filter = "@filter({0})".format(filter_expr) if is_term_list else ''
+    term_filter = f"@filter({filter_expr})" if is_term_list else ''
 
-    args = ", ".join(["{0}: string".format(k) for k in keys(params)])
-    param_query = "query terms({0}) ".format(args) if args else ''
+    args = ", ".join([f"{k}: string" for k in keys(params)])
+    param_query = f"query terms({args}) " if args else ''
 
     file_edges = ['audio', 'visual']
 
     def make_edge(name):
         is_file = name in file_edges
-        myrange = "({0})".format(range) if kind == name else "(first: 10)"
+        myrange = f"({range})" if kind == name else "(first: 10)"
         body = FILE_BODY if is_file else TERM_BODY
-        return "{0} {1} {2}".format(name, myrange, body)
+        return f"{name} {myrange} {body}"
 
     all_edge_keys = list(keys(relation_map)) + file_edges
     edges = '\n'.join([make_edge(k) for k in all_edge_keys])
 
     def make_total(pred, name=''):
         if not name:
-            name = "{0}_count".format(pred)
-        return "{0}: count({1})".format(name, pred)
+            name = f"{pred}_count"
+        return f"{name}: count({pred})"
 
     totals = [make_total(k) for k in all_edge_keys] if is_term else []
     if not is_term:

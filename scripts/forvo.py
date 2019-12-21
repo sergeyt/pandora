@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import urllib
+from urllib.parse import quote
 import requests
 import base64
 import json
@@ -74,7 +74,7 @@ def parse_item(item):
     if fn is None or fn['name'] != 'Play':
         return None
     rel = decode_base64(fn['args'][4])
-    url = '{0}/{1}'.format(AUDIO_HOST, rel)
+    url = f'{AUDIO_HOST}/{rel}'
     if not url.endswith('.mp3'):
         return None
 
@@ -94,8 +94,7 @@ def parse_item(item):
 
 
 def get_data(text, lang='ru'):
-    pat = 'https://ru.forvo.com/word/{0}/#{1}'
-    url = pat.format(urllib.parse.quote(text), lang)
+    url = f'https://ru.forvo.com/word/{quote(text)}/#{lang}'
     headers = {
         'User-Agent': utils.CHROME_USER_AGENT,
         'Accept': 'text/html',

@@ -37,9 +37,9 @@ def get_translations(data, text, src_lang):
         'de': 'english-german',
     }
 
+    txt = text.replace(' ', '-')
     for lang, dictionary in dmap.items():
-        pat = '{0}/dictionary/{1}/{2}'
-        url = pat.format(base, dictionary, text.replace(' ', '-'))
+        url = f'{base}/dictionary/{dictionary}/{txt}'
 
         resp = requests.get(url, headers=headers)
         resp.raise_for_status()
@@ -61,8 +61,8 @@ def get_data(text, lang):
     if lang != 'en':
         return None
 
-    pat = '{0}/dictionary/english/{1}'
-    url = pat.format(base, text.replace(' ', '-'))
+    txt = text.replace(' ', '-')
+    url = f'{base}/dictionary/english/{txt}'
 
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()

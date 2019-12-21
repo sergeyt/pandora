@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import json
+from urllib.parse import quote
 import utils
 from models import File
 
@@ -11,7 +12,7 @@ def get_data(text, lang='en'):
     if lang != 'en':
         return None
 
-    url = 'https://howjsay.com/mp3/{0}.mp3'.format(text)
+    url = f'https://howjsay.com/mp3/{quote(text)}.mp3'
     if not utils.url_exists(url):
         return None
 

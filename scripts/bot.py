@@ -42,7 +42,7 @@ def read_words():
 
 
 def key_of(text, lang):
-    return '{0}@{1}'.format(text, lang)
+    return f'{format}@{lang}'
 
 
 def define_term(data):
@@ -50,7 +50,7 @@ def define_term(data):
         print("bad term", data)
         return None
     text = data.text.strip()
-    print('TERM {0}'.format(text))
+    print(f'TERM {text}')
     key = key_of(text, data.lang)
     if key in TERMS:
         return TERMS[key]

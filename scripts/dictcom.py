@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-import urllib
+from urllib.parse import quote
 import requests
 from bs4 import BeautifulSoup
 from localcache import Cache
@@ -16,8 +16,7 @@ def translate(text, lang=ru_en):
     if result is not None:
         return result
 
-    pat = 'https://www.dict.com/{0}/{1}'
-    url = pat.format(lang, urllib.parse.quote(text))
+    url = f'https://www.dict.com/{lang}/{quote(text)}'
     headers = {
         'User-Agent': 'script',
         'Accept': 'text/html',

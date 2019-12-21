@@ -81,17 +81,17 @@ def test_graph_update():
     resp = api.post('/api/data/user', data)
 
     id = resp['uid']
-    user_url = '/api/data/user/{0}'.format(id)
+    user_url = f'/api/data/user/{id}'
 
-    nquads = '\n'.join(['<{0}> <first_lang> "ru" .'.format(id)])
+    nquads = '\n'.join([f'<{id}> <first_lang> "ru" .'])
     api.post('/api/nquads', nquads, content_type='application/n-quads')
 
     resp = api.get(user_url)
     assert resp['first_lang'] == 'ru'
 
     mutation = {
-        'set': '\n'.join(['<{0}> <age> "38"^^<xs:int> .'.format(id)]),
-        'delete': '\n'.join(['<{0}> <first_lang> * .'.format(id)]),
+        'set': '\n'.join([f'<{id}> <age> "38"^^<xs:int> .']),
+        'delete': '\n'.join([f'<{id}> <first_lang> * .']),
     }
     api.post('/api/nquads', mutation)
 

@@ -3,6 +3,7 @@
 import re
 import requests
 import json
+from urllib.parse import quote
 import utils
 from models import File
 
@@ -15,8 +16,7 @@ def get_data(text, lang='en'):
     if lang != 'en':
         return None
 
-    pat = 'https://www.macmillandictionary.com/dictionary/british/{0}'
-    url = pat.format(text)
+    url = f'https://www.macmillandictionary.com/dictionary/british/{quote(text)}'
     headers = {
         'User-Agent': 'script',
         'Accept': 'text/html',
