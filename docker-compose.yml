@@ -10,7 +10,7 @@ services:
       - 4222:4222
       - 6222:6222
       - 8222:8222
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -29,7 +29,7 @@ services:
       MINIO_ACCESS_KEY: ${AWS_ACCESS_KEY_ID}
       MINIO_SECRET_KEY: ${AWS_SECRET_ACCESS_KEY}
     command: server --config-dir /etc/minio /data
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -42,7 +42,7 @@ services:
     command: "-addr 0.0.0.0:1081"
     ports:
       - 1081:1081
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -58,7 +58,7 @@ services:
       - 5080:5080
       - 6080:6080
     command: dgraph zero --my=zero:5080
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -74,7 +74,7 @@ services:
       - 8080:8080
       - 9080:9080
     command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --auth_token=${DGRAPH_TOKEN} --whitelist=${DGRAPH_WHITELIST}
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -110,7 +110,7 @@ services:
       - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -129,7 +129,7 @@ services:
         hard: -1
     volumes:
       - esdata2:/usr/share/elasticsearch/data
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -146,7 +146,7 @@ services:
       - ./config/kibana/:/usr/share/kibana/config:ro
     ports:
       - 5601:5601
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -179,7 +179,7 @@ services:
       - ./schema.txt:/schema.txt
     ports:
       - 4211:4211
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -220,7 +220,7 @@ services:
       - .:/go/src/github.com/sergeyt/pandora
     ports:
       - 4201:4201
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -236,7 +236,7 @@ services:
       NATS_URI: ${NATS_URI}
     ports:
       - 4302:4302
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
@@ -269,7 +269,7 @@ services:
       - 80:80
       - 443:443
       - 4200:4200
-    restart: on-failure
+    restart: always
     logging:
       driver: "json-file"
       options:
