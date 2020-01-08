@@ -6,15 +6,27 @@ import math
 import traceback
 from multiprocessing import Process
 # local modules
+import forvo
+import api
+from models import Term, File, TermWithData
+# data sources
 import cambridge
 import unsplash
 import multitran
 import merriamwebster
-import api
-from models import Term, File, TermWithData
+import howjsay
+import macmillan
 
 # here you can temporarily remove sources that you don't need to test
-sources = [cambridge, merriamwebster, unsplash, multitran]
+sources = [
+    cambridge,
+    merriamwebster,
+    unsplash,
+    multitran,
+    howjsay,
+    macmillan,
+    forvo,
+]
 
 reverse_edges = {
     'transcription': 'transcription_of',
