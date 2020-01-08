@@ -81,3 +81,7 @@ def url_quote(val):
 
 def is_word(s):
     return s and re.match(r"^[^\s]+$", s) != None
+
+
+def is_empty(val):
+    return val is None or len(val.strip()) == 0
