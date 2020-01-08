@@ -7,6 +7,8 @@ import utils
 from bs4 import BeautifulSoup
 from models import Term, File
 
+NAME = 'unsplash'
+
 headers = {
     'User-Agent': utils.CHROME_USER_AGENT,
     'Accept': 'text/html',
