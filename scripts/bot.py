@@ -63,7 +63,7 @@ def define_term(data):
         print("bad term", data)
         return None
     text = data.text.strip()
-    print(f'TERM {text}')
+    # print(f'TERM {text}')
     key = key_of(text, data.lang)
     if key in TERMS:
         return TERMS[key]
@@ -130,9 +130,16 @@ def define_words(source_idx=1, count=1):
 
 
 def main():
+    word = sys.argv[1] if len(sys.argv) >= 2 else None
     plimit = float(int(os.getenv("PARALLEL", "1")))
     if plimit == 1:
-        define_words()
+        for i, src in enumerate(sources):
+            print(f'FETCH {src.NAME}')
+            if word:
+                define_word(word, source_idx=1)
+            else:
+                define_words(source_idx=i)
+            print(f'COMPLETED {src.NAME}')
         return
     step = math.ceil(len(sources) / plimit)
     for i in range(0, len(sources), step):
