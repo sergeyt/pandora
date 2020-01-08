@@ -13,6 +13,7 @@ class File:
         if is_empty(url):
             raise Exception('url is not defined')
         self.url = url
+        self.region = region
 
 class TermWithData:
     def __init__(self, term, data):
