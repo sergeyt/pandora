@@ -7,6 +7,9 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from models import Term, TermWithData
+from utils import is_empty
+
+NAME = 'multitran'
 
 headers = {
     'User-Agent': utils.CHROME_USER_AGENT,
@@ -64,10 +67,10 @@ def parse_phrase_row(row, lang, trans_lang, tags):
     result = [parse_td(t) for t in row.find_all('td')]
     if len(result) != 2:
         return []
-    if any(t for t in result if t is None or len(t) == 0):
+    if any(is_empty(t) for t in result):
         return []
-    term = Term(text=result[0], lang=lang, region=None)
-    trans = Term(text=result[1], lang=trans_lang, region=None)
+    term = Term(text=result[0], lang=lang)
+    trans = Term(text=result[1], lang=trans_lang)
     return [TermWithData(term, {'tag': tags, 'translated_as': [trans]})]
 
 
