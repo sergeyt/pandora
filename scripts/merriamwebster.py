@@ -103,9 +103,13 @@ def get_data(query, lang):
     #move to second page, in teasaurus
     url_t = f'https://www.merriam-webster.com/thesaurus/{query}'
     resp = requests.get(url_t, headers=headers)
-    resp.raise_for_status()
+    if resp.ok:
+        parse_thesaurus(data, lang, resp.text)
 
-    soup = BeautifulSoup(resp.text, 'html.parser')
+    return data
+
+def parse_thesaurus(data, lang, page):
+    soup = BeautifulSoup(page, 'html.parser')
 
     dlist = soup.find_all('span', class_='syn-list')
     for d in dlist:
@@ -127,9 +131,6 @@ def get_data(query, lang):
         for r in antonyms:
             data['antonym'].append(
                 Term(text=stripped_text(r), lang=lang, region=None))
-
-    return data
-
 
 def main():
     (text, lang) = utils.find_audio_args()
