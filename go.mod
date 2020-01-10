@@ -12,7 +12,7 @@ require (
 	github.com/fsnotify/fsnotify v1.4.7
 	github.com/gavv/httpexpect/v2 v2.0.2
 	github.com/gavv/monotime v0.0.0-20190418164738-30dba4353424 // indirect
-	github.com/go-chi/chi v4.0.2+incompatible
+	github.com/go-chi/chi v4.0.3+incompatible
 	github.com/go-chi/cors v1.0.0
 	github.com/gocontrib/auth v0.0.0-20191103143519-80ac47fa0d14
 	github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263
