@@ -32,7 +32,7 @@ before_install:
   - export HTTP_PORT=80
   - export HTTPS_PORT=443
   - export SERVER_URL=http://lingvograph.com
-  - export CADDY_URLS=http://localhost
+  - export CADDY_URLS=http://localhost:3000
   - export ADMIN_SECRET=admin
   - export SYSTEM_PWD=system
   - export ADMIN_PWD=admin
@@ -45,6 +45,7 @@ before_install:
   - export PUBSUBD_ADDR=:4302
   - export NATS_URI=nats://nats:4222
   - export DGRAPH_URL=http://localhost:8080
+  - export API_GATEWAY=http://localhost:3000
   - export LOG_MAX_SIZE=500k
   - export LOG_MAX_FILE=5
   # AWS S3 config
@@ -54,9 +55,15 @@ before_install:
   - export AWS_SECRET_ACCESS_KEY=test
   - export AWS_REGION=eu-west-1
   # END OF LINGVO GRAPH VARS
-  - docker-compose up
+  - docker-compose up -d
   # TODO wait all services is up
   - docker-compose ps -a
+  - echo "waiting caddy"
+  - until $(curl --output /dev/null --silent --head --fail $API_GATEWAY); do
+  - printf '.'
+  - sleep 5
+  - done
+  - echo "caddy is up"
 
 install:
   - pip install pipenv
@@ -67,3 +74,4 @@ script:
   - pipenv shell
   - python initdata.py
   - pytest
+  - docker-compose down -v
