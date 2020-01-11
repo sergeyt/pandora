@@ -1,5 +1,31 @@
 env:
   - DOCKER_COMPOSE_VERSION=1.24.1
+  # LINGVO GRAPH VARS
+  - HOSTNAME=lingvograph.com
+  - HTTP_PORT=80
+  - HTTPS_PORT=443
+  - SERVER_URL=http://lingvograph.com
+  - CADDY_URLS=http://localhost
+  - ADMIN_SECRET=admin
+  - SYSTEM_PWD=system
+  - ADMIN_PWD=admin
+  - API_KEY_SECRET=test
+  - APP_ID=QTDH9KY5
+  - APP_SECRET=test
+  - API_KEY=test
+  - DGRAPH_TOKEN=test
+  - JWT_SECRET=test
+  - PUBSUBD_ADDR=:4302
+  - NATS_URI=nats://nats:4222
+  - DGRAPH_URL=http://localhost:8080
+  - LOG_MAX_SIZE=500k
+  - LOG_MAX_FILE=5
+  # AWS S3 config
+  - AWS_S3_ENDPOINT=http://minio:9000
+  - AWS_S3_BUCKET=pandora
+  - AWS_ACCESS_KEY_ID=test
+  - AWS_SECRET_ACCESS_KEY=test
+  - AWS_REGION=eu-west-1
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
