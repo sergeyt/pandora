@@ -9,10 +9,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-RUN apk add --no-cache git \
-    && go get -u -v github.com/cosmtrek/air/cmd/air \
-    && apk del git
+RUN wget https://github.com/cosmtrek/air/raw/master/bin/linux/air && chmod +x air && mv air /usr/local/bin
 
-WORKDIR /go/src/github.com/sergeyt/pandora
+WORKDIR /pandora
 
-ENTRYPOINT ["dockerize", "--wait", "tcp://dgraph:9080", "--wait", "tcp://minio:9000", "--wait", "tcp://nats:4222", "/go/bin/air"]
+ENTRYPOINT ["dockerize", "--wait", "tcp://dgraph:9080", "--wait", "tcp://minio:9000", "--wait", "tcp://nats:4222", "/usr/local/bin/air"]
