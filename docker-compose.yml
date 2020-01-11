@@ -217,7 +217,8 @@ services:
       GOOGLE_KEY: ${GOOGLE_KEY}
       GOOGLE_SECRET: ${GOOGLE_SECRET}
     volumes:
-      - .:/go/src/github.com/sergeyt/pandora
+      - .:/pandora
+      - ./docker/app_main.sh:/main.sh
     ports:
       - 4201:4201
     restart: always

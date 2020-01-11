@@ -11,6 +11,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 RUN wget https://github.com/cosmtrek/air/raw/master/bin/linux/air && chmod +x air && mv air /usr/local/bin
 
+COPY docker/app_main.sh /main.sh
+
 WORKDIR /pandora
 
-ENTRYPOINT ["dockerize", "--wait", "tcp://dgraph:9080", "--wait", "tcp://minio:9000", "--wait", "tcp://nats:4222", "/usr/local/bin/air"]
+ENTRYPOINT ["/main.sh"]
