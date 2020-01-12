@@ -3,6 +3,7 @@ package dgraph
 import (
 	"context"
 	"io/ioutil"
+	"net"
 	"net/http"
 	"os"
 	"time"
@@ -16,6 +17,50 @@ import (
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 )
+
+type grpcCon struct {
+	conn *grpc.ClientConn
+}
+
+func (c *grpcCon) Close() error {
+	return c.conn.Close()
+}
+
+func (c *grpcCon) LocalAddr() net.Addr {
+	panic("not implemented")
+}
+
+func (c *grpcCon) RemoteAddr() net.Addr {
+	panic("not implemented")
+}
+
+func (c *grpcCon) Read(b []byte) (n int, err error) {
+	panic("not implemented")
+}
+
+func (c *grpcCon) Write(b []byte) (n int, err error) {
+	panic("not implemented")
+}
+
+func (c *grpcCon) SetDeadline(t time.Time) error {
+	panic("not implemented")
+}
+
+func (c *grpcCon) SetReadDeadline(t time.Time) error {
+	panic("not implemented")
+}
+
+func (c *grpcCon) SetWriteDeadline(t time.Time) error {
+	panic("not implemented")
+}
+
+func Dial(network, address string, timeout time.Duration) (net.Conn, error) {
+	c, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithTimeout(timeout))
+	if err != nil {
+		return nil, err
+	}
+	return &grpcCon{c}, nil
+}
 
 func NewClient() (*dgo.Dgraph, error) {
 	// TODO configurable timeout

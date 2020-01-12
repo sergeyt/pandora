@@ -16,3 +16,5 @@ COPY docker/app_main.sh /main.sh
 WORKDIR /pandora
 
 ENTRYPOINT ["/main.sh"]
+
+HEALTHCHECK --interval=15s CMD curl --max-time 30 --fail http://localhost:4201/api/healthcheck

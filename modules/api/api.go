@@ -31,6 +31,7 @@ func NewHandler() http.Handler {
 	})
 	r.Use(cors.Handler)
 
+	r.Group(healthAPI)
 	r.Group(auth.RegisterAPI)
 	//r.Group(elasticsearch.SearchAPI)
 	r.Group(dataAPI)
