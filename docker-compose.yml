@@ -265,9 +265,8 @@ services:
     volumes:
       - caddy:/data/caddy
       - ./config/caddy/Caddyfile:/etc/Caddyfile
-      - ./docker/caddy_entrypoint.sh:/entrypoint.sh
     ports:
-      - 80:80
+      - ${HTTP_PORT}:${HTTP_PORT}
       - 443:443
       - 4200:4200
     restart: always
