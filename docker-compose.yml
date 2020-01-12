@@ -276,6 +276,17 @@ services:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
 
+  # monitor
+  # autoheal:
+  #   image: willfarrell/autoheal
+  #   container_name: autoheal
+  #   restart: on-failure
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: ${LOG_MAX_SIZE}
+  #       max-file: ${LOG_MAX_FILE}
+
 volumes:
   minio:
   dgraph:
