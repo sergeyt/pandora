@@ -4,7 +4,6 @@ go 1.13
 
 require (
 	cloud.google.com/go v0.47.0 // indirect
-	github.com/InVisionApp/go-health v2.1.2+incompatible
 	github.com/InVisionApp/go-health/v2 v2.1.2
 	github.com/aws/aws-sdk-go v1.28.0
 	github.com/dgraph-io/dgo/v2 v2.1.0
