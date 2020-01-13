@@ -17,4 +17,4 @@ WORKDIR /pandora
 
 ENTRYPOINT ["/main.sh"]
 
-HEALTHCHECK --interval=15s CMD curl --max-time 30 --fail http://localhost:4201/api/healthcheck
+# HEALTHCHECK --interval=15s CMD curl --head --max-time 15 --fail http://localhost:4201/api/health

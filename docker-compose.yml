@@ -75,6 +75,12 @@ services:
       - 9080:9080
     command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --auth_token=${DGRAPH_TOKEN} --whitelist=${DGRAPH_WHITELIST}
     restart: always
+    healthcheck:
+      test:
+        ["CMD-SHELL", "curl --fail --max-time 10 http://localhost:8080/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
     logging:
       driver: "json-file"
       options:
@@ -222,6 +228,15 @@ services:
     ports:
       - 4201:4201
     restart: always
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --fail --max-time 10 http://localhost:4201/api/health",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
     logging:
       driver: "json-file"
       options:

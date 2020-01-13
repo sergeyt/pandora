@@ -4,10 +4,10 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/go-chi/chi"
 	health "github.com/InVisionApp/go-health/v2"
 	"github.com/InVisionApp/go-health/v2/checkers"
 	"github.com/InVisionApp/go-health/v2/handlers"
+	"github.com/go-chi/chi"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	log "github.com/sirupsen/logrus"
@@ -64,5 +64,6 @@ func healthAPI(r chi.Router) {
 		log.Fatalf("unable to start healthcheck: %v", err)
 	}
 
-	r.Get("/api/healthcheck", handlers.NewJSONHandlerFunc(h, nil))
+	r.Head("/api/health", handlers.NewBasicHandlerFunc(h))
+	r.Get("/api/health", handlers.NewJSONHandlerFunc(h, nil))
 }
