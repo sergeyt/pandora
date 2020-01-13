@@ -57,13 +57,13 @@ before_install:
   # END OF LINGVO GRAPH VARS
   - docker-compose up -d
   # TODO wait all services is up
-  - docker-compose ps -a
   - echo "waiting caddy"
   - until $(curl --output /dev/null --silent --head --fail $API_GATEWAY); do
   - printf '.'
   - sleep 5
   - done
   - echo "caddy is up"
+  - docker-compose ps
 
 install:
   - pip install pipenv
