@@ -7,6 +7,7 @@
     jwt {
         path /api
         except /api/health
+        except /api/pubsub/health
         except /api/login
         except /api/token
         except /api/register

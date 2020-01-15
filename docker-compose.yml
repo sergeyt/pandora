@@ -253,6 +253,15 @@ services:
     ports:
       - 4302:4302
     restart: always
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --fail --max-time 10 http://localhost:4302/api/pubsub/health",
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 3
     logging:
       driver: "json-file"
       options:
