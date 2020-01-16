@@ -26,10 +26,14 @@ before_install:
   # one we specified). This is not to be confused with the version we printed
   # before doing the update.
   - docker-compose --version
+  # install dockerize
+  - wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz
+  - tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz
+  - rm dockerize-linux-amd64-v0.6.1.tar.gz
   - docker --version
   # LINGVO GRAPH VARS
   - export HOSTNAME=lingvograph.com
-  - export HTTP_PORT=80
+  - export HTTP_PORT=3000
   - export HTTPS_PORT=443
   - export SERVER_URL=http://lingvograph.com
   - export CADDY_URLS=http://localhost:3000
@@ -56,13 +60,8 @@ before_install:
   - export AWS_REGION=eu-west-1
   # END OF LINGVO GRAPH VARS
   - docker-compose up -d
-  # TODO wait all services is up
-  - echo "waiting caddy"
-  - until $(curl --output /dev/null --silent --head --fail $API_GATEWAY); do
-  - printf '.'
-  - sleep 5
-  - done
-  - echo "caddy is up"
+  # wait all services is up
+  - dockerize --wait tcp://localhost:9080 --wait tcp://localhost:9000 --wait tcp://localhost:4222 --wait tcp://localhost:4201 --wait tcp://localhost:3000 true
   - docker-compose ps
 
 install:
