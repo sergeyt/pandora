@@ -3,9 +3,10 @@
 import sys
 import requests
 import json
-import utils
 from bs4 import BeautifulSoup
 from models import Term, File
+import utils
+from utils import is_empty
 
 NAME = 'cambridge'
 
@@ -50,7 +51,9 @@ def get_translations(data, text, src_lang):
             if phrase: continue
             trans = sense.find('span', class_='trans')
             if trans:
-                for word in stripped_text(trans).split(','):
+                words = stripped_text(trans).split(',')
+                words = [w for w in words if not is_empty(w)]
+                for word in words:
                     term = Term(text=word, lang=lang, region=None)
                     data['translated_as'].append(term)
 
@@ -118,13 +121,15 @@ def get_data(text, lang):
                 data['audio'].append(file)
 
             ipa = find_strip(dpron, 'span', class_='ipa')
-            data['transcription'].append(
-                Term(text=ipa, lang=lang, region=region))
+            if not is_empty(ipa):
+                data['transcription'].append(
+                    Term(text=ipa, lang=lang, region=region))
 
         for dblock in body.find_all('div', class_='def-block'):
             def_text = stripped_text(dblock.find('div', class_='def'))
-            data['definition'].append(
-                Term(text=def_text, lang=lang, region=None))
+            if not is_empty(def_text):
+                data['definition'].append(
+                    Term(text=def_text, lang=lang, region=None))
             img = dblock.find('amp-img')
             if img is not None:
                 file = File(url=base + img.attrs['src'], region=None)
