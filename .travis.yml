@@ -59,8 +59,8 @@ install:
   - export AWS_SECRET_ACCESS_KEY=test
   - export AWS_REGION=eu-west-1
   - curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-  - python3 get-pip.py
-  - python3 -m pip install pipenv
+  - sudo python3 get-pip.py
+  - sudo python3 -m pip install pipenv
   # END OF LINGVO GRAPH VARS
   - docker-compose up -d
   # wait all services is up
