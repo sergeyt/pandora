@@ -5,7 +5,7 @@ go:
 env:
   - DOCKER_COMPOSE_VERSION=1.24.1
 
-before_install:
+install:
   # update is required to update the repositories to see the new packages for Docker
   - sudo apt-get update
   # Now we can install the newer docker-engine which is required for the newer
@@ -58,19 +58,17 @@ before_install:
   - export AWS_ACCESS_KEY_ID=test
   - export AWS_SECRET_ACCESS_KEY=test
   - export AWS_REGION=eu-west-1
+  - python3 -m pip install pipenv
   # END OF LINGVO GRAPH VARS
   - docker-compose up -d
   # wait all services is up
   - dockerize --wait tcp://localhost:9080 --wait tcp://localhost:9000 --wait tcp://localhost:4222 --wait tcp://localhost:4201 --wait tcp://localhost:3000 true
   - docker-compose ps
 
-install:
-  - pip install pipenv
-  - cd scripts && pipenv install --dev
-
 script:
   - cd scripts
   - pipenv shell
+  - pipenv install --dev
   - python initdata.py
   - pytest
   - docker-compose down -v
