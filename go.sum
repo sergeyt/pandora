@@ -143,6 +143,8 @@ github.com/gocontrib/pubsub v0.0.0-20191010042618-d42d7809a780 h1:CPDGkDgOANbMcI
 github.com/gocontrib/pubsub v0.0.0-20191010042618-d42d7809a780/go.mod h1:teCHYcO2zlRF/y8sA2xqhUmkR2Qv/mk0x4aG00RWBMM=
 github.com/gocontrib/pubsub v0.0.0-20200113013117-0e79275fea8c h1:WDAcJXGl5UPhwGDN68MR2KkMe2Zj7vm0itw2oK62Png=
 github.com/gocontrib/pubsub v0.0.0-20200113013117-0e79275fea8c/go.mod h1:iIbQsZHxEEEC6HJjnt32TcQgqBq/2Kp5DaH1FQMl/n0=
+github.com/gocontrib/pubsub v0.0.0-20200119195904-d2c1b300c080 h1:lbJw1QC1GXfehmojMwmtuuPwkatxtAyIgAo/wMTFOG0=
+github.com/gocontrib/pubsub v0.0.0-20200119195904-d2c1b300c080/go.mod h1:iIbQsZHxEEEC6HJjnt32TcQgqBq/2Kp5DaH1FQMl/n0=
 github.com/gocontrib/request v0.0.0-20160320145147-69ba4658ef4d h1:lsAl4ajdj+i49t2OOfEXsRzbbst7yPM1nW+E6iwjKSU=
 github.com/gocontrib/request v0.0.0-20160320145147-69ba4658ef4d/go.mod h1:JAn84GZWSjCNkRTXK5prMO2J80UB5+Tsj4yt6y1tyGI=
 github.com/gocontrib/rest v0.0.0-20190315023136-e0292c76d587 h1:xaLkSwvWAMTIFL8Wj7s36BYbBhS8Cc5P7RXNSSWsVP4=
