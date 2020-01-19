@@ -3,7 +3,7 @@ FROM golang:1.13-alpine
 ENV GOPATH /go
 ENV DOCKERIZE_VERSION v0.6.1
 
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl curl
 
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
@@ -17,4 +17,4 @@ WORKDIR /pandora
 
 ENTRYPOINT ["/main.sh"]
 
-# HEALTHCHECK --interval=15s CMD curl --head --max-time 15 --fail http://localhost:4201/api/health
+HEALTHCHECK --interval=10s --timeout=10s CMD /usr/bin/curl --fail http://localhost:4201/api/health || exit 1
