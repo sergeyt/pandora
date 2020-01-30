@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go v0.47.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
 	github.com/aws/aws-sdk-go v1.28.9
-	github.com/dgraph-io/dgo/v2 v2.1.0
+	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.7
