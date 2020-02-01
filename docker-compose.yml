@@ -55,7 +55,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:v1.2.0
+    image: dgraph/dgraph:v2.0.0-beta1
     container_name: zero
     volumes:
       - dgraph:/dgraph
@@ -76,7 +76,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph node
   dgraph:
-    image: dgraph/dgraph:v1.2.0
+    image: dgraph/dgraph:v2.0.0-beta1
     container_name: dgraph
     volumes:
       - dgraph:/dgraph
@@ -97,7 +97,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:v1.2.0
+    image: dgraph/dgraph:v2.0.0-beta1
     container_name: ratel
     ports:
       - 8000:8000
