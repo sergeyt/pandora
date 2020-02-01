@@ -64,6 +64,11 @@ services:
       - 6080:6080
     command: dgraph zero --my=zero:5080
     restart: always
+    healthcheck:
+      test: "curl --fail --max-time 10 http://localhost:6080/health"
+      interval: 10s
+      timeout: 10s
+      retries: 3
     logging:
       driver: "json-file"
       options:
