@@ -131,6 +131,7 @@ def define_words(source_idx=1, count=1):
 
 
 def main():
+    global words
     word = sys.argv[1] if len(sys.argv) >= 2 else None
     if word:
         words = [word]
