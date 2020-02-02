@@ -6,7 +6,7 @@ import json
 from bs4 import BeautifulSoup
 from models import Term, File
 import utils
-from utils import is_empty
+from utils import is_empty, dump_json
 
 NAME = 'cambridge'
 
@@ -164,7 +164,7 @@ def find_audio(text, lang):
 def main():
     (text, lang) = utils.find_audio_args(sys.argv)
     result = get_data(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
+    print(dump_json(result))
 
 
 if __name__ == '__main__':

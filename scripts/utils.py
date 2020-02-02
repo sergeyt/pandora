@@ -1,11 +1,12 @@
 import os
 import sys
 import re
+import json
 import urllib
 import logging
 import requests
+from json import JSONEncoder
 from langdetect import detect
-
 
 def as_bool(s):
     return len(s) > 0 and (s == '1' or s.lower() == 'true')
@@ -85,3 +86,11 @@ def is_word(s):
 
 def is_empty(val):
     return val is None or len(val.strip()) == 0
+
+
+class JSONEncoderEx(JSONEncoder):
+    def default(self, o):
+        return o.__dict__
+
+def dump_json(d):
+    return json.dumps(d, cls=JSONEncoderEx, sort_keys=True, indent='  ', ensure_ascii=False)
