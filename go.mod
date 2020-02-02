@@ -5,7 +5,9 @@ go 1.13
 require (
 	cloud.google.com/go v0.47.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
+	github.com/araddon/gou v0.0.0-20190110011759-c797efecbb61
 	github.com/aws/aws-sdk-go v1.28.9
+	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
@@ -29,9 +31,11 @@ require (
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
+	github.com/lytics/cloudstorage v0.2.2
 	github.com/markbates/goth v1.61.1
 	github.com/nats-io/nats-server/v2 v2.1.0 // indirect
 	github.com/onsi/ginkgo v1.10.2 // indirect
+	github.com/pborman/uuid v1.2.0 // indirect
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/satori/go.uuid v1.2.0 // indirect
 	github.com/sirupsen/logrus v1.4.2

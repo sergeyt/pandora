@@ -44,7 +44,7 @@ func main() {
 }
 
 func start(restart chan bool) {
-	fs := api.NewS3Store()
+	fs := api.NewCloudStore()
 	err := fs.EnsureBucket()
 	if err != nil {
 		log.Errorf("s3.EnsureBucket fail: %v", err)

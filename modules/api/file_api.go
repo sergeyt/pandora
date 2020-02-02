@@ -45,7 +45,7 @@ func asHTTPHandler(h fileHandler) http.HandlerFunc {
 			return
 		}
 
-		store := NewFileStore()
+		store := NewCloudStore()
 		h(fsopContext{store, path}, w, r)
 	}
 }
@@ -338,7 +338,7 @@ func deleteFileObject(fileNode map[string]interface{}) {
 		return
 	}
 	ctx := context.Background()
-	store := NewFileStore()
+	store := NewCloudStore()
 	err := store.DeleteObject(ctx, path)
 	if err != nil {
 		log.Errorf("deleteFileObject fail: %v", err)
