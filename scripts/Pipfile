@@ -9,6 +9,7 @@ autopep8 = "*"
 yapf = "*"
 rope = "*"
 pylint = "*"
+flake8 = "*"
 
 [packages]
 python-dotenv = "*"
@@ -28,8 +29,6 @@ watchdog = "*"
 simplejson = "*"
 retry = "*"
 decorator = "*"
-pytest = "*"
-flake8 = "*"
 
 [requires]
 python_version = "3.7"
