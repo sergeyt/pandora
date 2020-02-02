@@ -2,16 +2,12 @@
 
 import requests
 import json
-from urllib.parse import quote
 import utils
 
 from bs4 import BeautifulSoup
 from models import File, Term
 
-from utils import dump_json
 NAME = 'macmillan'
-
-first = lambda a: next(iter(a or []), None)
 
 
 def stripped_text(node):
@@ -54,6 +50,7 @@ def get_data(query, lang):
 
     #get tags
     crop_text=stripped_text(soup.find(class_='zwsp'))
+    #remove bad substring
     part_speech=stripped_text(soup.find(class_='PART-OF-SPEECH')).replace(crop_text,'')
     syntax_coding=stripped_text(soup.find(class_='SYNTAX-CODING'))
     
@@ -92,7 +89,7 @@ def get_data(query, lang):
 def main():
     (text, lang) = utils.find_audio_args()
     result = get_data(text, lang)
-    print(dump_json(result))
+    print(utils.dump_json(result))
 
 
 if __name__ == '__main__':
