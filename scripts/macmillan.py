@@ -8,6 +8,7 @@ import utils
 from bs4 import BeautifulSoup
 from models import File, Term
 
+from utils import dump_json
 NAME = 'macmillan'
 
 first = lambda a: next(iter(a or []), None)
