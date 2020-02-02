@@ -8,6 +8,7 @@ import requests
 from json import JSONEncoder
 from langdetect import detect
 
+
 def as_bool(s):
     return len(s) > 0 and (s == '1' or s.lower() == 'true')
 
@@ -92,5 +93,10 @@ class JSONEncoderEx(JSONEncoder):
     def default(self, o):
         return o.__dict__
 
+
 def dump_json(d):
-    return json.dumps(d, cls=JSONEncoderEx, sort_keys=True, indent='  ', ensure_ascii=False)
+    return json.dumps(d,
+                      cls=JSONEncoderEx,
+                      sort_keys=True,
+                      indent='  ',
+                      ensure_ascii=False)

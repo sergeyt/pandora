@@ -1,5 +1,6 @@
 from utils import is_empty
 
+
 class Term:
     def __init__(self, text, lang=None, region=None):
         if is_empty(text):
@@ -8,12 +9,14 @@ class Term:
         self.lang = lang
         self.region = region
 
+
 class File:
-    def __init__(self, url, region = None):
+    def __init__(self, url, region=None):
         if is_empty(url):
             raise Exception('url is not defined')
         self.url = url
         self.region = region
+
 
 class TermWithData:
     def __init__(self, term, data):

@@ -109,6 +109,7 @@ def get_data(query, lang):
 
     return data
 
+
 def parse_thesaurus(data, lang, page):
     soup = BeautifulSoup(page, 'html.parser')
 
@@ -132,6 +133,7 @@ def parse_thesaurus(data, lang, page):
         for r in antonyms:
             data['antonym'].append(
                 Term(text=stripped_text(r), lang=lang, region=None))
+
 
 def main():
     (text, lang) = utils.find_audio_args()
