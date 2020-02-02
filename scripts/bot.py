@@ -115,8 +115,8 @@ def get_data_safe(source, text, lang):
 
 def define_word(text, lang='en', source_idx=-1, count=1):
     term_id = define_term(Term(text=text, lang=lang, region=None))
-    source_list = sources if source_idx < 0 else sources[
-        source_idx:source_idx + count]
+    source_list = sources if source_idx < 0 else sources[source_idx:
+                                                         source_idx + count]
     for source in source_list:
         data = get_data_safe(source, text, lang)
         if data is None:

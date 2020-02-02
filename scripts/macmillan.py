@@ -35,54 +35,60 @@ def get_data(query, lang):
     pat = 'https://www.macmillandictionary.com/dictionary/british/{0}'
     url = pat.format(query)
     headers = {
-            'User-Agent': 'script',
-            'Accept': 'text/html',
-        }
+        'User-Agent': 'script',
+        'Accept': 'text/html',
+    }
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
 
     soup = BeautifulSoup(resp.text, 'html.parser')
 
     #get transcription
-    transcriptions=soup.find_all(class_='PRON')
+    transcriptions = soup.find_all(class_='PRON')
     for t in transcriptions:
-      data['transcription'].append(Term(text=stripped_text(t).replace('/',''),lang=lang, region=None))
+        data['transcription'].append(
+            Term(text=stripped_text(t).replace('/', ''),
+                 lang=lang,
+                 region=None))
 
     #get tags
-    crop_text=stripped_text(soup.find(class_='zwsp'))
+    crop_text = stripped_text(soup.find(class_='zwsp'))
     #remove bad substring
-    part_speech=stripped_text(soup.find(class_='PART-OF-SPEECH')).replace(crop_text,'')
-    syntax_coding=stripped_text(soup.find(class_='SYNTAX-CODING'))
-    
-    data['tag'].append(Term(text=part_speech,lang=lang, region=None))
-    data['tag'].append(Term(text=syntax_coding,lang=lang, region=None))
+    part_speech = stripped_text(soup.find(class_='PART-OF-SPEECH')).replace(
+        crop_text, '')
+    syntax_coding = stripped_text(soup.find(class_='SYNTAX-CODING'))
+
+    data['tag'].append(Term(text=part_speech, lang=lang, region=None))
+    data['tag'].append(Term(text=syntax_coding, lang=lang, region=None))
 
     #get defenition
-    defenitions=soup.find_all(class_='DEFINITION')
+    defenitions = soup.find_all(class_='DEFINITION')
     for d in defenitions:
-      data['definition'].append(Term(text=stripped_text(d),lang=lang, region=None))
+        data['definition'].append(
+            Term(text=stripped_text(d), lang=lang, region=None))
 
     #get examples
-    examples=soup.find_all(class_='EXAMPLES')
+    examples = soup.find_all(class_='EXAMPLES')
     for e in examples:
-      data['in'].append(Term(text=stripped_text(e),lang=lang, region=None))
-    examples=soup.find_all(class_='PHR-XREF')
+        data['in'].append(Term(text=stripped_text(e), lang=lang, region=None))
+    examples = soup.find_all(class_='PHR-XREF')
     for e in examples:
-      data['in'].append(Term(text=stripped_text(e),lang=lang, region=None))
+        data['in'].append(Term(text=stripped_text(e), lang=lang, region=None))
 
     #get synonyms
-    synonyms=soup.find_all(class_='synonyms')
+    synonyms = soup.find_all(class_='synonyms')
     for allsyn in synonyms:
-      subsynonyms=allsyn.find_all(class_='theslink')
-      for syn in subsynonyms:
-        if(not '...' in syn.text):
-          data['synonym'].append(Term(text=stripped_text(syn),lang=lang, region=None))
+        subsynonyms = allsyn.find_all(class_='theslink')
+        for syn in subsynonyms:
+            if (not '...' in syn.text):
+                data['synonym'].append(
+                    Term(text=stripped_text(syn), lang=lang, region=None))
 
     #get audio
-    audio=soup.find(class_='audio_play_button')
+    audio = soup.find(class_='audio_play_button')
     data['audio'].append(File(url=audio['data-src-mp3'], region=None))
     data['audio'].append(File(url=audio['data-src-ogg'], region=None))
-    
+
     return data
 
 
