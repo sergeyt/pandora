@@ -91,7 +91,7 @@ def get_data(query, lang):
 def main():
     (text, lang) = utils.find_audio_args()
     result = get_data(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
+    print(dump_json(result))
 
 
 if __name__ == '__main__':

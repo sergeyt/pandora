@@ -8,6 +8,7 @@ import dictcom
 import utils
 from bs4 import BeautifulSoup
 from models import File
+from utils import dump_json
 
 NAME = 'forvo'
 AUDIO_HOST = 'https://audio00.forvo.com/audios/mp3'
@@ -126,7 +127,7 @@ def get_data(text, lang='ru'):
 def main():
     (text, lang) = utils.find_audio_args()
     result = get_data(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
+    print(dump_json(result))
 
 
 if __name__ == '__main__':

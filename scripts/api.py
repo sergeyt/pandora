@@ -10,6 +10,7 @@ from retry import retry
 import termquery
 import utils
 import nquad
+from utils import dump_json
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
@@ -62,7 +63,7 @@ def is_json(resp):
 def dump_response(resp):
     if VERBOSE and is_json(resp):
         try:
-            print(json.dumps(resp.json(), sort_keys=True, indent=2))
+            print(dump_json(resp.json()))
         except:
             print(resp.text)
     elif VERBOSE and not resp.ok:
@@ -97,7 +98,7 @@ def get(path):
 
 
 def jsonstr(data):
-    return json.dumps(data, sort_keys=True, indent=2)
+    return dump_json(data, ensure_ascii=True)
 
 
 @retry(tries=TRIES, delay=RETRY_DELAY)
@@ -124,7 +125,7 @@ def post(path,
 @retry(tries=TRIES, delay=RETRY_DELAY)
 def put(path, payload, auth=None, raw=False):
     params = {'key': API_KEY}
-    data = payload if raw else json.dumps(payload, sort_keys=True, indent=2)
+    data = payload if raw else jsonstr(payload)
     resp = requests.put(url(path),
                         data=data,
                         params=params,

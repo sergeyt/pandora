@@ -1,6 +1,7 @@
 import os
 import json
 import utils
+from utils import dump_json
 
 TESTING = utils.TESTING
 dir = os.path.dirname(os.path.realpath(__file__))
@@ -31,4 +32,4 @@ class Cache:
             return
         self.cache[word] = record
         with open(self.file_path(), 'w') as f:
-            f.write(json.dumps(self.cache, sort_keys=True, indent='  '))
+            f.write(dump_json(self.cache))

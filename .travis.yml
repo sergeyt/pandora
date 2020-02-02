@@ -64,13 +64,14 @@ install:
   # END OF LINGVO GRAPH VARS
   - docker-compose up -d
   # wait all services is up
-  - dockerize --wait tcp://localhost:9080 --wait tcp://localhost:9000 --wait tcp://localhost:4222 --wait tcp://localhost:4201 --wait tcp://localhost:3000 true
+  - dockerize --wait http://localhost:4201/api/health true
   - docker-compose ps
 
 script:
   - cd scripts
   - pipenv shell
   - pipenv install --dev
+  - python initdata.py || true
   - python initdata.py
   - pytest
   - docker-compose down -v

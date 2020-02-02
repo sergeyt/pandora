@@ -78,6 +78,7 @@ collocation_of: [uid] @count .
 created_by: uid @count .
 modified_by: uid @count .
 
+use: [uid] @count .
 know: [uid] @count .
 forgot: [uid] @count .
 learning: [uid] @count .

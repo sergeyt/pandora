@@ -55,7 +55,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:v1.2.0
+    image: dgraph/dgraph:v2.0.0-beta1
     container_name: zero
     volumes:
       - dgraph:/dgraph
@@ -64,6 +64,11 @@ services:
       - 6080:6080
     command: dgraph zero --my=zero:5080
     restart: always
+    healthcheck:
+      test: "curl --fail --max-time 10 http://localhost:6080/health"
+      interval: 10s
+      timeout: 10s
+      retries: 3
     logging:
       driver: "json-file"
       options:
@@ -71,7 +76,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph node
   dgraph:
-    image: dgraph/dgraph:v1.2.0
+    image: dgraph/dgraph:v2.0.0-beta1
     container_name: dgraph
     volumes:
       - dgraph:/dgraph
@@ -92,71 +97,12 @@ services:
         max-file: ${LOG_MAX_FILE}
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:v1.2.0
+    image: dgraph/dgraph:v2.0.0-beta1
     container_name: ratel
     ports:
       - 8000:8000
     command: dgraph-ratel
     restart: on-failure
-    logging:
-      driver: "json-file"
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
-  # elasticsearch node1
-  # see also https://github.com/deviantony/docker-elk
-  # todo elasticsearch production config
-  elasticsearch:
-    image: tianon/true
-    # build:
-    #   context: ./
-    #   dockerfile: ./docker/Dockerfile-elasticsearch
-    container_name: elasticsearch
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - esdata1:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
-  # elasticsearch node2
-  elasticsearch2:
-    image: tianon/true
-    # build:
-    #   context: ./
-    #   dockerfile: ./docker/Dockerfile-elasticsearch
-    container_name: elasticsearch2
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - esdata2:/usr/share/elasticsearch/data
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-size: ${LOG_MAX_SIZE}
-        max-file: ${LOG_MAX_FILE}
-  # kibana - elasticsearch dashboard
-  kibana:
-    # image: docker.elastic.co/kibana/kibana:6.4.1
-    image: tianon/true
-    container_name: kibana
-    environment:
-      XPACK_MONITORING_ENABLED: "false"
-    volumes:
-      - ./config/kibana/:/usr/share/kibana/config:ro
-    ports:
-      - 5601:5601
-    restart: always
     logging:
       driver: "json-file"
       options:
@@ -303,5 +249,3 @@ volumes:
   minio:
   dgraph:
   caddy:
-  esdata1:
-  esdata2:

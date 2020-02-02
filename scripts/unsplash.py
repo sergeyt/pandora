@@ -6,6 +6,7 @@ import requests
 import utils
 from bs4 import BeautifulSoup
 from models import Term, File
+from utils import dump_json
 
 NAME = 'unsplash'
 
@@ -43,7 +44,7 @@ def get_data(text, lang='en'):
 def main():
     (text, lang) = utils.find_audio_args(sys.argv)
     result = get_data(text)
-    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
+    print(dump_json(result))
 
 
 if __name__ == '__main__':

@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go v0.47.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
 	github.com/aws/aws-sdk-go v1.28.9
-	github.com/dgraph-io/dgo/v2 v2.1.0
+	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.4.7
@@ -29,7 +29,7 @@ require (
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
-	github.com/markbates/goth v1.61.0
+	github.com/markbates/goth v1.61.1
 	github.com/nats-io/nats-server/v2 v2.1.0 // indirect
 	github.com/onsi/ginkgo v1.10.2 // indirect
 	github.com/pelletier/go-toml v1.6.0 // indirect
@@ -45,7 +45,7 @@ require (
 	golang.org/x/net v0.0.0-20191101175033-0deb6923b6d9 // indirect
 	google.golang.org/appengine v1.6.5 // indirect
 	google.golang.org/genproto v0.0.0-20191028173616-919d9bdd9fe6 // indirect
-	google.golang.org/grpc v1.26.0
+	google.golang.org/grpc v1.27.0
 	gopkg.in/DATA-DOG/go-sqlmock.v1 v1.3.0 // indirect
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect

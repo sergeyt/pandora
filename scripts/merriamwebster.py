@@ -5,6 +5,7 @@ import json
 import utils
 from bs4 import BeautifulSoup
 from models import File, Term
+from utils import dump_json
 
 NAME = 'merriam-webster'
 
@@ -108,6 +109,7 @@ def get_data(query, lang):
 
     return data
 
+
 def parse_thesaurus(data, lang, page):
     soup = BeautifulSoup(page, 'html.parser')
 
@@ -132,10 +134,11 @@ def parse_thesaurus(data, lang, page):
             data['antonym'].append(
                 Term(text=stripped_text(r), lang=lang, region=None))
 
+
 def main():
     (text, lang) = utils.find_audio_args()
     result = get_data(text, lang)
-    print(json.dumps(result, sort_keys=True, indent='  ', ensure_ascii=False))
+    print(dump_json(result))
 
 
 if __name__ == '__main__':
