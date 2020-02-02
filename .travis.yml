@@ -71,6 +71,7 @@ script:
   - cd scripts
   - pipenv shell
   - pipenv install --dev
+  - python initdata.py || true
   - python initdata.py
   - pytest
   - docker-compose down -v
