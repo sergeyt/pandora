@@ -34,6 +34,8 @@ reverse_edges = {
     'collocation': 'collocation_of',
 }
 
+words = []
+
 __dir__ = os.path.dirname(os.path.realpath(__file__))
 TERMS = {}  # key=text@lang, value=uid
 __next_id__ = 1
@@ -124,22 +126,27 @@ def define_word(text, lang='en', source_idx=-1, count=1):
 
 def define_words(source_idx=1, count=1):
     api.login("system", os.getenv("SYSTEM_PWD"))
-    words = read_words()
     for word in words:
         define_word(word, source_idx=source_idx, count=count)
 
 
 def main():
     word = sys.argv[1] if len(sys.argv) >= 2 else None
+    if word:
+        words = [word]
+    else:
+        words = read_words()
+
     plimit = float(int(os.getenv("PARALLEL", "1")))
     if plimit == 1:
         for i, src in enumerate(sources):
             print(f'FETCH {src.NAME}')
-            if word:
-                define_word(word, source_idx=1)
-            else:
+            try:
                 define_words(source_idx=i)
-            print(f'COMPLETED {src.NAME}')
+                print(f'COMPLETED {src.NAME}')
+            except:
+                print(f'FAIL {src.NAME}')
+                traceback.print_exc()
         return
     step = math.ceil(len(sources) / plimit)
     for i in range(0, len(sources), step):
