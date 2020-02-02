@@ -11,7 +11,7 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 RUN wget https://github.com/cosmtrek/air/raw/master/bin/linux/air && chmod +x air && mv air /usr/local/bin
 
-COPY docker/app_main.sh /main.sh
+COPY docker/app/main.sh /main.sh
 
 WORKDIR /pandora
 

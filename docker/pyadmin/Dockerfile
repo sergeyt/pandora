@@ -6,9 +6,8 @@ RUN apk update \
 
 COPY scripts /pyadmin
 COPY schema.txt /schema.txt
-COPY docker/pyadmin_entrypoint.sh /entrypoint.sh
+COPY docker/pyadmin/main.sh /main.sh
 
 WORKDIR /pyadmin
-RUN pipenv install --deploy --system
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/main.sh"]

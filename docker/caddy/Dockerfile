@@ -11,7 +11,7 @@ RUN apk add --no-cache git gcc musl-dev
 RUN go get -v github.com/abiosoft/parent
 
 # build caddy
-COPY ./docker/caddy_build.sh /usr/bin/caddy_build.sh
+COPY ./docker/caddy/build.sh /usr/bin/caddy_build.sh
 RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/caddy_build.sh
 
 # Dist image
@@ -28,9 +28,9 @@ ENV ENABLE_TELEMETRY="$enable_telemetry"
 
 # install deps
 RUN apk update \
-        && apk add --no-cache ca-certificates git mailcap openssh-client tzdata \
-        && addgroup -S -g 1001 app \
-        && adduser -S -D -h /app -u 1001 -G app app
+    && apk add --no-cache ca-certificates git mailcap openssh-client tzdata \
+    && addgroup -S -g 1001 app \
+    && adduser -S -D -h /app -u 1001 -G app app
 
 # install caddy
 COPY --from=builder /install/caddy /usr/bin/caddy

@@ -108,11 +108,14 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # pyadmin API service
   pyadmin:
+    depends_on:
+      - app
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile-pyadmin
+      dockerfile: ./docker/pyadmin/Dockerfile
     container_name: pyadmin
     environment:
       HOSTNAME: ${HOSTNAME}
@@ -133,6 +136,7 @@ services:
     volumes:
       - ./scripts:/pyadmin
       - ./schema.txt:/schema.txt
+      - ./docker/pyadmin/main.sh:/main.sh
     ports:
       - 4211:4211
     restart: always
@@ -141,11 +145,16 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # application API service
   app:
+    depends_on:
+      - dgraph
+      - minio
+      - nats
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile-app
+      dockerfile: ./docker/app/Dockerfile
     container_name: app
     environment:
       HOSTNAME: ${HOSTNAME}
@@ -174,7 +183,7 @@ services:
       GOOGLE_SECRET: ${GOOGLE_SECRET}
     volumes:
       - .:/pandora
-      - ./docker/app_main.sh:/main.sh
+      - ./docker/app/main.sh:/main.sh
     ports:
       - 4201:4201
     restart: always
@@ -183,11 +192,14 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # event streaming service
   pubsub:
+    depends_on:
+      - nats
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile-pubsub
+      dockerfile: ./docker/pubsub/Dockerfile
     container_name: pubsub
     environment:
       NATS_URI: ${NATS_URI}
@@ -199,11 +211,12 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # web server - service gateway
   caddy:
     build:
       context: ./
-      dockerfile: ./docker/Dockerfile-caddy
+      dockerfile: ./docker/caddy/Dockerfile
     container_name: caddy
     environment:
       CADDY_URLS: ${CADDY_URLS}
