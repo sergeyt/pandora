@@ -98,7 +98,7 @@ def get(path):
 
 
 def jsonstr(data):
-    return dump_json(data)
+    return dump_json(data, ensure_ascii=True)
 
 
 @retry(tries=TRIES, delay=RETRY_DELAY)
@@ -125,7 +125,7 @@ def post(path,
 @retry(tries=TRIES, delay=RETRY_DELAY)
 def put(path, payload, auth=None, raw=False):
     params = {'key': API_KEY}
-    data = payload if raw else dump_json(payload)
+    data = payload if raw else jsonstr(payload)
     resp = requests.put(url(path),
                         data=data,
                         params=params,

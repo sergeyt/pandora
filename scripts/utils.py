@@ -94,9 +94,9 @@ class JSONEncoderEx(JSONEncoder):
         return o.__dict__
 
 
-def dump_json(d):
+def dump_json(d, ensure_ascii=False):
     return json.dumps(d,
                       cls=JSONEncoderEx,
                       sort_keys=True,
                       indent='  ',
-                      ensure_ascii=False)
+                      ensure_ascii=ensure_ascii)
