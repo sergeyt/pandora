@@ -62,6 +62,7 @@ install:
   - sudo python3 get-pip.py
   - sudo python3 -m pip install pipenv
   # END OF LINGVO GRAPH VARS
+  - docker-compose build
   - docker-compose up -d
   # wait all services is up
   - dockerize --wait http://localhost:4201/api/health true
