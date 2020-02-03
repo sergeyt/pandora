@@ -7,7 +7,6 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/gocontrib/pubsub"
 	_ "github.com/gocontrib/pubsub/nats"
-	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/config"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -44,12 +43,6 @@ func main() {
 }
 
 func start(restart chan bool) {
-	fs := api.NewCloudStore()
-	err := fs.EnsureBucket()
-	if err != nil {
-		log.Errorf("s3.EnsureBucket fail: %v", err)
-	}
-
 	startHub()
 	// go elasticsearch.MutationObserver(restart)
 	startServer()

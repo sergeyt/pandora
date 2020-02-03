@@ -57,11 +57,6 @@ type CloudStore struct {
 	config *cloudstorage.Config
 }
 
-// EnsureBucket creates AWS_S3_BUCKET
-func (s *CloudStore) EnsureBucket() error {
-	return nil
-}
-
 // Download object at given path
 func (s *CloudStore) Download(ctx context.Context, id string, w io.Writer) error {
 	file, err := findFileTx(ctx, id)
