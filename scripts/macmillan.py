@@ -32,8 +32,7 @@ def get_data(query, lang):
         #'related': []
     }
 
-    pat = 'https://www.macmillandictionary.com/dictionary/british/{0}'
-    url = pat.format(query)
+    url = f'https://www.macmillandictionary.com/dictionary/british/{query}'
     headers = {
         'User-Agent': 'script',
         'Accept': 'text/html',
