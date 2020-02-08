@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go v0.47.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
 	github.com/araddon/gou v0.0.0-20190110011759-c797efecbb61
-	github.com/aws/aws-sdk-go v1.28.9
+	github.com/aws/aws-sdk-go v1.28.13
 	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -49,7 +49,7 @@ require (
 	golang.org/x/net v0.0.0-20191101175033-0deb6923b6d9 // indirect
 	google.golang.org/appengine v1.6.5 // indirect
 	google.golang.org/genproto v0.0.0-20191028173616-919d9bdd9fe6 // indirect
-	google.golang.org/grpc v1.27.0
+	google.golang.org/grpc v1.27.1
 	gopkg.in/DATA-DOG/go-sqlmock.v1 v1.3.0 // indirect
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
