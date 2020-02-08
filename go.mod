@@ -8,6 +8,7 @@ require (
 	github.com/araddon/gou v0.0.0-20190110011759-c797efecbb61
 	github.com/aws/aws-sdk-go v1.28.13
 	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
+	github.com/dgraph-io/dgo v1.0.0 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
@@ -17,7 +18,7 @@ require (
 	github.com/go-chi/chi v4.0.3+incompatible
 	github.com/go-chi/cors v1.0.0
 	github.com/gocontrib/auth v0.0.0-20191103143519-80ac47fa0d14
-	github.com/gocontrib/cloudstorage v0.3.1-0.20200208070123-5778532ba2f7
+	github.com/gocontrib/cloudstorage v0.3.2
 	github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263
 	github.com/gocontrib/go-ldap-client v0.0.0-20170228181143-45b8133d8c18 // indirect
 	github.com/gocontrib/parse v0.0.0-20170301103618-1536a11fcd7f // indirect
@@ -53,5 +54,6 @@ require (
 	google.golang.org/grpc v1.27.1
 	gopkg.in/DATA-DOG/go-sqlmock.v1 v1.3.0 // indirect
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
+	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
 )

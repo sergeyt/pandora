@@ -102,6 +102,8 @@ github.com/coreos/pkg v0.0.0-20180928190104-399ea9e2e55f/go.mod h1:E3G3o1h8I7cfc
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/dgraph-io/dgo v1.0.0 h1:DRuI66G+j0XWDOXly4v5PSk2dGkbIopAZIirRjq7lzI=
+github.com/dgraph-io/dgo v1.0.0/go.mod h1:6K5zUB6Lsml4SEStX+fPzGhJtCLX9XxbkHJLsGOXS1E=
 github.com/dgraph-io/dgo/v2 v2.1.0 h1:zm4gygHzZwu11y3VqDG/fDA80xgpSvLMlrhEcb9KfT0=
 github.com/dgraph-io/dgo/v2 v2.1.0/go.mod h1:R/MTZMGhTo60XSziuKpLXzI1OnVWQCZS5oJjxA8Q1bo=
 github.com/dgraph-io/dgo/v2 v2.2.0 h1:qYbm6mEF3wuKiRpgNOldk6PmPbBJFwj6vL7I7dTSdyc=
@@ -152,6 +154,10 @@ github.com/gocontrib/cloudstorage v0.3.0 h1:ODh9KFoAeTh9+FpfWfu3Gq8Rcx+HWg1erNVc
 github.com/gocontrib/cloudstorage v0.3.0/go.mod h1:ZFohh5BlBlLPN8y7iNGF7pw2V1jhAHnjopZ4JuY10N8=
 github.com/gocontrib/cloudstorage v0.3.1-0.20200208070123-5778532ba2f7 h1:SLFS1k6fgPbXHWAC5t5r9UNF3Bx6Tt4HrOqWJfnBEbE=
 github.com/gocontrib/cloudstorage v0.3.1-0.20200208070123-5778532ba2f7/go.mod h1:ZFohh5BlBlLPN8y7iNGF7pw2V1jhAHnjopZ4JuY10N8=
+github.com/gocontrib/cloudstorage v0.3.1-0.20200208222333-5fa28856671f h1:lMxkpVWc21r0Ld7vFstiXhp6+xQhP9LVWrsupjpQsTg=
+github.com/gocontrib/cloudstorage v0.3.1-0.20200208222333-5fa28856671f/go.mod h1:ZFohh5BlBlLPN8y7iNGF7pw2V1jhAHnjopZ4JuY10N8=
+github.com/gocontrib/cloudstorage v0.3.2 h1:AqxkxaaB0kUKPw/Dme1n8R//5AkAVmUJpqu3sJtogug=
+github.com/gocontrib/cloudstorage v0.3.2/go.mod h1:ZFohh5BlBlLPN8y7iNGF7pw2V1jhAHnjopZ4JuY10N8=
 github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263 h1:2L4fSLtfktst3DuIpaABhNvpz8ahvySJslDXZ9Jds/M=
 github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263/go.mod h1:F1EISizw4/l8n8bDqA/6ZFG7yeQCWWZwhoNGnaxrjHw=
 github.com/gocontrib/go-health v2.1.0+incompatible h1:y42Vqrvygaa2iD+Vi0LXrnV1wi4iEvBHYqFcMzbgWnw=
