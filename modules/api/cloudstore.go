@@ -17,6 +17,8 @@ import (
 
 	"github.com/gocontrib/cloudstorage"
 	"github.com/gocontrib/cloudstorage/awss3"
+	"github.com/gocontrib/cloudstorage/google"
+	"github.com/gocontrib/cloudstorage/localfs"
 )
 
 // ObjectStore is store of any BLOB objects
@@ -30,27 +32,71 @@ type ObjectStore interface {
 
 // NewCloudStore creates new cloud store based on environment variables
 func NewCloudStore() *CloudStore {
-	region := os.Getenv("AWS_REGION")
-	if region == "" {
-		region = "us-east-1"
+	config := makeConfig()
+	if config == nil {
+		panic("no config to init file store")
 	}
-	// TODO log level
-	config := &cloudstorage.Config{
-		BaseUrl:    os.Getenv("AWS_S3_ENDPOINT"),
-		Type:       awss3.StoreType,
-		AuthMethod: awss3.AuthAccessKey,
-		Bucket:     os.Getenv("AWS_S3_BUCKET"),
-		TmpDir:     "/tmp/localcache/aws",
-		Settings:   make(gou.JsonHelper),
-		Region:     region,
-	}
-	config.Settings[awss3.ConfKeyAccessKey] = os.Getenv("AWS_ACCESS_KEY_ID")
-	config.Settings[awss3.ConfKeyAccessSecret] = os.Getenv("AWS_SECRET_ACCESS_KEY")
-	config.Settings[awss3.ConfKeyDisableSSL] = "true"
-	config.Settings[awss3.ConfKeyDebugLog] = "true"
 	return &CloudStore{
 		config: config,
 	}
+}
+
+const cacheDir = "/tmp/localcache/"
+
+func makeConfig() *cloudstorage.Config {
+	if os.Getenv("GCS_JWT") != "" {
+		jwt := os.Getenv("GCS_JWT")
+		jc := &cloudstorage.JwtConf{}
+		if err := json.Unmarshal([]byte(jwt), jc); err != nil {
+			panic(fmt.Sprintf("Could not read GCS_JWT %v", err))
+		}
+		prj := jc.ProjectID
+		if prj == "" {
+			prj = os.Getenv("GCS_PROJECT")
+		}
+		if prj == "" {
+			panic("GCS_PROJECT is not defined")
+		}
+		return &cloudstorage.Config{
+			Type:       google.StoreType,
+			AuthMethod: google.AuthJWTKeySource,
+			Project:    prj,
+			Bucket:     env("GCS_BUCKET", "lingvograph"),
+			TmpDir:     cacheDir + google.StoreType,
+			JwtConf:    jc,
+		}
+	}
+	awsEndpoint := os.Getenv("AWS_S3_ENDPOINT")
+	if awsEndpoint != "" {
+		return &cloudstorage.Config{
+			BaseUrl:    awsEndpoint,
+			Type:       awss3.StoreType,
+			AuthMethod: awss3.AuthAccessKey,
+			Bucket:     env("AWS_S3_BUCKET", "lingvograph"),
+			TmpDir:     cacheDir + awss3.StoreType,
+			Region:     env("AWS_REGION", "us-east-1"),
+			Settings: gou.NewJsonHelperMapString(map[string]string{
+				awss3.ConfKeyAccessKey:    os.Getenv("AWS_ACCESS_KEY_ID"),
+				awss3.ConfKeyAccessSecret: os.Getenv("AWS_SECRET_ACCESS_KEY"),
+				awss3.ConfKeyDisableSSL:   "true",
+				awss3.ConfKeyDebugLog:     "true",
+			}),
+		}
+	}
+	return &cloudstorage.Config{
+		Type:       localfs.StoreType,
+		AuthMethod: localfs.AuthFileSystem,
+		LocalFS:    "/tmp/mockcloud",
+		TmpDir:     cacheDir,
+	}
+}
+
+func env(name, defval string) string {
+	v := os.Getenv(name)
+	if v == "" {
+		v = defval
+	}
+	return v
 }
 
 // CloudStore is Amazon S3 ObjectStore
