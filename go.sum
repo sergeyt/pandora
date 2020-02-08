@@ -146,6 +146,10 @@ github.com/gocontrib/auth v0.0.0-20190522164241-30276bc87d24 h1:+kQ+/5goDeoMy9ER
 github.com/gocontrib/auth v0.0.0-20190522164241-30276bc87d24/go.mod h1:fV6EmPtBlmLGzP5lkN6oi7nHAhGOC81UJOMJkkYebAI=
 github.com/gocontrib/auth v0.0.0-20191103143519-80ac47fa0d14 h1:i4liMB8qLNs0UhxgRDiHOBgpYIB5fMNNK6rQaSGaCLI=
 github.com/gocontrib/auth v0.0.0-20191103143519-80ac47fa0d14/go.mod h1:fV6EmPtBlmLGzP5lkN6oi7nHAhGOC81UJOMJkkYebAI=
+github.com/gocontrib/cloudstorage v0.3.0 h1:ODh9KFoAeTh9+FpfWfu3Gq8Rcx+HWg1erNVcfCeR/t0=
+github.com/gocontrib/cloudstorage v0.3.0/go.mod h1:ZFohh5BlBlLPN8y7iNGF7pw2V1jhAHnjopZ4JuY10N8=
+github.com/gocontrib/cloudstorage v0.3.1-0.20200208070123-5778532ba2f7 h1:SLFS1k6fgPbXHWAC5t5r9UNF3Bx6Tt4HrOqWJfnBEbE=
+github.com/gocontrib/cloudstorage v0.3.1-0.20200208070123-5778532ba2f7/go.mod h1:ZFohh5BlBlLPN8y7iNGF7pw2V1jhAHnjopZ4JuY10N8=
 github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263 h1:2L4fSLtfktst3DuIpaABhNvpz8ahvySJslDXZ9Jds/M=
 github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263/go.mod h1:F1EISizw4/l8n8bDqA/6ZFG7yeQCWWZwhoNGnaxrjHw=
 github.com/gocontrib/go-health v2.1.0+incompatible h1:y42Vqrvygaa2iD+Vi0LXrnV1wi4iEvBHYqFcMzbgWnw=

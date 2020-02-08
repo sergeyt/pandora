@@ -15,8 +15,8 @@ import (
 	"github.com/sergeyt/pandora/modules/utils"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/lytics/cloudstorage"
-	"github.com/lytics/cloudstorage/awss3"
+	"github.com/gocontrib/cloudstorage"
+	"github.com/gocontrib/cloudstorage/awss3"
 )
 
 // ObjectStore is store of any BLOB objects
@@ -47,6 +47,7 @@ func NewCloudStore() *CloudStore {
 	config.Settings[awss3.ConfKeyAccessKey] = os.Getenv("AWS_ACCESS_KEY_ID")
 	config.Settings[awss3.ConfKeyAccessSecret] = os.Getenv("AWS_SECRET_ACCESS_KEY")
 	config.Settings[awss3.ConfKeyDisableSSL] = "true"
+	config.Settings[awss3.ConfKeyDebugLog] = "true"
 	return &CloudStore{
 		config: config,
 	}
