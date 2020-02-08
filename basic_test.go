@@ -7,10 +7,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	httpexpect "github.com/gavv/httpexpect/v2"
 	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
-	httpexpect "github.com/gavv/httpexpect/v2"
 )
 
 type TC struct {
