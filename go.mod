@@ -18,7 +18,7 @@ require (
 	github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263
 	github.com/gocontrib/go-ldap-client v0.0.0-20170228181143-45b8133d8c18 // indirect
 	github.com/gocontrib/parse v0.0.0-20170301103618-1536a11fcd7f // indirect
-	github.com/gocontrib/pubsub v0.0.0-20200119195904-d2c1b300c080
+	github.com/gocontrib/pubsub v0.0.0-20200208231005-a505c649c69f
 	github.com/gocontrib/request v0.0.0-20160320145147-69ba4658ef4d // indirect
 	github.com/gocontrib/rest v0.0.0-20190315023136-e0292c76d587
 	github.com/gorilla/handlers v1.4.2
