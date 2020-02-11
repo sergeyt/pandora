@@ -5,7 +5,7 @@ go 1.13
 require (
 	cloud.google.com/go v0.47.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
-	github.com/aws/aws-sdk-go v1.28.14
+	github.com/aws/aws-sdk-go v1.29.0
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
@@ -42,7 +42,6 @@ require (
 	github.com/stretchr/testify v1.4.0
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
-	golang.org/x/net v0.0.0-20191101175033-0deb6923b6d9 // indirect
 	google.golang.org/appengine v1.6.5 // indirect
 	google.golang.org/genproto v0.0.0-20191028173616-919d9bdd9fe6 // indirect
 	google.golang.org/grpc v1.27.1
