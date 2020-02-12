@@ -71,8 +71,8 @@ install:
 
 script:
   - cd scripts
-  - pipenv shell
-  - pipenv install --dev
+  - pipenv install --system --deploy --ignore-pipfile
+  - pipenv install --dev --system --deploy --ignore-pipfile
   - python initdata.py || true
   - python initdata.py
   - pytest
