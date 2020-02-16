@@ -117,11 +117,8 @@ def get_data(text, lang='ru'):
         t for t in parsed_items if t is not None and utils.url_exists(t['url'])
     ]
 
-    data = {'audio': []}
     for item in items:
-        data['audio'].append(File(url=item['url'], region=None))
-
-    return data
+        yield ('audio', File(url=item['url'], region=None))
 
 
 def main():

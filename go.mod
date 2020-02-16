@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go v0.47.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
 	github.com/araddon/gou v0.0.0-20190110011759-c797efecbb61
-	github.com/aws/aws-sdk-go v1.29.1
+	github.com/aws/aws-sdk-go v1.29.3
 	github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869 // indirect
 	github.com/dgraph-io/dgo v1.0.0 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0

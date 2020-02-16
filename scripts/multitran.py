@@ -74,7 +74,7 @@ def parse_phrase_row(row, lang, trans_lang, tags):
     return [TermWithData(term, {'tag': tags, 'translated_as': [trans]})]
 
 
-def find_phrases(data, text, lang, category):
+def find_phrases(text, lang, category):
     trans_lang = 'ru'
     l1 = "1"
     l2 = "2"
@@ -91,16 +91,13 @@ def find_phrases(data, text, lang, category):
     soup = BeautifulSoup(resp.text, 'html.parser')
     for tr in soup.find_all('tr'):
         for term in parse_phrase_row(tr, lang, trans_lang, category['tag']):
-            data['in'].append(term)
+            yield ('in', term)
 
 
 def get_data(text, lang):
-    data = {'in': []}
-
     for c in categories:
-        find_phrases(data, text, lang, c)
-
-    return data
+        for t in find_phrases(text, lang, c):
+            yield t
 
 
 def main():

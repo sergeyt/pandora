@@ -14,12 +14,8 @@ def get_data(text, lang='en'):
         return None
 
     url = f'https://howjsay.com/mp3/{quote(text)}.mp3'
-    if not utils.url_exists(url):
-        return None
-
-    data = {'audio': [File(url=url, region=None)]}
-
-    return data
+    if utils.url_exists(url):
+        yield ('audio', File(url=url, region=None))
 
 
 def main():
