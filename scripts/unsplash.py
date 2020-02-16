@@ -24,8 +24,6 @@ def get_data(text, lang='en'):
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
 
-    data = {'visual': []}
-
     soup = BeautifulSoup(resp.text, 'html.parser')
     container = soup.find('div', attrs={'data-test': 'search-photos-route'})
     for figure in container.find_all('figure'):
@@ -36,9 +34,7 @@ def get_data(text, lang='en'):
             if 'src' in img.attrs:
                 src = img.attrs['src']
                 if not src.startswith('https://images.unsplash.com/profile-'):
-                    data['visual'].append(File(url=src, region=None))
-
-    return data
+                    yield ('visual', File(url=src, region=None))
 
 
 def main():

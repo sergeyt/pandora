@@ -5,6 +5,7 @@ import json
 import urllib
 import logging
 import requests
+import inspect
 from json import JSONEncoder
 from langdetect import detect
 
@@ -95,6 +96,8 @@ class JSONEncoderEx(JSONEncoder):
 
 
 def dump_json(d, ensure_ascii=False):
+    if inspect.isgenerator(d):
+        d = [t for t in d]
     return json.dumps(d,
                       cls=JSONEncoderEx,
                       sort_keys=True,

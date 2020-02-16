@@ -10,7 +10,7 @@ import forvo
 import api
 from models import Term, File, TermWithData
 # data sources
-import cambridge
+# import cambridge
 import unsplash
 import multitran
 import merriamwebster
@@ -19,7 +19,7 @@ import macmillan
 
 # here you can temporarily remove sources that you don't need to test
 sources = [
-    cambridge,
+    # cambridge,
     merriamwebster,
     unsplash,
     multitran,
@@ -75,7 +75,7 @@ def define_term(data):
 
 
 def push_data(term_id, data):
-    for k, a in data.items():
+    for (k, a) in data:
         edges = []
         for v in a:
             is_file = isinstance(v, File)
@@ -115,8 +115,8 @@ def get_data_safe(source, text, lang):
 
 def define_word(text, lang='en', source_idx=-1, count=1):
     term_id = define_term(Term(text=text, lang=lang, region=None))
-    source_list = sources if source_idx < 0 else sources[source_idx:
-                                                         source_idx + count]
+    source_list = sources if source_idx < 0 else sources[
+        source_idx:source_idx + count]
     for source in source_list:
         data = get_data_safe(source, text, lang)
         if data is None:

@@ -30,7 +30,7 @@ def find_strip(container, tag, class_):
 base = 'https://dictionary.cambridge.org'
 
 
-def get_translations(data, text, src_lang):
+def get_translations(text, src_lang):
     # TODO fix dictionary map for all languages
     dmap = {
         'ru': 'english-russian',
@@ -55,14 +55,12 @@ def get_translations(data, text, src_lang):
                 words = [w for w in words if not is_empty(w)]
                 for word in words:
                     term = Term(text=word, lang=lang, region=None)
-                    data['translated_as'].append(term)
-
-    return data
+                    yield ('translated_as', term)
 
 
 def get_data(text, lang):
     if lang != 'en':
-        return None
+        return
 
     txt = text.replace(' ', '-')
     url = f'{base}/dictionary/english/{txt}'
@@ -70,16 +68,6 @@ def get_data(text, lang):
     resp = requests.get(url, headers=headers)
     resp.raise_for_status()
 
-    data = {
-        'audio': [],
-        'visual': [],
-        'tag': [],
-        'transcription': [],
-        'definition': [],
-        'in': [],
-        'collocation': [],
-        'translated_as': [],
-    }
     codes = {
         'C': 'countable',
         'U': 'uncountable',
@@ -89,7 +77,7 @@ def get_data(text, lang):
     gram_found = False
 
     if utils.is_word(text):
-        data['tag'].append(Term(text='word', lang=lang, region=None))
+        yield ('tag', Term(text='word', lang=lang, region=None))
 
     soup = BeautifulSoup(resp.text, 'html.parser')
     page = soup.find('div', class_='page')
@@ -101,7 +89,7 @@ def get_data(text, lang):
         if posgram and not posgram_found:
             pos = find_strip(posgram, 'span', class_='pos')
             term = Term(text=pos, lang=lang, region=None)
-            data['tag'].append(term)
+            yield ('tag', term)
             posgram_found = True
         if not gram_found:
             for gram in body.find_all('span', class_='gram'):
@@ -109,7 +97,7 @@ def get_data(text, lang):
                     code = stripped_text(gc)
                     if code in codes and not gram_found:
                         term = Term(text=codes[code], lang=lang, region=None)
-                        data['tag'].append(term)
+                        yield ('tag', term)
                         gram_found = True
 
         # parse pronunciations
@@ -118,47 +106,41 @@ def get_data(text, lang):
             amp = header.find('amp-audio')
             for source in amp.find_all('source'):
                 file = File(url=base + source.attrs['src'], region=region)
-                data['audio'].append(file)
+                yield ('audio', file)
 
             ipa = find_strip(dpron, 'span', class_='ipa')
             if not is_empty(ipa):
-                data['transcription'].append(
-                    Term(text=ipa, lang=lang, region=region))
+                yield ('transcription', Term(text=ipa,
+                                             lang=lang,
+                                             region=region))
 
         for dblock in body.find_all('div', class_='def-block'):
             def_text = stripped_text(dblock.find('div', class_='def'))
             if not is_empty(def_text):
-                data['definition'].append(
-                    Term(text=def_text, lang=lang, region=None))
+                yield ('definition', Term(text=def_text,
+                                          lang=lang,
+                                          region=None))
             img = dblock.find('amp-img')
             if img is not None:
                 file = File(url=base + img.attrs['src'], region=None)
-                data['visual'].append(file)
+                yield ('visual', file)
             for eg in dblock.find_all('span', 'eg'):
                 term = Term(text=stripped_text(eg), lang=lang, region=None)
-                data['in'].append(term)
+                yield ('in', term)
 
     for dataset in page.find_all('div', class_='dataset'):
         for eg in dataset.find_all('span', class_='deg'):
             term = Term(text=stripped_text(eg), lang=lang, region=None)
-            data['in'].append(term)
+            yield ('in', term)
         cpegs = dataset.find('div', class_='cpegs')
         if cpegs:
             for lbb in cpegs.find_all('div', class_='lbb'):
                 for a in lbb.find_all('a', class_='hdib'):
                     term = Term(text=stripped_text(a), lang=lang, region=None)
-                    data['collocation'].append(term)
+                    yield ('collocation', term)
 
-    get_translations(data, text, lang)
-
-    return data
-
-
-def find_audio(text, lang):
-    data = get_data(text, lang)
-    if data is None:
-        return None
-    return [a._asdict() for a in data['audio']]
+    for t in get_translations(text, lang):
+        yield t
 
 
 def main():
