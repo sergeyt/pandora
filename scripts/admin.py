@@ -11,7 +11,7 @@ import utils
 from langdetect import detect
 from functools import wraps
 from flask import Flask, request, jsonify, Response
-from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
 app.debug = True
@@ -101,12 +101,16 @@ def find_audio(text):
     return jsonify(result)
 
 
+def unsplash_images(text, lang):
+    return [v for k, v in unsplash.get_data(text, lang) if k == 'visual']
+
+
 @app.route('/api/lingvo/search/unsplash/<text>')
 @auth
 def search_unsplash(text):
     lang = get_lang(text)
-    result = unsplash.get_data(text, lang)
-    return jsonify([t.url for t in result['visual']])
+    result = unsplash_images(text, lang)
+    return jsonify([t.url for t in result])
 
 
 # TODO support different resolutions
@@ -114,10 +118,10 @@ def search_unsplash(text):
 @auth
 def get_unsplash_image(text):
     lang = get_lang(text)
-    result = unsplash.get_data(text, lang)
-    if len(result['visual']) == 0:
+    result = unsplash_images(text, lang)
+    if len(result) == 0:
         return 'not found', 404
-    url = result['visual'][0].url
+    url = result[0].url
     headers = {
         'User-Agent': utils.CHROME_USER_AGENT,
     }
