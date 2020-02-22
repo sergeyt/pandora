@@ -29,6 +29,8 @@ watchdog = "*"
 simplejson = "*"
 retry = "*"
 decorator = "*"
+gunicorn = "*"
+werkzeug = "*"
 
 [requires]
 python_version = "3.7"
