@@ -9,8 +9,6 @@ FLASK_WORKERS=${FLASK_WORKERS:-2}
 export FLASK_ENV=${FLASK_ENV}
 export FLASK_APP=admin.py
 
-pipenv install
-
 if [[ "$FLASK_ENV" = "development" ]]; then
     python -m flask run --host 0.0.0.0 --port ${FLASK_PORT}
 else

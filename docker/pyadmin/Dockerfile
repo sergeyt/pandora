@@ -1,13 +1,21 @@
-FROM python:3.7-alpine
+# see also https://github.com/wemake-services/wemake-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/docker/django/Dockerfile
+FROM python:3.8-alpine
 
 RUN apk update \
-    && pip3 install pipenv \
-    && pip3 install gunicorn
+    && apk --no-cache add \
+    bash \ 
+    build-base \
+    tini
+
+WORKDIR /pyadmin
 
 COPY scripts /pyadmin
 COPY schema.txt /schema.txt
 COPY docker/pyadmin/main.sh /main.sh
 
-WORKDIR /pyadmin
+RUN chmod +x "/main.sh" \
+    && rm -f requirements.txt \
+    && python requirements.py > requirements.txt \
+    && pip install -r requirements.txt
 
-ENTRYPOINT ["/main.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/main.sh"]
