@@ -1,10 +1,12 @@
 package auth
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"strings"
+	"text/template"
 	"time"
 
 	dgo "github.com/dgraph-io/dgo/v2"
@@ -14,6 +16,22 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+var templateCache = make(map[string]*template.Template)
+
+func execTemplate(name, source string, data interface{}) string {
+	t, ok := templateCache[name]
+	if !ok {
+		t = template.Must(template.New(name).Parse(source))
+		templateCache[name] = t
+	}
+	var out bytes.Buffer
+	err := t.Execute(&out, data)
+	if err != nil {
+		panic(err)
+	}
+	return out.String()
+}
+
 func makeUserStore() *userStore {
 	return &userStore{}
 }
@@ -21,17 +39,24 @@ func makeUserStore() *userStore {
 type userStore struct {
 }
 
+type templateParams struct {
+	Label string
+}
+
+var baseParams = &templateParams{Label: userLabel()}
+
 func (s *userStore) ValidateCredentials(ctx context.Context, username, password string) (auth.User, error) {
 	// TODO detect phone and normalize it
-	query := fmt.Sprintf(`query users($username: string, $password: string) {
-        users(func: has(%s)) @filter(eq(email, $username) OR eq(login, $username) OR eq(phone, $username)) {
+	const src = `query users($username: string, $password: string) {
+        users(func: has(User)) @filter(eq(email, $username) OR eq(login, $username) OR eq(phone, $username)) {
 			uid
 			name
 			email
 			role
             checkpwd(password, $password)
         }
-	}`, userLabel())
+	}`
+	query := execTemplate("ValidateCredentials", src, baseParams)
 
 	vars := map[string]string{
 		"$username": username,
@@ -41,15 +66,34 @@ func (s *userStore) ValidateCredentials(ctx context.Context, username, password 
 	return s.FindUser(ctx, query, vars, username, true)
 }
 
-func (s *userStore) FindUserByEmail(ctx context.Context, email string) (auth.User, error) {
-	query := fmt.Sprintf(`query users($id: string) {
-        users(func: has(%s)) @filter(eq(email, $id)) {
+func (s *userStore) findUserByName(ctx context.Context, txn *dgo.Txn, username string) (auth.User, error) {
+	const src = `query users($username: string) {
+        users(func: has(User)) @filter(eq(email, $username) OR eq(login, $username) OR eq(phone, $username)) {
 			uid
 			name
 			email
 			role
         }
-	}`, userLabel())
+	}`
+	query := execTemplate("FindUserByName", src, baseParams)
+
+	vars := map[string]string{
+		"$username": username,
+	}
+
+	return s.findUserImpl(ctx, txn, query, vars, username, true)
+}
+
+func (s *userStore) FindUserByEmail(ctx context.Context, email string) (auth.User, error) {
+	src := `query users($id: string) {
+        users(func: has(User)) @filter(eq(email, $id)) {
+			uid
+			name
+			email
+			role
+        }
+	}`
+	query := execTemplate("FindUserByEmail", src, baseParams)
 
 	vars := map[string]string{
 		"$id": email,
@@ -59,14 +103,15 @@ func (s *userStore) FindUserByEmail(ctx context.Context, email string) (auth.Use
 }
 
 func (s *userStore) FindUserByID(ctx context.Context, userID string) (auth.User, error) {
-	query := fmt.Sprintf(`query users($id: string) {
-        users(func: uid($id)) @filter(has(%s)) {
+	src := `query users($id: string) {
+        users(func: uid($id)) @filter(has(User)) {
 			uid
 			name
 			email
 			role
         }
-	}`, userLabel())
+	}`
+	query := execTemplate("FindUserByID", src, baseParams)
 
 	vars := map[string]string{
 		"$id": userID,
@@ -91,6 +136,10 @@ func (s *userStore) FindUser(ctx context.Context, query string, vars map[string]
 	txn := client.NewTxn()
 	defer txn.Discard(ctx)
 
+	return s.findUserImpl(ctx, txn, query, vars, userID, checkPwd)
+}
+
+func (s *userStore) findUserImpl(ctx context.Context, txn *dgo.Txn, query string, vars map[string]string, userID string, checkPwd bool) (auth.User, error) {
 	resp, err := txn.QueryWithVars(ctx, query, vars)
 	if err != nil {
 		log.Errorf("dgraph.Txn.QueryWithVars fail: %v", err)
@@ -170,15 +219,32 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	tx := client.NewTxn()
 	defer tx.Discard(ctx)
 
+	if account.Name == "" {
+		account.Name = account.FirstName
+		if account.LastName != "" {
+			account.Name += " " + account.LastName
+		}
+	}
+	if account.NickName == "" {
+		account.NickName = account.Name
+	}
+
+	u, err := s.findUserByName(ctx, tx, account.Email)
+	if err == nil && u != nil {
+		return nil, fmt.Errorf("user with email %s already registered", account.Email)
+	}
+
 	// TODO generate unique login
 	in := make(utils.OrderedJSON)
 	in["name"] = account.Name
+	in["login"] = account.NickName
 	in["first_name"] = account.FirstName
 	in["last_name"] = account.LastName
 	in["email"] = account.Email
 	in["avatar"] = account.AvatarURL
 	in["location"] = account.Location
 	in["registered_at"] = time.Now()
+	in["password"] = account.Password
 
 	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
@@ -215,22 +281,6 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	}
 
 	return user, nil
-}
-
-func makeAccount(account auth.UserData) utils.OrderedJSON {
-	in := make(utils.OrderedJSON)
-	in["provider"] = account.Provider
-	in["email"] = account.Email
-	in["name"] = account.Name
-	in["first_name"] = account.FirstName
-	in["last_name"] = account.LastName
-	in["nick_name"] = account.NickName
-	in["user_id"] = account.UserID
-	in["description"] = account.Description
-	in["avatar"] = account.AvatarURL
-	in["location"] = account.Location
-	in["role"] = account.Role
-	return in
 }
 
 func linkAccount(ctx context.Context, tx *dgo.Txn, userID, accountID string) error {
@@ -311,6 +361,24 @@ func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth
 	acc := results[0]
 	accountID = getString(acc, "uid")
 	return linkAccount(ctx, tx, user.GetID(), accountID)
+}
+
+func makeAccount(account auth.UserData) utils.OrderedJSON {
+	in := make(utils.OrderedJSON)
+	in["provider"] = account.Provider
+	in["email"] = account.Email
+	in["name"] = account.Name
+	in["login"] = account.NickName
+	in["first_name"] = account.FirstName
+	in["last_name"] = account.LastName
+	in["nick_name"] = account.NickName
+	in["user_id"] = account.UserID
+	in["description"] = account.Description
+	in["avatar"] = account.AvatarURL
+	in["location"] = account.Location
+	in["role"] = account.Role
+	in["password"] = account.Password
+	return in
 }
 
 func mapUser(raw map[string]interface{}) *auth.UserInfo {

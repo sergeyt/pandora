@@ -20,6 +20,15 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
+// InitStore initializes file store
+func InitStore() {
+	fs := NewS3Store()
+	err := fs.EnsureBucket()
+	if err != nil {
+		log.Errorf("s3.EnsureBucket fail: %v", err)
+	}
+}
+
 // NewFileStore creates new ObjectStore
 func NewFileStore() ObjectStore {
 	return NewS3Store()
