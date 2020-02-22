@@ -236,8 +236,7 @@ services:
       - ./config/caddy/Caddyfile:/etc/Caddyfile
     ports:
       - ${HTTP_PORT}:${HTTP_PORT}
-      - 443:443
-      - 4200:4200
+      - ${HTTPS_PORT}:${HTTPS_PORT}
     restart: always
     logging:
       driver: "json-file"
