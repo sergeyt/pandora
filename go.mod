@@ -14,7 +14,7 @@ require (
 	github.com/gavv/monotime v0.0.0-20190418164738-30dba4353424 // indirect
 	github.com/go-chi/chi v4.0.3+incompatible
 	github.com/go-chi/cors v1.0.0
-	github.com/gocontrib/auth v0.0.0-20191103143519-80ac47fa0d14
+	github.com/gocontrib/auth v0.0.0-20200222165223-ee09c68e14fd
 	github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263
 	github.com/gocontrib/go-ldap-client v0.0.0-20170228181143-45b8133d8c18 // indirect
 	github.com/gocontrib/parse v0.0.0-20170301103618-1536a11fcd7f // indirect
