@@ -68,8 +68,7 @@ install:
   - dockerize -timeout 100s -wait-retry-interval 5s -wait http://localhost:4201/api/health true || true
   - docker-compose ps
   - docker-compose logs
-  - cd scripts && pip install -r requirements.txt
-  - cd scripts && pip install pytest
+  - cd scripts && pip install -r requirements.txt && pip install pytest && cd ..
 
 script:
   - cd scripts
