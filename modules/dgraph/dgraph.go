@@ -63,29 +63,46 @@ func Dial(network, address string, timeout time.Duration) (net.Conn, error) {
 	return &grpcCon{c}, nil
 }
 
+type CloseFunc func()
+
 // NewClient creates new dgraph client
-func NewClient() (*dgo.Dgraph, error) {
+func NewClient() (*dgo.Dgraph, CloseFunc, error) {
 	// TODO configurable timeout
 	conn, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure(), grpc.WithTimeout(30*time.Second))
 	if err != nil {
 		log.Errorf("grpc.Dial fail: %v", err)
-		return nil, err
+		return nil, nil, err
 	}
 
 	dc := api.NewDgraphClient(conn)
 	dg := dgo.NewDgraphClient(dc)
 
-	// TODO login as root
+	close := func() {
+		if err := conn.Close(); err != nil {
+			log.Errorf("Error while closing connection:%v", err)
+		}
+	}
 
-	return dg, nil
+	return dg, close, nil
+}
+
+func WithAuthToken(ctx context.Context) context.Context {
+	token := os.Getenv("DGRAPH_TOKEN")
+	if len(token) > 0 {
+		md := metadata.New(nil)
+		md.Append("auth-token", token)
+		return metadata.NewOutgoingContext(ctx, md)
+	}
+	return ctx
 }
 
 // TODO incremental update of schema
 func InitSchema() {
-	c, err := NewClient()
+	dg, close, err := NewClient()
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer close()
 
 	// TODO configurable path to schema
 	schema, err := ioutil.ReadFile("./schema.txt")
@@ -93,15 +110,9 @@ func InitSchema() {
 		log.Fatal(err)
 	}
 
-	ctx := context.Background()
-	token := os.Getenv("DGRAPH_TOKEN")
-	if len(token) > 0 {
-		md := metadata.New(nil)
-		md.Append("auth-token", token)
-		ctx = metadata.NewOutgoingContext(ctx, md)
-	}
+	ctx := WithAuthToken(context.Background())
 
-	err = c.Alter(ctx, &api.Operation{
+	err = dg.Alter(ctx, &api.Operation{
 		Schema: string(schema),
 	})
 	if err != nil {
@@ -111,16 +122,18 @@ func InitSchema() {
 
 func TransactionMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		c, err := NewClient()
+		dg, close, err := NewClient()
 		if err != nil {
 			apiutil.SendError(w, err)
 			return
 		}
+		defer close()
 
-		tx := c.NewTxn()
-		defer tx.Discard(r.Context())
+		ctx := r.Context()
+		tx := dg.NewTxn()
+		defer tx.Discard(ctx)
 
-		ctx := context.WithValue(r.Context(), "tx", tx)
+		ctx = context.WithValue(ctx, "tx", tx)
 		r = r.WithContext(ctx)
 
 		next.ServeHTTP(w, r)

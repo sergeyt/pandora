@@ -128,12 +128,13 @@ func (s *userStore) Close() {
 }
 
 func (s *userStore) FindUser(ctx context.Context, query string, vars map[string]string, userID string, checkPwd bool) (auth.User, error) {
-	client, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
 	}
+	defer close()
 
-	txn := client.NewTxn()
+	txn := dg.NewTxn()
 	defer txn.Discard(ctx)
 
 	return s.findUserImpl(ctx, txn, query, vars, userID, checkPwd)
@@ -211,13 +212,9 @@ func splitRoles(s string) []string {
 }
 
 func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth.User, error) {
-	client, err := dgraph.NewClient()
-	if err != nil {
-		return nil, err
+	if account.Email == "" {
+		return nil, fmt.Errorf("user.email is not defined")
 	}
-
-	tx := client.NewTxn()
-	defer tx.Discard(ctx)
 
 	if account.Name == "" {
 		account.Name = account.FirstName
@@ -228,6 +225,19 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	if account.NickName == "" {
 		account.NickName = account.Name
 	}
+
+	if account.Name == "" {
+		return nil, fmt.Errorf("user.name is not defined")
+	}
+
+	dg, close, err := dgraph.NewClient()
+	if err != nil {
+		return nil, err
+	}
+	defer close()
+
+	tx := dg.NewTxn()
+	defer tx.Discard(ctx)
 
 	u, err := s.findUserByName(ctx, tx, account.Email)
 	if u != nil {
@@ -302,12 +312,13 @@ func linkAccount(ctx context.Context, tx *dgo.Txn, userID, accountID string) err
 }
 
 func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth.UserData) error {
-	client, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return err
 	}
+	defer close()
 
-	tx := client.NewTxn()
+	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
 	query := `query accounts($provider: string, $email: string) {

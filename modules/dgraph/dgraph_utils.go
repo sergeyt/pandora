@@ -97,12 +97,13 @@ func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface
 }
 
 func ReadNodeTx(ctx context.Context, id string) (map[string]interface{}, error) {
-	dc, err := NewClient()
+	dg, close, err := NewClient()
 	if err != nil {
 		return nil, err
 	}
+	defer close()
 
-	tx := dc.NewTxn()
+	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
 	return ReadNode(ctx, tx, id)

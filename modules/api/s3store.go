@@ -165,12 +165,13 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 		return nil, err
 	}
 
-	dc, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
 	}
+	defer close()
 
-	tx := dc.NewTxn()
+	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
 	file, err := findFile(ctx, tx, path)
@@ -186,6 +187,8 @@ func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.Read
 
 	return addFile(ctx, tx, file)
 }
+
+func noop() {}
 
 func addFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]interface{}, error) {
 	in := make(utils.OrderedJSON)
@@ -209,21 +212,23 @@ func addFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]inter
 		in["url"] = fmt.Sprintf("%s/api/file/%s", baseURL, file.Path)
 	}
 
-	discardHere := false
+	dispose1 := noop
+	dispose2 := noop
 	if tx == nil {
-		dc, err := dgraph.NewClient()
+		dg, close, err := dgraph.NewClient()
 		if err != nil {
 			return nil, err
 		}
 
-		tx = dc.NewTxn()
-	}
-
-	defer func() {
-		if discardHere {
+		dispose1 = close
+		tx = dg.NewTxn()
+		dispose2 = func() {
 			tx.Discard(ctx)
 		}
-	}()
+	}
+
+	defer dispose1()
+	defer dispose2()
 
 	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
 		Input:     in,
@@ -242,12 +247,13 @@ func addFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]inter
 
 // Delete object by given path or file id
 func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, error) {
-	dc, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return "", nil, err
 	}
+	defer close()
 
-	tx := dc.NewTxn()
+	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
 	file, err := findFile(ctx, tx, id)
@@ -353,12 +359,13 @@ func findFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
 }
 
 func findFileTx(ctx context.Context, id string) (*FileInfo, error) {
-	dc, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
 	}
+	defer close()
 
-	tx := dc.NewTxn()
+	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
 	return findFile(ctx, tx, id)
