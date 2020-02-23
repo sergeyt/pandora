@@ -54,6 +54,7 @@ func (c *grpcCon) SetWriteDeadline(t time.Time) error {
 	panic("not implemented")
 }
 
+// Dial to gRPC service. It is used in health checks
 func Dial(network, address string, timeout time.Duration) (net.Conn, error) {
 	c, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithTimeout(timeout))
 	if err != nil {
@@ -62,17 +63,21 @@ func Dial(network, address string, timeout time.Duration) (net.Conn, error) {
 	return &grpcCon{c}, nil
 }
 
+// NewClient creates new dgraph client
 func NewClient() (*dgo.Dgraph, error) {
 	// TODO configurable timeout
-	d, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure(), grpc.WithTimeout(30*time.Second))
+	conn, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure(), grpc.WithTimeout(30*time.Second))
 	if err != nil {
 		log.Errorf("grpc.Dial fail: %v", err)
 		return nil, err
 	}
 
-	return dgo.NewDgraphClient(
-		api.NewDgraphClient(d),
-	), nil
+	dc := api.NewDgraphClient(conn)
+	dg := dgo.NewDgraphClient(dc)
+
+	// TODO login as root
+
+	return dg, nil
 }
 
 // TODO incremental update of schema
