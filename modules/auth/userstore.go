@@ -292,6 +292,12 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 		}
 	}
 
+	err = tx.Commit(ctx)
+	if err != nil {
+		log.Errorf("dgraph.Txn.Commit fail: %v", err)
+		return nil, err
+	}
+
 	return user, nil
 }
 
@@ -306,6 +312,7 @@ func linkAccount(ctx context.Context, tx *dgo.Txn, userID, accountID string) err
 		NodeLabel: userLabel(),
 		ID:        userID,
 		By:        "system",
+		NoCommit:  true,
 	})
 
 	return err
