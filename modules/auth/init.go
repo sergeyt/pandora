@@ -27,8 +27,9 @@ func InitUsers() {
 		system,
 		admin,
 	}
+	store := makeUserStore()
 	for _, u := range users {
-		store := makeUserStore()
+		log.Infof("init user %s", u.Name)
 		_, err := store.CreateUser(ctx, u)
 		if err != nil {
 			log.Errorf("CreateUser fail: %v", err)

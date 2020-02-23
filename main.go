@@ -10,6 +10,7 @@ import (
 	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/config"
+	"github.com/sergeyt/pandora/modules/dgraph"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
@@ -46,6 +47,7 @@ func main() {
 
 func start(restart chan bool) {
 	api.InitStore()
+	dgraph.InitSchema()
 	auth.InitUsers()
 
 	startHub()

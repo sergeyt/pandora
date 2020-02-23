@@ -5,15 +5,12 @@ import (
 
 	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/config"
-	"github.com/sergeyt/pandora/modules/dgraph"
 	log "github.com/sirupsen/logrus"
 )
 
 var server *http.Server
 
 func startServer() {
-	dgraph.InitSchema()
-
 	log.Printf("listening %s\n", config.ServerAddr)
 
 	server = &http.Server{

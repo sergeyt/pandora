@@ -230,7 +230,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	}
 
 	u, err := s.findUserByName(ctx, tx, account.Email)
-	if err == nil && u != nil {
+	if u != nil {
 		return nil, fmt.Errorf("user with email %s already registered", account.Email)
 	}
 
@@ -259,25 +259,27 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	user := mapUser(results[0])
 
 	// create account for given oauth provider
-	in = makeAccount(account)
-	in["registered_at"] = time.Now()
+	if account.Provider != "" {
+		in = makeAccount(account)
+		in["registered_at"] = time.Now()
 
-	results, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
-		Input:     in,
-		NodeLabel: dgraph.NodeLabel("account"),
-		By:        "system",
-		NoCommit:  true,
-	})
-	if err != nil {
-		return nil, err
-	}
+		results, err = dgraph.Mutate(ctx, tx, dgraph.Mutation{
+			Input:     in,
+			NodeLabel: dgraph.NodeLabel("account"),
+			By:        "system",
+			NoCommit:  true,
+		})
+		if err != nil {
+			return nil, err
+		}
 
-	// link account with user record
-	acc := results[0]
-	accountID := getString(acc, "uid")
-	err = linkAccount(ctx, tx, user.ID, accountID)
-	if err != nil {
-		return nil, err
+		// link account with user record
+		acc := results[0]
+		accountID := getString(acc, "uid")
+		err = linkAccount(ctx, tx, user.ID, accountID)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	return user, nil
@@ -377,7 +379,6 @@ func makeAccount(account auth.UserData) utils.OrderedJSON {
 	in["avatar"] = account.AvatarURL
 	in["location"] = account.Location
 	in["role"] = account.Role
-	in["password"] = account.Password
 	return in
 }
 
