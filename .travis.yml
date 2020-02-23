@@ -73,7 +73,5 @@ install:
 
 script:
   - cd scripts
-  - python initdata.py || true
-  - python initdata.py
   - pytest
   - docker-compose down -v
