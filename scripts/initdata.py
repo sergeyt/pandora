@@ -1,19 +1,7 @@
 #!/usr/bin/env python
 
 import os
-import utils
 import api
-
-utils.enable_logging()
-
-SYSTEM_PWD = os.getenv('SYSTEM_PWD')
-ADMIN_PWD = os.getenv('ADMIN_PWD')
-
-if not SYSTEM_PWD:
-    raise Exception('SYSTEM_PWD is not defined')
-if not ADMIN_PWD:
-    raise Exception('ADMIN_PWD is not defined')
-
 
 def user_exists(user):
     try:
@@ -29,20 +17,6 @@ def ensure_user(user):
 
 
 users = [
-    {
-        'login': 'system',
-        'name': 'system',
-        'email': 'stodyshev@gmail.com',
-        'password': SYSTEM_PWD,
-        'role': 'admin',
-    },
-    {
-        'login': 'admin',
-        'name': 'admin',
-        'email': 'stodyshev@gmail.com',
-        'password': ADMIN_PWD,
-        'role': 'admin',
-    },
     {
         'login': 'sergeyt',
         'name': 'sergeyt',
