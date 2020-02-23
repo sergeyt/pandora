@@ -162,7 +162,9 @@ services:
       HTTPS_PORT: ${HTTPS_PORT}
       DGRAPH_TOKEN: ${DGRAPH_TOKEN}
       JWT_SECRET: ${JWT_SECRET}
+      SYSTEM_EMAIL: ${SYSTEM_EMAIL}
       SYSTEM_PWD: ${SYSTEM_PWD}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
       ADMIN_PWD: ${ADMIN_PWD}
       # api key protection
       API_KEY_SECRET: ${API_KEY_SECRET}
