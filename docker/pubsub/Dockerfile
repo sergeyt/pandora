@@ -1,4 +1,4 @@
-FROM golang:1.13-alpine
+FROM golang:1.14-alpine
 
 ENV GOPATH /go
 ENV DOCKERIZE_VERSION v0.6.1
