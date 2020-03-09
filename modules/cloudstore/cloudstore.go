@@ -2,43 +2,21 @@ package cloudstore
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io"
 	"net/url"
 	"os"
 
-	dgo "github.com/dgraph-io/dgo/v2"
-
 	"github.com/graymeta/stow"
 	_ "github.com/graymeta/stow/google"
 	"github.com/graymeta/stow/s3"
-	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
-	"github.com/sergeyt/pandora/modules/utils"
 	log "github.com/sirupsen/logrus"
 )
-
-// InitStore initializes file store
-func InitStore() {
-	fs := NewStow()
-	err := fs.EnsureBucket()
-	if err != nil {
-		log.Errorf("EnsureBucket fail: %v", err)
-	}
-}
 
 // NewCloudStore creates new instance of cloud store
 func NewCloudStore() CloudStore {
 	return NewStow()
-}
-
-func env(name, defval string) string {
-	val := os.Getenv(name)
-	if val == "" {
-		val = defval
-	}
-	return val
 }
 
 // NewStow creates new Stow instance
@@ -145,6 +123,7 @@ func (fs *Stow) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) e
 }
 
 func (fs *Stow) fileUrl(path string) (*url.URL, error) {
+	// TODO what about google storage URLs
 	url, err := url.Parse("s3://" + fs.bucket + "/" + path)
 	if err != nil {
 		log.Errorf("url.Parse fail: %v", err)
@@ -207,7 +186,7 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
-	file, err := findFile(ctx, tx, path)
+	file, err := FindFile(ctx, tx, path)
 	if err != nil {
 		return nil, err
 	}
@@ -221,63 +200,6 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 	return AddFile(ctx, tx, file)
 }
 
-func noop() {}
-
-func AddFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]interface{}, error) {
-	in := make(utils.OrderedJSON)
-	id := file.ID
-	if len(id) > 0 {
-		in["uid"] = id
-	}
-
-	in["content_type"] = file.MediaType
-
-	if len(file.URL) > 0 {
-		in["url"] = file.URL
-	}
-
-	if len(file.Path) > 0 {
-		in["path"] = file.Path
-	}
-
-	if len(file.URL) == 0 && len(file.Path) > 0 {
-		baseURL := config.ServerURL()
-		in["url"] = fmt.Sprintf("%s/api/file/%s", baseURL, file.Path)
-	}
-
-	dispose1 := noop
-	dispose2 := noop
-	if tx == nil {
-		dg, close, err := dgraph.NewClient()
-		if err != nil {
-			return nil, err
-		}
-
-		dispose1 = close
-		tx = dg.NewTxn()
-		dispose2 = func() {
-			tx.Discard(ctx)
-		}
-	}
-
-	defer dispose1()
-	defer dispose2()
-
-	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
-		Input:     in,
-		NodeLabel: dgraph.NodeLabel("file"),
-		ID:        id,
-	})
-	if err != nil {
-		return nil, err
-	}
-	if len(results) != 1 {
-		return nil, fmt.Errorf("unexpected mutation results: %v", results)
-	}
-
-	return results[0], nil
-}
-
 // Delete object by given path or file id
 func (fs *Stow) Delete(ctx context.Context, id string) (string, interface{}, error) {
 	dg, close, err := dgraph.NewClient()
@@ -289,7 +211,7 @@ func (fs *Stow) Delete(ctx context.Context, id string) (string, interface{}, err
 	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
-	file, err := findFile(ctx, tx, id)
+	file, err := FindFile(ctx, tx, id)
 	if err != nil {
 		return "", nil, err
 	}
@@ -346,65 +268,4 @@ func (fs *Stow) DeleteObject(ctx context.Context, path string) error {
 	}
 
 	return nil
-}
-
-type FileInfo struct {
-	ID        string `json:"uid"`
-	Path      string `json:"path"`
-	URL       string `json:"url"`
-	MediaType string `json:"content_type"`
-}
-
-func findFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
-	filter := "eq(path, $id)"
-	if dgraph.IsUID(id) {
-		filter = "uid($id)"
-	}
-
-	query := fmt.Sprintf(`query file($id: string) {
-		files(func: %s) {
-			uid
-			path
-		}
-	  }`, filter)
-	resp, err := tx.QueryWithVars(ctx, query, map[string]string{
-		"$id": id,
-	})
-	if err != nil {
-		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
-		return nil, err
-	}
-
-	var result struct {
-		Files []FileInfo `json:"files"`
-	}
-	err = json.Unmarshal(resp.GetJson(), &result)
-	if err != nil {
-		log.Errorf("json.Unmarshal fail: %v", err)
-		return nil, err
-	}
-
-	if len(result.Files) == 0 {
-		return nil, nil
-	}
-
-	if len(result.Files) > 1 {
-		return nil, fmt.Errorf("inconsistent db state: found multiple file nodes")
-	}
-
-	file := result.Files[0]
-	return &file, nil
-}
-
-func FindFileTx(ctx context.Context, id string) (*FileInfo, error) {
-	dg, close, err := dgraph.NewClient()
-	if err != nil {
-		return nil, err
-	}
-	defer close()
-
-	tx := dg.NewTxn()
-	defer tx.Discard(ctx)
-
-	return findFile(ctx, tx, id)
 }
