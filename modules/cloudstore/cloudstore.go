@@ -167,7 +167,7 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 	defer close()
 
 	tx := dg.NewTxn()
-	defer tx.Discard(ctx)
+	defer dgraph.Discard(ctx, tx)
 
 	file, err := FindFileImpl(ctx, tx, path)
 	if err != nil {
@@ -192,7 +192,7 @@ func (fs *Stow) Delete(ctx context.Context, id string) (string, interface{}, err
 	defer close()
 
 	tx := dg.NewTxn()
-	defer tx.Discard(ctx)
+	defer dgraph.Discard(ctx, tx)
 
 	file, err := FindFileImpl(ctx, tx, id)
 	if err != nil {

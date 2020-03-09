@@ -70,7 +70,7 @@ func FindFile(ctx context.Context, id string) (*FileInfo, error) {
 	defer close()
 
 	tx := dg.NewTxn()
-	defer tx.Discard(ctx)
+	defer dgraph.Discard(ctx, tx)
 
 	return FindFileImpl(ctx, tx, id)
 }
@@ -108,7 +108,7 @@ func AddFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]inter
 		dispose1 = close
 		tx = dg.NewTxn()
 		dispose2 = func() {
-			tx.Discard(ctx)
+			dgraph.Discard(ctx, tx)
 		}
 	}
 

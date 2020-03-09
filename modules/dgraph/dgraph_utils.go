@@ -104,7 +104,7 @@ func ReadNodeTx(ctx context.Context, id string) (map[string]interface{}, error) 
 	defer close()
 
 	tx := dg.NewTxn()
-	defer tx.Discard(ctx)
+	defer Discard(ctx, tx)
 
 	return ReadNode(ctx, tx, id)
 }
@@ -226,4 +226,10 @@ func IsUID(s string) bool {
 		}
 	}
 	return false
+}
+
+func Discard(ctx context.Context, txn *dgo.Txn) {
+	if err := txn.Discard(ctx); err != nil {
+		log.Errorf("Error while discarding transaction: %v", err)
+	}
 }
