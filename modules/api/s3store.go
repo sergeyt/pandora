@@ -5,15 +5,14 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/url"
 	"os"
 
 	dgo "github.com/dgraph-io/dgo/v2"
 
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/credentials"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/aws/aws-sdk-go/service/s3"
-	"github.com/aws/aws-sdk-go/service/s3/s3manager"
+	"github.com/graymeta/stow"
+	_ "github.com/graymeta/stow/google"
+	"github.com/graymeta/stow/s3"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/utils"
@@ -22,44 +21,52 @@ import (
 
 // InitStore initializes file store
 func InitStore() {
-	fs := NewS3Store()
+	fs := NewStow()
 	err := fs.EnsureBucket()
 	if err != nil {
-		log.Errorf("s3.EnsureBucket fail: %v", err)
+		log.Errorf("EnsureBucket fail: %v", err)
 	}
 }
 
-// NewFileStore creates new ObjectStore
-func NewFileStore() ObjectStore {
-	return NewS3Store()
+// NewCloudStore creates new instance of cloud store
+func NewCloudStore() CloudStore {
+	return NewStow()
 }
 
-// NewS3Store creates new S3 ObjectStore
-func NewS3Store() *S3Store {
-	return &S3Store{
-		config: awsConfig(),
-		bucket: getBucket(),
+func env(name, defval string) string {
+	val := os.Getenv(name)
+	if val == "" {
+		val = defval
+	}
+	return val
+}
+
+// NewStow creates new Stow instance
+func NewStow() *Stow {
+	endpoint := os.Getenv("AWS_S3_ENDPOINT")
+	id := env("AWS_ACCESS_KEY_ID", os.Getenv("AWS_ACCESS_KEY"))
+	secret := env("AWS_SECRET_ACCESS_KEY", os.Getenv("AWS_SECRET_KEY"))
+	region := env("AWS_REGION", "eu-west-1")
+	bucket := env("AWS_S3_BUCKET", "pandora")
+
+	// TODO enable aws debug logging
+	kind := "s3"
+	config := stow.ConfigMap{
+		s3.ConfigEndpoint:    endpoint,
+		s3.ConfigAccessKeyID: id,
+		s3.ConfigSecretKey:   secret,
+		s3.ConfigRegion:      region,
+		s3.ConfigDisableSSL:  "true",
+	}
+	return &Stow{
+		kind:   kind,
+		config: config,
+		bucket: bucket,
 	}
 }
 
-func awsConfig() *aws.Config {
-	logLevel := aws.LogDebug
-	return &aws.Config{
-		Credentials:      credentials.NewEnvCredentials(),
-		Endpoint:         aws.String(os.Getenv("AWS_S3_ENDPOINT")),
-		Region:           aws.String(os.Getenv("AWS_REGION")),
-		DisableSSL:       aws.Bool(true),
-		S3ForcePathStyle: aws.Bool(true),
-		LogLevel:         &logLevel,
-	}
-}
-
-func getBucket() string {
-	return os.Getenv("AWS_S3_BUCKET")
-}
-
-// ObjectStore is store of any BLOB objects
-type ObjectStore interface {
+// CloudStore is store of any BLOB objects
+type CloudStore interface {
 	Download(ctx context.Context, id string, w io.Writer) error
 	DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) error
 	Upload(ctx context.Context, path, mediaType string, r io.ReadCloser) (map[string]interface{}, error)
@@ -67,28 +74,28 @@ type ObjectStore interface {
 	DeleteObject(ctx context.Context, path string) error
 }
 
-// S3Store is Amazon S3 ObjectStore
-type S3Store struct {
-	config *aws.Config
+// Stow is cloud object store implemented using https://github.com/graymeta/stow
+type Stow struct {
+	kind   string
+	config stow.ConfigMap
 	bucket string
 }
 
-// EnsureBucket creates AWS_S3_BUCKET
-func (fs *S3Store) EnsureBucket() error {
-	sess, err := session.NewSession(fs.config)
+// EnsureBucket creates S3 bucket
+func (fs *Stow) EnsureBucket() error {
+	location, err := stow.Dial(fs.kind, fs.config)
 	if err != nil {
-		log.Errorf("aws.session.NewSession fail: %v", err)
+		log.Errorf("stow.Dial fail: %v", err)
 		return err
 	}
-	svc := s3.New(sess)
-	_, err = svc.CreateBucket(&s3.CreateBucketInput{
-		Bucket: aws.String(fs.bucket),
-	})
+	defer location.Close()
+
+	_, err = location.CreateContainer(fs.bucket)
 	return err
 }
 
 // Download object at given path
-func (fs *S3Store) Download(ctx context.Context, id string, w io.Writer) error {
+func (fs *Stow) Download(ctx context.Context, id string, w io.Writer) error {
 	file, err := findFileTx(ctx, id)
 	if err != nil {
 		return err
@@ -102,28 +109,48 @@ func (fs *S3Store) Download(ctx context.Context, id string, w io.Writer) error {
 }
 
 // DownloadFile downloads given file
-func (fs *S3Store) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) error {
+func (fs *Stow) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) error {
 	if file == nil {
 		return fmt.Errorf("file not found")
 	}
 
-	path := file.Path
-	s, err := session.NewSession(fs.config)
+	location, err := stow.Dial(fs.kind, fs.config)
 	if err != nil {
-		log.Errorf("aws.seesion.NewSession fail: %v", err)
+		log.Errorf("stow.Dial fail: %v", err)
 		return err
 	}
-	d := s3manager.NewDownloader(s)
-	_, err = d.DownloadWithContext(ctx, &s3Writer{w, 0}, &s3.GetObjectInput{
-		Bucket: aws.String(fs.bucket),
-		Key:    aws.String(path),
-	})
+	defer location.Close()
 
+	url, err := fs.fileUrl(file.Path)
 	if err != nil {
-		log.Errorf("s3.Download fail: %v", err)
+		return err
 	}
 
+	item, err := location.ItemByURL(url)
+	if err != nil {
+		log.Errorf("store.ItemByURL fail: %v", err)
+		return err
+	}
+
+	r, err := item.Open()
+	if err != nil {
+		log.Errorf("stow.Item.Open fail: %v", err)
+		return err
+	}
+	defer r.Close()
+
+	_, err = io.Copy(w, r)
+
 	return err
+}
+
+func (fs *Stow) fileUrl(path string) (*url.URL, error) {
+	url, err := url.Parse("s3://" + fs.bucket + "/" + path)
+	if err != nil {
+		log.Errorf("url.Parse fail: %v", err)
+		return nil, err
+	}
+	return url, nil
 }
 
 type s3Writer struct {
@@ -144,24 +171,30 @@ func (w *s3Writer) WriteAt(p []byte, off int64) (n int, err error) {
 }
 
 // Upload object at given path
-func (fs *S3Store) Upload(ctx context.Context, path, mediaType string, r io.ReadCloser) (map[string]interface{}, error) {
-	sess, err := session.NewSession(fs.config)
+func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadCloser) (map[string]interface{}, error) {
+	_, err := fs.fileUrl(path)
 	if err != nil {
-		log.Errorf("aws.session.NewSession fail: %v", err)
 		return nil, err
 	}
-	up := s3manager.NewUploader(sess, func(u *s3manager.Uploader) {
-		u.PartSize = 5 * 1024 * 1024
-		u.LeavePartsOnError = true
-	})
-	_, err = up.UploadWithContext(ctx, &s3manager.UploadInput{
-		Bucket: aws.String(fs.bucket),
-		Key:    aws.String(path),
-		Body:   r,
-	})
 
+	location, err := stow.Dial(fs.kind, fs.config)
 	if err != nil {
-		log.Errorf("s3.Upload fail: %v", err)
+		log.Errorf("stow.Dial fail: %v", err)
+		return nil, err
+	}
+	defer location.Close()
+
+	container, err := location.Container(fs.bucket)
+	if err != nil {
+		log.Errorf("stow.GetContainer fail: %v", err)
+		return nil, err
+	}
+
+	// TODO check if put requires to load file content into memory
+	// TODO add metadata
+	_, err = container.Put(path, r, 0, nil)
+	if err != nil {
+		log.Errorf("container.Put fail: %v", err)
 		return nil, err
 	}
 
@@ -246,7 +279,7 @@ func addFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]inter
 }
 
 // Delete object by given path or file id
-func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, error) {
+func (fs *Stow) Delete(ctx context.Context, id string) (string, interface{}, error) {
 	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return "", nil, err
@@ -265,25 +298,26 @@ func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, 
 		return "", nil, fmt.Errorf("file not found: %s", id)
 	}
 
-	path := file.Path
-	id = file.ID
-	sess, err := session.NewSession(fs.config)
+	location, err := stow.Dial(fs.kind, fs.config)
 	if err != nil {
-		log.Errorf("aws.session.NewSession fail: %v", err)
+		log.Errorf("stow.Dial fail: %v", err)
+		return "", nil, err
+	}
+	defer location.Close()
+
+	container, err := location.Container(fs.bucket)
+	if err != nil {
+		log.Errorf("stow.GetContainer fail: %v", err)
 		return "", nil, err
 	}
 
-	svc := s3.New(sess)
-	_, err = svc.DeleteObject(&s3.DeleteObjectInput{
-		Bucket: aws.String(fs.bucket),
-		Key:    aws.String(path),
-	})
+	err = container.RemoveItem(file.Path)
 	if err != nil {
-		log.Errorf("s3.Delete fail: %v", err)
+		log.Errorf("stow.Container.RemoveItem fail: %v", err)
 		return id, nil, err
 	}
 
-	resp2, err := dgraph.DeleteNode(ctx, tx, id)
+	resp2, err := dgraph.DeleteNode(ctx, tx, file.ID)
 	if err != nil {
 		return file.ID, nil, err
 	}
@@ -292,21 +326,25 @@ func (fs *S3Store) Delete(ctx context.Context, id string) (string, interface{}, 
 }
 
 // DeleteObject by given path
-func (fs *S3Store) DeleteObject(ctx context.Context, path string) error {
-	sess, err := session.NewSession(fs.config)
+func (fs *Stow) DeleteObject(ctx context.Context, path string) error {
+	location, err := stow.Dial(fs.kind, fs.config)
 	if err != nil {
-		log.Errorf("aws.session.NewSession fail: %v", err)
+		log.Errorf("stow.Dial fail: %v", err)
 		return err
 	}
-	svc := s3.New(sess)
-	_, err = svc.DeleteObject(&s3.DeleteObjectInput{
-		Bucket: aws.String(fs.bucket),
-		Key:    aws.String(path),
-	})
+
+	container, err := location.Container(fs.bucket)
 	if err != nil {
-		log.Errorf("s3.Delete fail: %v", err)
+		log.Errorf("stow.GetContainer fail: %v", err)
 		return err
 	}
+
+	err = container.RemoveItem(path)
+	if err != nil {
+		log.Errorf("stow.Container.RemoveItem fail: %v", err)
+		return err
+	}
+
 	return nil
 }
 
