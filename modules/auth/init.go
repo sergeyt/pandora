@@ -22,6 +22,7 @@ func InitUsers() {
 		NickName: "admin",
 		Email:    os.Getenv("ADMIN_EMAIL"),
 		Password: os.Getenv("ADMIN_PWD"),
+		Role:     "admin",
 	}
 	users := []goauth.UserData{
 		system,
