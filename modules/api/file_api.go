@@ -235,7 +235,7 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	localPath := c.path[len(u.Scheme)+3:]
 	ctx := r.Context()
 
-	file, err := cloudstore.FindFileTx(ctx, localPath)
+	file, err := cloudstore.FindFile(ctx, localPath)
 	if err != nil {
 		apiutil.SendError(w, err)
 		return

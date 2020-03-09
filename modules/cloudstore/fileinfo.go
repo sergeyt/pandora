@@ -21,7 +21,7 @@ type FileInfo struct {
 	MediaType string `json:"content_type"`
 }
 
-func FindFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
+func FindFileImpl(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
 	filter := "eq(path, $id)"
 	if dgraph.IsUID(id) {
 		filter = "uid($id)"
@@ -62,7 +62,7 @@ func FindFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
 	return &file, nil
 }
 
-func FindFileTx(ctx context.Context, id string) (*FileInfo, error) {
+func FindFile(ctx context.Context, id string) (*FileInfo, error) {
 	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err
@@ -72,7 +72,7 @@ func FindFileTx(ctx context.Context, id string) (*FileInfo, error) {
 	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
-	return FindFile(ctx, tx, id)
+	return FindFileImpl(ctx, tx, id)
 }
 
 func AddFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]interface{}, error) {

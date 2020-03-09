@@ -74,7 +74,7 @@ func (fs *Stow) EnsureBucket() error {
 
 // Download object at given path
 func (fs *Stow) Download(ctx context.Context, id string, w io.Writer) error {
-	file, err := FindFileTx(ctx, id)
+	file, err := FindFile(ctx, id)
 	if err != nil {
 		return err
 	}
@@ -186,7 +186,7 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
-	file, err := FindFile(ctx, tx, path)
+	file, err := FindFileImpl(ctx, tx, path)
 	if err != nil {
 		return nil, err
 	}
@@ -211,7 +211,7 @@ func (fs *Stow) Delete(ctx context.Context, id string) (string, interface{}, err
 	tx := dg.NewTxn()
 	defer tx.Discard(ctx)
 
-	file, err := FindFile(ctx, tx, id)
+	file, err := FindFileImpl(ctx, tx, id)
 	if err != nil {
 		return "", nil, err
 	}
