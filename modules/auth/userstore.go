@@ -135,7 +135,7 @@ func (s *userStore) FindUser(ctx context.Context, query string, vars map[string]
 	defer close()
 
 	txn := dg.NewTxn()
-	defer txn.Discard(ctx)
+	defer dgraph.Discard(ctx, txn)
 
 	return s.findUserImpl(ctx, txn, query, vars, userID, checkPwd)
 }
@@ -237,7 +237,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	defer close()
 
 	tx := dg.NewTxn()
-	defer tx.Discard(ctx)
+	defer dgraph.Discard(ctx, tx)
 
 	u, err := s.findUserByName(ctx, tx, account.Email)
 	if u != nil {
@@ -326,7 +326,7 @@ func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth
 	defer close()
 
 	tx := dg.NewTxn()
-	defer tx.Discard(ctx)
+	defer dgraph.Discard(ctx, tx)
 
 	query := `query accounts($provider: string, $email: string) {
 		accounts(func: has(Account)) @filter(eq(provider, $provider) AND eq(email, $email)) {

@@ -79,7 +79,7 @@ func NewClient() (*dgo.Dgraph, CloseFunc, error) {
 
 	close := func() {
 		if err := conn.Close(); err != nil {
-			log.Errorf("Error while closing connection:%v", err)
+			log.Errorf("Error while closing connection: %v", err)
 		}
 	}
 
@@ -131,7 +131,7 @@ func TransactionMiddleware(next http.Handler) http.Handler {
 
 		ctx := r.Context()
 		tx := dg.NewTxn()
-		defer tx.Discard(ctx)
+		defer Discard(ctx, tx)
 
 		ctx = context.WithValue(ctx, "tx", tx)
 		r = r.WithContext(ctx)
