@@ -12,15 +12,19 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+const logFormat = "text"
+
 // NewHandler makes http.Handler to serve HTTP API
 func NewHandler() http.Handler {
 	// Setup the logger backend using sirupsen/logrus and configure
 	// it to use a custom JSONFormatter. See the logrus docs for how to
 	// configure the backend at github.com/sirupsen/logrus
 	logger := logrus.New()
-	logger.Formatter = &logrus.JSONFormatter{
-		// disable, as we set our own
-		DisableTimestamp: true,
+	if logFormat == "json" {
+		logger.Formatter = &logrus.JSONFormatter{
+			// disable, as we set our own
+			DisableTimestamp: true,
+		}
 	}
 
 	r := chi.NewRouter()
