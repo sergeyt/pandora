@@ -38,9 +38,9 @@ install:
   - export SERVER_URL=http://lingvograph.com
   - export CADDY_URLS=http://localhost:8100
   - export ADMIN_SECRET=admin
-  - export SYSTEM_EMAIL=stodyshev@gmail.com
+  - export SYSTEM_EMAIL=system@example.com
   - export SYSTEM_PWD=s1st3m11
-  - export ADMIN_EMAIL=stodyshev@gmail.com
+  - export ADMIN_EMAIL=admin@example.com
   - export ADMIN_PWD=adm1n11
   - export API_KEY_SECRET=test
   - export APP_ID=QTDH9KY5
