@@ -132,23 +132,6 @@ func (fs *Stow) fileUrl(path string) (*url.URL, error) {
 	return url, nil
 }
 
-type s3Writer struct {
-	io.Writer
-	offset int64
-}
-
-func (w *s3Writer) WriteAt(p []byte, off int64) (n int, err error) {
-	if w.offset == off {
-		n, err := w.Write(p)
-		if err != nil {
-			return n, err
-		}
-		w.offset += int64(n)
-		return n, err
-	}
-	return 0, fmt.Errorf("write at any offset is not supported")
-}
-
 // Upload object at given path
 func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadCloser) (map[string]interface{}, error) {
 	_, err := fs.fileUrl(path)
