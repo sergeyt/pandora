@@ -1,4 +1,4 @@
-package api
+package cloudstore
 
 import (
 	"context"
@@ -96,7 +96,7 @@ func (fs *Stow) EnsureBucket() error {
 
 // Download object at given path
 func (fs *Stow) Download(ctx context.Context, id string, w io.Writer) error {
-	file, err := findFileTx(ctx, id)
+	file, err := FindFileTx(ctx, id)
 	if err != nil {
 		return err
 	}
@@ -218,12 +218,12 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 	file.Path = path
 	file.MediaType = mediaType
 
-	return addFile(ctx, tx, file)
+	return AddFile(ctx, tx, file)
 }
 
 func noop() {}
 
-func addFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]interface{}, error) {
+func AddFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]interface{}, error) {
 	in := make(utils.OrderedJSON)
 	id := file.ID
 	if len(id) > 0 {
@@ -396,7 +396,7 @@ func findFile(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error) {
 	return &file, nil
 }
 
-func findFileTx(ctx context.Context, id string) (*FileInfo, error) {
+func FindFileTx(ctx context.Context, id string) (*FileInfo, error) {
 	dg, close, err := dgraph.NewClient()
 	if err != nil {
 		return nil, err

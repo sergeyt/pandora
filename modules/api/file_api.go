@@ -17,6 +17,7 @@ import (
 	"github.com/gocontrib/rest"
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/cloudstore"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	log "github.com/sirupsen/logrus"
 )
@@ -45,13 +46,13 @@ func asHTTPHandler(h fileHandler) http.HandlerFunc {
 			return
 		}
 
-		store := NewCloudStore()
+		store := cloudstore.NewCloudStore()
 		h(fsopContext{store, path}, w, r)
 	}
 }
 
 type fsopContext struct {
-	store CloudStore
+	store cloudstore.CloudStore
 	path  string
 }
 
@@ -234,7 +235,7 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	localPath := c.path[len(u.Scheme)+3:]
 	ctx := r.Context()
 
-	file, err := findFileTx(ctx, localPath)
+	file, err := cloudstore.FindFileTx(ctx, localPath)
 	if err != nil {
 		apiutil.SendError(w, err)
 		return
@@ -251,7 +252,7 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	}
 
 	if parseBool(r.URL.Query().Get("remote")) {
-		result, err := addFile(ctx, nil, &FileInfo{
+		result, err := cloudstore.AddFile(ctx, nil, &cloudstore.FileInfo{
 			URL: c.path,
 		})
 		if err != nil {
@@ -338,7 +339,7 @@ func deleteFileObject(fileNode map[string]interface{}) {
 		return
 	}
 	ctx := context.Background()
-	store := NewCloudStore()
+	store := cloudstore.NewCloudStore()
 	err := store.DeleteObject(ctx, path)
 	if err != nil {
 		log.Errorf("deleteFileObject fail: %v", err)

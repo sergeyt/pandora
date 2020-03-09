@@ -7,8 +7,8 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/gocontrib/pubsub"
 	_ "github.com/gocontrib/pubsub/nats"
-	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/cloudstore"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	log "github.com/sirupsen/logrus"
@@ -46,7 +46,7 @@ func main() {
 }
 
 func start(restart chan bool) {
-	api.InitStore()
+	cloudstore.InitStore()
 	dgraph.InitSchema()
 	auth.InitUsers()
 
