@@ -112,7 +112,7 @@ services:
   # elasticsearch node1
   # see also https://github.com/deviantony/docker-elk
   # todo elasticsearch production config
-  elasticsearch:
+  es1:
     image: tianon/true
     # build:
     #   context: ./
@@ -133,7 +133,7 @@ services:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
   # elasticsearch node2
-  elasticsearch2:
+  es2:
     image: tianon/true
     # build:
     #   context: ./
