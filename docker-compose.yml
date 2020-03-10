@@ -109,6 +109,65 @@ services:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
 
+  # elasticsearch node1
+  # see also https://github.com/deviantony/docker-elk
+  # todo elasticsearch production config
+  elasticsearch:
+    image: tianon/true
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/Dockerfile-elasticsearch
+    container_name: elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+  # elasticsearch node2
+  elasticsearch2:
+    image: tianon/true
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/Dockerfile-elasticsearch
+    container_name: elasticsearch2
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata2:/usr/share/elasticsearch/data
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+  # kibana - elasticsearch dashboard
+  kibana:
+    # image: docker.elastic.co/kibana/kibana:6.4.1
+    image: tianon/true
+    container_name: kibana
+    environment:
+      XPACK_MONITORING_ENABLED: "false"
+    volumes:
+      - ./config/kibana/:/usr/share/kibana/config:ro
+    ports:
+      - 5601:5601
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # pyadmin API service
   pyadmin:
     depends_on:
@@ -263,3 +322,5 @@ volumes:
   minio:
   dgraph:
   caddy:
+  esdata1:
+  esdata2:
