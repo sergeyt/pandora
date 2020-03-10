@@ -15,7 +15,7 @@ services:
       test: "curl --fail http://localhost:4222 || exit 1"
       interval: 10s
       timeout: 10s
-      retries: 3
+      retries: 10
     logging:
       driver: "json-file"
       options:
@@ -68,7 +68,7 @@ services:
       test: "curl --fail --max-time 10 http://localhost:6080/health"
       interval: 10s
       timeout: 10s
-      retries: 3
+      retries: 10
     logging:
       driver: "json-file"
       options:
@@ -89,7 +89,7 @@ services:
       test: "curl --fail --max-time 10 http://localhost:8080/health"
       interval: 10s
       timeout: 10s
-      retries: 3
+      retries: 10
     logging:
       driver: "json-file"
       options:
@@ -112,11 +112,10 @@ services:
   # elasticsearch node1
   # see also https://github.com/deviantony/docker-elk
   # todo elasticsearch production config
-  es1:
-    image: tianon/true
-    # build:
-    #   context: ./
-    #   dockerfile: ./docker/Dockerfile-elasticsearch
+  es:
+    build:
+      context: ./
+      dockerfile: ./docker/elasticsearch/Dockerfile
     container_name: elasticsearch
     ulimits:
       memlock:
@@ -127,6 +126,11 @@ services:
     ports:
       - 9200:9200
     restart: always
+    healthcheck:
+      test: "curl --fail http://localhost:9200 || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 10
     logging:
       driver: "json-file"
       options:
@@ -135,9 +139,9 @@ services:
   # elasticsearch node2
   es2:
     image: tianon/true
-    # build:
-    #   context: ./
-    #   dockerfile: ./docker/Dockerfile-elasticsearch
+    build:
+      context: ./
+      dockerfile: ./docker/elasticsearch/Dockerfile
     container_name: elasticsearch2
     ulimits:
       memlock:
@@ -146,6 +150,11 @@ services:
     volumes:
       - esdata2:/usr/share/elasticsearch/data
     restart: always
+    healthcheck:
+      test: "curl --fail http://localhost:9300 || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 10
     logging:
       driver: "json-file"
       options:
@@ -153,8 +162,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # kibana - elasticsearch dashboard
   kibana:
-    # image: docker.elastic.co/kibana/kibana:6.4.1
-    image: tianon/true
+    image: docker.elastic.co/kibana/kibana:6.4.1
     container_name: kibana
     environment:
       XPACK_MONITORING_ENABLED: "false"
