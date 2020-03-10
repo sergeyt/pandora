@@ -162,7 +162,7 @@ services:
         max-file: ${LOG_MAX_FILE}
   # kibana - elasticsearch dashboard
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.4.1
+    image: docker.elastic.co/kibana/kibana:6.8.7
     container_name: kibana
     environment:
       XPACK_MONITORING_ENABLED: "false"
