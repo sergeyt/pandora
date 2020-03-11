@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
 
 data class Request(val url: String)
-data class Response(val metadata: Map<String, Array<String>>, val text: String)
+data class Response(val metadata: Map<String, Any>, val text: String)
 
 // Downloads file from given URL like pre-signed S3 URL
 // Parses file content using Apache Content
@@ -50,8 +50,11 @@ class FparseController {
         parser.parse(stream, handler, metadata, parseContext)
 
         // TODO normalize metadata
-        // TODO custom converted to json object with all value types preserved
-        val meta = metadata.names().map { Pair(it, metadata.getValues(it)) }.toMap()
+        val meta = metadata.names().map {
+            val vals = metadata.getValues(it)
+            val v: Any = if (vals.size == 1) vals[0] else vals
+            Pair(it, v)
+        }.toMap()
 
         return Response(meta, handler.toString())
     }

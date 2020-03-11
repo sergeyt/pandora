@@ -10,7 +10,10 @@ class FparseApplicationTests {
         val url = "https://www.adobe.com/be_en/active-use/pdf/Alice_in_Wonderland.pdf"
         val ctrl = FparseController()
         val result = ctrl.parse(url)
-        assert(result.metadata["creator"]!!.first().startsWith("Lewis Carroll"))
+        val creator = result.metadata["creator"]
+        assert(creator != null)
+        assert(creator is String)
+        assert((creator as String).startsWith("Lewis Carroll"))
         assert(result.text.strip().startsWith("BY LEWIS CARROLL"))
     }
 }
