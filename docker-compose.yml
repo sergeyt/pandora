@@ -1,5 +1,18 @@
 version: "3.2"
 services:
+  # file parsers by apache tika
+  tika:
+    container_name: tika
+    build:
+      context: ./fparse
+    ports:
+      - 4219:4219
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
   # message bus
   nats:
     image: nats:latest
