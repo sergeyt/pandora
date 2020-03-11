@@ -4,6 +4,7 @@ This small box of pandora (aka small app basis) composed from the following tech
 
 * [Dgraph](https://dgraph.io/) as data store with GraphQL support, write operations using REST
 * [Minio](https://www.minio.io/) as Amazon S3 compatible storage
+* [Stow](https://github.com/graymeta/stow) allows using cloud storage provides like Amazon, Google, Azure
 * [ElasticSearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data is automatically replicated in elasticseach index
 * [Kibana](https://www.elastic.co/products/kibana) to visualize Elasticsearch data
 * [NATS](https://nats.io/) as messaging system with streaming of push notifications (events) via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
@@ -15,7 +16,7 @@ I'd like to have simple, flexible, dynamic, declarative, reactive, realtime info
 
 ## How to run
 
-`docker-compose up` runs all app services:
+`docker-compose up` runs the following services:
 
 1. `zero` - Dgraph cluster manager
 1. `dgraph` - Dgraph data manager hosts predicates & indexes
