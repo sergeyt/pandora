@@ -1,5 +1,26 @@
 version: "3.2"
 services:
+  # cache and message broker for celery
+  redis:
+    container_name: redis
+    build:
+      context: ./docker/redis
+    sysctls:
+      - net.core.somaxconn=1024
+    ports:
+      - 6379:6379
+    restart: always
+    healthcheck:
+      test: "curl --fail http://localhost:6379 || exit 1"
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+
   # file parsers by apache tika
   tika:
     container_name: tika
@@ -13,6 +34,7 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # message bus
   nats:
     image: nats:latest
