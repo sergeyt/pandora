@@ -248,7 +248,7 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			send.Error(w, err)
 			return
 		}
-		send.JSON(w, fileNode)
+		_ = send.JSON(w, fileNode)
 		return
 	}
 

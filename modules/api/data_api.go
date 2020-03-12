@@ -166,7 +166,7 @@ func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
 		return
 	}
 
-	send.JSON(w, data)
+	_ = send.JSON(w, data)
 }
 
 func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
