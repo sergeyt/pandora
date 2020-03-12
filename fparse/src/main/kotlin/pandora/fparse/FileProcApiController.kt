@@ -12,6 +12,8 @@ import org.springframework.http.*
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
 import java.io.ByteArrayOutputStream
+import java.net.MalformedURLException
+import java.net.URL
 import javax.imageio.ImageIO
 import javax.ws.rs.NotSupportedException
 
@@ -35,13 +37,27 @@ fun normalizeValue(vals: Array<String>): Any {
     }
 }
 
+fun toAbsoluteUrl(url: String): String {
+    try {
+        URL(url)
+        return url
+    } catch (e: MalformedURLException) {
+        var base = System.getenv("API_GATEWAY_URL")
+        if (base == "") {
+            base = "http://localhost"
+        }
+        return base + url
+    }
+}
+
 fun downloadFile(url: String): ResponseEntity<Resource> {
     val rest = RestTemplate()
     val headers = HttpHeaders()
     headers.add("Accept", "*/*")
 
     val req = HttpEntity("", headers)
-    val res = rest.exchange(url, HttpMethod.GET, req, Resource::class.java)
+    val au = toAbsoluteUrl(url)
+    val res = rest.exchange(au, HttpMethod.GET, req, Resource::class.java)
     if (res.body == null) {
         throw NullPointerException("expect body")
     }
