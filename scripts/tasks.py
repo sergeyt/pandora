@@ -2,14 +2,12 @@ import os
 import requests
 from celery import Celery
 from elasticsearch import Elasticsearch
-from utils import dump_json
+from worker import app
 
 TIKA_HOST = os.getenv('TIKA_HOST', 'http://localhost:4219')
 ES_HOSTS = os.getenv('ES_HOSTS', 'localhost:9200')
 ES_INDEX = os.getenv('ES_INDEX_DOCS', 'docs')
 
-app = Celery('tasks')
-app.config_from_object('celeryconfig')
 es = Elasticsearch(hosts=ES_HOSTS)
 
 # ensure ES index
@@ -24,6 +22,7 @@ def add(x, y):
     return x + y
 
 
+# TODO update existing doc found by url
 @app.task
 def index_doc(url):
     # parse file by given URL
@@ -33,6 +32,7 @@ def index_doc(url):
 
     # push metadata and text to elasticsearch
     doc = result['metadata']
+    doc['source_url'] = url
     doc['text'] = result['text']
     es.index(ES_INDEX, body=doc)
 
