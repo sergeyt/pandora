@@ -29,8 +29,8 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
     },
     permanentDrawerPaper: {
-    // without this property content will
-    // be hidden behind the drawer.
+        // without this property content will
+        // be hidden behind the drawer.
         position: "relative",
         width: drawerWidth,
         [theme.breakpoints.down("sm")]: {
@@ -49,6 +49,7 @@ const useStyles = makeStyles(theme => ({
     contentContainer: {
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
+        height: '100%',
     },
 }));
 
@@ -74,7 +75,7 @@ function Dashboard(props) {
                         <MenuIcon/>
                     </IconButton>
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Pandora
+                        Pandora
                     </Typography>
                 </Toolbar>
             </AppBar>

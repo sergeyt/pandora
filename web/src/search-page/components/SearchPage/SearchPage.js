@@ -1,6 +1,7 @@
 import React from "react";
 import Dashboard from "../Dashboard";
 import SearchPageSideBar from "../SearchPageSidebar";
+import QueryInput from "../QueryInput";
 
 
 function SearchPage() {
@@ -10,7 +11,7 @@ function SearchPage() {
                 <SearchPageSideBar/>
             }
             content={
-                <h1>Hello Pandora</h1>
+                <QueryInput/>
             }
         />
     );
