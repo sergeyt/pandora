@@ -1,6 +1,6 @@
 import {colors} from "@material-ui/core";
 
-const white = '#FFFFFF';
+const white = "#FFFFFF";
 
 const palette = {
     white,

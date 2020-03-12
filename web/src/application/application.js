@@ -1,10 +1,11 @@
 import React from "react";
+import SearchPage from "../search-page/components/SearchPage";
 
 
 function Application() {
-  return (
-    <h1>Hello Pandora!</h1>
-  );
+    return (
+        <SearchPage/>
+    );
 }
 
 

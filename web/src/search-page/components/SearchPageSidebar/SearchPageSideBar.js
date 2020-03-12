@@ -1,7 +1,7 @@
 import React from "react";
 import SideBarCategory from "./SideBarCategory";
 import SideBarButton from "./SideBarButton";
-import SearchIcon from "@material-ui/icons/Search"
+import SearchIcon from "@material-ui/icons/Search";
 import UploadIcon from "@material-ui/icons/CloudUpload";
 
 function SearchPageSideBar() {

@@ -8,17 +8,17 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 const useStyles = makeStyles(theme => ({
     spacer: theme.mixins.toolbar,
     closeButton: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: '0 8px',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        padding: "0 8px",
         ...theme.mixins.toolbar,
     },
 }));
 
-const VARIANT_NONE = 'none';
-const VARIANT_SPACER = 'spacer';
-const VARIANT_BUTTON = 'button';
+const VARIANT_NONE = "none";
+const VARIANT_SPACER = "spacer";
+const VARIANT_BUTTON = "button";
 
 function SideBar(props) {
     const classes = useStyles();
