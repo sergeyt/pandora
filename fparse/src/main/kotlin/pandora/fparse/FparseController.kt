@@ -16,6 +16,19 @@ import org.springframework.web.client.RestTemplate
 data class Request(val url: String)
 data class Response(val metadata: Map<String, Any>, val text: String)
 
+fun normalizeValue(vals: Array<String>): Any {
+    if (vals.size == 1) {
+        val v = vals[0]
+        if (v === "true")
+            return true
+        if (v === "false")
+            return false
+        return v
+    } else {
+        return vals
+    }
+}
+
 // Downloads file from given URL like pre-signed S3 URL
 // Parses file content using Apache Content
 // Input JSON {url, options?}
@@ -49,11 +62,10 @@ class FparseController {
         val stream = TikaInputStream.get(fileRes.body!!.getInputStream())
         parser.parse(stream, handler, metadata, parseContext)
 
-        // TODO normalize metadata
+        // TODO normalize metadata, i.e. convert to standard names
         val meta = metadata.names().map {
             val vals = metadata.getValues(it)
-            val v: Any = if (vals.size == 1) vals[0] else vals
-            Pair(it, v)
+            Pair(it, normalizeValue(vals))
         }.toMap()
 
         return Response(meta, handler.toString())
