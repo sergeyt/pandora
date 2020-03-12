@@ -5,6 +5,7 @@ import (
 
 	"github.com/gocontrib/auth"
 	"github.com/gocontrib/pubsub"
+	log "github.com/sirupsen/logrus"
 )
 
 // TODO later implement persistence of events for some period of time
@@ -21,7 +22,10 @@ func Send(user auth.User, evt *pubsub.Event) {
 			uchan := fmt.Sprintf("user/%s", user.GetID())
 			chans = append(chans, uchan)
 		}
-		pubsub.Publish(chans, evt)
+		err := pubsub.Publish(chans, evt)
+		if err != nil {
+			log.Errorf("pubsub.Publish fail: %v", err)
+		}
 
 		// TODO notify other users who subscribed to changed resource
 	}()

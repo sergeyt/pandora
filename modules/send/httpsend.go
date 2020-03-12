@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/sergeyt/pandora/modules/mimetype"
+	log "github.com/sirupsen/logrus"
 )
 
 func JSON(w http.ResponseWriter, data interface{}, status ...int) error {
@@ -23,8 +24,11 @@ func JSON(w http.ResponseWriter, data interface{}, status ...int) error {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return err
 		}
-		w.Write(b)
-		return nil
+		_, err = w.Write(b)
+		if err != nil {
+			log.Errorf("http.ResponseWriter.Write fail: %v", err)
+		}
+		return err
 	}
 
 	err := json.NewEncoder(w).Encode(data)
@@ -54,5 +58,5 @@ func Error(w http.ResponseWriter, err error, status ...int) {
 	}{
 		Error: err.Error(),
 	}
-	JSON(w, data, status...)
+	_ = JSON(w, data, status...)
 }
