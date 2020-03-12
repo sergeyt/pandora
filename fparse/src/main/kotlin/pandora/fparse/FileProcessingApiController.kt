@@ -34,7 +34,7 @@ fun normalizeValue(vals: Array<String>): Any {
 // Input JSON {url, options?}
 // Returns JSON {metadata, text}
 @RestController
-class FparseController {
+class FileProcessingApiController {
     @GetMapping("/api/tika/parse", produces = ["application/json"])
     fun parse(@RequestParam(name="url") url: String): Response {
         return parse(Request(url))
