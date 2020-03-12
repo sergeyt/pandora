@@ -12,8 +12,8 @@ import (
 
 	dgo "github.com/dgraph-io/dgo/v2"
 	"github.com/dgraph-io/dgo/v2/protos/api"
-	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/config"
+	"github.com/sergeyt/pandora/modules/send"
 	log "github.com/sirupsen/logrus"
 	"google.golang.org/grpc"
 )
@@ -126,7 +126,7 @@ func TransactionMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		dg, close, err := NewClient()
 		if err != nil {
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 		defer close()

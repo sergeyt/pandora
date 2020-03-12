@@ -10,7 +10,7 @@ import (
 	_ "github.com/graymeta/stow/google"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
-	"github.com/sergeyt/pandora/modules/utils"
+	"github.com/sergeyt/pandora/modules/orderedjson"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -76,7 +76,7 @@ func FindFile(ctx context.Context, id string) (*FileInfo, error) {
 }
 
 func AddFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]interface{}, error) {
-	in := make(utils.OrderedJSON)
+	in := make(orderedjson.Map)
 	id := file.ID
 	if len(id) > 0 {
 		in["uid"] = id

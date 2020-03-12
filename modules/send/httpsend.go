@@ -1,17 +1,15 @@
-package apiutil
+package send
 
 import (
 	"encoding/json"
 	"net/http"
 	"strings"
+
+	"github.com/sergeyt/pandora/modules/mimetype"
 )
 
-const (
-	TypeJSON = "application/json"
-)
-
-func SendJSON(w http.ResponseWriter, data interface{}, status ...int) error {
-	w.Header().Set("Content-Type", TypeJSON)
+func JSON(w http.ResponseWriter, data interface{}, status ...int) error {
+	w.Header().Set("Content-Type", mimetype.JSON)
 
 	if len(status) > 0 {
 		w.WriteHeader(status[0])
@@ -39,7 +37,7 @@ func SendJSON(w http.ResponseWriter, data interface{}, status ...int) error {
 	return nil
 }
 
-func SendError(w http.ResponseWriter, err error, status ...int) {
+func Error(w http.ResponseWriter, err error, status ...int) {
 	if len(status) == 0 {
 		errstr := err.Error()
 		if strings.Contains(errstr, "not valid") || strings.Contains(errstr, "invalid") {
@@ -56,5 +54,5 @@ func SendError(w http.ResponseWriter, err error, status ...int) {
 	}{
 		Error: err.Error(),
 	}
-	SendJSON(w, data, status...)
+	JSON(w, data, status...)
 }

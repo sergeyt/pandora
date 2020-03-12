@@ -12,7 +12,7 @@ import (
 	dgo "github.com/dgraph-io/dgo/v2"
 	"github.com/gocontrib/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
-	"github.com/sergeyt/pandora/modules/utils"
+	"github.com/sergeyt/pandora/modules/orderedjson"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -245,7 +245,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 	}
 
 	// TODO generate unique login
-	in := make(utils.OrderedJSON)
+	in := make(orderedjson.Map)
 	in["name"] = account.Name
 	in["login"] = account.NickName
 	in["first_name"] = account.FirstName
@@ -302,7 +302,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 }
 
 func linkAccount(ctx context.Context, tx *dgo.Txn, userID, accountID string) error {
-	in := make(utils.OrderedJSON)
+	in := make(orderedjson.Map)
 	in["account"] = map[string]interface{}{
 		"uid": accountID,
 	}
@@ -383,8 +383,8 @@ func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth
 	return linkAccount(ctx, tx, user.GetID(), accountID)
 }
 
-func makeAccount(account auth.UserData) utils.OrderedJSON {
-	in := make(utils.OrderedJSON)
+func makeAccount(account auth.UserData) orderedjson.Map {
+	in := make(orderedjson.Map)
 	in["provider"] = account.Provider
 	in["email"] = account.Email
 	in["name"] = account.Name

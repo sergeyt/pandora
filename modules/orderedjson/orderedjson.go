@@ -1,4 +1,4 @@
-package utils
+package orderedjson
 
 import (
 	"bytes"
@@ -6,9 +6,9 @@ import (
 	"fmt"
 )
 
-type OrderedJSON map[string]interface{}
+type Map map[string]interface{}
 
-func (m OrderedJSON) ToJSON(order ...string) ([]byte, error) {
+func (m Map) ToJSON(order ...string) ([]byte, error) {
 	buf := &bytes.Buffer{}
 	buf.Write([]byte{'{', '\n'})
 
@@ -44,7 +44,7 @@ func (m OrderedJSON) ToJSON(order ...string) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-func (m OrderedJSON) writeEntry(buf *bytes.Buffer, k string, v interface{}) error {
+func (m Map) writeEntry(buf *bytes.Buffer, k string, v interface{}) error {
 	fmt.Fprintf(buf, "  \"%s\": ", k)
 	b, err := json.MarshalIndent(v, "  ", "  ")
 	if err != nil {

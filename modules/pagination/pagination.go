@@ -1,4 +1,4 @@
-package apiutil
+package pagination
 
 import (
 	"fmt"
@@ -12,7 +12,7 @@ type Pagination struct {
 	Limit  int
 }
 
-func ParsePagination(r *http.Request) (result Pagination, err error) {
+func Parse(r *http.Request) (result Pagination, err error) {
 	offset, err := parseIntParam(r, "offset", 0, true, false)
 	if err != nil {
 		return result, err

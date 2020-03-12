@@ -15,11 +15,11 @@ import (
 	Auth "github.com/gocontrib/auth"
 	"github.com/gocontrib/pubsub"
 	"github.com/gocontrib/rest"
-	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/cloudstore"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/event"
+	"github.com/sergeyt/pandora/modules/send"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -43,7 +43,7 @@ func asHTTPHandler(h fileHandler) http.HandlerFunc {
 		path, err := normalizePath(r, path)
 		if err != nil {
 			log.Errorf("path is not valid: %v", err)
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 
@@ -78,7 +78,7 @@ func downloadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	err := c.store.Download(r.Context(), c.path, w)
 	if err != nil {
 		log.Errorf("FileStore.Download fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 }
@@ -92,7 +92,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	mediaType, _, err := mime.ParseMediaType(contentType)
 	if err != nil {
 		log.Errorf("mime.ParseMediaType fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
@@ -102,7 +102,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 		mr, err := r.MultipartReader()
 		if err != nil {
 			log.Errorf("http.Request.MultipartReader fail: %v", err)
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 		results := make(map[string]map[string]interface{})
@@ -113,7 +113,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			}
 			if err != nil {
 				log.Errorf("multipart.Reader.NextPart fail: %v", err)
-				apiutil.SendError(w, err)
+				send.Error(w, err)
 				return
 			}
 
@@ -125,7 +125,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			result, err := c.store.Upload(ctx, path, mediaType, p)
 			if err != nil {
 				log.Errorf("FileStore.Upload fail: %v", err)
-				apiutil.SendError(w, err)
+				send.Error(w, err)
 				return
 			}
 
@@ -133,7 +133,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 		}
 
 		if len(results) > 0 {
-			err = apiutil.SendJSON(w, results)
+			err = send.JSON(w, results)
 			if err != nil {
 				return
 			}
@@ -167,12 +167,12 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	result, err := c.store.Upload(r.Context(), c.path, mediaType, r.Body)
 	if err != nil {
 		log.Errorf("FileStore.Upload fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
 	if result != nil {
-		err = apiutil.SendJSON(w, result)
+		err = send.JSON(w, result)
 		if err != nil {
 			return
 		}
@@ -201,7 +201,7 @@ func deleteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	id, result, err := c.store.Delete(r.Context(), c.path)
 	if err != nil {
 		log.Errorf("FileStore.Delete fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
@@ -223,13 +223,13 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	u, err := url.Parse(c.path)
 	if err != nil {
 		log.Errorf("remote URL is not valid: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
 	if !(u.Scheme == "http" || u.Scheme == "https") {
 		log.Errorf("scheme is not supported: %s", u.Scheme)
-		apiutil.SendError(w, fmt.Errorf("scheme is not valid: %s", u.Scheme))
+		send.Error(w, fmt.Errorf("scheme is not valid: %s", u.Scheme))
 		return
 	}
 
@@ -238,17 +238,17 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 
 	file, err := cloudstore.FindFile(ctx, localPath)
 	if err != nil {
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
 	if file != nil {
 		fileNode, err := dgraph.ReadNodeTx(ctx, file.ID)
 		if err != nil {
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
-		apiutil.SendJSON(w, fileNode)
+		send.JSON(w, fileNode)
 		return
 	}
 
@@ -258,11 +258,11 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 		})
 		if err != nil {
 			log.Errorf("addFile fail: %v", err)
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 
-		err = apiutil.SendJSON(w, result)
+		err = send.JSON(w, result)
 		if err != nil {
 			return
 		}
@@ -278,7 +278,7 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	resp, err := http.Get(c.path)
 	if err != nil {
 		log.Errorf("http.Client.Get fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
@@ -286,7 +286,7 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	mediaType, _, err := mime.ParseMediaType(contentType)
 	if err != nil {
 		log.Errorf("mime.ParseMediaType fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
@@ -295,12 +295,12 @@ func remoteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 	result, err := c.store.Upload(ctx, localPath, mediaType, resp.Body)
 	if err != nil {
 		log.Errorf("FileStore.Upload fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
 	if result != nil {
-		err = apiutil.SendJSON(w, result)
+		err = send.JSON(w, result)
 		if err != nil {
 			return
 		}

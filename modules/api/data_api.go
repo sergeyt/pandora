@@ -11,11 +11,13 @@ import (
 	"time"
 
 	"github.com/dgraph-io/dgo/v2/protos/api"
-	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/event"
-	"github.com/sergeyt/pandora/modules/utils"
+	"github.com/sergeyt/pandora/modules/mimetype"
+	"github.com/sergeyt/pandora/modules/orderedjson"
+	"github.com/sergeyt/pandora/modules/pagination"
+	"github.com/sergeyt/pandora/modules/send"
 	log "github.com/sirupsen/logrus"
 
 	"github.com/go-chi/chi"
@@ -49,7 +51,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		log.Errorf("ioutil.ReadAll fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
@@ -67,12 +69,12 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 		return 1
 	}
 
-	send := func(resp []byte) {
+	write := func(resp []byte) {
 		var data map[string]interface{}
 		err := json.Unmarshal(resp, &data)
 		if err != nil {
 			log.Errorf("json.Unmarshal fail: %v", err)
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 
@@ -89,7 +91,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		w.Header().Set("Content-Type", apiutil.TypeJSON)
+		w.Header().Set("Content-Type", mimetype.JSON)
 		w.Write(resp)
 	}
 
@@ -104,29 +106,29 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 		resp, err := tx.QueryWithVars(r.Context(), query, vars)
 		if err != nil {
 			log.Errorf("dgraph.Txn.QueryWithVars fail: %v", err)
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 
-		send(resp.GetJson())
+		write(resp.GetJson())
 	} else {
 		resp, err := tx.Query(r.Context(), query)
 		if err != nil {
 			log.Errorf("dgraph.Txn.Query fail: %v", err)
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 
-		send(resp.GetJson())
+		write(resp.GetJson())
 	}
 }
 
 func listHandler(w http.ResponseWriter, r *http.Request) {
 	resourceType := strings.ToLower(chi.URLParam(r, "type"))
-	pg, err := apiutil.ParsePagination(r)
+	pg, err := pagination.Parse(r)
 	if err != nil {
-		log.Errorf("apiutil.ParsePagination fail: %v", err)
-		apiutil.SendError(w, err)
+		log.Errorf("pagination.Parse fail: %v", err)
+		send.Error(w, err)
 		return
 	}
 
@@ -134,11 +136,11 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 
 	data, err := dgraph.ReadList(r.Context(), tx, dgraph.NodeLabel(resourceType), pg)
 	if err != nil {
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
-	apiutil.SendJSON(w, data)
+	send.JSON(w, data)
 }
 
 func meHandler(w http.ResponseWriter, r *http.Request) {
@@ -160,11 +162,11 @@ func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
 
 	data, err := dgraph.ReadNode(r.Context(), tx, id)
 	if err != nil {
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
-	apiutil.SendJSON(w, data)
+	send.JSON(w, data)
 }
 
 func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
@@ -172,12 +174,12 @@ func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
 	mediaType, _, err := mime.ParseMediaType(contentType)
 	if err != nil {
 		log.Errorf("mime.ParseMediaType fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
 	if mediaType != "application/json" {
-		apiutil.SendError(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
+		send.Error(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
 		return
 	}
 
@@ -187,11 +189,11 @@ func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
 	nodeLabel := dgraph.NodeLabel(resourceType)
 	user := authbase.GetContextUser(ctx)
 
-	var in utils.OrderedJSON
+	var in orderedjson.Map
 	err = json.NewDecoder(r.Body).Decode(&in)
 	if err != nil {
 		log.Errorf("bad JSON. json.Decoder.Decode fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
@@ -204,7 +206,7 @@ func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
 		By:        user.GetID(),
 	})
 	if err != nil {
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
@@ -213,7 +215,7 @@ func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
 		out = results[0]
 	}
 
-	err = apiutil.SendJSON(w, out)
+	err = send.JSON(w, out)
 	if err != nil {
 		return
 	}
@@ -236,13 +238,13 @@ func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
 	mediaType, _, err := mime.ParseMediaType(contentType)
 	if err != nil {
 		log.Errorf("mime.ParseMediaType fail: %v", err)
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 
 	var mutation *api.Mutation
 
-	if mediaType == apiutil.TypeJSON {
+	if mediaType == mimetype.JSON {
 		var input struct {
 			Set    string `json:"set,omitempty"`
 			Delete string `json:"delete,omitempty"`
@@ -250,11 +252,11 @@ func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
 		err := json.NewDecoder(r.Body).Decode(&input)
 		if err != nil {
 			log.Errorf("json.Decoder.Decode fail: %v", err)
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 		if len(input.Set) == 0 && len(input.Delete) == 0 {
-			apiutil.SendError(w, fmt.Errorf("invalid input. please specify set or delete mutations"))
+			send.Error(w, fmt.Errorf("invalid input. please specify set or delete mutations"))
 		}
 
 		mutation = &api.Mutation{}
@@ -267,7 +269,7 @@ func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		nquads, err := ioutil.ReadAll(r.Body)
 		if err != nil {
-			apiutil.SendError(w, err, http.StatusInternalServerError)
+			send.Error(w, err, http.StatusInternalServerError)
 			return
 		}
 
@@ -285,11 +287,11 @@ func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
 	resp, err := tx.Mutate(ctx, mutation)
 	if err != nil {
 		log.Errorf("dgraph.Txn.Mutate fail: %v", err)
-		apiutil.SendError(w, err, http.StatusInternalServerError)
+		send.Error(w, err, http.StatusInternalServerError)
 		return
 	}
 
-	err = apiutil.SendJSON(w, resp)
+	err = send.JSON(w, resp)
 	if err != nil {
 		return
 	}
@@ -321,7 +323,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	if resourceType == "file" {
 		node, err := dgraph.ReadNode(ctx, tx, id)
 		if err != nil {
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 		fileNode = node
@@ -329,7 +331,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 	resp, err := dgraph.DeleteNode(ctx, tx, id)
 	if err != nil {
-		apiutil.SendError(w, err)
+		send.Error(w, err)
 		return
 	}
 

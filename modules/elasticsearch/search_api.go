@@ -6,8 +6,8 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/gocontrib/esclient"
-	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/send"
 )
 
 // SearchAPI is proxy os ElasticSearch query
@@ -21,11 +21,11 @@ func SearchAPI(r chi.Router) {
 		c := makeClient()
 		result, err := c.Search(idxName, sr, nil)
 		if err != nil {
-			apiutil.SendError(w, err)
+			send.Error(w, err)
 			return
 		}
 
-		apiutil.SendJSON(w, result)
+		send.JSON(w, result)
 	}
 
 	r.Get("/api/search/:idx", func(w http.ResponseWriter, r *http.Request) {
@@ -43,7 +43,7 @@ func SearchAPI(r chi.Router) {
 		var sr esclient.SearchRequest
 		err := json.NewDecoder(r.Body).Decode(&sr)
 		if err != nil {
-			apiutil.SendError(w, err, http.StatusBadRequest)
+			send.Error(w, err, http.StatusBadRequest)
 			return
 		}
 
