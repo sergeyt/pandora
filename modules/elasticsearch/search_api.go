@@ -33,7 +33,7 @@ func SearchAPI(r chi.Router) {
 			Query: map[string]interface{}{
 				"match": map[string]string{
 					"text": r.URL.Query().Get("query"),
-				}
+				},
 			},
 		}
 		do(w, r, &sr)
