@@ -9,6 +9,7 @@ import (
 	"github.com/go-chi/cors"
 	"github.com/gorilla/handlers"
 	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/elasticsearch"
 	"github.com/sirupsen/logrus"
 )
 
@@ -53,7 +54,7 @@ func NewHandler() http.Handler {
 
 	r.Group(healthAPI)
 	r.Group(auth.RegisterAPI)
-	//r.Group(elasticsearch.SearchAPI)
+	r.Group(elasticsearch.SearchAPI)
 	r.Group(dataAPI)
 	r.Group(fileAPI)
 	//r.Group(geoip.RegisterAPI)
