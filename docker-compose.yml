@@ -24,6 +24,19 @@ services:
       - ES_HOSTS=http://elasticsearch:9200
       - ES_INDEX_DOCS=docs
 
+  # listens NATS events and react on them
+  reactor:
+    container_name: celery_worker
+    build:
+      context: .
+      dockerfile: docker/reactor/Dockerfile
+    volumes:
+      - ./scripts:/app:cached
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbit:5672
+      - CELERY_BACKEND_URL=redis://redis:6379
+      - NATS_URI=${NATS_URI}
+
   # message broker for celery
   rabbit:
     container_name: rabbit

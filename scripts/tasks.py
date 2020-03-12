@@ -24,7 +24,7 @@ def add(x, y):
 
 # TODO update existing doc found by url
 @app.task
-def index_doc(url):
+def index_file(url):
     # parse file by given URL
     resp = requests.get(url=TIKA_HOST + '/api/tika/parse', params={'url': url})
     resp.raise_for_status()
