@@ -165,7 +165,7 @@ services:
   # elasticsearch node1
   # see also https://github.com/deviantony/docker-elk
   # todo elasticsearch production config
-  es:
+  elasticsearch:
     build:
       context: ./
       dockerfile: ./docker/elasticsearch/Dockerfile
@@ -190,7 +190,7 @@ services:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
   # elasticsearch node2
-  es2:
+  elasticsearch2:
     image: tianon/true
     build:
       context: ./
@@ -215,10 +215,11 @@ services:
         max-file: ${LOG_MAX_FILE}
   # kibana - elasticsearch dashboard
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.8.7
+    image: docker.elastic.co/kibana/kibana:7.6.1
     container_name: kibana
     environment:
       XPACK_MONITORING_ENABLED: "false"
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     volumes:
       - ./config/kibana/:/usr/share/kibana/config:ro
     ports:
