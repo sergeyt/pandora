@@ -19,9 +19,9 @@ const useStyles = makeStyles(theme => ({
     results: {
         display: "flex",
         // justifyContent: 'flex-start',
-        flexWrap: 'wrap',
-        '& > *': {
-            margin: theme.spacing(1),
+        flexWrap: "wrap",
+        "& > *": {
+            margin: theme.spacing(0.5),
         },
     }
 }));
@@ -58,7 +58,7 @@ function SearchResults() {
             <div className={classes.results}>
                 {
                     documents.map(document => (
-                        <DocumentPreview document={document}/>
+                        <DocumentPreview document={document} key={document.link}/>
                     ))
                 }
             </div>

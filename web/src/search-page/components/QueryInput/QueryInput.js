@@ -4,7 +4,7 @@ import {TextField, Typography} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {query} from "../../state";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     container: {
         display: "flex",
         flexDirection: "column",

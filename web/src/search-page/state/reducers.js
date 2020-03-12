@@ -1,4 +1,4 @@
-import {ACTION_QUERY, ACTION_QUERY_RESULTS} from "./actions";
+import {ACTION_QUERY, ACTION_QUERY_RESULTS, ACTION_CLEAR} from "./actions";
 
 export const initialState = {
     loading: false,
@@ -17,6 +17,8 @@ export function searchReducer(state = initialState, action) {
             documents: action.documents,
             success: action.success,
         });
+    case ACTION_CLEAR:
+        return Object.assign({}, state, {documents: []});
     default:
         return state;
     }

@@ -36,10 +36,10 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: red[500],
     },
     tags: {
-        display: 'flex',
-        justifyContent: 'flex-start',
-        flexWrap: 'wrap',
-        '& > *': {
+        display: "flex",
+        justifyContent: "flex-start",
+        flexWrap: "wrap",
+        "& > *": {
             margin: theme.spacing(0.5),
         },
     },
@@ -78,6 +78,7 @@ function DocumentPreview(props) {
                             variant="outlined"
                             label={tag}
                             onClick={() => null}
+                            key={tag}
                         />
                     ))}
                 </div>
