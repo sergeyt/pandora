@@ -8,7 +8,7 @@ class FileProcApplicationTests {
     @Test
     fun parseAlice() {
         val url = "https://www.adobe.com/be_en/active-use/pdf/Alice_in_Wonderland.pdf"
-        val ctrl = FileProcessingApiController()
+        val ctrl = FileProcApiController()
         val result = ctrl.parse(url)
         val creator = result.metadata["creator"]
         assert(creator != null)
