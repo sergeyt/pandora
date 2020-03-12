@@ -100,7 +100,9 @@ func WithAuthToken(ctx context.Context) context.Context {
 func InitSchema() {
 	dg, close, err := NewClient()
 	if err != nil {
-		log.Fatal(err)
+		log.Errorf("cannot init dgraph schema: %v", err)
+		// TODO retry after few seconds
+		return
 	}
 	defer close()
 
