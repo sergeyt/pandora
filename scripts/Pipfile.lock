@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fc41be5f8b0a8ea89d59efab4fbf5164eb0d443e24b16844bfce28b07856df76"
+            "sha256": "27be053fcfd9f2281f2eeb635b6aad9459ca6790c674b50363ba971fc8197a8d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -22,6 +22,13 @@
                 "sha256:77f1aef9410698d20eaeac5b73a87817365f457a507d82edf292e12cbb83b08d"
             ],
             "version": "==2.5.2"
+        },
+        "asyncio-nats-client": {
+            "hashes": [
+                "sha256:9ff7e3a386bcb49851062bc9f43c26d6ab9079e22014de946ccec7da570b445f"
+            ],
+            "index": "pypi",
+            "version": "==0.10.0"
         },
         "beautifulsoup4": {
             "hashes": [
