@@ -127,10 +127,12 @@ services:
 
   # message bus
   nats:
-    image: nats:latest
+    image: nats:2-alpine
     container_name: nats
     hostname: nats
-    command: -DV
+    command: nats-server -DV --config /etc/nats-server.conf
+    volumes:
+      - ./config/nats/nats-server.conf:/etc/nats-server.conf
     networks:
       - internal_network
     ports:
