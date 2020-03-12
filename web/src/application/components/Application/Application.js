@@ -1,5 +1,5 @@
 import React from "react";
-import SearchPage from "../search-page/components/SearchPage";
+import SearchPage from "../../../search-page";
 
 
 function Application() {
