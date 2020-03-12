@@ -32,7 +32,6 @@ celery = "*"
 redis = "*"
 elasticsearch = "*"
 asyncio-nats-client = "*"
-gevent = "*"
 
 [requires]
 python_version = "3.7"
