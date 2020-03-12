@@ -20,7 +20,7 @@ async def run(loop):
         if data['type'] == 'file':
             index_file.delay(data['url'])
 
-    await nc.subscribe("*", cb=message_handler)
+    await nc.subscribe("global", cb=message_handler)
 
     await nc.drain()
 
@@ -29,3 +29,4 @@ if __name__ == '__main__':
     loop = asyncio.get_event_loop()
     loop.run_until_complete(run(loop))
     loop.close()
+    print('reactor started')
