@@ -11,13 +11,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import {red} from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import DeleteIcon from '@material-ui/icons/Delete';
+import LinkIcon from "@material-ui/icons/Link";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Chip from "@material-ui/core/Chip";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-
-    },
+    root: {},
     media: {
         height: 0,
         paddingTop: "56.25%", // 16:9
@@ -89,6 +89,12 @@ function DocumentPreview(props) {
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon/>
+                </IconButton>
+                <IconButton aria-label="add to favorites" href={document.link}>
+                    <LinkIcon/>
+                </IconButton>
+                <IconButton aria-label="delete">
+                    <DeleteIcon/>
                 </IconButton>
             </CardActions>
         </Card>
