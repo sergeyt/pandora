@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-celery -A tasks worker --loglevel=info
+celery -A worker worker --loglevel=info
