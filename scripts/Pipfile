@@ -31,6 +31,9 @@ retry = "*"
 decorator = "*"
 gunicorn = "*"
 werkzeug = "*"
+celery = "*"
+redis = "*"
+elasticsearch = "*"
 
 [requires]
 python_version = "3.7"

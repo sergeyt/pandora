@@ -1,6 +1,19 @@
 version: "3.2"
 services:
-  # cache and message broker for celery
+  # message broker for celery
+  rabbit:
+    container_name: rabbit
+    image: rabbitmq
+    ports:
+      - 5672:5672
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+
+  # cache service
   redis:
     container_name: redis
     build:
@@ -56,6 +69,7 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # Amazon S3 compatible file store
   minio:
     image: minio/minio:latest
@@ -75,6 +89,7 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # image ops service (we need resizing at least)
   imageproxy:
     image: willnorris/imageproxy
@@ -88,6 +103,7 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # dgraph cluster manager
   zero:
     image: dgraph/dgraph:v2.0.0-rc1
@@ -109,7 +125,8 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
-  # dgraph node
+
+  # dgraph node (GraphQL native database)
   dgraph:
     image: dgraph/dgraph:v2.0.0-rc1
     container_name: dgraph
@@ -130,6 +147,7 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # dgraph UI
   ratel:
     image: dgraph/dgraph:v2.0.0-rc1
@@ -211,6 +229,7 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # pyadmin API service
   pyadmin:
     depends_on:
