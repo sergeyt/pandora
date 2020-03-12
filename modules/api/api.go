@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/elasticsearch"
-	"github.com/sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 )
 
 const logFormat = "text"
@@ -20,9 +20,9 @@ func NewHandler() http.Handler {
 	// Setup the logger backend using sirupsen/logrus and configure
 	// it to use a custom JSONFormatter. See the logrus docs for how to
 	// configure the backend at github.com/sirupsen/logrus
-	logger := logrus.New()
+	logger := log.New()
 	if logFormat == "json" {
-		logger.Formatter = &logrus.JSONFormatter{
+		logger.Formatter = &log.JSONFormatter{
 			// disable, as we set our own
 			DisableTimestamp: true,
 		}
