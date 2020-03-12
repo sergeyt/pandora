@@ -6,26 +6,11 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-
-	"github.com/gocontrib/auth"
-	"github.com/gocontrib/pubsub"
 )
 
 const (
 	TypeJSON = "application/json"
 )
-
-// TODO later implement persistence of events for some period of time
-func SendEvent(user auth.User, evt *pubsub.Event) {
-	go func() {
-		chans := []string{
-			"global",
-			fmt.Sprintf("%s/%s", evt.ResourceType, evt.ResourceID),
-			fmt.Sprintf("user/%s", user.GetID()),
-		}
-		pubsub.Publish(chans, evt)
-	}()
-}
 
 func SendJSON(w http.ResponseWriter, data interface{}, status ...int) error {
 	w.Header().Set("Content-Type", TypeJSON)

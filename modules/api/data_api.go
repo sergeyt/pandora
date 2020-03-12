@@ -14,6 +14,7 @@ import (
 	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
+	"github.com/sergeyt/pandora/modules/event"
 	"github.com/sergeyt/pandora/modules/utils"
 	log "github.com/sirupsen/logrus"
 
@@ -217,7 +218,7 @@ func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	apiutil.SendEvent(user, &pubsub.Event{
+	event.Send(user, &pubsub.Event{
 		Action:       r.Method,
 		Method:       r.Method,
 		URL:          r.URL.String(),
@@ -296,7 +297,7 @@ func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
 	now := time.Now()
 
 	for _, v := range resp.Uids {
-		apiutil.SendEvent(user, &pubsub.Event{
+		event.Send(user, &pubsub.Event{
 			Action:     r.Method,
 			Method:     r.Method,
 			URL:        r.URL.String(),
@@ -338,7 +339,7 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 
-	apiutil.SendEvent(user, &pubsub.Event{
+	event.Send(user, &pubsub.Event{
 		Action:       r.Method,
 		Method:       r.Method,
 		URL:          r.URL.String(),

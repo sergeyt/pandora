@@ -19,6 +19,7 @@ import (
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/cloudstore"
 	"github.com/sergeyt/pandora/modules/dgraph"
+	"github.com/sergeyt/pandora/modules/event"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -146,7 +147,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 			}
 
 			// FIXME send multiple events
-			apiutil.SendEvent(user, &pubsub.Event{
+			event.Send(user, &pubsub.Event{
 				Action:       r.Method,
 				Method:       r.Method,
 				URL:          r.URL.String(),
@@ -178,7 +179,7 @@ func uploadFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 
 		id := getUID(result)
 
-		apiutil.SendEvent(user, &pubsub.Event{
+		event.Send(user, &pubsub.Event{
 			Action:       r.Method,
 			Method:       r.Method,
 			URL:          r.URL.String(),
@@ -206,7 +207,7 @@ func deleteFile(c fsopContext, w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 
-	apiutil.SendEvent(user, &pubsub.Event{
+	event.Send(user, &pubsub.Event{
 		Action:       r.Method,
 		Method:       r.Method,
 		URL:          r.URL.String(),
@@ -321,7 +322,7 @@ func parseBool(v string) bool {
 
 func notifyFileChange(ctx context.Context, id, localPath string) {
 	user := Auth.GetContextUser(ctx)
-	apiutil.SendEvent(user, &pubsub.Event{
+	event.Send(user, &pubsub.Event{
 		Action:       "POST",
 		Method:       "POST",
 		URL:          fmt.Sprintf("/api/file/%s", localPath),
