@@ -1,5 +1,29 @@
 version: "3.2"
 services:
+  # celery worker
+  worker:
+    container_name: celery_worker
+    build:
+      context: .
+      dockerfile: docker/celery/Dockerfile
+    volumes:
+      - ./scripts:/app:cached
+    command:
+      [
+        celery,
+        worker,
+        --app=worker.app,
+        --pool=gevent,
+        --concurrency=10,
+        --loglevel=INFO,
+      ]
+    environment:
+      - CELERY_BROKER_URL=amqp://guest:guest@rabbit:5672
+      - CELERY_BACKEND_URL=redis://redis:6379
+      - TIKA_HOST=http://tika:4219
+      - ES_HOSTS=http://elasticsearch:9200
+      - ES_INDEX_DOCS=docs
+
   # message broker for celery
   rabbit:
     container_name: rabbit
@@ -76,7 +100,7 @@ services:
     container_name: minio
     volumes:
       - minio:/data
-      - ./config/minio:/etc/minio
+      - ./config/minio:/etc/minio:cached
     ports:
       - 9000:9000
     environment:
@@ -92,12 +116,13 @@ services:
 
   # image ops service (we need resizing at least)
   imageproxy:
-    image: willnorris/imageproxy
+    image: tianon/true
+    # image: willnorris/imageproxy
     container_name: imageproxy
-    command: "-addr 0.0.0.0:1081"
-    ports:
-      - 1081:1081
-    restart: always
+    # command: "-addr 0.0.0.0:1081"
+    # ports:
+    #   - 1081:1081
+    # restart: always
     logging:
       driver: "json-file"
       options:
@@ -106,20 +131,21 @@ services:
 
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: tianon/true
+    # image: dgraph/dgraph:v2.0.0-rc1
     container_name: zero
     volumes:
       - dgraph:/dgraph
-    ports:
-      - 5080:5080
-      - 6080:6080
-    command: dgraph zero --my=zero:5080
-    restart: always
-    healthcheck:
-      test: "curl --fail --max-time 10 http://localhost:6080/health"
-      interval: 10s
-      timeout: 10s
-      retries: 10
+    # ports:
+    #   - 5080:5080
+    #   - 6080:6080
+    # command: dgraph zero --my=zero:5080
+    # restart: always
+    # healthcheck:
+    #   test: "curl --fail --max-time 10 http://localhost:6080/health"
+    #   interval: 10s
+    #   timeout: 10s
+    #   retries: 10
     logging:
       driver: "json-file"
       options:
@@ -128,20 +154,21 @@ services:
 
   # dgraph node (GraphQL native database)
   dgraph:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: tianon/true
+    # image: dgraph/dgraph:v2.0.0-rc1
     container_name: dgraph
     volumes:
       - dgraph:/dgraph
-    ports:
-      - 8080:8080
-      - 9080:9080
-    command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --auth_token=${DGRAPH_TOKEN} --whitelist=${DGRAPH_WHITELIST}
-    restart: always
-    healthcheck:
-      test: "curl --fail --max-time 10 http://localhost:8080/health"
-      interval: 10s
-      timeout: 10s
-      retries: 10
+    # ports:
+    #   - 8080:8080
+    #   - 9080:9080
+    # command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --auth_token=${DGRAPH_TOKEN} --whitelist=${DGRAPH_WHITELIST}
+    # restart: always
+    # healthcheck:
+    #   test: "curl --fail --max-time 10 http://localhost:8080/health"
+    #   interval: 10s
+    #   timeout: 10s
+    #   retries: 10
     logging:
       driver: "json-file"
       options:
@@ -150,12 +177,13 @@ services:
 
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: tianon/true
+    # image: dgraph/dgraph:v2.0.0-rc1
     container_name: ratel
-    ports:
-      - 8000:8000
-    command: dgraph-ratel
-    restart: on-failure
+    # ports:
+    #   - 8000:8000
+    # command: dgraph-ratel
+    # restart: on-failure
     logging:
       driver: "json-file"
       options:
@@ -192,9 +220,9 @@ services:
   # elasticsearch node2
   elasticsearch2:
     image: tianon/true
-    build:
-      context: ./
-      dockerfile: ./docker/elasticsearch/Dockerfile
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/elasticsearch/Dockerfile
     container_name: elasticsearch2
     ulimits:
       memlock:
@@ -202,29 +230,42 @@ services:
         hard: -1
     volumes:
       - esdata2:/usr/share/elasticsearch/data
-    restart: always
-    healthcheck:
-      test: "curl --fail http://localhost:9300 || exit 1"
-      interval: 10s
-      timeout: 10s
-      retries: 10
+    # restart: always
+    # healthcheck:
+    #   test: "curl --fail http://localhost:9300 || exit 1"
+    #   interval: 10s
+    #   timeout: 10s
+    #   retries: 10
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
+  # lightweight UI for elasticsearch
+  eshead:
+    container_name: eshead
+    image: mobz/elasticsearch-head:5-alpine
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+
   # kibana - elasticsearch dashboard
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.6.1
+    image: tianon/true
+    # image: docker.elastic.co/kibana/kibana:7.6.1
     container_name: kibana
     environment:
       XPACK_MONITORING_ENABLED: "false"
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     volumes:
-      - ./config/kibana/:/usr/share/kibana/config:ro
-    ports:
-      - 5601:5601
-    restart: always
+      - ./config/kibana/:/usr/share/kibana/config:cached
+    # ports:
+    #   - 5601:5601
+    # restart: always
     logging:
       driver: "json-file"
       options:
@@ -256,9 +297,9 @@ services:
       FLASK_ENV: development
       FLASK_PORT: 4211
     volumes:
-      - ./scripts:/pyadmin
-      - ./schema.txt:/schema.txt
-      - ./docker/pyadmin/main.sh:/main.sh
+      - ./scripts:/pyadmin:cached
+      - ./schema.txt:/schema.txt:cached
+      - ./docker/pyadmin/main.sh:/main.sh:cached
     ports:
       - 4211:4211
     restart: always
@@ -271,7 +312,7 @@ services:
   # application API service
   app:
     depends_on:
-      - dgraph
+      # - dgraph
       - minio
       - nats
     build:
@@ -306,8 +347,8 @@ services:
       GOOGLE_KEY: ${GOOGLE_KEY}
       GOOGLE_SECRET: ${GOOGLE_SECRET}
     volumes:
-      - .:/pandora
-      - ./docker/app/main.sh:/main.sh
+      - .:/pandora:cached
+      - ./docker/app/main.sh:/main.sh:cached
     ports:
       - 4201:4201
     restart: always
@@ -357,7 +398,7 @@ services:
       CADDYPATH: /data/caddy
     volumes:
       - caddy:/data/caddy
-      - ./config/caddy/Caddyfile:/etc/Caddyfile
+      - ./config/caddy/Caddyfile:/etc/Caddyfile:cached
     ports:
       - ${HTTP_PORT}:${HTTP_PORT}
       - ${HTTPS_PORT}:${HTTPS_PORT}
@@ -370,11 +411,12 @@ services:
 
   # monitor
   autoheal:
-    image: willfarrell/autoheal
+    # image: willfarrell/autoheal
+    image: tianon/true
     container_name: autoheal
     restart: on-failure
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    # volumes:
+    #   - /var/run/docker.sock:/var/run/docker.sock
     logging:
       driver: "json-file"
       options:
