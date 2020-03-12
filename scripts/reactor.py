@@ -15,18 +15,21 @@ async def run(loop):
         subject = msg.subject
         reply = msg.reply
         data = msg.data.decode()
-        print("Received a message on '{subject} {reply}': {data}".format(
+        print("received a message on '{subject} {reply}': {data}".format(
             subject=subject, reply=reply, data=data))
-        if data['type'] == 'file':
-            index_file.delay(data['url'])
+
+        if 'resource_type' in data and 'url' in data and data[
+                'resource_type'] == 'file':
+            url = data['url']
+            index_file.delay(url)
 
     await nc.subscribe("global", cb=message_handler)
 
-    await nc.drain()
-
 
 if __name__ == '__main__':
+    print('reactor started')
     loop = asyncio.get_event_loop()
     loop.run_until_complete(run(loop))
-    loop.close()
-    print('reactor started')
+    # todo graceful shutdown
+    loop.run_forever()
+    print('reactor exited')
