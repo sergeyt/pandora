@@ -15,14 +15,16 @@ felis imperdiet proin fermentum leo. Mauris commodo quis imperdiet massa tincidu
 const stubDocuments = [
     {
         title: "Metus vulputate",
+        date: "December 31, 2019",
         size: "3M",
-        preview: "https://images.unsplash.com/photo-1553463637-062ef4fe06da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        image: "https://images.unsplash.com/photo-1480555017593-6fb093e13f10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
         tags: ["animals", "birds"],
-        link: "https://images.unsplash.com/photo-1553463637-062ef4fe06da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        link: "https://images.unsplash.com/photo-1480555017593-6fb093e13f10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
         previewText: randomText,
     },
     {
         title: "Lorem ipsum",
+        date: "January 1, 2020",
         size: "10GB",
         image: "https://images.unsplash.com/photo-1583762713699-7a6d1b8b6679?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
         tags: ["image", "animals", "dogs"],

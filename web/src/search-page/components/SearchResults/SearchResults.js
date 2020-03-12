@@ -1,28 +1,38 @@
 import React, {useState} from "react";
 import {makeStyles} from "@material-ui/styles";
-import {TextField, Typography} from "@material-ui/core";
+import {TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {query} from "../../state";
+import DocumentPreview from "../DocumentPreview";
 
 const useStyles = makeStyles(theme => ({
     container: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        height: "80%",
+        height: "100%",
+        width: "100%",
     },
     form: {
         width: "100%",
     },
+    results: {
+        display: "flex",
+        // justifyContent: 'flex-start',
+        flexWrap: 'wrap',
+        '& > *': {
+            margin: theme.spacing(1),
+        },
+    }
 }));
 
-function QueryInput() {
+function SearchResults() {
     const classes = useStyles();
     const [queryString, setQueryString] = useState("");
 
     const dispatch = useDispatch();
     const loading = useSelector(state => state.search.loading);
+    const documents = useSelector(state => state.search.documents);
 
     function handleSubmit(event) {
         dispatch(query(queryString));
@@ -31,9 +41,6 @@ function QueryInput() {
 
     return (
         <div className={classes.container}>
-            <Typography component="h2" variant="h2" align="center">
-                Open Pandora!
-            </Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
                 <TextField
                     variant="outlined"
@@ -48,8 +55,15 @@ function QueryInput() {
                     disabled={loading}
                 />
             </form>
+            <div className={classes.results}>
+                {
+                    documents.map(document => (
+                        <DocumentPreview document={document}/>
+                    ))
+                }
+            </div>
         </div>
     );
 }
 
-export default QueryInput;
+export default SearchResults;
