@@ -25,7 +25,7 @@ func SearchAPI(r chi.Router) {
 			return
 		}
 
-		send.JSON(w, result)
+		_ = send.JSON(w, result)
 	}
 
 	r.Get("/api/search/:idx", func(w http.ResponseWriter, r *http.Request) {

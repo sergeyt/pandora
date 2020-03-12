@@ -21,7 +21,7 @@ func RegisterAPI(r chi.Router) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		send.JSON(w, t)
+		_ = send.JSON(w, t)
 	})
 }
 

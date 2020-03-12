@@ -140,7 +140,7 @@ func listHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	send.JSON(w, data)
+	_ = send.JSON(w, data)
 }
 
 func meHandler(w http.ResponseWriter, r *http.Request) {
