@@ -2,7 +2,7 @@ import {ACTION_CLEAR, ACTION_QUERY, ACTION_QUERY_RESULTS} from "./actions";
 
 export const initialState = {
     loading: false,
-    query: '',
+    query: "",
     documents: [],
     success: true,
 };
@@ -20,7 +20,7 @@ export function searchReducer(state = initialState, action) {
             success: action.success,
         });
     case ACTION_CLEAR:
-        return Object.assign({}, state, {documents: [], query: ''});
+        return Object.assign({}, state, {documents: [], query: ""});
     default:
         return state;
     }
