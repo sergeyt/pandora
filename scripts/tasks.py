@@ -5,6 +5,8 @@ from elasticsearch import Elasticsearch
 from worker import app
 import api
 
+TIKA_HOST = os.getenv('TIKA_HOST', 'http://localhost:4219')
+
 
 # just for testing purposes
 @app.task
@@ -27,4 +29,5 @@ def index_file(url):
     doc['source_url'] = url
     doc['text'] = result['text']
 
+    api.login("system", os.getenv("SYSTEM_PWD"))
     return api.post('/api/data/doc', doc)
