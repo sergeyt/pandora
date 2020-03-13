@@ -1,4 +1,4 @@
-import {delay, put, takeEvery} from "redux-saga/effects";
+import {delay, put, takeLeading} from "redux-saga/effects";
 import {ACTION_QUERY, queryResults} from "../../search-page/state";
 
 const randomText = `
@@ -34,18 +34,18 @@ const stubDocuments = [
 ];
 
 
-export function* querySaga() {
+export function* querySaga(action) {
     try {
         // Imitate server call
         yield delay(500 * Math.random() + 500);
-        yield put(queryResults(stubDocuments, true));
+        yield put(queryResults(action.query, stubDocuments, true));
     } catch (err) {
         yield put(queryResults([], false));
     }
 }
 
 export function* searchSaga() {
-    yield takeEvery(ACTION_QUERY, querySaga);
+    yield takeLeading(ACTION_QUERY, querySaga);
 }
 
 export default searchSaga;

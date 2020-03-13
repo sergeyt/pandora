@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
 
 function SearchResults() {
     const classes = useStyles();
-    const [queryString, setQueryString] = useState("");
+    const previousQuery = useSelector(state => state.search.query);
+    const [queryString, setQueryString] = useState(previousQuery);
 
     const dispatch = useDispatch();
     const loading = useSelector(state => state.search.loading);
@@ -49,7 +50,6 @@ function SearchResults() {
                     label="Query Documents"
                     name="query"
                     autoComplete="Query Documents"
-                    autoFocus
                     onChange={event => setQueryString(event.target.value)}
                     value={queryString}
                     disabled={loading}

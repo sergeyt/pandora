@@ -19,7 +19,8 @@ const useStyles = makeStyles(() => ({
 
 function QueryInput() {
     const classes = useStyles();
-    const [queryString, setQueryString] = useState("");
+    const previousQuery = useSelector(state => state.search.query);
+    const [queryString, setQueryString] = useState(previousQuery);
 
     const dispatch = useDispatch();
     const loading = useSelector(state => state.search.loading);

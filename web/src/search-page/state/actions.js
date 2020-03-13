@@ -9,9 +9,10 @@ export function query(queryString) {
     };
 }
 
-export function queryResults(documents, success = true) {
+export function queryResults(query, documents, success = true) {
     return {
         type: ACTION_QUERY_RESULTS,
+        query,
         documents,
         success,
     };
