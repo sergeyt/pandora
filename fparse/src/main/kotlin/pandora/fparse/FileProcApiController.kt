@@ -42,7 +42,7 @@ fun toAbsoluteUrl(url: String): String {
         URL(url)
         return url
     } catch (e: MalformedURLException) {
-        var base = System.getenv("API_GATEWAY_URL")
+        var base = System.getenv("FS_HOST")
         if (base == "") {
             base = "http://localhost"
         }
