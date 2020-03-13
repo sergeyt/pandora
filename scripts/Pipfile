@@ -14,7 +14,6 @@ flake8 = "*"
 [packages]
 python-dotenv = "*"
 requests = "*"
-tuspy = "*"
 Faker = "*"
 PyJWT = "*"
 flask = "*"
@@ -32,6 +31,9 @@ celery = "*"
 redis = "*"
 elasticsearch = "*"
 asyncio-nats-client = "*"
+yaml = "*"
+yaml-1-3 = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"
