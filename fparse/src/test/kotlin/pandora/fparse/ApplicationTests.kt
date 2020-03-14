@@ -6,10 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest
 val aliceUrl = "https://www.adobe.com/be_en/active-use/pdf/Alice_in_Wonderland.pdf"
 
 @SpringBootTest
-class FileProcApplicationTests {
+class ApplicationTests {
     @Test
     fun parseAlice() {
-        val ctrl = FileProcApiController()
+        val ctrl = ParseController()
         val result = ctrl.parse(aliceUrl)
         val creator = result.metadata["creator"]
         assert(creator != null)
@@ -20,7 +20,7 @@ class FileProcApplicationTests {
 
     @Test
     fun generateThumbnail() {
-        val ctrl = FileProcApiController()
+        val ctrl = ThumbnailController()
         val result = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPEG"))
         assert(result != null)
     }
