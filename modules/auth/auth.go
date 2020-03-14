@@ -86,7 +86,7 @@ func Middleware(next http.Handler) http.Handler {
 				Admin: true,
 				Claims: map[string]interface{}{
 					"email": email,
-					"role":  role,
+					"role":  "system",
 				},
 			}
 
