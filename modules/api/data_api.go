@@ -33,13 +33,23 @@ func dataAPI(r chi.Router) {
 	r.Post("/api/query", queryHandler)
 	r.Get("/api/me", meHandler)
 	r.Post("/api/nquads", nquadMutationHandler)
-	r.Get("/api/data/{type}/list", listHandler)
-	r.Get("/api/data/{type}/{id}", readHandler)
+
+	// parse supported types from schema
+	types := []string{
+		"user",
+		"term",
+		"document",
+	}
 
 	// mutation api
-	r.Post("/api/data/{type}", jsonMutationHandler)
-	r.Put("/api/data/{type}/{id}", jsonMutationHandler)
-	r.Delete("/api/data/{type}/{id}", deleteHandler)
+	for _, t := range types {
+		base := "/api/data/" + t
+		r.Get(base+"/list", listHandler(t))
+		r.Get(base+"/{id}", readHandler(t))
+		r.Post(base, jsonMutationHandler(t))
+		r.Put(base+"/{id}", jsonMutationHandler(t))
+		r.Delete(base+"/{id}", deleteHandler(t))
+	}
 
 	// TODO allow to delete triples from graph
 	// TODO consider to expose raw api for admin users
@@ -123,24 +133,25 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func listHandler(w http.ResponseWriter, r *http.Request) {
-	resourceType := strings.ToLower(chi.URLParam(r, "type"))
-	pg, err := pagination.Parse(r)
-	if err != nil {
-		log.Errorf("pagination.Parse fail: %v", err)
-		send.Error(w, err)
-		return
+func listHandler(resourceType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		pg, err := pagination.Parse(r)
+		if err != nil {
+			log.Errorf("pagination.Parse fail: %v", err)
+			send.Error(w, err)
+			return
+		}
+
+		tx := dgraph.RequestTransaction(r)
+
+		data, err := dgraph.ReadList(r.Context(), tx, dgraph.NodeLabel(resourceType), pg)
+		if err != nil {
+			send.Error(w, err)
+			return
+		}
+
+		_ = send.JSON(w, data)
 	}
-
-	tx := dgraph.RequestTransaction(r)
-
-	data, err := dgraph.ReadList(r.Context(), tx, dgraph.NodeLabel(resourceType), pg)
-	if err != nil {
-		send.Error(w, err)
-		return
-	}
-
-	_ = send.JSON(w, data)
 }
 
 func meHandler(w http.ResponseWriter, r *http.Request) {
@@ -152,11 +163,14 @@ func meHandler(w http.ResponseWriter, r *http.Request) {
 	readHandlerByID(w, r, user.GetID())
 }
 
-func readHandler(w http.ResponseWriter, r *http.Request) {
-	id := chi.URLParam(r, "id")
-	readHandlerByID(w, r, id)
+func readHandler(resourceType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		id := chi.URLParam(r, "id")
+		readHandlerByID(w, r, id)
+	}
 }
 
+// TODO check resource type
 func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
 	tx := dgraph.RequestTransaction(r)
 
@@ -169,68 +183,69 @@ func readHandlerByID(w http.ResponseWriter, r *http.Request, id string) {
 	_ = send.JSON(w, data)
 }
 
-func jsonMutationHandler(w http.ResponseWriter, r *http.Request) {
-	contentType := r.Header.Get("Content-Type")
-	mediaType, _, err := mime.ParseMediaType(contentType)
-	if err != nil {
-		log.Errorf("mime.ParseMediaType fail: %v", err)
-		send.Error(w, err)
-		return
+func jsonMutationHandler(resourceType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		contentType := r.Header.Get("Content-Type")
+		mediaType, _, err := mime.ParseMediaType(contentType)
+		if err != nil {
+			log.Errorf("mime.ParseMediaType fail: %v", err)
+			send.Error(w, err)
+			return
+		}
+
+		if mediaType != "application/json" {
+			send.Error(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
+			return
+		}
+
+		ctx := r.Context()
+		id := chi.URLParam(r, "id")
+		nodeLabel := dgraph.NodeLabel(resourceType)
+		user := authbase.GetContextUser(ctx)
+
+		var in orderedjson.Map
+		err = json.NewDecoder(r.Body).Decode(&in)
+		if err != nil {
+			log.Errorf("bad JSON. json.Decoder.Decode fail: %v", err)
+			send.Error(w, err)
+			return
+		}
+
+		tx := dgraph.RequestTransaction(r)
+
+		results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
+			Input:     in,
+			NodeLabel: nodeLabel,
+			ID:        id,
+			By:        user.GetID(),
+		})
+		if err != nil {
+			send.Error(w, err)
+			return
+		}
+
+		var out interface{} = results
+		if len(results) == 1 {
+			out = results[0]
+		}
+
+		err = send.JSON(w, out)
+		if err != nil {
+			return
+		}
+
+		event.Send(user, &pubsub.Event{
+			Action:       r.Method,
+			Method:       r.Method,
+			URL:          r.URL.String(),
+			ResourceID:   id,
+			ResourceType: resourceType,
+			Payload:      &in,
+			CreatedBy:    user.GetID(),
+			CreatedAt:    time.Now(),
+			Result:       out,
+		})
 	}
-
-	if mediaType != "application/json" {
-		send.Error(w, fmt.Errorf("unsupported media type: %s", contentType), http.StatusUnsupportedMediaType)
-		return
-	}
-
-	ctx := r.Context()
-	resourceType := strings.ToLower(chi.URLParam(r, "type"))
-	id := chi.URLParam(r, "id")
-	nodeLabel := dgraph.NodeLabel(resourceType)
-	user := authbase.GetContextUser(ctx)
-
-	var in orderedjson.Map
-	err = json.NewDecoder(r.Body).Decode(&in)
-	if err != nil {
-		log.Errorf("bad JSON. json.Decoder.Decode fail: %v", err)
-		send.Error(w, err)
-		return
-	}
-
-	tx := dgraph.RequestTransaction(r)
-
-	results, err := dgraph.Mutate(ctx, tx, dgraph.Mutation{
-		Input:     in,
-		NodeLabel: nodeLabel,
-		ID:        id,
-		By:        user.GetID(),
-	})
-	if err != nil {
-		send.Error(w, err)
-		return
-	}
-
-	var out interface{} = results
-	if len(results) == 1 {
-		out = results[0]
-	}
-
-	err = send.JSON(w, out)
-	if err != nil {
-		return
-	}
-
-	event.Send(user, &pubsub.Event{
-		Action:       r.Method,
-		Method:       r.Method,
-		URL:          r.URL.String(),
-		ResourceID:   id,
-		ResourceType: resourceType,
-		Payload:      &in,
-		CreatedBy:    user.GetID(),
-		CreatedAt:    time.Now(),
-		Result:       out,
-	})
 }
 
 func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
@@ -310,45 +325,46 @@ func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func deleteHandler(w http.ResponseWriter, r *http.Request) {
-	resourceType := strings.ToLower(chi.URLParam(r, "type"))
-	id := chi.URLParam(r, "id")
-	ctx := r.Context()
-	user := authbase.GetContextUser(ctx)
+func deleteHandler(resourceType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		id := chi.URLParam(r, "id")
+		ctx := r.Context()
+		user := authbase.GetContextUser(ctx)
 
-	tx := dgraph.RequestTransaction(r)
+		tx := dgraph.RequestTransaction(r)
 
-	var fileNode map[string]interface{}
+		var fileNode map[string]interface{}
 
-	if resourceType == "file" {
-		node, err := dgraph.ReadNode(ctx, tx, id)
+		if resourceType == "file" {
+			node, err := dgraph.ReadNode(ctx, tx, id)
+			if err != nil {
+				send.Error(w, err)
+				return
+			}
+			fileNode = node
+		}
+
+		resp, err := dgraph.DeleteNode(ctx, tx, id)
 		if err != nil {
 			send.Error(w, err)
 			return
 		}
-		fileNode = node
+
+		if fileNode != nil {
+			go deleteFileObject(fileNode)
+		}
+
+		w.WriteHeader(http.StatusOK)
+
+		event.Send(user, &pubsub.Event{
+			Action:       r.Method,
+			Method:       r.Method,
+			URL:          r.URL.String(),
+			ResourceID:   id,
+			ResourceType: resourceType,
+			CreatedBy:    user.GetID(),
+			CreatedAt:    time.Now(),
+			Result:       resp,
+		})
 	}
-
-	resp, err := dgraph.DeleteNode(ctx, tx, id)
-	if err != nil {
-		send.Error(w, err)
-		return
-	}
-
-	if fileNode != nil {
-		go deleteFileObject(fileNode)
-	}
-
-	w.WriteHeader(http.StatusOK)
-
-	event.Send(user, &pubsub.Event{
-		Action:       r.Method,
-		Method:       r.Method,
-		URL:          r.URL.String(),
-		ResourceID:   id,
-		ResourceType: resourceType,
-		CreatedBy:    user.GetID(),
-		CreatedAt:    time.Now(),
-		Result:       resp,
-	})
 }
