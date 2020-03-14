@@ -30,4 +30,4 @@ def index_file(url):
     doc['text'] = result['text']
 
     api.login("system", os.getenv("SYSTEM_PWD"))
-    return api.post('/api/data/doc', doc)
+    return api.post('/api/data/document', doc)
