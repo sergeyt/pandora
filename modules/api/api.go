@@ -21,6 +21,7 @@ func NewHandler() http.Handler {
 	// it to use a custom JSONFormatter. See the logrus docs for how to
 	// configure the backend at github.com/sirupsen/logrus
 	logger := log.New()
+	logger.Level = log.ErrorLevel
 	if logFormat == "json" {
 		logger.Formatter = &log.JSONFormatter{
 			// disable, as we set our own
