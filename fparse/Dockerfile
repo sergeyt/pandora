@@ -7,5 +7,5 @@ FROM openjdk:11.0.6-jdk-slim
 RUN mkdir -p /app
 COPY --from=build /home/gradle/src/build/libs/*.jar /app/app.jar
 WORKDIR /app
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-Dserver.port=4219", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-Dserver.port=4219", "-jar", "/app/app.jar"]
 EXPOSE 4219
