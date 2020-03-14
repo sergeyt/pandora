@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.client.RestTemplate
 import java.net.MalformedURLException
 import java.net.URL
+import org.slf4j.LoggerFactory;
 
+val LOGGER = LoggerFactory.getLogger(Application::class.java)
 
 fun downloadFile(url: String): ResponseEntity<Resource> {
     val rest = RestTemplate()
@@ -16,8 +18,11 @@ fun downloadFile(url: String): ResponseEntity<Resource> {
     headers.add("Accept", "*/*")
 
     val req = HttpEntity("", headers)
-    val au = toAbsoluteUrl(url)
-    val res = rest.exchange(au, HttpMethod.GET, req, Resource::class.java)
+    val file = toAbsoluteUrl(url)
+
+    LOGGER.info("downloading file {}", file)
+
+    val res = rest.exchange(file, HttpMethod.GET, req, Resource::class.java)
     if (res.body == null) {
         throw NullPointerException("expect body")
     }
