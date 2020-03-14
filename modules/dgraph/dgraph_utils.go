@@ -65,6 +65,7 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg pagination.Pagi
 func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface{}, error) {
 	query := `query node($id: string) {
   node(func: uid($id)) {
+	uid
     expand(_all_)
   }
 }`
