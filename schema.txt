@@ -7,6 +7,7 @@ File: string @count .
 Category: string @count .
 Message: string @count .
 Channel: string @count .
+Document: string @count .
 
 name: string @index(term, fulltext, trigram) .
 first_name: string @index(term, fulltext, trigram) .
@@ -144,4 +145,8 @@ type Term {
     text: string
     lang: string
     region: string
+}
+
+type Document {
+    text: string
 }
