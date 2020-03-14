@@ -20,4 +20,4 @@ COPY --from=build /go/bin/pubsubd /usr/local/bin
 
 ENTRYPOINT ["dockerize", "--wait", "tcp://nats:4222", "/usr/local/bin/pubsubd"]
 
-HEALTHCHECK --interval=10s --timeout=10s CMD /usr/bin/curl --fail http://localhost:4302/api/pubsub/health || exit 1
+HEALTHCHECK --interval=60s --timeout=60s CMD /usr/bin/curl --fail http://localhost:4302/api/pubsub/health || exit 1
