@@ -117,6 +117,8 @@ services:
       context: ./fparse
     environment:
       FS_HOST: http://app:4201
+    volumes:
+      - ./fparse:/home/gradle/src
     networks:
       - internal_network
     ports:
@@ -133,7 +135,7 @@ services:
     image: nats:2-alpine
     container_name: nats
     hostname: nats
-    command: nats-server -DV --config /etc/nats-server.conf
+    command: nats-server --config /etc/nats-server.conf
     volumes:
       - ./config/nats/nats-server.conf:/etc/nats-server.conf
     networks:
