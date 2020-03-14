@@ -5,7 +5,7 @@ go 1.13
 require (
 	cloud.google.com/go v0.54.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
-	github.com/aws/aws-sdk-go v1.29.23 // indirect
+	github.com/aws/aws-sdk-go v1.29.24 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
@@ -21,6 +21,7 @@ require (
 	github.com/gocontrib/pubsub v0.0.0-20200312200210-54848bfb63ae
 	github.com/gocontrib/request v0.0.0-20160320145147-69ba4658ef4d // indirect
 	github.com/gocontrib/rest v0.0.0-20190315023136-e0292c76d587
+	github.com/golang/protobuf v1.3.5 // indirect
 	github.com/gorilla/handlers v1.4.2
 	github.com/gorilla/mux v1.7.4 // indirect
 	github.com/gorilla/schema v1.1.0 // indirect
@@ -32,7 +33,7 @@ require (
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
-	github.com/markbates/goth v1.61.3
+	github.com/markbates/goth v1.62.0
 	github.com/onsi/ginkgo v1.10.2 // indirect
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
@@ -45,7 +46,7 @@ require (
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	google.golang.org/appengine v1.6.5 // indirect
-	google.golang.org/genproto v0.0.0-20200312145019-da6875a35672 // indirect
+	google.golang.org/genproto v0.0.0-20200313141609-30c55424f95d // indirect
 	google.golang.org/grpc v1.28.0
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
