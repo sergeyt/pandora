@@ -53,7 +53,8 @@ class ParseController {
         // TODO normalize metadata, i.e. convert to standard names
         val meta = metadata.names().map {
             val vals = metadata.getValues(it)
-            Pair(it, normalizeValue(vals))
+            val name = it.replace(':', '.').toLowerCase()
+            Pair(name, normalizeValue(vals))
         }.toMap()
 
         return ParseResult(meta, handler.toString())
