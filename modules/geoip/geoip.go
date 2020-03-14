@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/auth"
+	"github.com/sergeyt/pandora/modules/send"
 )
 
 // RegisterAPI add a GET route to request GeoIP
@@ -21,7 +21,7 @@ func RegisterAPI(r chi.Router) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		apiutil.SendJSON(w, t)
+		_ = send.JSON(w, t)
 	})
 }
 

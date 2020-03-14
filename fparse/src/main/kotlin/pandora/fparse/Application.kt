@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class FparseApplication
+class Application
 
 fun main(args: Array<String>) {
-    runApplication<FparseApplication>(*args)
+    runApplication<Application>(*args)
 }

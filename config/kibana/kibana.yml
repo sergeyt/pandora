@@ -3,5 +3,4 @@
 server.name: kibana
 server.host: "0"
 server.basePath: "/kibana"
-elasticsearch.url: http://elasticsearch:9200
 xpack.monitoring.ui.container.elasticsearch.enabled: false

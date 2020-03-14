@@ -2,6 +2,7 @@ package auth
 
 import (
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/go-chi/chi"
@@ -69,6 +70,27 @@ func Middleware(next http.Handler) http.Handler {
 				}
 			}
 
+			ctx = goauth.WithUser(ctx, user)
+			r = r.WithContext(ctx)
+			next.ServeHTTP(w, r)
+			return
+		}
+
+		// TODO require internal call header maybe with some key
+		if r.URL.Hostname() == "localhost" {
+			email := os.Getenv("SYSTEM_EMAIL")
+			var user goauth.User = &goauth.UserInfo{
+				ID:    "system",
+				Name:  "system",
+				Email: email,
+				Admin: true,
+				Claims: map[string]interface{}{
+					"email": email,
+					"role":  "system",
+				},
+			}
+
+			ctx := r.Context()
 			ctx = goauth.WithUser(ctx, user)
 			r = r.WithContext(ctx)
 			next.ServeHTTP(w, r)

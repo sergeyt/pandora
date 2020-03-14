@@ -1,10 +1,126 @@
 version: "3.2"
+
+networks:
+  internal_network:
+
+volumes:
+  minio:
+  dgraph:
+  caddy:
+  esdata1:
+  esdata2:
+
 services:
+  # celery worker
+  worker:
+    container_name: worker
+    build:
+      context: .
+      dockerfile: docker/celery/Dockerfile
+    networks:
+      - internal_network
+    volumes:
+      - ./scripts:/app:cached
+    command:
+      [celery, worker, --app=worker.app, --concurrency=10, --loglevel=INFO]
+    environment:
+      CELERY_BROKER_URL: amqp://guest:guest@rabbit:5672
+      CELERY_BACKEND_URL: redis://redis:6379
+      TIKA_HOST: http://tika:4219
+      ES_HOSTS: http://elasticsearch:9200
+      ES_INDEX_DOCS: docs
+      HOSTNAME: ${HOSTNAME}
+      HTTP_PORT: ${HTTP_PORT}
+      HTTPS_PORT: ${HTTPS_PORT}
+      DGRAPH_TOKEN: ${DGRAPH_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      SYSTEM_PWD: ${SYSTEM_PWD}
+      ADMIN_PWD: ${ADMIN_PWD}
+      # api key protection
+      API_KEY_SECRET: ${API_KEY_SECRET}
+      API_KEY: ${API_KEY}
+      APP_ID: ${APP_ID}
+      APP_SECRET: ${APP_SECRET}
+      API_GATEWAY_URL: "http://app:4201"
+
+  # listens NATS events and react on them
+  reactor:
+    container_name: reactor
+    build:
+      context: .
+      dockerfile: docker/reactor/Dockerfile
+    networks:
+      - internal_network
+    volumes:
+      - ./scripts:/app:cached
+    environment:
+      CELERY_BROKER_URL: amqp://guest:guest@rabbit:5672
+      CELERY_BACKEND_URL: redis://redis:6379
+      TIKA_HOST: http://tika:4219
+      NATS_URI: ${NATS_URI}
+      HOSTNAME: ${HOSTNAME}
+      HTTP_PORT: ${HTTP_PORT}
+      HTTPS_PORT: ${HTTPS_PORT}
+      DGRAPH_TOKEN: ${DGRAPH_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      SYSTEM_PWD: ${SYSTEM_PWD}
+      ADMIN_PWD: ${ADMIN_PWD}
+      # api key protection
+      API_KEY_SECRET: ${API_KEY_SECRET}
+      API_KEY: ${API_KEY}
+      APP_ID: ${APP_ID}
+      APP_SECRET: ${APP_SECRET}
+      API_GATEWAY_URL: "http://app:4201"
+
+  # message broker for celery
+  rabbit:
+    container_name: rabbit
+    image: rabbitmq
+    networks:
+      - internal_network
+    ports:
+      - 5672:5672
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+
+  # cache service
+  redis:
+    container_name: redis
+    build:
+      context: ./docker/redis
+    networks:
+      - internal_network
+    sysctls:
+      - net.core.somaxconn=1024
+    ports:
+      - 6379:6379
+    restart: always
+    healthcheck:
+      test: "curl --fail http://localhost:6379 || exit 1"
+      interval: 60s
+      timeout: 60s
+      retries: 10
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+
   # file parsers by apache tika
   tika:
     container_name: tika
     build:
       context: ./fparse
+    environment:
+      FS_HOST: http://app:4201
+    volumes:
+      - ./fparse:/home/gradle/src
+    networks:
+      - internal_network
     ports:
       - 4219:4219
     restart: always
@@ -13,12 +129,17 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # message bus
   nats:
-    image: nats:latest
+    image: nats:2-alpine
     container_name: nats
     hostname: nats
-    command: -DV
+    command: nats-server --config /etc/nats-server.conf
+    volumes:
+      - ./config/nats/nats-server.conf:/etc/nats-server.conf
+    networks:
+      - internal_network
     ports:
       - 4222:4222
       - 6222:6222
@@ -26,21 +147,24 @@ services:
     restart: always
     healthcheck:
       test: "curl --fail http://localhost:4222 || exit 1"
-      interval: 10s
-      timeout: 10s
+      interval: 60s
+      timeout: 60s
       retries: 10
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # Amazon S3 compatible file store
   minio:
     image: minio/minio:latest
     container_name: minio
+    networks:
+      - internal_network
     volumes:
       - minio:/data
-      - ./config/minio:/etc/minio
+      - ./config/minio:/etc/minio:cached
     ports:
       - 9000:9000
     environment:
@@ -53,23 +177,30 @@ services:
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # image ops service (we need resizing at least)
   imageproxy:
-    image: willnorris/imageproxy
+    image: tianon/true
+    # image: willnorris/imageproxy
     container_name: imageproxy
-    command: "-addr 0.0.0.0:1081"
-    ports:
-      - 1081:1081
-    restart: always
+    networks:
+      - internal_network
+    # command: "-addr 0.0.0.0:1081"
+    # ports:
+    #   - 1081:1081
+    # restart: always
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # dgraph cluster manager
   zero:
     image: dgraph/dgraph:v2.0.0-rc1
     container_name: zero
+    networks:
+      - internal_network
     volumes:
       - dgraph:/dgraph
     ports:
@@ -79,18 +210,21 @@ services:
     restart: always
     healthcheck:
       test: "curl --fail --max-time 10 http://localhost:6080/health"
-      interval: 10s
-      timeout: 10s
+      interval: 60s
+      timeout: 60s
       retries: 10
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
-  # dgraph node
+
+  # dgraph node (GraphQL native database)
   dgraph:
     image: dgraph/dgraph:v2.0.0-rc1
     container_name: dgraph
+    networks:
+      - internal_network
     volumes:
       - dgraph:/dgraph
     ports:
@@ -100,18 +234,21 @@ services:
     restart: always
     healthcheck:
       test: "curl --fail --max-time 10 http://localhost:8080/health"
-      interval: 10s
-      timeout: 10s
+      interval: 60s
+      timeout: 60s
       retries: 10
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # dgraph UI
   ratel:
     image: dgraph/dgraph:v2.0.0-rc1
     container_name: ratel
+    networks:
+      - internal_network
     ports:
       - 8000:8000
     command: dgraph-ratel
@@ -125,70 +262,95 @@ services:
   # elasticsearch node1
   # see also https://github.com/deviantony/docker-elk
   # todo elasticsearch production config
-  es:
-    build:
-      context: ./
-      dockerfile: ./docker/elasticsearch/Dockerfile
+  elasticsearch:
+    image: tianon/true
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/elasticsearch/Dockerfile
     container_name: elasticsearch
+    networks:
+      - internal_network
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
       - esdata1:/usr/share/elasticsearch/data
-    ports:
-      - 9200:9200
-    restart: always
-    healthcheck:
-      test: "curl --fail http://localhost:9200 || exit 1"
-      interval: 10s
-      timeout: 10s
-      retries: 10
+    # ports:
+    #   - 9200:9200
+    # restart: always
+    # healthcheck:
+    #   test: "curl --fail http://localhost:9200 || exit 1"
+    #   interval: 60s
+    #   timeout: 60s
+    #   retries: 10
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
   # elasticsearch node2
-  es2:
+  elasticsearch2:
     image: tianon/true
-    build:
-      context: ./
-      dockerfile: ./docker/elasticsearch/Dockerfile
+    # build:
+    #   context: ./
+    #   dockerfile: ./docker/elasticsearch/Dockerfile
     container_name: elasticsearch2
+    networks:
+      - internal_network
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
       - esdata2:/usr/share/elasticsearch/data
-    restart: always
-    healthcheck:
-      test: "curl --fail http://localhost:9300 || exit 1"
-      interval: 10s
-      timeout: 10s
-      retries: 10
+    # restart: always
+    # healthcheck:
+    #   test: "curl --fail http://localhost:9300 || exit 1"
+    #   interval: 60s
+    #   timeout: 60s
+    #   retries: 10
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
+  # lightweight UI for elasticsearch
+  eshead:
+    container_name: eshead
+    image: tianon/true
+    # image: mobz/elasticsearch-head:5-alpine
+    # restart: always
+    networks:
+      - internal_network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: ${LOG_MAX_SIZE}
+        max-file: ${LOG_MAX_FILE}
+
   # kibana - elasticsearch dashboard
   kibana:
-    image: docker.elastic.co/kibana/kibana:6.8.7
+    image: tianon/true
+    # image: docker.elastic.co/kibana/kibana:7.6.1
     container_name: kibana
     environment:
       XPACK_MONITORING_ENABLED: "false"
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    networks:
+      - internal_network
     volumes:
-      - ./config/kibana/:/usr/share/kibana/config:ro
-    ports:
-      - 5601:5601
-    restart: always
+      - ./config/kibana/:/usr/share/kibana/config:cached
+    # ports:
+    #   - 5601:5601
+    # restart: always
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
+
   # pyadmin API service
   pyadmin:
     depends_on:
@@ -214,9 +376,11 @@ services:
       FLASK_ENV: development
       FLASK_PORT: 4211
     volumes:
-      - ./scripts:/pyadmin
-      - ./schema.txt:/schema.txt
-      - ./docker/pyadmin/main.sh:/main.sh
+      - ./scripts:/pyadmin:cached
+      - ./schema.txt:/schema.txt:cached
+      - ./docker/pyadmin/main.sh:/main.sh:cached
+    networks:
+      - internal_network
     ports:
       - 4211:4211
     restart: always
@@ -229,7 +393,7 @@ services:
   # application API service
   app:
     depends_on:
-      - dgraph
+      # - dgraph
       - minio
       - nats
     build:
@@ -264,8 +428,10 @@ services:
       GOOGLE_KEY: ${GOOGLE_KEY}
       GOOGLE_SECRET: ${GOOGLE_SECRET}
     volumes:
-      - .:/pandora
-      - ./docker/app/main.sh:/main.sh
+      - .:/pandora:cached
+      - ./docker/app/main.sh:/main.sh:cached
+    networks:
+      - internal_network
     ports:
       - 4201:4201
     restart: always
@@ -285,6 +451,8 @@ services:
     container_name: pubsub
     environment:
       NATS_URI: ${NATS_URI}
+    networks:
+      - internal_network
     ports:
       - 4302:4302
     restart: always
@@ -315,7 +483,9 @@ services:
       CADDYPATH: /data/caddy
     volumes:
       - caddy:/data/caddy
-      - ./config/caddy/Caddyfile:/etc/Caddyfile
+      - ./config/caddy/Caddyfile:/etc/Caddyfile:cached
+    networks:
+      - internal_network
     ports:
       - ${HTTP_PORT}:${HTTP_PORT}
       - ${HTTPS_PORT}:${HTTPS_PORT}
@@ -328,20 +498,16 @@ services:
 
   # monitor
   autoheal:
-    image: willfarrell/autoheal
+    # image: willfarrell/autoheal
+    image: tianon/true
     container_name: autoheal
     restart: on-failure
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - internal_network
+    # volumes:
+    #   - /var/run/docker.sock:/var/run/docker.sock
     logging:
       driver: "json-file"
       options:
         max-size: ${LOG_MAX_SIZE}
         max-file: ${LOG_MAX_FILE}
-
-volumes:
-  minio:
-  dgraph:
-  caddy:
-  esdata1:
-  esdata2:

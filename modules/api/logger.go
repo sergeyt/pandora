@@ -36,9 +36,9 @@ func (l *StructuredLogger) NewLogEntry(r *http.Request) middleware.LogEntry {
 	if r.TLS != nil {
 		scheme = "https"
 	}
-	logFields["http_scheme"] = scheme
-	logFields["http_proto"] = r.Proto
-	logFields["http_method"] = r.Method
+	logFields["scheme"] = scheme
+	logFields["proto"] = r.Proto
+	logFields["method"] = r.Method
 
 	logFields["remote_addr"] = r.RemoteAddr
 	logFields["user_agent"] = r.UserAgent()
@@ -58,11 +58,15 @@ type StructuredLoggerEntry struct {
 
 func (l *StructuredLoggerEntry) Write(status, bytes int, elapsed time.Duration) {
 	l.Logger = l.Logger.WithFields(logrus.Fields{
-		"resp_status": status, "resp_bytes_length": bytes,
-		"resp_elapsed_ms": float64(elapsed.Nanoseconds()) / 1000000.0,
+		"status": status, "content_length": bytes,
+		"elapsed_ms": float64(elapsed.Nanoseconds()) / 1000000.0,
 	})
 
-	l.Logger.Infoln("request complete")
+	if status >= 200 && status < 300 {
+		l.Logger.Infoln("request succeeded")
+	} else {
+		l.Logger.Errorln("request failed")
+	}
 }
 
 func (l *StructuredLoggerEntry) Panic(v interface{}, stack []byte) {

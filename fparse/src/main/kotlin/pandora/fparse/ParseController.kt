@@ -5,39 +5,40 @@ import org.apache.tika.metadata.Metadata
 import org.apache.tika.parser.AutoDetectParser
 import org.apache.tika.parser.ParseContext
 import org.apache.tika.sax.BodyContentHandler
-import org.springframework.core.io.Resource
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.client.RestTemplate
 
-data class Request(val url: String)
-data class Response(val metadata: Map<String, Any>, val text: String)
+
+data class ParseRequest(val url: String)
+data class ParseResult(val metadata: Map<String, Any>, val text: String)
+
+fun normalizeValue(vals: Array<String>): Any {
+    if (vals.size == 1) {
+        val v = vals[0]
+        if (v === "true")
+            return true
+        if (v === "false")
+            return false
+        return v
+    } else {
+        return vals
+    }
+}
 
 // Downloads file from given URL like pre-signed S3 URL
 // Parses file content using Apache Content
 // Input JSON {url, options?}
 // Returns JSON {metadata, text}
 @RestController
-class FparseController {
+class ParseController {
     @GetMapping("/api/tika/parse", produces = ["application/json"])
-    fun parse(@RequestParam(name="url") url: String): Response {
-        return parse(Request(url))
+    fun parse(@RequestParam(name = "url") url: String): ParseResult {
+        return parse(ParseRequest(url))
     }
 
     @PostMapping("/api/tika/parse", consumes = ["application/json"], produces = ["application/json"])
-    fun parse(@RequestBody req: Request): Response {
-        val rest = RestTemplate()
-        val headers = HttpHeaders()
-        headers.add("Accept", "*/*")
-
-        val fileReq = HttpEntity("", headers)
-        val fileRes = rest.exchange(req.url, HttpMethod.GET, fileReq, Resource::class.java)
-        if (fileRes.body == null) {
-            throw NullPointerException("expect body")
-        }
+    fun parse(@RequestBody req: ParseRequest): ParseResult {
+        val fileRes = downloadFile(req.url)
         val mediaTypes = MediaType.parseMediaTypes(fileRes.headers["Content-Type"])
 
         val parser = AutoDetectParser()
@@ -46,16 +47,15 @@ class FparseController {
         metadata.set("Content-Type", mediaTypes[0].type)
         val parseContext = ParseContext()
 
-        val stream = TikaInputStream.get(fileRes.body!!.getInputStream())
+        val stream = TikaInputStream.get(fileRes.body!!.inputStream)
         parser.parse(stream, handler, metadata, parseContext)
 
-        // TODO normalize metadata
+        // TODO normalize metadata, i.e. convert to standard names
         val meta = metadata.names().map {
             val vals = metadata.getValues(it)
-            val v: Any = if (vals.size == 1) vals[0] else vals
-            Pair(it, v)
+            Pair(it, normalizeValue(vals))
         }.toMap()
 
-        return Response(meta, handler.toString())
+        return ParseResult(meta, handler.toString())
     }
 }

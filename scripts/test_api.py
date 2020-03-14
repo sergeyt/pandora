@@ -6,7 +6,7 @@ import api
 # todo check bad auth cases as separate test cases
 
 
-def test_crud():
+def crud(resource):
     api.login("system", os.getenv("SYSTEM_PWD"))
 
     data = {
@@ -16,7 +16,8 @@ def test_crud():
 
     print('CREATE')
 
-    resp = api.post('/api/data/user', data)
+    base = '/api/data/' + resource
+    resp = api.post(base, data)
 
     id = resp['uid']
 
@@ -25,26 +26,26 @@ def test_crud():
         'age': 40,
     }
 
-    resp = api.post('/api/data/user', data)
+    resp = api.post(base, data)
     id2 = resp['uid']
 
     print('GET LIST')
 
-    resp = api.get('/api/data/user/list')
+    resp = api.get(f'{base}/list')
 
     print('GET BY ID')
 
-    resp = api.get('/api/data/user/' + id)
+    resp = api.get(f'{base}/{id}')
 
     print('QUERY')
 
-    query = """{
-  data(func: eq(name, "bob")) @filter(has(User)) {
+    query = """{{
+  data(func: eq(name, "bob")) @filter(has({0})) {{
     uid
     name
     age
-  }
-}"""
+  }}
+}}""".format(resource.capitalize())
     resp = api.post('/api/query', query, raw=True)
 
     print('search terms')
@@ -58,16 +59,28 @@ def test_crud():
         'age': 42,
     }
 
-    resp = api.put("/api/data/user/" + id, data)
+    resp = api.put(f"{base}/{id}", data)
 
     print('GET BY ID')
 
-    resp = api.get('/api/data/user/' + id)
+    resp = api.get(f'{base}/{id}')
 
     print('DELETE')
 
-    api.delete('/api/data/user/' + id)
-    api.delete('/api/data/user/' + id2)
+    api.delete(f'{base}/{id}')
+    api.delete(f'{base}/{id2}')
+
+
+def test_crud_user():
+    crud('user')
+
+
+def test_crud_term():
+    crud('term')
+
+
+def test_crud_document():
+    crud('document')
 
 
 def test_graph_update():

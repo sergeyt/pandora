@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	jwt "github.com/dgrijalva/jwt-go"
-	"github.com/sergeyt/pandora/modules/apiutil"
 	"github.com/sergeyt/pandora/modules/config"
+	"github.com/sergeyt/pandora/modules/send"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -69,7 +69,7 @@ func RequireAPIKey(next http.Handler) http.Handler {
 		if len(apiKey) == 0 {
 			err := fmt.Errorf("missing API key")
 			log.Errorf(err.Error())
-			apiutil.SendError(w, err, http.StatusUnauthorized)
+			send.Error(w, err, http.StatusUnauthorized)
 			return
 		}
 		parser := new(jwt.Parser)
@@ -78,27 +78,27 @@ func RequireAPIKey(next http.Handler) http.Handler {
 		token, err := parser.ParseWithClaims(apiKey, claims, getSecret)
 		if err != nil {
 			log.Errorf("jwt.Parser.ParseWithClaims fail: %v", err)
-			apiutil.SendError(w, err, http.StatusUnauthorized)
+			send.Error(w, err, http.StatusUnauthorized)
 			return
 		}
 		if !token.Valid {
 			err = fmt.Errorf("bad API key, invalid token")
 			log.Errorf(err.Error())
-			apiutil.SendError(w, err, http.StatusUnauthorized)
+			send.Error(w, err, http.StatusUnauthorized)
 			return
 		}
 		v, ok := claims["app_id"]
 		if !ok {
 			err = fmt.Errorf("bad API key, missing app_id")
 			log.Errorf(err.Error())
-			apiutil.SendError(w, err, http.StatusUnauthorized)
+			send.Error(w, err, http.StatusUnauthorized)
 			return
 		}
 		appID, ok := v.(string)
 		if !ok {
 			err = fmt.Errorf("bad API key, app_id is not string")
 			log.Errorf(err.Error())
-			apiutil.SendError(w, err, http.StatusUnauthorized)
+			send.Error(w, err, http.StatusUnauthorized)
 			return
 		}
 		// TODO check app id from database
@@ -107,7 +107,7 @@ func RequireAPIKey(next http.Handler) http.Handler {
 		if appID != knownID || appSecret != knownSecret {
 			err = fmt.Errorf("app %s is not registered", appID)
 			log.Errorf(err.Error())
-			apiutil.SendError(w, err, http.StatusUnauthorized)
+			send.Error(w, err, http.StatusUnauthorized)
 			return
 		}
 

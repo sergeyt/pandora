@@ -11,8 +11,8 @@ import (
 	dgo "github.com/dgraph-io/dgo/v2"
 	"github.com/dgraph-io/dgo/v2/protos/api"
 	"github.com/gocontrib/auth"
-	"github.com/sergeyt/pandora/modules/apiutil"
-	"github.com/sergeyt/pandora/modules/utils"
+	"github.com/sergeyt/pandora/modules/orderedjson"
+	"github.com/sergeyt/pandora/modules/pagination"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -25,7 +25,7 @@ type ListResult struct {
 	Total int64                    `json:"total"`
 }
 
-func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Pagination) (*ListResult, error) {
+func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg pagination.Pagination) (*ListResult, error) {
 	query := fmt.Sprintf(`query items($offset: int, $limit: int) {
   items(func: has(%s), offset: $offset, first: $limit) {
     uid
@@ -65,6 +65,7 @@ func ReadList(ctx context.Context, tx *dgo.Txn, label string, pg apiutil.Paginat
 func ReadNode(ctx context.Context, tx *dgo.Txn, id string) (map[string]interface{}, error) {
 	query := `query node($id: string) {
   node(func: uid($id)) {
+	uid
     expand(_all_)
   }
 }`
@@ -110,7 +111,7 @@ func ReadNodeTx(ctx context.Context, id string) (map[string]interface{}, error) 
 }
 
 type Mutation struct {
-	Input     utils.OrderedJSON
+	Input     orderedjson.Map
 	NodeLabel string
 	ID        string
 	By        string
