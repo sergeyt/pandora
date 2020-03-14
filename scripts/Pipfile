@@ -31,9 +31,6 @@ celery = "*"
 redis = "*"
 elasticsearch = "*"
 asyncio-nats-client = "*"
-yaml = "*"
-yaml-1-3 = "*"
-pyyaml = "*"
 
 [requires]
 python_version = "3.7"
