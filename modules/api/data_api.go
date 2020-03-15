@@ -38,6 +38,7 @@ func dataAPI(r chi.Router) {
 	types := []string{
 		"user",
 		"term",
+		"person",
 		"document",
 	}
 
