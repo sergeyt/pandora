@@ -206,7 +206,7 @@ services:
     ports:
       - 5080:5080
       - 6080:6080
-    command: dgraph zero --my=zero:5080 --telemetry=false
+    command: dgraph zero --my=zero:5080 --telemetry=false -v=2
     restart: always
     healthcheck:
       test: "curl --fail --max-time 10 http://localhost:6080/health"
@@ -230,7 +230,7 @@ services:
     ports:
       - 8080:8080
       - 9080:9080
-    command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --auth_token=${DGRAPH_TOKEN} --whitelist=${DGRAPH_WHITELIST} --telemetry=false
+    command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --whitelist=${DGRAPH_WHITELIST} --telemetry=false -v=2
     restart: always
     healthcheck:
       test: "curl --fail --max-time 10 http://localhost:8080/health"
