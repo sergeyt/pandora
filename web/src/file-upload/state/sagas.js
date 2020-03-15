@@ -6,7 +6,7 @@ import Pandora from "../../server-api";
 export function* handleFileUploadSaga(file) {
     try {
         yield put(updateStatus(file, UploadStatus.ACTIVE));
-        yield call(path => Pandora.uploadFile(path), file.path);
+        yield call(file => Pandora.uploadFile(file), file);
         yield put(uploadSuccess(file));
     } catch (err) {
         yield put(uploadFailure(file));

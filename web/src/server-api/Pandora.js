@@ -1,4 +1,5 @@
 import sleep from 'sleep-promise'
+import axios from "axios";
 
 const randomText = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
@@ -33,16 +34,29 @@ const stubDocuments = [
 ];
 
 export class Pandora {
+    constructor() {
+        this.axios = axios.create({
+            baseURL: '/api/',
+            timeout: 10000,
+            headers: {}
+        })
+    }
+
     async queryDocuments(queryString) {
         await sleep(500 + 500 * Math.random());
         return stubDocuments;
     }
 
-    async uploadFile(path) {
-        await sleep(500 + 1500 * Math.random());
-        if (Math.random() < 0.2) {
-            throw new Error(`Fail to load file: ${path}`);
-        }
+    async uploadFile(file) {
+        let data = new FormData();
+        data.append('file', file);
+
+        return await this.axios.post(`/file/${file.name}`, data, {
+            onUploadProgress(progressEvent) {
+                let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                console.log(`${file.name}: ${percentCompleted}%`)
+            }
+        });
     }
 }
 

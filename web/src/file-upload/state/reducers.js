@@ -13,11 +13,9 @@ export function uploadDone(file) {
 export function uploadReducer(state = initialState, action) {
     switch (action.type) {
         case ACTION_UPLOAD: {
+            action.files.forEach(file => file.status = UploadStatus.PENDING);
             let shouldClear = state.files.every(uploadDone);
-            let files = (shouldClear ? [] : state.files).concat(action.files.map(file => ({
-                path: file.path,
-                status: UploadStatus.PENDING
-            })));
+            let files = (shouldClear ? [] : state.files).concat(action.files);
             return {files};
         }
         case ACTION_CANCEL_ALL:
