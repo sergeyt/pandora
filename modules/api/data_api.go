@@ -11,10 +11,10 @@ import (
 	"time"
 
 	"github.com/dgraph-io/dgo/v2/protos/api"
+	"github.com/gocontrib/mediatype"
 	"github.com/sergeyt/pandora/modules/auth"
 	"github.com/sergeyt/pandora/modules/dgraph"
 	"github.com/sergeyt/pandora/modules/event"
-	"github.com/sergeyt/pandora/modules/mimetype"
 	"github.com/sergeyt/pandora/modules/orderedjson"
 	"github.com/sergeyt/pandora/modules/pagination"
 	"github.com/sergeyt/pandora/modules/send"
@@ -102,7 +102,7 @@ func queryHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		w.Header().Set("Content-Type", mimetype.JSON)
+		w.Header().Set("Content-Type", mediatype.JSON)
 		w.Write(resp)
 	}
 
@@ -260,7 +260,7 @@ func nquadMutationHandler(w http.ResponseWriter, r *http.Request) {
 
 	var mutation *api.Mutation
 
-	if mediaType == mimetype.JSON {
+	if mediaType == mediatype.JSON {
 		var input struct {
 			Set    string `json:"set,omitempty"`
 			Delete string `json:"delete,omitempty"`

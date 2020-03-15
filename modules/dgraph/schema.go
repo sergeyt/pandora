@@ -2,8 +2,8 @@ package dgraph
 
 import (
 	"context"
-	"encoding/json"
 	"io/ioutil"
+	"os"
 
 	"github.com/dgraph-io/dgo/v2/protos/api"
 	log "github.com/sirupsen/logrus"
@@ -43,7 +43,7 @@ func initSchema(path string) {
 }
 
 func initGraphqlSchema(path string) {
-	schema, err := ioutil.ReadFile(path)
+	schema, err := os.Open(path)
 	if err != nil {
 		log.Errorf("read schema fail: %v", err)
 		return
@@ -52,8 +52,11 @@ func initGraphqlSchema(path string) {
 	// init graphql schema via HTTP call for now
 	rc := NewRestClient()
 	var result interface{}
-	rc.Post("/graphql", []byte(schema), &result)
+	err = rc.PostData("/admin", "text/plain", schema, &result)
+	if err != nil {
+		log.Errorf("init graphql schema fail: %v", err)
+		return
+	}
 
-	j, _ := json.Marshal(result)
-	log.Info("init graphql result: %s", string(j))
+	log.Info("graphql schema initialized")
 }
