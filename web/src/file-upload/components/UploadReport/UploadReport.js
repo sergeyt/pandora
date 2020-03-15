@@ -46,6 +46,7 @@ function UploadReport() {
         if (!done && files.length > 0) {
             // New files were submitted to upload
             setShown(true);
+            setExpanded(true);
             setNotify(false);
         }
         if (done && !shown && files.length > 0) {
