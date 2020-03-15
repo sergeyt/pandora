@@ -89,6 +89,42 @@ see: [uid] @count .
 like: [uid] @count .
 dislike: [uid] @count .
 
+date: dateTime .
+extractforaccessibility: bool .
+hasxmp: bool .
+subject: string .
+canmodify: bool .
+title: string .
+unmappedunicodecharsperpage: string .
+extractcontent: bool .
+sourcemodified: string .
+modified: dateTime .
+company: string .
+documentid: string .
+npages: int .
+assembledocument: bool .
+hasxfa: bool .
+xparsedby: string .
+hasacroformfields: bool .
+created: dateTime .
+author: [uid] @count .
+format: string .
+canprintdegraded: bool .
+pdfversion: string .
+charsperpage: string .
+modifyannotations: bool .
+fillinform: bool .
+creatortool: string .
+encrypted: bool .
+canprint: bool .
+producer: string .
+
+type Person {
+    name: string
+    first_name: string
+    last_name: string
+}
+
 type User {
     name: string
     first_name: string
@@ -142,11 +178,43 @@ type File {
 }
 
 type Term {
+    created_at: dateTime
+    modified_at: dateTime
     text: string
     lang: string
     region: string
 }
 
 type Document {
+    created_at: dateTime
+    modified_at: dateTime
+    url: string
     text: string
+    date: dateTime
+    extractforaccessibility: bool
+    hasxmp: bool
+    subject: string
+    canmodify: bool
+    title: string
+    unmappedunicodecharsperpage: string
+    extractcontent: bool
+    sourcemodified: string
+    company: string
+    documentid: string
+    npages: int
+    assembledocument: bool
+    hasxfa: bool
+    xparsedby: string
+    hasacroformfields: bool
+    created: dateTime
+    format: string
+    canprintdegraded: bool
+    pdfversion: string
+    charsperpage: string
+    modifyannotations: bool
+    fillinform: bool
+    creatortool: string
+    encrypted: bool
+    canprint: bool
+    producer: string
 }
