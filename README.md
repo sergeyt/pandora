@@ -5,10 +5,19 @@ This small box of pandora (aka small app basis) composed from the following tech
 * [Dgraph](https://dgraph.io/) as data store with GraphQL support, write operations using REST
 * [Minio](https://www.minio.io/) as Amazon S3 compatible storage
 * [Stow](https://github.com/graymeta/stow) allows using cloud storage provides like Amazon, Google, Azure
-* [ElasticSearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data is automatically replicated in elasticseach index
-* [Kibana](https://www.elastic.co/products/kibana) to visualize Elasticsearch data
+* [ElasticSearch](https://www.elastic.co/products/elasticsearch) as search engine. Dgraph data can be automatically replicated in ElasticSeach index
+* [Kibana](https://www.elastic.co/products/kibana) to explore ElasticSearch data
 * [NATS](https://nats.io/) as messaging system with streaming of push notifications (events) via [SSE](https://en.wikipedia.org/wiki/Server-sent_events) channel
+* [Celery](http://www.celeryproject.org/) - distributed task queue
+* [RabbitMQ](https://www.rabbitmq.com/) - fast message broker for celery tasks
+* [Redis](https://redis.io/) - result backend for celery tasks and cache service
+* [Apache Tika](https://tika.apache.org/) - powerful content analysis toolkit
 * try [FluentD](https://www.fluentd.org/) - for centralized logging, not implemented yet :)
+
+Programming languages currently used in the project:
+* [Go](https://golang.org/)
+* [Python](https://www.python.org/)
+* [Kotlin](https://kotlinlang.org/)
 
 ## Basic Idea
 
