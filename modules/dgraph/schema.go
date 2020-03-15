@@ -24,7 +24,7 @@ func initSchema(path string) {
 
 	ctx := context.Background()
 
-	dg, close, err := NewClient()
+	dg, close, err := NewClient(ctx)
 	if err != nil {
 		log.Errorf("cannot init dgraph schema: %v", err)
 		// TODO retry after few seconds

@@ -1,6 +1,7 @@
 package dgraph
 
 import (
+	"context"
 	"net"
 	"time"
 
@@ -8,10 +9,12 @@ import (
 )
 
 type grpcCon struct {
-	conn *grpc.ClientConn
+	conn   *grpc.ClientConn
+	cancel context.CancelFunc
 }
 
 func (c *grpcCon) Close() error {
+	c.cancel()
 	return c.conn.Close()
 }
 
@@ -45,9 +48,11 @@ func (c *grpcCon) SetWriteDeadline(t time.Time) error {
 
 // Dial to gRPC service. It is used in health checks
 func Dial(network, address string, timeout time.Duration) (net.Conn, error) {
-	c, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithTimeout(timeout))
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, timeout)
+	c, err := grpc.DialContext(ctx, address, grpc.WithInsecure())
 	if err != nil {
 		return nil, err
 	}
-	return &grpcCon{c}, nil
+	return &grpcCon{c, cancel}, nil
 }

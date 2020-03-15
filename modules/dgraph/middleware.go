@@ -10,14 +10,15 @@ import (
 
 func TransactionMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		dg, close, err := NewClient()
+		ctx := r.Context()
+
+		dg, close, err := NewClient(ctx)
 		if err != nil {
 			send.Error(w, err)
 			return
 		}
 		defer close()
 
-		ctx := r.Context()
 		tx := dg.NewTxn()
 		defer Discard(ctx, tx)
 

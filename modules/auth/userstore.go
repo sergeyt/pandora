@@ -128,7 +128,7 @@ func (s *userStore) Close() {
 }
 
 func (s *userStore) FindUser(ctx context.Context, query string, vars map[string]string, userID string, checkPwd bool) (auth.User, error) {
-	dg, close, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -230,7 +230,7 @@ func (s *userStore) CreateUser(ctx context.Context, account auth.UserData) (auth
 		return nil, fmt.Errorf("user.name is not defined")
 	}
 
-	dg, close, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -319,7 +319,7 @@ func linkAccount(ctx context.Context, tx *dgo.Txn, userID, accountID string) err
 }
 
 func (s *userStore) UpdateAccount(ctx context.Context, user auth.User, data auth.UserData) error {
-	dg, close, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient(ctx)
 	if err != nil {
 		return err
 	}

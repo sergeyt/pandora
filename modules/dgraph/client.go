@@ -14,12 +14,11 @@ import (
 	"google.golang.org/grpc"
 )
 
-type CloseFunc func()
-
 // NewClient creates new dgraph client
-func NewClient() (*dgo.Dgraph, CloseFunc, error) {
+func NewClient(ctx context.Context) (*dgo.Dgraph, context.CancelFunc, error) {
 	// TODO configurable timeout
-	conn, err := grpc.Dial(config.DB.Addr, grpc.WithInsecure(), grpc.WithTimeout(30*time.Second))
+	ctx, cancel := context.WithTimeout(ctx, 30*time.Second)
+	conn, err := grpc.DialContext(ctx, config.DB.Addr, grpc.WithInsecure())
 	if err != nil {
 		log.Errorf("grpc.Dial fail: %v", err)
 		return nil, nil, err
@@ -29,6 +28,7 @@ func NewClient() (*dgo.Dgraph, CloseFunc, error) {
 	dg := dgo.NewDgraphClient(dc)
 
 	close := func() {
+		cancel()
 		if err := conn.Close(); err != nil {
 			log.Errorf("Error while closing connection: %v", err)
 		}

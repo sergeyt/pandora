@@ -63,7 +63,7 @@ func FindFileImpl(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error
 }
 
 func FindFile(ctx context.Context, id string) (*FileInfo, error) {
-	dg, close, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ func AddFile(ctx context.Context, tx *dgo.Txn, file *FileInfo) (map[string]inter
 	dispose1 := noop
 	dispose2 := noop
 	if tx == nil {
-		dg, close, err := dgraph.NewClient()
+		dg, close, err := dgraph.NewClient(ctx)
 		if err != nil {
 			return nil, err
 		}

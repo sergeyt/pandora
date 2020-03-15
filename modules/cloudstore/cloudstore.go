@@ -160,7 +160,7 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 		return nil, err
 	}
 
-	dg, close, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient(ctx)
 	if err != nil {
 		return nil, err
 	}
@@ -185,7 +185,7 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 
 // Delete object by given path or file id
 func (fs *Stow) Delete(ctx context.Context, id string) (string, interface{}, error) {
-	dg, close, err := dgraph.NewClient()
+	dg, close, err := dgraph.NewClient(ctx)
 	if err != nil {
 		return "", nil, err
 	}
