@@ -61,7 +61,9 @@ function UploadDialog(props) {
 
     // Clear dialog state on open/close
     useEffect(() => {
-        setFiles([]);
+        if (open) {
+            setFiles([]);
+        }
     }, [open]);
 
     // Get dropzone properties
