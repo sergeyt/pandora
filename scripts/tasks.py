@@ -14,7 +14,6 @@ def add(x, y):
     return x + y
 
 
-# TODO update existing doc found by url
 @app.task
 def index_file(url):
     print(f'indexing {url}')
@@ -23,11 +22,55 @@ def index_file(url):
     resp.raise_for_status()
     result = resp.json()
 
-    # TODO find existing doc by url
-
-    doc = result['metadata']
-    doc['source_url'] = url
-    doc['text'] = result['text']
-
     api.login("system", os.getenv("SYSTEM_PWD"))
-    return api.post('/api/data/document', doc)
+
+    meta = result['metadata']
+
+    id = search_doc(url)
+    author = meta.get('author', '')
+    if author == '':
+        author = meta.get('creator', '')
+    author_id = search_person(author)
+    if author_id is None:
+        person = {'name': author}
+        person = api.post('/api/data/person', person)
+        author_id = person['uid']
+
+    # TODO keyword -> tag
+
+    doc = meta
+    doc['url'] = url
+    doc['text'] = result['text']
+    doc['author'] = {'uid': author_id}
+
+    if id is None:
+        return api.post('/api/data/document', doc)
+    return api.put(f'/api/data/document/{id}', doc)
+
+
+def search_doc(url):
+    q = """query doc($url: string) {
+  doc(func: eq(url, $url)) @filter(has(Document)) {
+	uid
+    expand(_all_)
+  }
+}
+"""
+    resp = api.query(q, params={'$url': url})
+    if len(resp['doc']) == 1:
+        return resp['doc'][0]['uid']
+    return None
+
+
+def search_person(name):
+    q = """query person($name: string) {
+  person(func: eq(name, $name)) @filter(has(Person)) {
+	uid
+    expand(_all_)
+  }
+}
+"""
+    resp = api.query(q, params={'$name': name})
+    if len(resp['person']) == 1:
+        return resp['person'][0]['uid']
+    return None
