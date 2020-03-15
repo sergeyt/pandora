@@ -12,7 +12,7 @@ import (
 func InitSchema() {
 	// TODO configurable path to schemas
 	initSchema("./schema.txt")
-	initGraphqlSchema("./schema.graphql")
+	initGraphqlSchema("./schema.gql")
 }
 
 func initSchema(path string) {
@@ -51,10 +51,9 @@ func initGraphqlSchema(path string) {
 
 	// init graphql schema via HTTP call for now
 	rc := NewRestClient()
-	var result interface{}
-	err = rc.PostData("/admin", "text/plain", schema, &result)
+	err = rc.PostData("/admin/schema", "text/plain", schema, nil)
 	if err != nil {
-		log.Errorf("init graphql schema fail: %v", err)
+		log.Errorf("init of graphql schema fail: %v", err)
 		return
 	}
 

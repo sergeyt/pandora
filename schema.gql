@@ -1,18 +1,15 @@
 type Person {
-  uid: ID
   name: String @search(by: [hash])
   first_name: String @search(by: [hash])
   last_name: String @search(by: [hash])
 }
 
 type User {
-  uid: ID
   name: String @search(by: [hash])
   first_name: String @search(by: [hash])
   last_name: String @search(by: [hash])
   nick_name: String @search(by: [hash])
   login: String @search(by: [hash])
-  password: password
   email: String @search(by: [hash])
   phone: String @search(by: [hash])
   role: String @search(by: [hash])
@@ -33,7 +30,6 @@ type User {
 }
 
 type Account {
-  uid: UID
   provider: String @search(by: [term])
   email: String @search(by: [hash])
   name: String @search(by: [hash])
@@ -50,7 +46,6 @@ type Account {
 }
 
 type File {
-  uid: ID
   path: String
   url: String
   source: String
@@ -61,7 +56,6 @@ type File {
 }
 
 type Term {
-  uid: ID
   created_at: DateTime
   modified_at: DateTime
   text: String @search(by: [hash, fulltext])
@@ -70,7 +64,6 @@ type Term {
 }
 
 type Document {
-  uid: ID
   created_at: DateTime
   modified_at: DateTime
   url: String
