@@ -12,19 +12,6 @@ import org.springframework.web.bind.annotation.*
 data class ParseRequest(val url: String)
 data class ParseResult(val metadata: Map<String, Any>, val text: String)
 
-fun normalizeValue(vals: Array<String>): Any {
-    if (vals.size == 1) {
-        val v = vals[0]
-        if (v === "true")
-            return true
-        if (v === "false")
-            return false
-        return v
-    } else {
-        return vals
-    }
-}
-
 // Downloads file from given URL like pre-signed S3 URL
 // Parses file content using Apache Content
 // Input JSON {url, options?}
@@ -50,13 +37,48 @@ class ParseController {
         val stream = TikaInputStream.get(fileRes.body!!.inputStream)
         parser.parse(stream, handler, metadata, parseContext)
 
-        // TODO normalize metadata, i.e. convert to standard names
+        val dups = HashSet<String>()
         val meta = metadata.names().map {
             val vals = metadata.getValues(it)
             val name = it.replace(':', '.').toLowerCase()
-            Pair(name, normalizeValue(vals))
-        }.toMap()
+            var value = normalizeValue(vals)
+            val strval = if (value is Array<*>) value.joinToString(";") else value
+            // dedupe dc.creator, creator, etc
+            var p = stem(name) + strval
+            if (dups.contains(p)) {
+                value = ""
+            } else {
+                dups.add(p)
+            }
+            if (name.indexOf('.') >= 0) {
+                val suffix = stem(name.split('.').last())
+                p = suffix + strval
+                if (dups.contains(p)) {
+                    value = ""
+                } else {
+                    dups.add(p)
+                }
+            }
+            Pair(name, value)
+        }.filter { it.second != "" }.toMap()
 
         return ParseResult(meta, handler.toString())
     }
+}
+
+fun normalizeValue(vals: Array<String>): Any {
+    if (vals.size == 1) {
+        val v = vals[0]
+        if (v === "true")
+            return true
+        if (v === "false")
+            return false
+        return v
+    } else {
+        return vals
+    }
+}
+
+fun stem(name: String): String {
+    return name.replace("_", "")
 }

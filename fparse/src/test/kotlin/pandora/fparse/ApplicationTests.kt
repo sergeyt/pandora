@@ -28,6 +28,9 @@ class ApplicationTests {
             val ctrl = ParseController()
             val result = ctrl.parse("file://" + it)
             keys.addAll(result.metadata.keys)
+            result.metadata.forEach {
+                println("%s=%s".format(it.key, it.value))
+            }
             println(result.metadata)
         }
         keys.forEach {
