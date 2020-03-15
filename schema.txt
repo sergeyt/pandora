@@ -106,7 +106,6 @@ assembledocument: bool .
 hasxfa: bool .
 xparsedby: string .
 hasacroformfields: bool .
-created: dateTime .
 author: [uid] @count .
 format: string .
 canprintdegraded: bool .
@@ -206,7 +205,6 @@ type Document {
     hasxfa: bool
     xparsedby: string
     hasacroformfields: bool
-    created: dateTime
     format: string
     canprintdegraded: bool
     pdfversion: string
