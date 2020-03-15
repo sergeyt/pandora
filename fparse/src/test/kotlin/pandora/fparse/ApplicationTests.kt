@@ -20,7 +20,7 @@ class ApplicationTests {
         assert(result.text.strip().startsWith("BY LEWIS CARROLL"))
     }
 
-    @Test
+    // @Test
     fun parseBooks() {
         val dir = "/Users/admin/Dropbox/books"
         val keys = HashSet<String>()
