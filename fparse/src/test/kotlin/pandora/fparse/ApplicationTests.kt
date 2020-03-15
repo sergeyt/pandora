@@ -24,15 +24,17 @@ class ApplicationTests {
     fun parseBooks() {
         val dir = "/Users/admin/Dropbox/books"
         val keys = HashSet<String>()
-        Files.list(File(dir).toPath()).forEach {
-            val ctrl = ParseController()
-            val result = ctrl.parse("file://" + it)
-            keys.addAll(result.metadata.keys)
-            result.metadata.forEach {
-                println("%s=%s".format(it.key, it.value))
-            }
-            println(result.metadata)
-        }
+        Files.list(File(dir).toPath())
+                .filter { it.toString().endsWith(".pdf") }
+                .forEach {
+                    val ctrl = ParseController()
+                    val result = ctrl.parse("file://" + it)
+                    keys.addAll(result.metadata.keys)
+                    result.metadata.forEach {
+                        println("%s=%s".format(it.key, it.value))
+                    }
+                    println(result.metadata)
+                }
         keys.forEach {
             println(it)
         }
