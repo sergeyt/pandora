@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const outputDirectory = path.resolve(__dirname, 'build');
 const htmlTemplate = path.resolve(__dirname, 'public/index.html');
+const serviceAddress = process.env.SERVICE_ADDRESS || 'http://localhost:9123';
 
 module.exports = {
   entry: './src/index.js',
@@ -43,5 +44,12 @@ module.exports = {
     contentBase: outputDirectory,
     port: 9999,
     historyApiFallback: true,
+    proxy: {
+      '/api/*': {
+        'target': serviceAddress,
+        'secure': false,
+        'logLevel': 'debug'
+      }
+    }
   },
 };

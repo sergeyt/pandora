@@ -9,7 +9,8 @@ import TagCloud from "../TagCloud";
 function SearchPageSideBar(props) {
     const {
         onClear,
-        onFileUpload
+        onFileUpload,
+        onQuery,
     } = props;
 
     return (
@@ -19,7 +20,7 @@ function SearchPageSideBar(props) {
                 <SideBarButton icon={SearchIcon} text="Clear Results" onClick={onClear}/>
             </SideBarCategory>
             <SideBarCategory title="Popular Tags">
-                <TagCloud tags={["animals", "birds", "pdf", "image", "novel", "fiction"]} onClick={console.log}/>
+                <TagCloud tags={["animals", "birds", "pdf", "image", "novel", "fiction"]} onClick={onQuery}/>
             </SideBarCategory>
         </React.Fragment>
     );
@@ -29,6 +30,7 @@ function SearchPageSideBar(props) {
 SearchPageSideBar.propTypes = {
     onClear: PropTypes.func.isRequired,
     onFileUpload: PropTypes.func.isRequired,
+    onQuery: PropTypes.func.isRequired,
 };
 
 

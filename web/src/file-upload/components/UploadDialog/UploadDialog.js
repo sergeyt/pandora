@@ -44,7 +44,7 @@ function UploadDialog(props) {
     // Retrieve styles
     const classes = useStyles();
     const theme = useTheme();
-    const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const fullScreen = useMediaQuery(theme.breakpoints.down("xs"));
 
     // Setup dialog state
     const [files, setFiles] = useState([]);

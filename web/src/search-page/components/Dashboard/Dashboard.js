@@ -54,12 +54,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Dashboard(props) {
-    const {sidebar, content} = props;
+    const {
+        sidebar,
+        content,
+        showSidebar,
+        onShowSidebar
+    } = props;
 
     const classes = useStyles();
-    const [menuOpen, setMenuOpen] = useState(false);
-    const openMenu = () => setMenuOpen(true);
-    const closeMenu = () => setMenuOpen(false);
+    const openMenu = () => onShowSidebar(true);
+    const closeMenu = () => onShowSidebar(false);
 
     return (
         <div className={classes.root}>
@@ -82,7 +86,7 @@ function Dashboard(props) {
             <Drawer variant="permanent" classes={{paper: classes.permanentDrawerPaper}}>
                 <SideBar>{sidebar}</SideBar>
             </Drawer>
-            <Drawer open={menuOpen} classes={{paper: classes.temporaryDrawerPaper}} onClose={closeMenu}>
+            <Drawer open={showSidebar} classes={{paper: classes.temporaryDrawerPaper}} onClose={closeMenu}>
                 <SideBar variant="button" onClose={closeMenu}>{sidebar}</SideBar>
             </Drawer>
             <main className={classes.content}>
@@ -103,7 +107,9 @@ Dashboard.propTypes = {
     sidebar: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
         PropTypes.node
-    ]).isRequired
+    ]).isRequired,
+    onShowSidebar: PropTypes.func.isRequired,
+    showSidebar: PropTypes.bool.isRequired,
 };
 
 export default Dashboard;
