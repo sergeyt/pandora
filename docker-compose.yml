@@ -498,14 +498,13 @@ services:
 
   # monitor
   autoheal:
-    # image: willfarrell/autoheal
-    image: tianon/true
+    image: willfarrell/autoheal
     container_name: autoheal
     restart: on-failure
     networks:
       - internal_network
-    # volumes:
-    #   - /var/run/docker.sock:/var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     logging:
       driver: "json-file"
       options:
