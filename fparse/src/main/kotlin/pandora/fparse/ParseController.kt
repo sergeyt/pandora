@@ -40,24 +40,16 @@ class ParseController {
         val dups = HashSet<String>()
         val meta = metadata.names().map {
             val vals = metadata.getValues(it)
-            val name = it.replace(':', '.').toLowerCase()
+            // TODO allow fullname in some cases
+            val name = stem(it.replace(':', '.').toLowerCase().split('.').last())
             var value = normalizeValue(vals)
             val strval = if (value is Array<*>) value.joinToString(";") else value
             // dedupe dc.creator, creator, etc
-            var p = stem(name) + strval
+            var p = name + strval
             if (dups.contains(p)) {
                 value = ""
             } else {
                 dups.add(p)
-            }
-            if (name.indexOf('.') >= 0) {
-                val suffix = stem(name.split('.').last())
-                p = suffix + strval
-                if (dups.contains(p)) {
-                    value = ""
-                } else {
-                    dups.add(p)
-                }
             }
             Pair(name, value)
         }.filter { it.second != "" }.toMap()
@@ -80,5 +72,20 @@ fun normalizeValue(vals: Array<String>): Any {
 }
 
 fun stem(name: String): String {
-    return name.replace("_", "")
+    val k = name
+            .replace("_", "")
+            .replace("-", "")
+    if (k === "keywords") {
+        return "keyword"
+    }
+    if (k === "contenttype") {
+        return "content_type"
+    }
+    if (k == "lastmodified" || k == "lastsavedate") {
+        return "modified_at"
+    }
+    if (k == "created" || k == "creationdate") {
+        return "created_at"
+    }
+    return k
 }
