@@ -3,6 +3,7 @@ import asyncio
 import json
 import traceback
 import logging
+import server_reloader
 from urllib.parse import urlparse, urlunparse, ParseResult
 from nats.aio.client import Client as NATS
 from nats.aio.errors import ErrConnectionClosed, ErrTimeout, ErrNoServers
@@ -21,7 +22,7 @@ def clean_url(url):
     return urlunparse(b)
 
 
-async def main(loop):
+async def reactor(loop):
     nc = NATS()
 
     NATS_URI = os.getenv('NATS_URI', 'nats://localhost:4222')
@@ -46,12 +47,20 @@ async def main(loop):
     await nc.subscribe("global", cb=message_handler)
 
 
-if __name__ == '__main__':
+def run():
     print('reactor started')
     logging.basicConfig(level=logging.DEBUG)
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
     loop.set_debug(True)
-    loop.run_until_complete(main(loop))
+    loop.run_until_complete(reactor(loop))
     # todo graceful shutdown
     loop.run_forever()
     print('reactor exited')
+
+
+def main():
+    server_reloader.main(run, before_reload=lambda: print('Reloading code…'))
+
+
+if __name__ == '__main__':
+    main()
