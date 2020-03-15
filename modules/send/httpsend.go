@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/sergeyt/pandora/modules/mimetype"
+	"github.com/gocontrib/mediatype"
 	log "github.com/sirupsen/logrus"
 )
 
 func JSON(w http.ResponseWriter, data interface{}, status ...int) error {
-	w.Header().Set("Content-Type", mimetype.JSON)
+	w.Header().Set("Content-Type", mediatype.JSON)
 
 	if len(status) > 0 {
 		w.WriteHeader(status[0])

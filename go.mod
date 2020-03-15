@@ -17,10 +17,11 @@ require (
 	github.com/gocontrib/auth v0.0.0-20200222165223-ee09c68e14fd
 	github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263
 	github.com/gocontrib/go-ldap-client v0.0.0-20170228181143-45b8133d8c18 // indirect
+	github.com/gocontrib/mediatype v0.0.0-20200315172638-4b0315f8daed
 	github.com/gocontrib/parse v0.0.0-20170301103618-1536a11fcd7f // indirect
 	github.com/gocontrib/pubsub v0.0.0-20200312200210-54848bfb63ae
 	github.com/gocontrib/request v0.0.0-20160320145147-69ba4658ef4d // indirect
-	github.com/gocontrib/rest v0.0.0-20190315023136-e0292c76d587
+	github.com/gocontrib/rest v0.0.2
 	github.com/golang/protobuf v1.3.5 // indirect
 	github.com/gorilla/handlers v1.4.2
 	github.com/gorilla/mux v1.7.4 // indirect
@@ -50,7 +51,7 @@ require (
 	google.golang.org/grpc v1.28.0
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
-	gopkg.in/ini.v1 v1.54.0 // indirect
+	gopkg.in/ini.v1 v1.55.0 // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
