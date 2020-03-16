@@ -37,7 +37,9 @@ func dataAPI(r chi.Router) {
 	// parse supported types from schema
 	types := []string{
 		"user",
+		"account",
 		"term",
+		"tag",
 		"person",
 		"document",
 	}
