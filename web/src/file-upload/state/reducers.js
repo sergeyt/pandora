@@ -1,4 +1,11 @@
-import {ACTION_CANCEL_ALL, ACTION_CANCEL_FILE, ACTION_UPDATE_STATUS, ACTION_UPLOAD, UploadStatus} from "./actions";
+import {
+    ACTION_CANCEL_ALL,
+    ACTION_CANCEL_FILE,
+    ACTION_UPDATE_STATUS,
+    ACTION_UPLOAD,
+    ACTION_UPLOAD_PROGRESS,
+    UploadStatus
+} from "./actions";
 
 export const initialState = {
     files: [],
@@ -23,8 +30,14 @@ export function uploadReducer(state = initialState, action) {
         case ACTION_CANCEL_FILE:
             return {files: state.files.filter(file => file.path !== action.file.path)};
         case ACTION_UPDATE_STATUS:
+        case ACTION_UPLOAD_PROGRESS:
             return {
-                files: state.files.map(file => ((file.path === action.file.path) ? action.file : file))
+                files: state.files.map(file => {
+                    if (file.path === action.file.path) {
+                        return Object.assign({}, file, action.file);
+                    }
+                    return file
+                })
             };
         default:
             return state;

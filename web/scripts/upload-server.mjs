@@ -7,13 +7,14 @@ import express from 'express';
 import fileUpload from 'express-fileupload';
 
 const debug = DBG("upload-server:server");
-const error = DBG("upload-server:error");
 const directory = process.env.DIRECTORY || ".data";
 const port = process.env.SERVER_PORT || 9123;
 
 const app = express();
 
-app.use(fileUpload({}));
+app.use(fileUpload({
+    limits: { fileSize: 10 * 1024 * 1024 * 1024 }, // 10GB
+}));
 app.use(logger('dev', process.stdout));
 
 app.post('/api/file/:name', function (req, res) {
@@ -27,21 +28,10 @@ app.post('/api/file/:name', function (req, res) {
     // Use the mv() method to place the file somewhere on your server
     file.mv(path.join(directory, name), err => {
         if (err) {
-            return res.status(500).send(err);
+            return res.status(500).json({error: err.message});
         }
         res.json({uid: lodash.uniqueId()});
     });
-});
-
-app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    error(`${err.status || 500} ${err.message}`);
-    next(error);
 });
 
 
