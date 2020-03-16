@@ -40,7 +40,8 @@ def index_file(url):
     keyword = split_keywords(meta.get('keyword', ''))
     keyword.extend(split_keywords(meta.get('keywords', '')))
     keyword.append('book')
-    tags = make_tags(list(set([k.strip() for k in keyword])))
+    keyword = list(set([k.strip() for k in keyword if len(k.strip()) > 0]))
+    tags = make_tags(keyword)
     meta.pop('keyword', None)
     meta.pop('keywords', None)
 
@@ -70,7 +71,7 @@ def split_keywords(v):
 
 
 def make_tags(keywords):
-    return [make_tag(k) for k in keywords if k != ""]
+    return [make_tag(k) for k in keywords if len(k) > 0]
 
 
 def make_tag(text):
