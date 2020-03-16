@@ -2,6 +2,10 @@ type Person {
   name: String @search(by: [hash])
   first_name: String @search(by: [hash])
   last_name: String @search(by: [hash])
+  created_at: DateTime
+  modified_at: DateTime
+  created_by: User
+  modified_by: User
 }
 
 type User {
@@ -27,6 +31,8 @@ type User {
   registered_at: DateTime
   created_at: DateTime
   modified_at: DateTime
+  created_by: User
+  modified_by: User
 }
 
 type Account {
@@ -43,6 +49,8 @@ type Account {
   role: String @search(by: [term])
   created_at: DateTime
   modified_at: DateTime
+  created_by: User
+  modified_by: User
 }
 
 type File {
@@ -51,11 +59,27 @@ type File {
   source: String
   content_type: String
   region: String @search(by: [term])
+  created_by: User
+  modified_by: User
   created_at: DateTime
   modified_at: DateTime
+  tag: [Tag]
 }
 
 type Term {
+  created_by: User
+  modified_by: User
+  created_at: DateTime
+  modified_at: DateTime
+  text: String @search(by: [hash, fulltext])
+  lang: String @search(by: [term])
+  region: String @search(by: [term])
+  tag: [Tag]
+}
+
+type Tag {
+  created_by: User
+  modified_by: User
   created_at: DateTime
   modified_at: DateTime
   text: String @search(by: [hash, fulltext])
@@ -64,6 +88,9 @@ type Term {
 }
 
 type Document {
+  author: [Person]
+  created_by: User
+  modified_by: User
   created_at: DateTime
   modified_at: DateTime
   url: String
@@ -94,4 +121,5 @@ type Document {
   encrypted: Boolean
   canprint: Boolean
   producer: String
+  tag: [Tag]
 }
