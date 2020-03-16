@@ -3,6 +3,7 @@
 import os
 import api
 
+
 def user_exists(user):
     try:
         api.login(user['login'], user['password'])
@@ -26,10 +27,11 @@ users = [
 ]
 
 
-def init():
+def main():
+    api.login("system", os.getenv("SYSTEM_PWD"))
     for user in users:
         ensure_user(user)
 
 
 if __name__ == '__main__':
-    init()
+    main()
