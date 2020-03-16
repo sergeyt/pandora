@@ -22,7 +22,7 @@ services:
     volumes:
       - ./scripts:/app:cached
     command:
-      [celery, worker, --app=worker.app, --concurrency=10, --loglevel=INFO]
+      [celery, worker, --app=worker.app, --concurrency=3, --loglevel=INFO]
     environment:
       CELERY_BROKER_URL: amqp://guest:guest@rabbit:5672
       CELERY_BACKEND_URL: redis://redis:6379
