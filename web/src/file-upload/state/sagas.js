@@ -1,5 +1,5 @@
 import {all, call, cancelled, put, select, take, takeEvery} from "redux-saga/effects";
-import {END, eventChannel} from 'redux-saga';
+import {END, eventChannel} from "redux-saga";
 import {
     ACTION_UPDATE_STATUS,
     ACTION_UPLOAD,
@@ -27,7 +27,7 @@ function makeUploadChannel({pandora, file, cancel}) {
         });
 
         return () => {
-            cancel.cancel('cancelled');
+            cancel.cancel("cancelled");
         };
     });
 }
@@ -46,7 +46,7 @@ export function* handleFileUploadSaga(file) {
         }
     } catch (err) {
         if (yield cancelled()) {
-            uploading.cancel('cancelled');
+            uploading.cancel("cancelled");
         }
         console.error(err);
     }

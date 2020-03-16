@@ -85,7 +85,7 @@ function FileListItem(props) {
             />
             <ListItemSecondaryAction onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
                 <ItemButton status={file.status} hover={hover} onCancel={() => onCancel(file)}
-                            progress={file.progress}/>
+                    progress={file.progress}/>
             </ListItemSecondaryAction>
         </ListItem>
     );
