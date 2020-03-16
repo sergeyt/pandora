@@ -4,6 +4,7 @@ from celery import Celery
 from elasticsearch import Elasticsearch
 from worker import app
 import api
+import nquad
 
 TIKA_HOST = os.getenv('TIKA_HOST', 'http://localhost:4219')
 
@@ -36,7 +37,13 @@ def index_file(url):
         person = api.post('/api/data/person', person)
         author_id = person['uid']
 
-    # TODO keyword -> tag
+    keyword = split_keywords(meta.get('keyword', ''))
+    keyword.extend(split_keywords(meta.get('keywords', '')))
+    keyword.append('book')
+    keyword = list(set([k.strip() for k in keyword if len(k.strip()) > 0]))
+    tags = make_tags(keyword)
+    meta.pop('keyword', None)
+    meta.pop('keywords', None)
 
     doc = meta
     doc['url'] = url
@@ -44,33 +51,61 @@ def index_file(url):
     doc['author'] = {'uid': author_id}
 
     if id is None:
-        return api.post('/api/data/document', doc)
-    return api.put(f'/api/data/document/{id}', doc)
+        doc = api.post('/api/data/document', doc)
+    else:
+        doc = api.put(f'/api/data/document/{id}', doc)
+        id = doc['uid']
+
+    # set tags
+    edges = [[id, 'tag', t['uid']] for t in tags]
+    api.update_graph(edges)
+    return doc
+
+
+def split_keywords(v):
+    if v == '':
+        return []
+    if isinstance(v, str):
+        return v.split(',')
+    return v
+
+
+def make_tags(keywords):
+    return [make_tag(k) for k in keywords if len(k) > 0]
+
+
+def make_tag(text):
+    id = find_tag(text)
+    if id is not None:
+        return {'uid': id}
+
+    tag = {'text': text}
+    tag = api.post('/api/data/tag', tag)
+    return {'uid': tag['uid']}
+
+
+def find_tag(text):
+    return find_node_by('text', text, 'Tag')
 
 
 def search_doc(url):
-    q = """query doc($url: string) {
-  doc(func: eq(url, $url)) @filter(has(Document)) {
-	uid
-    expand(_all_)
-  }
-}
-"""
-    resp = api.query(q, params={'$url': url})
-    if len(resp['doc']) == 1:
-        return resp['doc'][0]['uid']
-    return None
+    return find_node_by('url', url, 'Document')
 
 
 def search_person(name):
-    q = """query person($name: string) {
-  person(func: eq(name, $name)) @filter(has(Person)) {
-	uid
-    expand(_all_)
-  }
-}
-"""
-    resp = api.query(q, params={'$name': name})
-    if len(resp['person']) == 1:
-        return resp['person'][0]['uid']
+    return find_node_by('name', name, 'Person')
+
+
+def find_node_by(predicate, value, resourceType):
+    q = (
+        f"query node($value: string) {{\n"
+        f"node(func: eq({predicate}, $value)) @filter(has({resourceType})) {{\n"
+        f"uid\n"
+        f"expand(_all_)\n"
+        f"}}\n"
+        f"}}\n")
+
+    resp = api.query(q, params={'$value': value})
+    if len(resp['node']) > 0:
+        return resp['node'][0]['uid']
     return None

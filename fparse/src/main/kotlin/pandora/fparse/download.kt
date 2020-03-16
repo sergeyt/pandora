@@ -20,8 +20,8 @@ fun downloadFile(url: String): ResponseEntity<Resource> {
     // WARNING for testing purposes only
     // TODO in production allow only specific directories
     if (file.startsWith("file://")) {
-        val path = File(file.removePrefix("file://")).toPath()
-        val contentType = Files.probeContentType(path)
+        val path = file.removePrefix("file://")
+        val contentType = determineContentType(path)
         val headers = HttpHeaders()
         headers["Content-Type"] = contentType
         val resource = FileUrlResource(path.toString())
@@ -40,6 +40,13 @@ fun downloadFile(url: String): ResponseEntity<Resource> {
     }
 
     return res
+}
+
+fun determineContentType(path: String): String {
+    if (path.endsWith(".pdf", true)) {
+        return MediaType.APPLICATION_PDF.toString()
+    }
+    return Files.probeContentType(File(path).toPath())
 }
 
 fun toAbsoluteUrl(url: String): String {
