@@ -4,6 +4,7 @@ from celery import Celery
 from elasticsearch import Elasticsearch
 from worker import app
 import api
+import nquad
 
 TIKA_HOST = os.getenv('TIKA_HOST', 'http://localhost:4219')
 
@@ -36,28 +37,40 @@ def index_file(url):
         person = api.post('/api/data/person', person)
         author_id = person['uid']
 
-    tag = []
-    keyword = meta.get('keyword', '')
-    if isinstance(keyword, str):
-        tag = make_tags(keyword.split(','))
-    else:
-        tag = make_tags(keyword)
+    keyword = split_keywords(meta.get('keyword', ''))
+    keyword.extend(split_keywords(meta.get('keywords', '')))
+    keyword.append('book')
+    tags = make_tags(list(set([k.strip() for k in keyword])))
+    meta.pop('keyword', None)
+    meta.pop('keywords', None)
 
     doc = meta
     doc['url'] = url
     doc['text'] = result['text']
     doc['author'] = {'uid': author_id}
 
-    if len(tag) > 0:
-        doc['tag'] = tag
-
     if id is None:
-        return api.post('/api/data/document', doc)
-    return api.put(f'/api/data/document/{id}', doc)
+        doc = api.post('/api/data/document', doc)
+    else:
+        doc = api.put(f'/api/data/document/{id}', doc)
+        id = doc['uid']
+
+    # set tags
+    edges = [[id, 'tag', t['uid']] for t in tags]
+    api.update_graph(edges)
+    return doc
+
+
+def split_keywords(v):
+    if v == '':
+        return []
+    if isinstance(v, str):
+        return v.split(',')
+    return v
 
 
 def make_tags(keywords):
-    return [make_tag(k) for k in keywords]
+    return [make_tag(k) for k in keywords if k != ""]
 
 
 def make_tag(text):
@@ -66,12 +79,12 @@ def make_tag(text):
         return {'uid': id}
 
     tag = {'text': text}
-    tag = api.post('/api/data/term', tag)
+    tag = api.post('/api/data/tag', tag)
     return {'uid': tag['uid']}
 
 
 def find_tag(text):
-    return find_node_by('text', text, 'Term')
+    return find_node_by('text', text, 'Tag')
 
 
 def search_doc(url):
