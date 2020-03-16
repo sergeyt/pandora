@@ -95,6 +95,7 @@ FileListItem.propTypes = {
     file: PropTypes.shape({
         path: PropTypes.string.isRequired,
         status: PropTypes.oneOf(["pending", "active", "success", "failure"]).isRequired,
+        progress: PropTypes.number,
     }).isRequired,
     onCancel: PropTypes.func.isRequired,
 };
