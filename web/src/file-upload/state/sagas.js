@@ -1,15 +1,53 @@
-import {all, call, put, select, takeEvery} from "redux-saga/effects";
-import {ACTION_UPDATE_STATUS, ACTION_UPLOAD, updateStatus, uploadFailure, UploadStatus, uploadSuccess} from "./actions";
+import {all, call, cancelled, put, select, take, takeEvery} from "redux-saga/effects";
+import {END, eventChannel} from "redux-saga";
+import {
+    ACTION_UPDATE_STATUS,
+    ACTION_UPLOAD,
+    updateStatus,
+    uploadFailure,
+    uploadProgress,
+    UploadStatus,
+    uploadSuccess
+} from "./actions";
 import Pandora from "../../server-api";
 
 
+function makeUploadChannel({pandora, file, cancel}) {
+    return eventChannel(emit => {
+        const onProgress = (percent) => {
+            emit(uploadProgress(file, percent));
+        };
+        pandora.uploadFile(file, {onProgress, cancel}).then(() => {
+            emit(uploadSuccess(file));
+            emit(END);
+        }).catch((err) => {
+            console.error(err);
+            emit(uploadFailure(file));
+            emit(END);
+        });
+
+        return () => {
+            cancel.cancel("cancelled");
+        };
+    });
+}
+
+
 export function* handleFileUploadSaga(file) {
+    const uploading = Pandora.makeCancellableOperation();
     try {
         yield put(updateStatus(file, UploadStatus.ACTIVE));
-        yield call(file => Pandora.uploadFile(file), file);
-        yield put(uploadSuccess(file));
+        const channel = yield call(makeUploadChannel, {pandora: Pandora, file, cancel: uploading});
+
+        while (true) {
+            const action = yield take(channel);
+            console.log(action);
+            yield put(action);
+        }
     } catch (err) {
-        yield put(uploadFailure(file));
+        if (yield cancelled()) {
+            uploading.cancel("cancelled");
+        }
         console.error(err);
     }
 }

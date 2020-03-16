@@ -1,4 +1,4 @@
-import sleep from 'sleep-promise'
+import sleep from "sleep-promise";
 import axios from "axios";
 
 const randomText = `
@@ -36,10 +36,14 @@ const stubDocuments = [
 export class Pandora {
     constructor() {
         this.axios = axios.create({
-            baseURL: '/api/',
-            timeout: 10000,
+            baseURL: "/api/",
+            timeout: 10 * 60 * 1000, // 10 minutes
             headers: {}
-        })
+        });
+    }
+
+    makeCancellableOperation() {
+        return axios.CancelToken.source();
     }
 
     async queryDocuments(queryString) {
@@ -47,15 +51,17 @@ export class Pandora {
         return stubDocuments;
     }
 
-    async uploadFile(file) {
+    async uploadFile(file, {onProgress, cancel}) {
         let data = new FormData();
-        data.append('file', file);
+        data.append("file", file);
 
         return await this.axios.post(`/file/${file.name}`, data, {
-            onUploadProgress(progressEvent) {
+            onUploadProgress: progressEvent => {
                 let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                console.log(`${file.name}: ${percentCompleted}%`)
-            }
+                onProgress(percentCompleted);
+                console.log(`${file.name} completed on ${percentCompleted}%`);
+            },
+            cancelToken: cancel && cancel.token,
         });
     }
 }

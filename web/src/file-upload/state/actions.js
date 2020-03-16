@@ -2,6 +2,7 @@ export const ACTION_UPLOAD = "upload.UPLOAD";
 export const ACTION_CANCEL_ALL = "upload.CANCEL_ALL";
 export const ACTION_CANCEL_FILE = "upload.CANCEL_FILE";
 export const ACTION_UPDATE_STATUS = "upload.UPDATE_STATUS";
+export const ACTION_UPLOAD_PROGRESS = "upload.PROGRESS";
 
 export const UploadStatus = {
     SUCCESS: "success",
@@ -44,4 +45,14 @@ export function uploadSuccess(file) {
 
 export function uploadFailure(file) {
     return updateStatus(file, UploadStatus.FAILURE);
+}
+
+export function uploadProgress(file, progress) {
+    return {
+        type: ACTION_UPLOAD_PROGRESS,
+        file: {
+            path: file.path,
+            progress,
+        }
+    };
 }

@@ -35,6 +35,7 @@ function ItemButton(props) {
     const {
         hover,
         status,
+        progress,
         onCancel,
     } = props;
 
@@ -45,7 +46,8 @@ function ItemButton(props) {
     } else if (status === "failure") {
         return (<ErrorIcon className={classes.error}/>);
     } else if (status === "active" && !hover) {
-        return (<CircularProgress size={20}/>);
+        const variant = progress ? "static" : "indeterminate";
+        return (<CircularProgress size={25} thickness={6} value={progress} variant={variant}/>);
     } else {
         return (
             <IconButton onClick={onCancel} edge="end">
@@ -58,6 +60,7 @@ function ItemButton(props) {
 ItemButton.propTypes = {
     hover: PropTypes.bool.isRequired,
     status: PropTypes.oneOf(["pending", "active", "success", "failure"]).isRequired,
+    progress: PropTypes.number,
     onCancel: PropTypes.func.isRequired,
 };
 
@@ -72,7 +75,7 @@ function FileListItem(props) {
 
 
     return (
-        <ListItem onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+        <ListItem button onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
             <ListItemIcon>
                 <FileIcon color="action"/>
             </ListItemIcon>
@@ -81,7 +84,8 @@ function FileListItem(props) {
                 secondary={file.status}
             />
             <ListItemSecondaryAction onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-                <ItemButton status={file.status} hover={hover} onCancel={() => onCancel(file)}/>
+                <ItemButton status={file.status} hover={hover} onCancel={() => onCancel(file)}
+                    progress={file.progress}/>
             </ListItemSecondaryAction>
         </ListItem>
     );
