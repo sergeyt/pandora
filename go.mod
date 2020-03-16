@@ -21,7 +21,7 @@ require (
 	github.com/gocontrib/parse v0.0.0-20170301103618-1536a11fcd7f // indirect
 	github.com/gocontrib/pubsub v0.0.0-20200312200210-54848bfb63ae
 	github.com/gocontrib/request v0.0.0-20160320145147-69ba4658ef4d // indirect
-	github.com/gocontrib/rest v0.0.2
+	github.com/gocontrib/rest v0.1.0
 	github.com/golang/protobuf v1.3.5 // indirect
 	github.com/gorilla/handlers v1.4.2
 	github.com/gorilla/mux v1.7.4 // indirect
@@ -46,7 +46,6 @@ require (
 	github.com/stretchr/testify v1.5.1
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
-	google.golang.org/appengine v1.6.5 // indirect
 	google.golang.org/genproto v0.0.0-20200313141609-30c55424f95d // indirect
 	google.golang.org/grpc v1.28.0
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
