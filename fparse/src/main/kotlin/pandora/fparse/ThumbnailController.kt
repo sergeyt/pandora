@@ -1,14 +1,19 @@
 package pandora.fparse
 
+import org.apache.commons.io.FileUtils
 import org.apache.pdfbox.pdmodel.PDDocument
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
+import org.apache.pdfbox.rendering.ImageType
 import org.apache.pdfbox.rendering.PDFRenderer
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import java.io.ByteArrayOutputStream
+import java.io.File
 import javax.imageio.ImageIO
 import javax.ws.rs.NotSupportedException
+
 
 data class ThumbnailRequest(val url: String, val format: String)
 data class ThumbnailResult(val id: String, val url: String)
@@ -29,17 +34,30 @@ class ThumbnailController {
             throw NotSupportedException("only pdf is supported for now")
         }
 
-        val doc: PDDocument = PDDocument.load(fileRes.body!!.inputStream)
-
         val format = if (req.format === "") "JPEG" else req.format
 
-        // TODO render only first page with image
+        val doc = PDDocument.load(fileRes.body!!.inputStream)
+
+        var pageIndex = doc.pages.indexOfFirst {
+            val page = it
+            page.resources.xObjectNames.any {
+                val xobj = page.resources.getXObject(it)
+                xobj is PDImageXObject
+            }
+        }
+        if (pageIndex < 0) {
+            pageIndex = 0
+        }
+
         val pr = PDFRenderer(doc)
-        val bi = pr.renderImageWithDPI(0, 300F)
+        val bi = pr.renderImageWithDPI(pageIndex, 300F, ImageType.ARGB)
 
-        val outputStream = ByteArrayOutputStream()
-        ImageIO.write(bi, format, outputStream)
+        val out = ByteArrayOutputStream()
+        ImageIO.write(bi, format, out)
+        out.flush()
 
-        return outputStream.toByteArray()
+        val bytes = out.toByteArray()
+        // FileUtils.writeByteArrayToFile(File("/Users/admin/tmp/thumb.jpg"), bytes)
+        return bytes
     }
 }
