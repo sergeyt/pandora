@@ -123,8 +123,7 @@ func (fs *Stow) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) e
 }
 
 func (fs *Stow) fileUrl(path string) (*url.URL, error) {
-	// TODO what about google storage URLs
-	url, err := url.Parse("s3://" + fs.bucket + "/" + path)
+	url, err := url.Parse(fs.kind + "://" + fs.bucket + "/" + path)
 	if err != nil {
 		log.Errorf("url.Parse fail: %v", err)
 		return nil, err
@@ -151,6 +150,13 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 		log.Errorf("stow.GetContainer fail: %v", err)
 		return nil, err
 	}
+
+	item, err := container.Item(path)
+	if item != nil {
+		// TODO overwrite existing item instead of remove
+		container.RemoveItem(path)
+	}
+	err = nil
 
 	// TODO check if put requires to load file content into memory
 	// TODO add metadata
