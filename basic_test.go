@@ -7,10 +7,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	httpexpect "github.com/gavv/httpexpect/v2"
 	"github.com/sergeyt/pandora/modules/api"
 	"github.com/sergeyt/pandora/modules/config"
 	"github.com/sergeyt/pandora/modules/dgraph"
-	httpexpect "github.com/gavv/httpexpect/v2"
 )
 
 type TC struct {
@@ -28,7 +28,7 @@ func setup(t *testing.T) *TC {
 
 	// TODO separate config for testing
 	// HACK to run test from host we have to use host dgraph address
-	config.DB.Addr = "localhost:9080"
+	config.DGraph.RpcURL = "localhost:9080"
 
 	dgraph.InitSchema()
 

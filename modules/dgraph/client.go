@@ -18,7 +18,7 @@ import (
 func NewClient(ctx context.Context) (*dgo.Dgraph, context.CancelFunc, error) {
 	// TODO configurable timeout
 	ctx, cancel := context.WithTimeout(ctx, 30*time.Second)
-	conn, err := grpc.DialContext(ctx, config.DB.Addr, grpc.WithInsecure())
+	conn, err := grpc.DialContext(ctx, config.DGraph.RpcURL, grpc.WithInsecure())
 	if err != nil {
 		log.Errorf("grpc.Dial fail: %v", err)
 		return nil, nil, err

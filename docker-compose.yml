@@ -393,7 +393,7 @@ services:
   # application API service
   app:
     depends_on:
-      # - dgraph
+      - dgraph
       - minio
       - nats
     build:
@@ -401,10 +401,15 @@ services:
       dockerfile: ./docker/app/Dockerfile
     container_name: app
     environment:
+      PORT: 4201
       HOSTNAME: ${HOSTNAME}
       HTTP_PORT: ${HTTP_PORT}
       HTTPS_PORT: ${HTTPS_PORT}
       DGRAPH_TOKEN: ${DGRAPH_TOKEN}
+      DGRAPH_RPC_URL: dgraph:9080
+      DGRAPH_HTTP_URL: http://dgraph:8080
+      ES_HOSTS: http://elasticsearch:9200
+      NATS_URI: nats://nats:4222
       JWT_SECRET: ${JWT_SECRET}
       SYSTEM_EMAIL: ${SYSTEM_EMAIL}
       SYSTEM_PWD: ${SYSTEM_PWD}

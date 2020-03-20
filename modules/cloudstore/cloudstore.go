@@ -11,6 +11,7 @@ import (
 	_ "github.com/graymeta/stow/google"
 	"github.com/graymeta/stow/s3"
 	"github.com/sergeyt/pandora/modules/dgraph"
+	"github.com/sergeyt/pandora/modules/env"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -22,10 +23,10 @@ func NewCloudStore() CloudStore {
 // NewStow creates new Stow instance
 func NewStow() *Stow {
 	endpoint := os.Getenv("AWS_S3_ENDPOINT")
-	id := env("AWS_ACCESS_KEY_ID", os.Getenv("AWS_ACCESS_KEY"))
-	secret := env("AWS_SECRET_ACCESS_KEY", os.Getenv("AWS_SECRET_KEY"))
-	region := env("AWS_REGION", "eu-west-1")
-	bucket := env("AWS_S3_BUCKET", "pandora")
+	id := env.Get("AWS_ACCESS_KEY_ID", os.Getenv("AWS_ACCESS_KEY"))
+	secret := env.Get("AWS_SECRET_ACCESS_KEY", os.Getenv("AWS_SECRET_KEY"))
+	region := env.Get("AWS_REGION", "eu-west-1")
+	bucket := env.Get("AWS_S3_BUCKET", "pandora")
 
 	// TODO enable aws debug logging
 	kind := "s3"

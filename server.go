@@ -11,10 +11,10 @@ import (
 var server *http.Server
 
 func startServer() {
-	log.Printf("listening %s\n", config.ServerAddr)
+	log.Printf("listening %s\n", config.ServerPort)
 
 	server = &http.Server{
-		Addr:    config.ServerAddr,
+		Addr:    ":" + config.ServerPort,
 		Handler: api.NewHandler(),
 	}
 

@@ -5,11 +5,12 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/spf13/viper"
+	"github.com/sergeyt/pandora/modules/env"
 )
 
-type DBConfig struct {
-	Addr string
+type DgraphConfig struct {
+	RpcURL  string // e.g. dgraph:9080
+	HttpURL string // e.g. http://dgraph:8080
 }
 
 type ElasticSearchConfig struct {
@@ -17,38 +18,27 @@ type ElasticSearchConfig struct {
 }
 
 var (
-	ServerAddr = ":3000"
-	DB         = &DBConfig{
-		Addr: "localhost:9080",
+	ServerPort = env.Get("PORT", "3000")
+	DGraph     = &DgraphConfig{
+		RpcURL:  env.Get("DGRAPH_RPC_URL", "localhost:9080"),
+		HttpURL: env.Get("DGRAPH_HTTP_URL", "http://localhost:8080"),
 	}
 	ElasticSearch = &ElasticSearchConfig{
-		URL: "http://elasticsearch:9200",
+		URL: env.Get("ES_HOSTS", "http://localhost:9200"),
 	}
-	Nats = "nats://nats:4222"
+	NatsURL = env.Get("NATS_URI", "nats://localhost:4222")
 )
 
-func Parse() {
-	viper.SetConfigType("toml")
-	viper.SetConfigName("pandora")
-	viper.AddConfigPath(".")
-
-	err := viper.ReadInConfig()
-	if err != nil {
-		panic(fmt.Errorf("bad config file: %s", err))
-	}
-
-	Init()
-}
-
-func Init() {
-	ServerAddr = viper.GetString("api.addr")
-	DB = &DBConfig{
-		Addr: viper.GetString("dgraph.addr"),
+func Reload() {
+	ServerPort = env.Get("PORT", "3000")
+	DGraph = &DgraphConfig{
+		RpcURL:  env.Get("DGRAPH_RPC_URL", "localhost:9080"),
+		HttpURL: env.Get("DGRAPH_HTTP_URL", "http://localhost:8080"),
 	}
 	ElasticSearch = &ElasticSearchConfig{
-		URL: viper.GetString("elasticsearch.url"),
+		URL: env.Get("ES_HOSTS", "http://localhost:9200"),
 	}
-	Nats = viper.GetString("nats")
+	NatsURL = env.Get("NATS_URI", "nats://localhost:4222")
 }
 
 // Hostname reads HOSTNAME env var or os.Hostname used for your app
