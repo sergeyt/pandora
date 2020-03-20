@@ -32,6 +32,7 @@ redis = "*"
 elasticsearch = "*"
 asyncio-nats-client = "*"
 server-reloader = "*"
+flower = "*"
 
 [requires]
 python_version = "3.7"
