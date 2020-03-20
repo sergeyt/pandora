@@ -31,7 +31,7 @@ class ThumbnailController {
 
         val doc: PDDocument = PDDocument.load(fileRes.body!!.inputStream)
 
-        val format = if (req.format === "") "JPEG" else req.format
+        val format = if (req.format === "") "JPG" else req.format
 
         // TODO render only first page with image
         val pr = PDFRenderer(doc)

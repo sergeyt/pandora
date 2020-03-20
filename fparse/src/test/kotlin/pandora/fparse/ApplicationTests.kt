@@ -1,5 +1,6 @@
 package pandora.fparse
 
+import org.apache.commons.io.FileUtils
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 import java.io.File
@@ -43,7 +44,9 @@ class ApplicationTests {
     @Test
     fun generateThumbnail() {
         val ctrl = ThumbnailController()
-        val result = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPEG"))
-        assert(result != null)
+        val data = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPG"))
+        assert(data != null)
+        val home = System.getenv("HOME")
+        FileUtils.writeByteArrayToFile(File(home + "/thumb.jpg"), data);
     }
 }
