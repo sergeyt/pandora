@@ -3,13 +3,13 @@ module github.com/sergeyt/pandora
 go 1.13
 
 require (
-	cloud.google.com/go v0.54.0 // indirect
+	cloud.google.com/go v0.55.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
-	github.com/aws/aws-sdk-go v1.29.25 // indirect
+	github.com/aws/aws-sdk-go v1.29.28 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
-	github.com/fsnotify/fsnotify v1.4.9
+	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gavv/httpexpect/v2 v2.0.2
 	github.com/gavv/monotime v0.0.0-20190418164738-30dba4353424 // indirect
 	github.com/go-chi/chi v4.0.3+incompatible
@@ -27,8 +27,8 @@ require (
 	github.com/gorilla/mux v1.7.4 // indirect
 	github.com/gorilla/schema v1.1.0 // indirect
 	github.com/gorilla/sessions v1.2.0 // indirect
+	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/graymeta/stow v0.2.5
-	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/jmespath/go-jmespath v0.3.0 // indirect
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
@@ -36,22 +36,16 @@ require (
 	github.com/klauspost/cpuid v1.2.1 // indirect
 	github.com/markbates/goth v1.62.0
 	github.com/onsi/ginkgo v1.10.2 // indirect
-	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
-	github.com/spf13/afero v1.2.2 // indirect
-	github.com/spf13/cast v1.3.1 // indirect
-	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/spf13/viper v1.6.2
 	github.com/stretchr/testify v1.5.1
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
-	golang.org/x/sys v0.0.0-20200316230553-a7d97aace0b0 // indirect
-	google.golang.org/genproto v0.0.0-20200316142031-303a05041dad // indirect
+	golang.org/x/crypto v0.0.0-20200317142112-1b76d66859c6 // indirect
+	golang.org/x/net v0.0.0-20200319234117-63522dbf7eec // indirect
+	google.golang.org/genproto v0.0.0-20200319113533-08878b785e9c // indirect
 	google.golang.org/grpc v1.28.0
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
-	gopkg.in/ini.v1 v1.55.0 // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
