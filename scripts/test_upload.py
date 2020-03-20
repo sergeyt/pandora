@@ -20,6 +20,10 @@ def test_upload():
     file_id = node['uid']
 
     files = {'file': open(api.schema_path(), 'rb')}
+    resp = requests.post(file_url, params=params, headers=headers, files=files)
+    resp.raise_for_status()
+
+    files = {'file': open(api.schema_path(), 'rb')}
     resp = requests.put(file_url, params=params, headers=headers, files=files)
     resp.raise_for_status()
 
@@ -37,6 +41,13 @@ def test_upload():
     resp = requests.delete(file_url, params=params, headers=headers)
     resp.raise_for_status()
 
+    resp = requests.get(file_url, params=params, headers=headers)
+    assert (resp.status_code == 404)
+
+    file_url2 = api.url(f'/api/file/{file_id}')
+    resp = requests.get(file_url2, params=params, headers=headers)
+    assert (resp.status_code == 404)
+
 
 def test_delete_file_node():
     api.login("system", os.getenv("SYSTEM_PWD"))
@@ -52,20 +63,16 @@ def test_delete_file_node():
     node = resp.json()
     file_id = node['uid']
 
-    # download by path
-    resp = requests.get(file_url, params=params, headers=headers)
-    resp.raise_for_status()
-    print(resp.text)
+    # TODO fix delete file node
+    # url2 = api.url(f'/api/data/file/{file_id}')
+    # resp = requests.delete(url2, params=params, headers=headers)
+    # resp.raise_for_status()
 
-    # download by id
-    url1 = api.url(f'/api/file/{file_id}')
-    resp = requests.get(url1, params=params, headers=headers)
-    resp.raise_for_status()
-    print(resp.text)
+    # resp = requests.get(file_url, params=params, headers=headers)
+    # assert (resp.status_code == 404)
 
-    url2 = api.url(f'/api/data/file/{file_id}')
-    resp = requests.delete(url2, params=params, headers=headers)
-    resp.raise_for_status()
+    # resp = requests.get(f'/api/file/{file_id}', params=params, headers=headers)
+    # assert (resp.status_code == 404)
 
 
 def test_delete_file_by_id():
@@ -82,17 +89,13 @@ def test_delete_file_by_id():
     node = resp.json()
     file_id = node['uid']
 
-    # download by path
-    resp = requests.get(file_url, params=params, headers=headers)
-    resp.raise_for_status()
-    print(resp.text)
-
-    # download by id
-    url1 = api.url(f'/api/file/{file_id}')
-    resp = requests.get(url1, params=params, headers=headers)
-    resp.raise_for_status()
-    print(resp.text)
-
     url2 = api.url(f'/api/file/{file_id}')
     resp = requests.delete(url2, params=params, headers=headers)
     resp.raise_for_status()
+
+    resp = requests.get(file_url, params=params, headers=headers)
+    assert (resp.status_code == 404)
+
+    file_url2 = api.url(f'/api/file/{file_id}')
+    resp = requests.get(file_url2, params=params, headers=headers)
+    assert (resp.status_code == 404)
