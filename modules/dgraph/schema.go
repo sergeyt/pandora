@@ -39,7 +39,10 @@ func initSchema(path string) {
 	})
 	if err != nil {
 		log.Errorf("init %s fail: %v", path, err)
+		return
 	}
+
+	log.Infof("schema %s initialized", path)
 }
 
 func initGraphqlSchema(path string) {
@@ -53,7 +56,7 @@ func initGraphqlSchema(path string) {
 	rc := NewRestClient()
 	err = rc.PostData("/admin/schema", "text/plain", schema, nil)
 	if err != nil {
-		log.Errorf("init of graphql schema fail: %v", err)
+		log.Errorf("init of graphql schema failed: %v", err)
 		return
 	}
 
