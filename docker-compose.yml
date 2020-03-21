@@ -197,7 +197,7 @@ services:
 
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: dgraph/dgraph:v20.03.0-beta.20200320
     container_name: zero
     networks:
       - internal_network
@@ -221,7 +221,7 @@ services:
 
   # dgraph node (GraphQL native database)
   dgraph:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: dgraph/dgraph:v20.03.0-beta.20200320
     container_name: dgraph
     networks:
       - internal_network
@@ -245,7 +245,7 @@ services:
 
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: dgraph/dgraph:v20.03.0-beta.20200320
     container_name: ratel
     networks:
       - internal_network
