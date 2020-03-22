@@ -41,6 +41,7 @@ def index_file(url):
     keyword.extend(split_keywords(meta.get('keywords', '')))
     keyword.append('book')
     keyword = list(set([k.strip() for k in keyword if len(k.strip()) > 0]))
+
     tags = make_tags(keyword)
     meta.pop('keyword', None)
     meta.pop('keywords', None)
@@ -52,12 +53,12 @@ def index_file(url):
 
     if id is None:
         doc = api.post('/api/data/document', doc)
+        id = doc['uid']
     else:
         doc = api.put(f'/api/data/document/{id}', doc)
-        id = doc['uid']
 
     # set tags
-    edges = [[id, 'tag', t['uid']] for t in tags]
+    edges = [[id, 'tag', t] for t in tags]
     api.update_graph(edges)
     return doc
 
@@ -77,11 +78,11 @@ def make_tags(keywords):
 def make_tag(text):
     id = find_tag(text)
     if id is not None:
-        return {'uid': id}
+        return id
 
     tag = {'text': text}
-    tag = api.post('/api/data/tag', tag)
-    return {'uid': tag['uid']}
+    resp = api.post('/api/data/tag', tag)
+    return resp['uid']
 
 
 def find_tag(text):
