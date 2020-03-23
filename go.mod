@@ -35,7 +35,7 @@ require (
 	github.com/klauspost/cpuid v1.2.1 // indirect
 	github.com/markbates/goth v1.62.0
 	github.com/onsi/ginkgo v1.10.2 // indirect
-	github.com/sirupsen/logrus v1.4.2
+	github.com/sirupsen/logrus v1.5.0
 	github.com/stretchr/testify v1.5.1
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
