@@ -13,7 +13,7 @@ data class ParseRequest(val url: String)
 data class ParseResult(val metadata: Map<String, Any>, val text: String)
 
 // Downloads file from given URL like pre-signed S3 URL
-// Parses file content using Apache Content
+// Parses file content using Apache Tika
 // Input JSON {url, options?}
 // Returns JSON {metadata, text}
 @RestController
