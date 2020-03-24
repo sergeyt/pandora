@@ -46,8 +46,6 @@ class ApplicationTests {
         val ctrl = ThumbnailController()
         val data = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPG"))
         val home = System.getenv("HOME")
-        FileUtils.writeByteArrayToFile(File(home + "/thumb.jpg"), data.body);
-        val result = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPG"))
-        assert(result != null)
+        FileUtils.writeByteArrayToFile(File(home + "/thumb.jpg"), data.body)
     }
 }
