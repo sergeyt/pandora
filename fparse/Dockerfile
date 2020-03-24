@@ -1,7 +1,7 @@
 FROM gradle:6.2.2-jdk11 AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle build --no-daemon --stacktrace
+RUN gradle build --no-daemon --stacktrace -x test
 
 FROM openjdk:11.0.6-jdk-slim
 RUN mkdir -p /app
