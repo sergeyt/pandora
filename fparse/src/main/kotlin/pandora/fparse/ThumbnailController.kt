@@ -47,29 +47,33 @@ class ThumbnailController {
         val format = if (req.format.isNullOrBlank()) defaultThumbnailFormat else req.format
         val doc = PDDocument.load(fileRes.body!!.inputStream)
 
-        var pageIndex = doc.pages.indexOfFirst {
-            val page = it
-            page.resources.xObjectNames.any {
-                val xobj = page.resources.getXObject(it)
-                xobj is PDImageXObject
+        try {
+            var pageIndex = doc.pages.indexOfFirst {
+                val page = it
+                page.resources.xObjectNames.any {
+                    val xobj = page.resources.getXObject(it)
+                    xobj is PDImageXObject
+                }
             }
+            if (pageIndex < 0) {
+                pageIndex = 0
+            }
+
+            val pr = PDFRenderer(doc)
+            val bi = pr.renderImageWithDPI(pageIndex, 300F, ImageType.ARGB)
+
+            val out = ByteArrayOutputStream()
+            ImageIO.write(bi, format, out)
+            out.flush()
+
+            val bytes = out.toByteArray()
+
+            val thumbUrl = saveThumbnail(req, bytes, format)
+
+            return ThumbnailResult(thumbUrl, bytes)
+        } finally {
+            doc.close()
         }
-        if (pageIndex < 0) {
-            pageIndex = 0
-        }
-
-        val pr = PDFRenderer(doc)
-        val bi = pr.renderImageWithDPI(pageIndex, 300F, ImageType.ARGB)
-
-        val out = ByteArrayOutputStream()
-        ImageIO.write(bi, format, out)
-        out.flush()
-
-        val bytes = out.toByteArray()
-
-        val thumbUrl = saveThumbnail(req, bytes, format)
-
-        return ThumbnailResult(thumbUrl, bytes)
     }
 
     private fun saveThumbnail(info: ThumbnailRequest, body: ByteArray, format: String): String {
