@@ -22,8 +22,9 @@ import java.nio.file.Path
 import javax.imageio.ImageIO
 import javax.ws.rs.NotSupportedException
 
+val defaultThumbnailFormat = "JPG"
 
-data class ThumbnailRequest(val url: String, val format: String)
+data class ThumbnailRequest(val url: String, val format: String? = defaultThumbnailFormat)
 data class ThumbnailResult(val url: String, @JsonIgnore val body: ByteArray)
 
 // Downloads file from given URL like pre-signed S3 URL
@@ -43,8 +44,7 @@ class ThumbnailController {
             throw NotSupportedException("only pdf is supported for now")
         }
 
-        val format = if (req.format === "") "JPG" else req.format
-
+        val format = if (req.format.isNullOrBlank()) defaultThumbnailFormat else req.format
         val doc = PDDocument.load(fileRes.body!!.inputStream)
 
         var pageIndex = doc.pages.indexOfFirst {
