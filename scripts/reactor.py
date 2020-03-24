@@ -4,47 +4,61 @@ import json
 import traceback
 import logging
 import server_reloader
-from urllib.parse import urlparse, urlunparse, ParseResult
 from nats.aio.client import Client as NATS
 from nats.aio.errors import ErrConnectionClosed, ErrTimeout, ErrNoServers
 from tasks import index_file
-
-
-# removes query from given url
-def clean_url(url):
-    a = urlparse(url)
-    b = ParseResult(scheme=a.scheme,
-                    netloc=a.netloc,
-                    path=a.path,
-                    params='',
-                    query='',
-                    fragment='')
-    return urlunparse(b)
+from worker import app
 
 
 async def reactor(loop):
     nc = NATS()
-
     NATS_URI = os.getenv('NATS_URI', 'nats://localhost:4222')
     await nc.connect(NATS_URI, loop=loop)
+    await nc.subscribe("global", cb=message_handler)
 
-    async def message_handler(msg):
-        try:
-            data = json.loads(msg.data.decode())
-            method = data.get('method', '')
-            resource_type = data.get('resource_type', '')
 
-            print(
-                f"msg chan='{msg.subject}', type={resource_type}, data={data}")
+async def message_handler(msg):
+    try:
+        data = json.loads(msg.data.decode())
+        method = data.get('method', '')
+        resource_type = data.get('resource_type', '')
 
-            if resource_type == 'file':
-                url = clean_url(data.get('url'))
+        # print(
+        #     f"msg chan='{msg.subject}', type={resource_type}, data={data}")
+
+        if resource_type == 'file':
+            # use file id to cancel by same url
+            file_id = data.get('resource_id')
+            url = f'/api/file/{file_id}'
+            if method == 'DELETE':
+                print(f'cancelling tasks for file: {url}')
+                cancel_tasks(url)
+            else:
                 print(f'processing file {url}')
                 index_file.delay(url)
-        except:
-            traceback.print_exc()
+    except:
+        traceback.print_exc()
 
-    await nc.subscribe("global", cb=message_handler)
+
+# cancels active and scheduled related tasks
+def cancel_tasks(url):
+    state = app.control.inspect()
+
+    def is_related(t):
+        return t['name'] == 'tasks.index_file' and t['args'][0] == url
+
+    cancel = []
+    for _, a in state.active().items():
+        cancel.extend([t for t in a if is_related(t)])
+
+    for _, a in state.scheduled().items():
+        cancel.extend([t for t in a if is_related(t['request'])])
+
+    for t in cancel:
+        print(f"cancelling task {t['id']} {t['name']}")
+        app.control.revoke(t['id'], terminate=True)
+
+    return len(cancel) > 0
 
 
 def run():

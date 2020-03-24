@@ -11,6 +11,39 @@ volumes:
   esdata2:
 
 services:
+  # flower - celery dashboard
+  flower:
+    container_name: flower
+    build:
+      context: .
+      dockerfile: docker/flower/Dockerfile
+    networks:
+      - internal_network
+    volumes:
+      - ./scripts:/app:cached
+    ports:
+      - 5555:5555
+    command: [flower, --app=worker.app, --port=5555]
+    environment:
+      CELERY_BROKER_URL: amqp://guest:guest@rabbit:5672
+      CELERY_BACKEND_URL: redis://redis:6379
+      TIKA_HOST: http://tika:4219
+      ES_HOSTS: http://elasticsearch:9200
+      ES_INDEX_DOCS: docs
+      HOSTNAME: ${HOSTNAME}
+      HTTP_PORT: ${HTTP_PORT}
+      HTTPS_PORT: ${HTTPS_PORT}
+      DGRAPH_TOKEN: ${DGRAPH_TOKEN}
+      JWT_SECRET: ${JWT_SECRET}
+      SYSTEM_PWD: ${SYSTEM_PWD}
+      ADMIN_PWD: ${ADMIN_PWD}
+      # api key protection
+      API_KEY_SECRET: ${API_KEY_SECRET}
+      API_KEY: ${API_KEY}
+      APP_ID: ${APP_ID}
+      APP_SECRET: ${APP_SECRET}
+      API_GATEWAY_URL: "http://app:4201"
+
   # celery worker
   worker:
     container_name: worker
@@ -197,7 +230,7 @@ services:
 
   # dgraph cluster manager
   zero:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: dgraph/dgraph:v20.03.0-beta.20200320
     container_name: zero
     networks:
       - internal_network
@@ -206,7 +239,7 @@ services:
     ports:
       - 5080:5080
       - 6080:6080
-    command: dgraph zero --my=zero:5080 --telemetry=false -v=2
+    command: dgraph zero --my=zero:5080 --telemetry=false -v=0
     restart: always
     healthcheck:
       test: "curl --fail --max-time 10 http://localhost:6080/health"
@@ -221,7 +254,7 @@ services:
 
   # dgraph node (GraphQL native database)
   dgraph:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: dgraph/dgraph:v20.03.0-beta.20200320
     container_name: dgraph
     networks:
       - internal_network
@@ -230,7 +263,7 @@ services:
     ports:
       - 8080:8080
       - 9080:9080
-    command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --whitelist=${DGRAPH_WHITELIST} --telemetry=false -v=2
+    command: dgraph alpha --my=dgraph:7080 --zero=zero:5080 --lru_mb=2048 --whitelist=${DGRAPH_WHITELIST} --telemetry=false -v=0
     restart: always
     healthcheck:
       test: "curl --fail --max-time 10 http://localhost:8080/health"
@@ -245,7 +278,7 @@ services:
 
   # dgraph UI
   ratel:
-    image: dgraph/dgraph:v2.0.0-rc1
+    image: dgraph/dgraph:v20.03.0-beta.20200320
     container_name: ratel
     networks:
       - internal_network
@@ -393,7 +426,7 @@ services:
   # application API service
   app:
     depends_on:
-      # - dgraph
+      - dgraph
       - minio
       - nats
     build:
@@ -401,10 +434,15 @@ services:
       dockerfile: ./docker/app/Dockerfile
     container_name: app
     environment:
+      PORT: 4201
       HOSTNAME: ${HOSTNAME}
       HTTP_PORT: ${HTTP_PORT}
       HTTPS_PORT: ${HTTPS_PORT}
       DGRAPH_TOKEN: ${DGRAPH_TOKEN}
+      DGRAPH_RPC_URL: dgraph:9080
+      DGRAPH_HTTP_URL: http://dgraph:8080
+      ES_HOSTS: http://elasticsearch:9200
+      NATS_URI: nats://nats:4222
       JWT_SECRET: ${JWT_SECRET}
       SYSTEM_EMAIL: ${SYSTEM_EMAIL}
       SYSTEM_PWD: ${SYSTEM_PWD}

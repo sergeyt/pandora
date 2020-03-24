@@ -16,7 +16,7 @@ import (
 func healthAPI(r chi.Router) {
 	h := health.New()
 
-	dgraphURL, err := url.Parse(config.DB.Addr)
+	dgraphURL, err := url.Parse(config.DGraph.RpcURL)
 	if err != nil {
 		log.Fatalf("invalid dgraph URL: %v", err)
 	}
@@ -31,7 +31,7 @@ func healthAPI(r chi.Router) {
 	log.Infof("dgraph URL: %s", dgraphURL)
 	log.Infof("dgraph port: %s", dgraphURL.Port())
 
-	natsURL, err := url.Parse(config.Nats)
+	natsURL, err := url.Parse(config.NatsURL)
 	if err != nil {
 		log.Fatalf("invalid NATS URL: %v", err)
 	}

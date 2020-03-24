@@ -11,6 +11,7 @@ import (
 	_ "github.com/graymeta/stow/google"
 	"github.com/graymeta/stow/s3"
 	"github.com/sergeyt/pandora/modules/dgraph"
+	"github.com/sergeyt/pandora/modules/env"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -22,10 +23,10 @@ func NewCloudStore() CloudStore {
 // NewStow creates new Stow instance
 func NewStow() *Stow {
 	endpoint := os.Getenv("AWS_S3_ENDPOINT")
-	id := env("AWS_ACCESS_KEY_ID", os.Getenv("AWS_ACCESS_KEY"))
-	secret := env("AWS_SECRET_ACCESS_KEY", os.Getenv("AWS_SECRET_KEY"))
-	region := env("AWS_REGION", "eu-west-1")
-	bucket := env("AWS_S3_BUCKET", "pandora")
+	id := env.Get("AWS_ACCESS_KEY_ID", os.Getenv("AWS_ACCESS_KEY"))
+	secret := env.Get("AWS_SECRET_ACCESS_KEY", os.Getenv("AWS_SECRET_KEY"))
+	region := env.Get("AWS_REGION", "eu-west-1")
+	bucket := env.Get("AWS_S3_BUCKET", "pandora")
 
 	// TODO enable aws debug logging
 	kind := "s3"
@@ -123,8 +124,7 @@ func (fs *Stow) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) e
 }
 
 func (fs *Stow) fileUrl(path string) (*url.URL, error) {
-	// TODO what about google storage URLs
-	url, err := url.Parse("s3://" + fs.bucket + "/" + path)
+	url, err := url.Parse(fs.kind + "://" + fs.bucket + "/" + path)
 	if err != nil {
 		log.Errorf("url.Parse fail: %v", err)
 		return nil, err
@@ -151,6 +151,13 @@ func (fs *Stow) Upload(ctx context.Context, path, mediaType string, r io.ReadClo
 		log.Errorf("stow.GetContainer fail: %v", err)
 		return nil, err
 	}
+
+	item, err := container.Item(path)
+	if item != nil {
+		// TODO overwrite existing item instead of remove
+		container.RemoveItem(path)
+	}
+	err = nil
 
 	// TODO check if put requires to load file content into memory
 	// TODO add metadata
