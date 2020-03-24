@@ -5,6 +5,7 @@ from elasticsearch import Elasticsearch
 from worker import app
 import api
 import nquad
+from utils import dump_json
 
 TIKA_HOST = os.getenv('TIKA_HOST', 'http://localhost:4219')
 
@@ -19,7 +20,10 @@ def add(x, y):
 def index_file(url):
     print(f'indexing {url}')
     # parse file by given URL
-    resp = requests.get(url=TIKA_HOST + '/api/tika/parse', params={'url': url})
+    resp = requests.get(url=TIKA_HOST + '/api/tika/parse',
+                        params={'url': url},
+                        headers=api.stdHeaders,
+                        timeout=api.TIMEOUT)
     resp.raise_for_status()
     result = resp.json()
 
@@ -50,6 +54,7 @@ def index_file(url):
     doc['url'] = url
     doc['text'] = result['text']
     doc['author'] = {'uid': author_id}
+    doc['thumbnail_url'] = thumb(url)
 
     if id is None:
         doc = api.post('/api/data/document', doc)
@@ -61,6 +66,18 @@ def index_file(url):
     edges = [[id, 'tag', t] for t in tags]
     api.update_graph(edges)
     return doc
+
+
+def thumb(url):
+    data = dump_json({'url': url})
+    headers = api.stdHeaders
+    resp = requests.post(url=TIKA_HOST + '/api/tika/thumbnail',
+                         data=data,
+                         headers=headers,
+                         timeout=api.TIMEOUT)
+    resp.raise_for_status()
+    result = resp.json()
+    return result['url']
 
 
 def split_keywords(v):
