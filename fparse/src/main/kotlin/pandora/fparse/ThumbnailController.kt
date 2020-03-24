@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.net.URL
+import java.nio.file.Files
+import java.nio.file.Path
 import javax.imageio.ImageIO
 import javax.ws.rs.NotSupportedException
 
@@ -29,6 +32,7 @@ data class ThumbnailResult(val url: String, val body: ByteArray)
 // Returns JSON {metadata, text}
 @RestController
 class ThumbnailController {
+    // TODO don't create thumbnail if it is already exist
     // TODO stream result right to http response
     @PostMapping("/api/tika/thumbnail", consumes = ["application/json"], produces = ["application/json"])
     fun thumbnail(@RequestBody req: ThumbnailRequest): ThumbnailResult {
@@ -84,16 +88,16 @@ class ThumbnailController {
         return thumbUrl
     }
 
-    // FIXME reuse existing map
     private fun imageMediaType(format: String): String {
-        if (format == "png") {
-            return "image/png"
-        }
-        return "image/jpg"
+        return Files.probeContentType("""file.${format.toLowerCase()}""".toPath())
     }
 
     private fun thumbnailUrl(fileUrl: String): String {
         val f = URL(toAbsoluteUrl(fileUrl))
         return fileServiceBaseURL() + "/file/thumbnails" + f.path
     }
+}
+
+fun String.toPath(): Path {
+    return File(this).toPath()
 }
