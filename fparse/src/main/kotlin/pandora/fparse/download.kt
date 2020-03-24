@@ -2,6 +2,7 @@ package pandora.fparse
 
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.FileUrlResource
+import org.springframework.core.io.InputStreamSource
 import org.springframework.core.io.Resource
 import org.springframework.http.*
 import org.springframework.web.client.RestTemplate
@@ -12,7 +13,9 @@ import java.nio.file.Files
 
 val LOGGER = LoggerFactory.getLogger(Application::class.java)
 
-fun downloadFile(url: String): ResponseEntity<Resource> {
+data class FileResponse(val name: String, val mediaType: MediaType, val body: InputStreamSource)
+
+fun downloadFile(url: String): FileResponse {
     val file = toAbsoluteUrl(url)
 
     LOGGER.info("downloading file {}", file)
@@ -24,13 +27,13 @@ fun downloadFile(url: String): ResponseEntity<Resource> {
         val contentType = determineContentType(path)
         val headers = HttpHeaders()
         headers["Content-Type"] = contentType
-        val resource = FileUrlResource(path.toString())
-        return ResponseEntity(resource, headers, HttpStatus.OK)
+        val resource = FileUrlResource(path)
+        return FileResponse(path, MediaType.parseMediaType(contentType), resource)
     }
 
     val rest = RestTemplate()
     val headers = HttpHeaders()
-    headers.add("Accept", "*/*")
+    headers.set("Accept", "*/*")
 
     val req = HttpEntity("", headers)
 
@@ -39,7 +42,15 @@ fun downloadFile(url: String): ResponseEntity<Resource> {
         throw NullPointerException("expect body")
     }
 
-    return res
+    val mediaTypes = MediaType.parseMediaTypes(res.headers["Content-Type"])
+    var mediaType = mediaTypes.firstOrNull()
+    if (mediaType == null) {
+        mediaType = MediaType.APPLICATION_OCTET_STREAM
+    }
+
+    // FIXME parse content-disposition header
+    val name = res.body!!.filename ?: ""
+    return FileResponse(name, mediaType, res.body!!)
 }
 
 fun determineContentType(path: String): String {
@@ -54,11 +65,11 @@ fun toAbsoluteUrl(url: String): String {
         URL(url)
         return url
     } catch (e: MalformedURLException) {
-        return fileServiceBaseURL() + url
+        return fileServiceHost() + url
     }
 }
 
-fun fileServiceBaseURL(): String {
+fun fileServiceHost(): String {
     var base = System.getenv("FS_HOST")
     if (base == "") {
         base = "http://localhost"

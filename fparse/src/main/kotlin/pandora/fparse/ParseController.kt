@@ -5,7 +5,6 @@ import org.apache.tika.metadata.Metadata
 import org.apache.tika.parser.AutoDetectParser
 import org.apache.tika.parser.ParseContext
 import org.apache.tika.sax.BodyContentHandler
-import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.*
 
 
@@ -26,15 +25,14 @@ class ParseController {
     @PostMapping("/api/tika/parse", consumes = ["application/json"], produces = ["application/json"])
     fun parse(@RequestBody req: ParseRequest): ParseResult {
         val fileRes = downloadFile(req.url)
-        val mediaTypes = MediaType.parseMediaTypes(fileRes.headers["Content-Type"])
 
         val parser = AutoDetectParser()
         val handler = BodyContentHandler(500 * 1024 * 1024)
         val metadata = Metadata()
-        metadata.set("Content-Type", mediaTypes[0].type)
+        metadata.set("Content-Type", fileRes.mediaType.type)
         val parseContext = ParseContext()
 
-        val stream = TikaInputStream.get(fileRes.body!!.inputStream)
+        val stream = TikaInputStream.get(fileRes.body.inputStream)
         parser.parse(stream, handler, metadata, parseContext)
 
         val dups = HashSet<String>()

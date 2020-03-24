@@ -150,6 +150,8 @@ services:
       context: ./fparse
     environment:
       FS_HOST: http://app:4201
+      SYSTEM_PWD: ${SYSTEM_PWD}
+      API_KEY: ${API_KEY}
     volumes:
       - ./fparse:/home/gradle/src
     networks:
