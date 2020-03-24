@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"path/filepath"
 
 	"github.com/graymeta/stow"
 	_ "github.com/graymeta/stow/google"
@@ -119,10 +120,16 @@ func (fs *Stow) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) e
 	}
 	defer r.Close()
 
-	if file.MediaType != "" {
+	if file.MediaType != "" || file.Path != "" {
 		hw, ok := w.(http.ResponseWriter)
 		if ok {
-			hw.Header().Set("Content-Type", file.MediaType)
+			if file.MediaType != "" {
+				hw.Header().Set("Content-Type", file.MediaType)
+			}
+			if file.Path != "" {
+				fn := filepath.Base(file.Path)
+				hw.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=\"%s\"", fn))
+			}
 		}
 	}
 
