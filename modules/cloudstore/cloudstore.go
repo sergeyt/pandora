@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"net/http"
 	"net/url"
 	"os"
 
@@ -117,6 +118,13 @@ func (fs *Stow) DownloadFile(ctx context.Context, file *FileInfo, w io.Writer) e
 		return err
 	}
 	defer r.Close()
+
+	if file.MediaType != "" {
+		hw, ok := w.(http.ResponseWriter)
+		if ok {
+			hw.Header().Set("Content-Type", file.MediaType)
+		}
+	}
 
 	_, err = io.Copy(w, r)
 

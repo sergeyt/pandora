@@ -31,6 +31,7 @@ func FindFileImpl(ctx context.Context, tx *dgo.Txn, id string) (*FileInfo, error
 		files(func: %s) {
 			uid
 			path
+			content_type
 		}
 	  }`, filter)
 	resp, err := tx.QueryWithVars(ctx, query, map[string]string{
