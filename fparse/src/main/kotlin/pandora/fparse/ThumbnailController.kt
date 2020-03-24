@@ -1,22 +1,27 @@
 package pandora.fparse
 
-import org.apache.commons.io.FileUtils
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
 import org.apache.pdfbox.rendering.ImageType
 import org.apache.pdfbox.rendering.PDFRenderer
+import org.springframework.core.io.Resource
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.client.RestTemplate
 import java.io.ByteArrayOutputStream
-import java.io.File
+import java.net.URL
 import javax.imageio.ImageIO
 import javax.ws.rs.NotSupportedException
 
 
 data class ThumbnailRequest(val url: String, val format: String)
-data class ThumbnailResult(val id: String, val url: String)
+// TODO ignore body from json
+data class ThumbnailResult(val url: String, val body: ByteArray)
 
 // Downloads file from given URL like pre-signed S3 URL
 // Parses file content using Apache Content
@@ -26,7 +31,7 @@ data class ThumbnailResult(val id: String, val url: String)
 class ThumbnailController {
     // TODO stream result right to http response
     @PostMapping("/api/tika/thumbnail", consumes = ["application/json"], produces = ["application/json"])
-    fun thumbnail(@RequestBody req: ThumbnailRequest): ByteArray {
+    fun thumbnail(@RequestBody req: ThumbnailRequest): ThumbnailResult {
         val fileRes = downloadFile(req.url)
 
         val mediaTypes = MediaType.parseMediaTypes(fileRes.headers["Content-Type"])
@@ -34,7 +39,7 @@ class ThumbnailController {
             throw NotSupportedException("only pdf is supported for now")
         }
 
-        val format = if (req.format === "") "JPEG" else req.format
+        val format = if (req.format === "") "JPG" else req.format
 
         val doc = PDDocument.load(fileRes.body!!.inputStream)
 
@@ -57,7 +62,38 @@ class ThumbnailController {
         out.flush()
 
         val bytes = out.toByteArray()
-        // FileUtils.writeByteArrayToFile(File("/Users/admin/tmp/thumb.jpg"), bytes)
-        return bytes
+
+        val thumbUrl = saveThumbnail(req, bytes, format)
+
+        return ThumbnailResult(thumbUrl, bytes)
+    }
+
+    private fun saveThumbnail(info: ThumbnailRequest, body: ByteArray, format: String): String {
+        val rest = RestTemplate()
+        val headers = HttpHeaders()
+        headers.add("Accept", "*/*")
+        headers.add("Content-Type", imageMediaType(format))
+
+        val req = HttpEntity(body, headers)
+        val thumbUrl = thumbnailUrl(info.url)
+        val resp = rest.exchange(thumbUrl, HttpMethod.POST, req, Resource::class.java);
+        if (resp.body == null) {
+            throw NullPointerException("expect body")
+        }
+
+        return thumbUrl
+    }
+
+    // FIXME reuse existing map
+    private fun imageMediaType(format: String): String {
+        if (format == "png") {
+            return "image/png"
+        }
+        return "image/jpg"
+    }
+
+    private fun thumbnailUrl(fileUrl: String): String {
+        val f = URL(toAbsoluteUrl(fileUrl))
+        return fileServiceBaseURL() + "/file/thumbnails" + f.path
     }
 }

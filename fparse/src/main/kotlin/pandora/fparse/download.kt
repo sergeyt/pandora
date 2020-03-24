@@ -54,10 +54,14 @@ fun toAbsoluteUrl(url: String): String {
         URL(url)
         return url
     } catch (e: MalformedURLException) {
-        var base = System.getenv("FS_HOST")
-        if (base == "") {
-            base = "http://localhost"
-        }
-        return base + url
+        return fileServiceBaseURL() + url
     }
+}
+
+fun fileServiceBaseURL(): String {
+    var base = System.getenv("FS_HOST")
+    if (base == "") {
+        base = "http://localhost"
+    }
+    return base
 }

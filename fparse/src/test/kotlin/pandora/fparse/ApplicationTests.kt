@@ -43,7 +43,7 @@ class ApplicationTests {
     @Test
     fun generateThumbnail() {
         val ctrl = ThumbnailController()
-        val result = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPEG"))
+        val result = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPG"))
         assert(result != null)
     }
 }
