@@ -39,6 +39,7 @@ hash: string @index(term) .
 text: string @lang @index(term, fulltext, trigram) .
 
 url: string @index(term) .
+thumbnail_url: string @index(term) .
 source: string @index(term, trigram) .
 geo: geo @index(geo) .
 path: string @index(term, trigram) .
@@ -184,10 +185,19 @@ type Term {
     region: string
 }
 
+type Tag {
+    created_at: dateTime
+    modified_at: dateTime
+    text: string
+    lang: string
+    region: string
+}
+
 type Document {
     created_at: dateTime
     modified_at: dateTime
     url: string
+    thumbnail_url: string
     text: string
     date: dateTime
     extractforaccessibility: bool

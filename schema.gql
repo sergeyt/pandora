@@ -94,6 +94,7 @@ type Document {
   created_at: DateTime
   modified_at: DateTime
   url: String
+  thumbnail_url: String
   text: String @search(by: [hash, fulltext])
   date: DateTime
   extractforaccessibility: Boolean
