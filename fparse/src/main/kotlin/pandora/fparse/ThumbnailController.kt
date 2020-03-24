@@ -1,5 +1,6 @@
 package pandora.fparse
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject
 import org.apache.pdfbox.rendering.ImageType
@@ -23,13 +24,12 @@ import javax.ws.rs.NotSupportedException
 
 
 data class ThumbnailRequest(val url: String, val format: String)
-// TODO ignore body from json
-data class ThumbnailResult(val url: String, val body: ByteArray)
+data class ThumbnailResult(val url: String, @JsonIgnore val body: ByteArray)
 
 // Downloads file from given URL like pre-signed S3 URL
 // Parses file content using Apache Content
 // Input JSON {url, options?}
-// Returns JSON {metadata, text}
+// Returns JSON {url}
 @RestController
 class ThumbnailController {
     // TODO don't create thumbnail if it is already exist
