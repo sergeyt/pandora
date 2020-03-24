@@ -45,7 +45,6 @@ class ApplicationTests {
     fun generateThumbnail() {
         val ctrl = ThumbnailController()
         val data = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPG"))
-        assert(data != null)
         val home = System.getenv("HOME")
         FileUtils.writeByteArrayToFile(File(home + "/thumb.jpg"), data.body);
         val result = ctrl.thumbnail(ThumbnailRequest(aliceUrl, "JPG"))
