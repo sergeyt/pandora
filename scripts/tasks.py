@@ -54,7 +54,8 @@ def index_file(url):
     doc['url'] = url
     doc['text'] = result['text']
     doc['author'] = {'uid': author_id}
-    doc['thumbnail_url'] = thumb(url)
+    # todo fix thumbnail generation
+    # doc['thumbnail_url'] = thumb(url)
 
     if id is None:
         doc = api.post('/api/data/document', doc)
