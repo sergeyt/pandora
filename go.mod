@@ -3,9 +3,9 @@ module github.com/sergeyt/pandora
 go 1.14
 
 require (
-	cloud.google.com/go v0.55.0 // indirect
+	cloud.google.com/go v0.56.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
-	github.com/aws/aws-sdk-go v1.29.32 // indirect
+	github.com/aws/aws-sdk-go v1.30.2 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
@@ -34,6 +34,7 @@ require (
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
 	github.com/markbates/goth v1.63.0
+	github.com/nats-io/nats.go v1.9.2 // indirect
 	github.com/onsi/ginkgo v1.10.2 // indirect
 	github.com/sirupsen/logrus v1.5.0
 	github.com/stretchr/testify v1.5.1
@@ -41,8 +42,7 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	golang.org/x/crypto v0.0.0-20200323165209-0ec3e9974c59 // indirect
 	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e // indirect
-	golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd // indirect
-	google.golang.org/genproto v0.0.0-20200325114520-5b2d0af7952b // indirect
+	google.golang.org/genproto v0.0.0-20200401122417-09ab7b7031d2 // indirect
 	google.golang.org/grpc v1.28.0
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
