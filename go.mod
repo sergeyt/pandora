@@ -5,7 +5,7 @@ go 1.14
 require (
 	cloud.google.com/go v0.56.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
-	github.com/aws/aws-sdk-go v1.30.2 // indirect
+	github.com/aws/aws-sdk-go v1.30.4 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
@@ -29,7 +29,6 @@ require (
 	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/graymeta/stow v0.2.5
 	github.com/imkira/go-interpol v1.1.0 // indirect
-	github.com/jmespath/go-jmespath v0.3.0 // indirect
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
@@ -40,9 +39,9 @@ require (
 	github.com/stretchr/testify v1.5.1
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
-	golang.org/x/crypto v0.0.0-20200323165209-0ec3e9974c59 // indirect
-	golang.org/x/net v0.0.0-20200324143707-d3edc9973b7e // indirect
-	google.golang.org/genproto v0.0.0-20200401122417-09ab7b7031d2 // indirect
+	golang.org/x/crypto v0.0.0-20200403201458-baeed622b8d8 // indirect
+	google.golang.org/api v0.21.0 // indirect
+	google.golang.org/genproto v0.0.0-20200403120447-c50568487044 // indirect
 	google.golang.org/grpc v1.28.0
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
