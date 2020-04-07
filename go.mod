@@ -42,7 +42,7 @@ require (
 	golang.org/x/crypto v0.0.0-20200403201458-baeed622b8d8 // indirect
 	google.golang.org/api v0.21.0 // indirect
 	google.golang.org/genproto v0.0.0-20200403120447-c50568487044 // indirect
-	google.golang.org/grpc v1.28.0
+	google.golang.org/grpc v1.28.1
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
