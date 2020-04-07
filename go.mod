@@ -5,7 +5,7 @@ go 1.14
 require (
 	cloud.google.com/go v0.56.0 // indirect
 	github.com/InVisionApp/go-health/v2 v2.1.2
-	github.com/aws/aws-sdk-go v1.30.4 // indirect
+	github.com/aws/aws-sdk-go v1.30.5 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/structs v1.1.0 // indirect
@@ -39,9 +39,10 @@ require (
 	github.com/stretchr/testify v1.5.1
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
-	golang.org/x/crypto v0.0.0-20200403201458-baeed622b8d8 // indirect
+	golang.org/x/crypto v0.0.0-20200406173513-056763e48d71 // indirect
+	golang.org/x/sys v0.0.0-20200406155108-e3b113bbe6a4 // indirect
 	google.golang.org/api v0.21.0 // indirect
-	google.golang.org/genproto v0.0.0-20200403120447-c50568487044 // indirect
+	google.golang.org/genproto v0.0.0-20200407120235-9eb9bb161a06 // indirect
 	google.golang.org/grpc v1.28.1
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
