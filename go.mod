@@ -13,7 +13,7 @@ require (
 	github.com/gavv/httpexpect/v2 v2.0.3
 	github.com/gavv/monotime v0.0.0-20190418164738-30dba4353424 // indirect
 	github.com/go-chi/chi v4.1.0+incompatible
-	github.com/go-chi/cors v1.1.0
+	github.com/go-chi/cors v1.1.1
 	github.com/gocontrib/auth v0.0.0-20200222165223-ee09c68e14fd
 	github.com/gocontrib/esclient v0.0.0-20181005131428-90f74e680263
 	github.com/gocontrib/go-ldap-client v0.0.0-20170228181143-45b8133d8c18 // indirect
