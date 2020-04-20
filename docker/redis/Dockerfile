@@ -1,4 +1,4 @@
-FROM redis:5.0.8-alpine
+FROM redis:5.0.9-alpine
 
 RUN apk add --update curl \
     && rm -rf /var/cache/apk/*
