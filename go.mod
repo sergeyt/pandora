@@ -44,7 +44,7 @@ require (
 	golang.org/x/sys v0.0.0-20200413165638-669c56c373c4 // indirect
 	google.golang.org/api v0.21.0 // indirect
 	google.golang.org/genproto v0.0.0-20200416231807-8751e049a2a0 // indirect
-	google.golang.org/grpc v1.29.0
+	google.golang.org/grpc v1.29.1
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
