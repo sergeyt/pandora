@@ -33,7 +33,7 @@ require (
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/klauspost/cpuid v1.2.1 // indirect
-	github.com/markbates/goth v1.64.0
+	github.com/markbates/goth v1.64.1
 	github.com/nats-io/nats.go v1.9.2 // indirect
 	github.com/onsi/ginkgo v1.10.2 // indirect
 	github.com/sirupsen/logrus v1.6.0
