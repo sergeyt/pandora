@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.8.0
 
 COPY --chown=elasticsearch:elasticsearch config/elasticsearch/jvm.options /usr/share/elasticsearch/config/
 COPY --chown=elasticsearch:elasticsearch config/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/
