@@ -48,7 +48,7 @@ require (
 	golang.org/x/text v0.3.3 // indirect
 	google.golang.org/api v0.29.0 // indirect
 	google.golang.org/genproto v0.0.0-20200711021454-869866162049 // indirect
-	google.golang.org/grpc v1.30.0
+	google.golang.org/grpc v1.31.1
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
