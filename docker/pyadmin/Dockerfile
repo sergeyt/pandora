@@ -1,5 +1,5 @@
 # see also https://github.com/wemake-services/wemake-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/docker/django/Dockerfile
-FROM python:3.8-alpine
+FROM python:3.9-alpine
 
 RUN apk update \
     && apk --no-cache add \
