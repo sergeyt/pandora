@@ -37,7 +37,7 @@ require (
 	github.com/nats-io/nkeys v0.2.0 // indirect
 	github.com/onsi/ginkgo v1.10.2 // indirect
 	github.com/sirupsen/logrus v1.6.0
-	github.com/stretchr/testify v1.6.1
+	github.com/stretchr/testify v1.7.0
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a // indirect
