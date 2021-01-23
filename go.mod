@@ -26,7 +26,7 @@ require (
 	github.com/gorilla/schema v1.2.0 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/gorilla/websocket v1.4.0 // indirect
-	github.com/graymeta/stow v0.2.6
+	github.com/graymeta/stow v0.2.7
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
