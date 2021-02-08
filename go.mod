@@ -30,7 +30,7 @@ require (
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
 	github.com/klauspost/compress v1.8.5 // indirect
-	github.com/markbates/goth v1.64.2
+	github.com/markbates/goth v1.67.1
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/nats-io/jwt v1.0.1 // indirect
 	github.com/nats-io/nats.go v1.10.0 // indirect
@@ -41,12 +41,9 @@ require (
 	github.com/tomasen/realip v0.0.0-20180522021738-f0c99a92ddce // indirect
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a // indirect
-	golang.org/x/net v0.0.0-20200904194848-62affa334b73 // indirect
 	golang.org/x/oauth2 v0.0.0-20200902213428-5d25da1a8d43 // indirect
 	golang.org/x/sys v0.0.0-20200905004654-be1d3432aa8f // indirect
-	google.golang.org/api v0.31.0 // indirect
-	google.golang.org/genproto v0.0.0-20200904004341-0bd0a958aa1d // indirect
-	google.golang.org/grpc v1.31.1
+	google.golang.org/grpc v1.32.0
 	gopkg.in/asn1-ber.v1 v1.0.0-20181015200546-f715ec2f112d // indirect
 	gopkg.in/gavv/httpexpect.v1 v1.1.1 // indirect
 	gopkg.in/ldap.v2 v2.5.1 // indirect
