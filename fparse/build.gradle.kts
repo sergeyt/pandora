@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation("org.apache.tika:tika-core:1.25")
+    implementation("org.apache.tika:tika-core:1.26")
     implementation("org.apache.tika:tika-parsers:1.25")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
