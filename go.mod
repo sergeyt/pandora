@@ -21,7 +21,7 @@ require (
 	github.com/gocontrib/pubsub v0.0.0-20200312200210-54848bfb63ae
 	github.com/gocontrib/request v0.0.0-20160320145147-69ba4658ef4d // indirect
 	github.com/gocontrib/rest v0.1.0
-	github.com/gorilla/handlers v1.5.0
+	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/gorilla/schema v1.2.0 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
