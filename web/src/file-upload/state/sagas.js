@@ -1,6 +1,8 @@
-import {all, call, cancelled, put, select, take, takeEvery} from "redux-saga/effects";
+import {all, call, cancel, cancelled, fork, put, select, take, takeEvery} from "redux-saga/effects";
 import {END, eventChannel} from "redux-saga";
 import {
+    ACTION_CANCEL_ALL,
+    ACTION_CANCEL_FILE,
     ACTION_UPDATE_STATUS,
     ACTION_UPLOAD,
     updateStatus,
@@ -12,12 +14,14 @@ import {
 import Pandora from "../../server-api";
 
 
-function makeUploadChannel({pandora, file, cancel}) {
+function makeUploadChannel({pandora, file}) {
+    const uploadingOperation = Pandora.makeCancellableOperation();
+
     return eventChannel(emit => {
         const onProgress = (percent) => {
             emit(uploadProgress(file, percent));
         };
-        pandora.uploadFile(file, {onProgress, cancel}).then(() => {
+        pandora.uploadFile(file, {onProgress, cancel: uploadingOperation}).then(() => {
             emit(uploadSuccess(file));
             emit(END);
         }).catch((err) => {
@@ -27,33 +31,72 @@ function makeUploadChannel({pandora, file, cancel}) {
         });
 
         return () => {
-            cancel.cancel("cancelled");
+            uploadingOperation.cancel("Cancelled by user");
         };
     });
 }
 
 
-export function* handleFileUploadSaga(file) {
-    const uploading = Pandora.makeCancellableOperation();
+export function* doUpload(file) {
+    yield put(updateStatus(file, UploadStatus.ACTIVE));
+    const uploading = yield call(makeUploadChannel, {pandora: Pandora, file});
     try {
-        yield put(updateStatus(file, UploadStatus.ACTIVE));
-        const channel = yield call(makeUploadChannel, {pandora: Pandora, file, cancel: uploading});
-
+        // Receive actions indicating uploading progress
+        // and redirect them to the redux store...
         while (true) {
-            const action = yield take(channel);
-            console.log(action);
+            const action = yield take(uploading);
             yield put(action);
         }
     } catch (err) {
-        if (yield cancelled()) {
-            uploading.cancel("cancelled");
-        }
         console.error(err);
+    } finally {
+        if (yield cancelled()) {
+            // If cancel received simply close the channel
+            // This will result in uploading cancellation.
+            uploading.close();
+        }
+    }
+}
+
+function isCancelled(action, file) {
+    return action.type === ACTION_CANCEL_ALL ||
+        action.type === ACTION_CANCEL_FILE &&
+        action.file.path === file.path;
+}
+
+function isDone(action, file) {
+    return action.file.path === file.path &&
+        action.type === ACTION_UPDATE_STATUS &&
+        (action.file.status === UploadStatus.SUCCESS ||
+            action.file.status === UploadStatus.FAILURE);
+}
+
+export function* manageUpload(file) {
+    const task = yield fork(doUpload, file);
+
+    // Monitor for cancellation until uploading complete.
+    while (true) {
+        // Receive uploading life-cycle action
+        const action = yield take([
+            ACTION_CANCEL_ALL,
+            ACTION_CANCEL_FILE,
+            ACTION_UPDATE_STATUS
+        ]);
+
+        // The operation is either cancelled or completed
+        if (isCancelled(action, file)) {
+            yield cancel(task);
+            return;
+        } else if (isDone(action, file)) {
+            return;
+        }
+
+        // Skip if action is related to different file...
     }
 }
 
 
-export function* handleUploadUpdateSaga() {
+export function* handleUploadQueue() {
     try {
         const files = yield select(state => state.upload.files);
         for (let file of files) {
@@ -62,7 +105,7 @@ export function* handleUploadUpdateSaga() {
                 return;
             }
             if (file.status === UploadStatus.PENDING) {
-                yield all([handleFileUploadSaga(file)]);
+                yield all([manageUpload(file)]);
                 return;
             }
         }
@@ -73,8 +116,8 @@ export function* handleUploadUpdateSaga() {
 }
 
 export function* uploadRootSaga() {
-    yield takeEvery(ACTION_UPLOAD, handleUploadUpdateSaga);
-    yield takeEvery(ACTION_UPDATE_STATUS, handleUploadUpdateSaga);
+    yield takeEvery(ACTION_UPLOAD, handleUploadQueue);
+    yield takeEvery(ACTION_UPDATE_STATUS, handleUploadQueue);
 }
 
 export default uploadRootSaga;

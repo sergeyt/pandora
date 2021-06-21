@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",
-    "upload-server": "DEBUG=upload-server:* nodemon -r @std/esm scripts/upload-server.mjs",
+    "upload-server": "DEBUG=upload-server:* nodemon --watch scripts -r @std/esm scripts/upload-server.mjs",
     "dev": "webpack-dev-server --config webpack.config.js --mode development",
     "lint": "eslint ./src --fix"
   },
