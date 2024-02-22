@@ -17,7 +17,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.45",
     "@material-ui/styles": "^4.9.0",
-    "axios": "^0.19.2",
+    "axios": "^0.28.0",
     "clsx": "^1.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
