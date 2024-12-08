@@ -3,7 +3,7 @@ module github.com/sergeyt/pandora
 go 1.14
 
 require (
-	github.com/InVisionApp/go-health/v2 v2.1.2
+	github.com/InVisionApp/go-health/v2 v2.1.4
 	github.com/aws/aws-sdk-go v1.34.18 // indirect
 	github.com/dgraph-io/dgo/v2 v2.2.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
