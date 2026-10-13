@@ -23,7 +23,7 @@ require (
 	github.com/gocontrib/rest v0.1.0
 	github.com/gorilla/handlers v1.5.0
 	github.com/gorilla/mux v1.8.0 // indirect
-	github.com/gorilla/schema v1.2.0 // indirect
+	github.com/gorilla/schema v1.4.1 // indirect
 	github.com/gorilla/sessions v1.2.1 // indirect
 	github.com/gorilla/websocket v1.4.0 // indirect
 	github.com/graymeta/stow v0.2.6
