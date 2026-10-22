@@ -32,7 +32,7 @@ require (
 	github.com/klauspost/compress v1.8.5 // indirect
 	github.com/markbates/goth v1.64.2
 	github.com/mattn/go-colorable v0.1.7 // indirect
-	github.com/nats-io/jwt v1.0.1 // indirect
+	github.com/nats-io/jwt v1.1.0 // indirect
 	github.com/nats-io/nats.go v1.10.0 // indirect
 	github.com/nats-io/nkeys v0.2.0 // indirect
 	github.com/onsi/ginkgo v1.10.2 // indirect
