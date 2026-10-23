@@ -29,7 +29,7 @@ require (
 	github.com/graymeta/stow v0.2.6
 	github.com/imkira/go-interpol v1.1.0 // indirect
 	github.com/jtblin/go-ldap-client v0.0.0-20170223121919-b73f66626b33 // indirect
-	github.com/klauspost/compress v1.8.5 // indirect
+	github.com/klauspost/compress v1.18.7 // indirect
 	github.com/markbates/goth v1.64.2
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/nats-io/jwt v1.0.1 // indirect
